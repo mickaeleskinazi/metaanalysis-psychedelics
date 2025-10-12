@@ -41,8 +41,6 @@ dr_fit_per_window <- function(es, min_k_per_window = 2){
     group_modify(~{
       dat <- .x
       empty <- tibble(
-        molecule       = character(),
-        time_window    = character(),
         k              = integer(),
         beta_dose      = double(),
         se_dose        = double(),
@@ -81,7 +79,6 @@ dr_test_session_vs_followup <- function(es, min_k_total = 4){
     group_modify(~{
       dat <- .x
       empty <- tibble(
-        molecule          = character(),
         beta_dose_main    = double(),
         beta_interaction  = double(),
         p_interaction     = double()
