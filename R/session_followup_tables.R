@@ -83,8 +83,6 @@ dr_fit_per_window <- function(es, min_k_per_window = 2) {
       m <- tryCatch(rma(yi ~ dose_mg, vi = vi, data = dat, method = "REML"), error = function(e) NULL)
       if (is.null(m)) return(empty)
       tibble(
-        molecule       = dat$molecule[[1]],
-        time_window    = dat$time_window[[1]],
         k              = m$k,
         beta_dose      = as.numeric(coef(m)["dose_mg"]),
         se_dose        = as.numeric(m$se["dose_mg"]),
@@ -117,7 +115,6 @@ dr_test_session_vs_followup <- function(es, min_k_total = 4) {
       m <- tryCatch(rma(yi ~ dose_mg * time_window, vi = vi, data = dat, method = "REML"), error = function(e) NULL)
       if (is.null(m)) return(empty)
       tibble(
-        molecule          = dat$molecule[[1]],
         beta_dose_main    = as.numeric(coef(m)["dose_mg"]),
         beta_interaction  = as.numeric(coef(m)[grep("^dose_mg:time_window", names(coef(m)))]),
         p_interaction     = as.numeric(m$pval[grep("^dose_mg:time_window", names(m$pval))])
