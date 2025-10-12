@@ -32,6 +32,8 @@ Key scripts:
 - `scripts/run_session_followup_analysis.R` – compares session vs follow-up time windows and saves per-window artefacts.
 - `scripts/compare_global_session_followup.R` – global slope comparison between windows.
 - `scripts/compare_session_followup_from_saved_tables.R` – reconciles previously exported tables for reporting.
+- `scripts/compare_session_followup_tables_from_outputs.R` – builds the session vs follow-up comparison tables from existing
+  CSV exports (no model re-fitting required).
 - `scripts/analysis_plots_by_ae_overlay.R` – generates AE overlays when you need molecule comparisons.
 
 
@@ -69,6 +71,9 @@ source("scripts/run_main_analysis.R")
 
 # Session vs follow-up comparison
 source("scripts/run_session_followup_analysis.R")
+
+# Session vs follow-up tables only (reuse saved CSVs)
+source("scripts/compare_session_followup_tables_from_outputs.R")
 
 # Global slope comparison (optional)
 source("scripts/compare_global_session_followup.R")
