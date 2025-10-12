@@ -1,0 +1,60 @@
+molecule,ae_term,p_session,p_followup,sig_s,sig_f,status
+lsd,balance_disorder,0.9468208753181988,0.994916718778237,FALSE,FALSE,Non-significant
+lsd,fatigue,0.8494898149390381,0.9049066972617128,FALSE,FALSE,Non-significant
+lsd,mydriasis,0.8676762765324081,0.994916718778237,FALSE,FALSE,Non-significant
+lsd,pseudo_hallucination,0.4159394830885501,0.994916718778237,FALSE,FALSE,Non-significant
+lsd,tremor,0.0825339890401824,0.9775821636306836,FALSE,FALSE,Non-significant
+lsd,vomiting,0.1630912094073479,0.994916718778237,FALSE,FALSE,Non-significant
+psilocybin,abdominal pain,0.3417263317563765,NA,FALSE,FALSE,Non-significant
+lsd,altered state of consciousness,0.8656190699691487,0.994916718778237,FALSE,FALSE,Non-significant
+lsd,anxiety,0.3583314225145968,0.6044195449548712,FALSE,FALSE,Non-significant
+mdma,anxiety,0.07238373947526959,0.9947871156966084,FALSE,FALSE,Non-significant
+psilocybin,anxiety,0.5907397082669824,NA,FALSE,FALSE,Non-significant
+lsd,attention disturbance,0.3627845944882105,0.06711142243555723,FALSE,FALSE,Non-significant
+mdma,autonomic,0.07190931391854519,NA,FALSE,FALSE,Non-significant
+psilocybin,back pain,0.8623369195826021,NA,FALSE,FALSE,Non-significant
+mdma,decreased concentration,0.5208050959412636,0.8390943185600254,FALSE,FALSE,Non-significant
+lsd,depressed mood,0.2946135036438221,0.6379692608720715,FALSE,FALSE,Non-significant
+mdma,depression,0.0455641428431674,0.4987731402516836,TRUE,FALSE,Lost at follow-up
+psilocybin,diarrhea,0.8752947091195504,NA,FALSE,FALSE,Non-significant
+mdma,dissociation,0.3622376505580188,NA,FALSE,FALSE,Non-significant
+lsd,dizziness,0.5288349849811523,0.6153346008566908,FALSE,FALSE,Non-significant
+mdma,dizziness,0.04476618621136269,NA,TRUE,FALSE,Lost at follow-up
+psilocybin,dizziness,0.4911916312101792,NA,FALSE,FALSE,Non-significant
+lsd,emotional distress,0.25621069193512325,0.6073550331696943,FALSE,FALSE,Non-significant
+lsd,euphoric mood,0.505338024386821,0.994916718778237,FALSE,FALSE,Non-significant
+mdma,fatigue,0.15876536052103554,0.7582670991858665,FALSE,FALSE,Non-significant
+psilocybin,fatigue,2.5387676153925757e-6,NA,TRUE,FALSE,Lost at follow-up
+lsd,feeling abnormal,0.11767548511259308,0.994916718778237,FALSE,FALSE,Non-significant
+lsd,hallucination visual,0.8296271278277487,0.7127053761499509,FALSE,FALSE,Non-significant
+lsd,headache,0.01039956977448597,0.306764639599127,TRUE,FALSE,Lost at follow-up
+mdma,headache,0.00654179210642141,0.9153286266908108,TRUE,FALSE,Lost at follow-up
+psilocybin,headache,0.20741712544518504,NA,FALSE,FALSE,Non-significant
+lsd,hypertension,0.9581252720168464,0.994916718778237,FALSE,FALSE,Non-significant
+psilocybin,hypertension,0.00406689691292466,NA,TRUE,FALSE,Lost at follow-up
+lsd,illusion,0.04935938119455931,0.6479879376056239,TRUE,FALSE,Lost at follow-up
+lsd,impaired gait,0.33556931465344747,NA,FALSE,FALSE,Non-significant
+mdma,irritability,0.2840276643860284,0.44454658466005226,FALSE,FALSE,Non-significant
+mdma,jaw tension,0.1382518257240817,NA,FALSE,FALSE,Non-significant
+lsd,lack of appetite,0.5584572803462388,0.44902053755482174,FALSE,FALSE,Non-significant
+mdma,lack of appetite,0.06381091187516306,0.2047214617746915,FALSE,FALSE,Non-significant
+psilocybin,migraine,0.943637156341393,NA,FALSE,FALSE,Non-significant
+mdma,muscle tension,0.2874412593238608,0.7712557910703645,FALSE,FALSE,Non-significant
+psilocybin,myalgia,0.37225677515445543,NA,FALSE,FALSE,Non-significant
+lsd,nausea,0.00317434762179838,0.5319434252809175,TRUE,FALSE,Lost at follow-up
+mdma,nausea,0.3356068849835645,NA,FALSE,FALSE,Non-significant
+psilocybin,nausea,0.5368257322994116,NA,FALSE,FALSE,Non-significant
+mdma,ophthalmological,0.19570107697766123,NA,FALSE,FALSE,Non-significant
+mdma,pain,0.1294631465656309,NA,FALSE,FALSE,Non-significant
+lsd,paresthesia,0.10786178677600462,0.994916718778237,FALSE,FALSE,Non-significant
+lsd,perspiration,0.5111181119716915,0.994916718778237,FALSE,FALSE,Non-significant
+mdma,perspiration,0.07204286937813119,NA,FALSE,FALSE,Non-significant
+mdma,restlessness,0.3739274447530834,NA,FALSE,FALSE,Non-significant
+mdma,rumination,0.46854264542209967,NA,FALSE,FALSE,Non-significant
+mdma,sleep disorder,0.06427352131812401,0.5391371486469972,FALSE,FALSE,Non-significant
+psilocybin,sleep disorder,0.7030830557290196,NA,FALSE,FALSE,Non-significant
+psilocybin,suicidal ideation,0.2715231981630644,NA,FALSE,FALSE,Non-significant
+lsd,temperature perception disturbances,0.2902970549347227,0.8085434819748507,FALSE,FALSE,Non-significant
+lsd,thinking abnormal,0.29921946153638534,0.9775821636306836,FALSE,FALSE,Non-significant
+mdma,weakness,0.6765358089875609,NA,FALSE,FALSE,Non-significant
+mdma,xerostomia,0.8163167006030133,NA,FALSE,FALSE,Non-significant

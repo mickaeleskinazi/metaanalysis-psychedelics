@@ -1,0 +1,7 @@
+molecule,time_window,k,n_doses,zero_rows,zero_prop
+AYAHUASCA,session,16,1,0,0
+LSD,follow_up,108,5,0,0
+LSD,session,149,6,0,0
+MDMA,follow_up,58,2,0,0
+MDMA,session,160,6,0,0
+PSILOCYBIN,session,162,3,0,0

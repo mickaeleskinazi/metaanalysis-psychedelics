@@ -1,9 +1,18 @@
+suppressPackageStartupMessages({
+  library(readxl)
+  library(dplyr)
+  library(stringr)
+  library(stringi)
+  library(writexl)
+  library(readr)
+  library(patchwork)
+})
 suppressPackageStartupMessages({ library(dplyr) })
 
 # -- chemins --
-DATA_XLSX <- "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/data/Adverse-events-dose-v5.xlsx"
-SHEET     <- "Feuil1"
-ROOT      <- "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results"
+DATA_XLSX <- "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/data/Adverse-events-dose-v5_follow_up.xlsx"
+SHEET     <- "Sheet1"
+ROOT      <- "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/"
 
 
 default_ref_policies <- list(
@@ -15,7 +24,7 @@ default_ref_policies <- list(
 )
 
 # -- params --
-MIN_K      <- 3
+MIN_K      <- 2
 FIT_SPLINE <- TRUE
 
 # -- sources --
@@ -67,7 +76,7 @@ message("MASTER PLOTS …")
 # A) DR global par molécule
 plot_master_dr_by_molecule(dr_mol$preds, file.path(ROOT,"master/master_dr_by_molecule.pdf"))
 # B) Forest globaux (pooled par AE, facets par molécule)
-plot_master_forest_by_molecule(es, file.path(ROOT,"master/master_forest_by_molecule.pdf"), min_k = 2)
+plot_master_forest_by_molecule(es, file.path(ROOT,"master/master_forest_by_molecule.pdf"), min_k = 3)
 # C) DR par AE (grille)
 plot_master_dr_by_ae(
   preds               = dr_ae$preds,
@@ -79,4 +88,126 @@ plot_master_dr_by_ae(
 
 
 message("MASTER PLOTS … done ✅")
+
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/tables_for_paper.R")
+
+make_all_paper_tables(
+  path_mol_agg    = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/tables/significance_agg_by_molecule.csv",
+  path_ae_mol_agg = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/tables/significance_agg_by_ae_molecule.csv",
+  path_models_ae  = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/tables/significance_by_ae_models.csv"
+)
+
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/run_session_followup_and_compare.R")
+
+run_session_followup_and_compare(
+  base_xlsx        = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/data/Adverse-events-dose-v5.xlsx",
+  sheet            = "Feuil1",
+  out_root_session = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results_session",
+  out_root_followup= "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results_followup",
+  out_root_compare = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results_compare",
+  min_k            = 2,
+  fit_spline       = TRUE
+)
+
+
+# ========= SESSION vs FOLLOW-UP: tables + comparison plots =========
+
+suppressPackageStartupMessages({
+  library(dplyr); library(readr)
+})
+
+# -- Paths (adapt only if you moved the Excel) --
+BASE_XLSX <- "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/data/Adverse-events-dose-v5.xlsx"
+SHEET     <- "Feuil1"
+OUT_DIR_CMP <- "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results_compare/tables"
+
+# -- Source helpers (make sure these files exist with the versions we wrote) --
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/utils_data.R")
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/analysis_dose_response.R")
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/dr_window_tables.R")               # tables session/follow_up
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/dr_compare_session_followup.R")   # DR overlay plots
+source("/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/scripts/forest_compare_session_followup.R")# forest side-by-side
+
+# -- Reference priority (same as your main run) --
+default_ref_policies <- list(
+  MDMA       = c("inactive_placebo","active_non_psy_placebo","active_placebo"),
+  LSD        = c("inactive_placebo","active_placebo","active_non_psy_placebo"),
+  PSILOCYBIN = c("inactive_placebo","active_non_psy_placebo","active_placebo"),
+  AYAHUASCA  = c("inactive_placebo","active_placebo","active_non_psy_placebo"),
+  .default   = c("inactive_placebo","active_placebo","active_non_psy_placebo")
+)
+
+# -- Helper to normalise window labels --
+.norm_win <- function(x){
+  x <- as.character(x)
+  x <- tolower(x)
+  x <- gsub("[^a-z0-9]+", "_", x)  # non-alnum → underscore
+  x <- gsub("_+", "_", x)          # collapse multiple underscores
+  x <- sub("^_", "", x)            # trim leading underscore
+  x <- sub("_$", "", x)            # trim trailing underscore
+  x
+}
+
+# -- Build ES for a given window and tag it --
+.build_es_for_window <- function(window_value){
+  raw_all <- load_data(BASE_XLSX, sheet = SHEET) %>%
+    dplyr::mutate(time_window = .norm_win(time_window))
+  if (!window_value %in% unique(raw_all$time_window)) {
+    stop("Window '", window_value, "' not found. Available: ",
+         paste(sort(unique(raw_all$time_window)), collapse=", "))
+  }
+  raw_win <- raw_all %>% dplyr::filter(time_window == window_value)
+  
+  contr <- build_pairwise_2x2(raw_win, ref_policies = default_ref_policies)
+  es    <- build_escalc(contr)
+  es$time_window <- window_value
+  es
+}
+
+
+message("== Building ES for both windows …")
+es_session  <- try(.build_es_for_window("session"))
+es_followup <- try(.build_es_for_window("follow_up"))
+
+es_all <- dplyr::bind_rows(
+  if (!inherits(es_session,  "try-error")) es_session,
+  if (!inherits(es_followup,"try-error"))  es_followup
+)
+if (!nrow(es_all)) stop("No ES rows after building session/follow_up.")
+print(es_all %>% count(time_window))
+
+# ---------- (A) Tables: per-window slopes + interaction ----------
+dir.create(OUT_DIR_CMP, recursive = TRUE, showWarnings = FALSE)
+out_tbls <- make_dr_window_tables(
+  es = es_all,
+  out_dir = OUT_DIR_CMP,
+  min_k_per_window = 2,   # require ≥2 contrasts per window/molecule
+  min_k_total      = 4    # require ≥4 total contrasts for the interaction test
+)
+message("Tables saved under: ", OUT_DIR_CMP)
+# -> dr_per_window_by_molecule.csv (long)
+# -> dr_per_window_by_molecule_wide.csv (session & follow_up side-by-side)
+# -> dr_session_vs_followup_interaction.csv
+# -> dr_session_followup_publication_table.csv
+
+# ---------- (B) DR overlays: session vs follow_up, faceted by molecule ----------
+# Fit DR per window to get predictions (same settings as your main run)
+dr_mol_session  <- run_dr_by_molecule(es_session,  min_k = 2, fit_spline = TRUE)
+dr_mol_followup <- run_dr_by_molecule(es_followup, min_k = 2, fit_spline = TRUE)
+
+dr_compare_all_molecules(
+  preds_session  = dr_mol_session$preds,
+  preds_followup = dr_mol_followup$preds,
+  outfile = file.path(OUT_DIR_CMP, "dr_by_molecule_session_vs_followup.pdf")
+)
+message("Saved: ", file.path(OUT_DIR_CMP, "dr_by_molecule_session_vs_followup.pdf"))
+
+# ---------- (C) Forest plots: session vs follow_up, side-by-side per AE ----------
+forest_compare_all_molecules(
+  es_all,
+  outdir            = file.path(OUT_DIR_CMP, "forest_by_ae_side_by_side"),
+  min_k_per_window  = 2   # ≥2 contrasts per window/AE/molecule
+)
+message("Saved forest grids under: ", file.path(OUT_DIR_CMP, "forest_by_ae_side_by_side"))
+# ===================================================================
 message("Done ✅")

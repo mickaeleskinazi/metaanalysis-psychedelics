@@ -1,115 +1,131 @@
-# ============================================================
-# analysis_plots_master.R
-# Master plots: dose–response global, forest globaux, DR par AE
-# ============================================================
+# ---- SIGNIFICANT-ONLY DR FACETS (AEs) ---------------------------------------
+suppressPackageStartupMessages({ library(dplyr); library(ggplot2); library(stringr); library(purrr); library(tidyr) })
 
-suppressPackageStartupMessages({
-  library(dplyr)
-  library(ggplot2)
-  library(readr)
-  library(tidyr)
-  library(metafor)
-})
-
-
-
-# ---------- A) MASTER DR: global dose–response by molecule ----------
-# preds_mol : dr_mol$preds
-# colonnes attendues: molecule, dose_mg, fit, lwr, upr
-plot_master_dr_by_molecule <- function(preds_mol, outfile = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/master/master_dr_by_molecule.pdf"){
-  stopifnot(all(c("molecule","dose_mg","fit","lwr","upr") %in% names(preds_mol)))
-  dir.create(dirname(outfile), recursive = TRUE, showWarnings = FALSE)
-  
-  p <- ggplot2::ggplot(preds_mol, ggplot2::aes(x = dose_mg, y = fit)) +
-    ggplot2::geom_hline(yintercept = 0, linetype = "dashed") +
-    ggplot2::geom_ribbon(ggplot2::aes(ymin = lwr, ymax = upr),
-                         alpha = 0.18, fill = "grey80", color = NA) +
-    ggplot2::geom_line(size = 1, color = "black") +
-    ggplot2::facet_wrap(~ molecule, scales = "free", nrow = 1) +   # côte à côte
-    ggplot2::labs(x = "Dose (mg)", y = "log(OR) vs ref",
-                  title = "Dose-response globale par molécule (tous AE confondus)") +
-    ggplot2::theme_bw() +
-    ggplot2::theme(strip.background = ggplot2::element_rect(fill = "white"))
-  
-  ggplot2::ggsave(outfile, p, width = 14, height = 4.5, dpi = 300)
-  invisible(p)
+# Small helper for flexible column names in preds
+.normalize_pred_cols <- function(df){
+  nm <- names(df)
+  pick <- function(cands) { cands[cands %in% nm][1] }
+  .x  <- pick(c("dose_norm","xdose","dose_mg","dose"))
+  .y  <- pick(c("fit","pred","estimate","mu","y"))
+  .l  <- pick(c("lwr","ci_low","ci_lb","ylwr"))
+  .u  <- pick(c("upr","ci_high","ci_ub","yupr"))
+  stopifnot(all(c("molecule","ae_term") %in% nm))
+  if (is.na(.x) || is.na(.y) || is.na(.l) || is.na(.u)) {
+    stop("Predictions must have dose & (fit,lwr,upr)-like columns. Found: ",
+         paste(nm, collapse=", "))
+  }
+  df %>% rename(xdose = all_of(.x), fit = all_of(.y), lwr = all_of(.l), upr = all_of(.u))
 }
 
-
-
-# ---------- B) FOREST GLOBAUX par molécule ----------
-# Helper: pooled OR per (molecule × AE)
-sig_stars_vec <- function(p){
-  out <- rep("", length(p))
-  out[!is.na(p) & p < 0.001] <- "***"
-  out[!is.na(p) & p >= 0.001 & p < 0.01] <- "**"
-  out[!is.na(p) & p >= 0.01  & p < 0.05] <- "*"
-  out
-}
-
-pooled_by_molecule_ae <- function(es){
-  stopifnot(all(c("yi","vi","molecule","ae_term") %in% names(es)))
-  es %>%
-    dplyr::filter(is.finite(yi), is.finite(vi)) %>%
-    dplyr::group_by(molecule, ae_term) %>%
-    dplyr::group_modify(function(.x, .key){
-      k <- nrow(.x)
-      if (k < 2) {
-        tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
-      } else {
-        fit <- tryCatch(metafor::rma(yi, vi, data = .x, method = "REML"), error = function(e) NULL)
-        if (is.null(fit)) {
-          tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
-        } else {
-          tibble::tibble(
-            or    = exp(as.numeric(fit$b[1])),
-            ci_lo = exp(as.numeric(fit$ci.lb)),
-            ci_hi = exp(as.numeric(fit$ci.ub)),
-            pval  = suppressWarnings(as.numeric(fit$pval))[1],
-            k     = fit$k
-          )
+# Compute omnibus p for AE×molecule from the model table
+.omnibus_p_ae_mol <- function(models_by_ae){
+  if (!nrow(models_by_ae)) return(tibble(molecule=character(), ae_term=character(), p_overall=double()))
+  models_by_ae %>%
+    group_by(molecule, ae_term) %>%
+    summarise(
+      p_overall = {
+        qmp <- suppressWarnings(min(QMp[is.finite(QMp)], na.rm = TRUE))
+        if (is.finite(qmp)) qmp else {
+          # fallback: min p among non-intercept terms
+          suppressWarnings(min(pval[is.finite(pval) & !grepl("intrcpt", term, TRUE)], na.rm = TRUE))
         }
-      }
-    }) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(
-      stars = sig_stars_vec(pval),
-      sig   = !is.na(pval) & pval < 0.05
+      },
+      .groups = "drop"
     )
 }
 
-plot_master_forest_by_molecule <- function(
-    es,
-    outfile = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/master/master_forest_by_molecule.pdf",
-    min_k = 2
+# Main plotting function
+plot_master_dr_significant_only <- function(
+    preds, models, outfile = "results/master/master_dr_significant_only.pdf",
+    normalize_dose = TRUE, ncol = 3, dpi = 300, width = 13, height = 9
 ){
+  if (!nrow(preds) || !nrow(models)) {
+    warning("No preds/models to plot."); return(invisible(NULL))
+  }
+  
+  # Which AE×molecule are significant?
+  sig_tbl <- .omnibus_p_ae_mol(models) %>%
+    mutate(sig = is.finite(p_overall) & p_overall < 0.05)
+  
+  # Keep only AEs with ≥1 significant molecule
+  ae_keep <- sig_tbl %>%
+    group_by(ae_term) %>%
+    summarise(any_sig = any(sig, na.rm = TRUE), .groups = "drop") %>%
+    filter(any_sig) %>% pull(ae_term)
+  
+  if (!length(ae_keep)) {
+    warning("No significant AEs found (p<0.05). Nothing to plot.")
+    return(invisible(NULL))
+  }
+  
+  # Choose one model per AE×molecule (prefer spline_df3 if present)
+  choose_model <- preds %>%
+    group_by(molecule, ae_term) %>%
+    summarise(use_spline = any(model == "spline_df3"), .groups = "drop")
+  
+  df_all <- preds %>%
+    inner_join(choose_model, by = c("molecule","ae_term")) %>%
+    filter((use_spline & model == "spline_df3") | (!use_spline & model == "linear")) %>%
+    filter(ae_term %in% ae_keep)
+  
+  if (!nrow(df_all)) {
+    warning("No predictions after model selection/filter."); return(invisible(NULL))
+  }
+  
+  # Normalize columns
+  df_all <- .normalize_pred_cols(df_all)
+  
+  # Optionally normalize dose to 0–1 per molecule (within each AE)
+  if (normalize_dose) {
+    df_all <- df_all %>%
+      group_by(ae_term, molecule) %>%
+      mutate(
+        .min = suppressWarnings(min(xdose, na.rm = TRUE)),
+        .max = suppressWarnings(max(xdose, na.rm = TRUE)),
+        xdose = ifelse(is.finite(.min) & is.finite(.max) & (.max > .min),
+                       (xdose - .min) / (.max - .min),
+                       0)  # collapse if constant
+      ) %>% ungroup() %>% select(-.min, -.max)
+  }
+  
+  # Attach significance per AE×molecule
+  dfp <- df_all %>%
+    left_join(sig_tbl, by = c("molecule","ae_term")) %>%
+    mutate(
+      sig    = ifelse(is.na(sig), FALSE, sig),
+      star   = case_when(!is.finite(p_overall) ~ "",
+                         p_overall < 0.001 ~ "***",
+                         p_overall < 0.01  ~ "**",
+                         p_overall < 0.05  ~ "*",
+                         TRUE ~ ""),
+      lty    = ifelse(sig, "significant", "ns"),
+      alphaL = ifelse(sig, 1.0, 0.55)
+    )
+  
+  # build plot
+  p <- ggplot(dfp, aes(x = xdose, y = fit, color = molecule, group = molecule)) +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    geom_ribbon(aes(ymin = lwr, ymax = upr, fill = molecule), alpha = 0.12, color = NA, show.legend = FALSE) +
+    geom_line(aes(linetype = lty, alpha = alphaL), linewidth = 0.9) +
+    scale_linetype_manual(values = c(significant = "solid", ns = "dashed"), name = "Model") +
+    scale_alpha_continuous(range = c(0.55, 1.0), guide = "none") +
+    scale_color_discrete(name = "Molecule") + scale_fill_discrete(guide = "none") +
+    facet_wrap(~ ae_term, scales = "free_y", ncol = ncol) +
+    labs(
+      title = "Dose–response (significant AEs only)",
+      subtitle = if (normalize_dose) "Dose normalized per molecule (0–1); solid lines: AE×molecule p<0.05" else "Solid lines: AE×molecule p<0.05",
+      x = if (normalize_dose) "Normalized dose (0–1)" else "Dose (mg)",
+      y = "log(OR) vs reference"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "bottom",
+      strip.background = element_rect(fill = "white")
+    )
+  
+  # Save
   dir.create(dirname(outfile), recursive = TRUE, showWarnings = FALSE)
-  
-  pooled <- pooled_by_molecule_ae(es) %>% dplyr::filter(k >= min_k)
-  if (!nrow(pooled)) { warning("Aucun AE avec k >= ", min_k); return(invisible(NULL)) }
-  
-  # Ordre : significatifs d'abord, puis p croissante
-  pooled <- pooled %>%
-    dplyr::group_by(molecule) %>%
-    dplyr::arrange(dplyr::desc(sig), pval, .by_group = TRUE) %>%
-    dplyr::mutate(ae_term = factor(ae_term, levels = unique(ae_term))) %>%
-    dplyr::ungroup()
-  
-  p <- ggplot2::ggplot(pooled, ggplot2::aes(x = or, y = ae_term)) +
-    ggplot2::geom_vline(xintercept = 1, linetype = "dashed") +
-    ggplot2::geom_errorbarh(ggplot2::aes(xmin = ci_lo, xmax = ci_hi, color = sig),
-                            height = 0, na.rm = TRUE) +
-    ggplot2::geom_point(ggplot2::aes(color = sig), size = 2, na.rm = TRUE) +
-    ggplot2::geom_text(ggplot2::aes(label = stars, color = sig),
-                       nudge_x = 0.02, hjust = 0, size = 4, na.rm = TRUE) +
-    ggplot2::scale_color_manual(values = c(`TRUE` = "red", `FALSE` = "grey30"), guide = "none") +
-    ggplot2::scale_x_log10() +
-    ggplot2::facet_wrap(~ molecule, scales = "free_y", nrow = 1) +   # côte à côte
-    ggplot2::labs(x = "OR (log)", y = NULL, title = "Forest plot global (pooled par AE)") +
-    ggplot2::theme_bw() +
-    ggplot2::theme(strip.background = ggplot2::element_rect(fill = "white"))
-  
-  ggplot2::ggsave(outfile, p, width = 14, height = 5.5, dpi = 300)
-  invisible(p)
+  ggsave(outfile, p, width = width, height = height, dpi = dpi)
+  message("Saved: ", outfile)
+  invisible(outfile)
 }
-

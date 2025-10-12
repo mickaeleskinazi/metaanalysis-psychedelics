@@ -168,7 +168,7 @@ plot_dr_overlay_per_ae <- function(
 plot_forest_overlay_per_ae <- function(
     es,
     outdir = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/master/forest_overlay_by_ae",
-    min_k = 2,
+    min_k = 3,
     min_molecules = 2,
     width = 7, height = 4, dpi = 300
 ){
@@ -238,3 +238,20 @@ plot_forest_overlay_per_ae <- function(
   
   invisible(TRUE)
 }
+
+
+
+suppressPackageStartupMessages({
+  library(readxl)
+  library(dplyr)
+  library(tidyr)
+  library(stringr)
+  library(purrr)
+  library(ggplot2)
+  library(metafor)
+})
+
+
+
+
+

@@ -1,0 +1,60 @@
+ae_term,molecule,k_session,p_session,stars_session,window.x,k_follow,p_follow,stars_follow,window.y
+Balance_disorder,LSD,4,0.9468208753181988,,session,4,0.994916718778237,,follow_up
+Fatigue,LSD,4,0.8494898149390381,,session,4,0.9049066972617128,,follow_up
+Mydriasis,LSD,4,0.8676762765324081,,session,4,0.994916718778237,,follow_up
+Pseudo_hallucination,LSD,4,0.4159394830885501,,session,4,0.994916718778237,,follow_up
+Tremor,LSD,4,0.0825339890401824,,session,4,0.9775821636306836,,follow_up
+Vomiting,LSD,4,0.1630912094073479,,session,4,0.994916718778237,,follow_up
+abdominal pain,Psilocybin,4,0.3417263317563765,,session,NA,NA,NA,NA
+altered state of consciousness,LSD,4,0.8656190699691487,,session,4,0.994916718778237,,follow_up
+anxiety,LSD,7,0.3583314225145968,,session,4,0.6044195449548712,,follow_up
+anxiety,MDMA,13,0.07238373947526959,,session,4,0.9947871156966084,,follow_up
+anxiety,Psilocybin,7,0.5907397082669824,,session,NA,NA,NA,NA
+attention disturbance,LSD,5,0.3627845944882105,,session,6,0.06711142243555723,,follow_up
+autonomic,MDMA,5,0.07190931391854519,,session,NA,NA,NA,NA
+back pain,Psilocybin,3,0.8623369195826021,,session,NA,NA,NA,NA
+decreased concentration,MDMA,4,0.5208050959412636,,session,3,0.8390943185600254,,follow_up
+depressed mood,LSD,4,0.2946135036438221,,session,4,0.6379692608720715,,follow_up
+depression,MDMA,7,0.0455641428431674,*,session,3,0.4987731402516836,,follow_up
+diarrhea,Psilocybin,3,0.8752947091195504,,session,NA,NA,NA,NA
+dissociation,MDMA,4,0.3622376505580188,,session,NA,NA,NA,NA
+dizziness,LSD,6,0.5288349849811523,,session,5,0.6153346008566908,,follow_up
+dizziness,MDMA,6,0.04476618621136269,*,session,NA,NA,NA,NA
+dizziness,Psilocybin,4,0.4911916312101792,,session,NA,NA,NA,NA
+emotional distress,LSD,5,0.25621069193512325,,session,4,0.6073550331696943,,follow_up
+euphoric mood,LSD,4,0.505338024386821,,session,4,0.994916718778237,,follow_up
+fatigue,MDMA,10,0.15876536052103554,,session,4,0.7582670991858665,,follow_up
+fatigue,Psilocybin,5,2.5387676153925757e-6,***,session,NA,NA,NA,NA
+feeling abnormal,LSD,5,0.11767548511259308,,session,4,0.994916718778237,,follow_up
+hallucination visual,LSD,4,0.8296271278277487,,session,4,0.7127053761499509,,follow_up
+headache,LSD,8,0.01039956977448597,*,session,6,0.306764639599127,,follow_up
+headache,MDMA,10,0.00654179210642141,**,session,4,0.9153286266908108,,follow_up
+headache,Psilocybin,9,0.20741712544518504,,session,NA,NA,NA,NA
+hypertension,LSD,4,0.9581252720168464,,session,4,0.994916718778237,,follow_up
+hypertension,Psilocybin,4,0.00406689691292466,**,session,NA,NA,NA,NA
+illusion,LSD,4,0.04935938119455931,*,session,4,0.6479879376056239,,follow_up
+impaired gait,LSD,3,0.33556931465344747,,session,NA,NA,NA,NA
+irritability,MDMA,5,0.2840276643860284,,session,3,0.44454658466005226,,follow_up
+jaw tension,MDMA,11,0.1382518257240817,,session,NA,NA,NA,NA
+lack of appetite,LSD,4,0.5584572803462388,,session,4,0.44902053755482174,,follow_up
+lack of appetite,MDMA,8,0.06381091187516306,,session,4,0.2047214617746915,,follow_up
+migraine,Psilocybin,3,0.943637156341393,,session,NA,NA,NA,NA
+muscle tension,MDMA,7,0.2874412593238608,,session,3,0.7712557910703645,,follow_up
+myalgia,Psilocybin,3,0.37225677515445543,,session,NA,NA,NA,NA
+nausea,LSD,5,0.00317434762179838,**,session,5,0.5319434252809175,,follow_up
+nausea,MDMA,8,0.3356068849835645,,session,NA,NA,NA,NA
+nausea,Psilocybin,8,0.5368257322994116,,session,NA,NA,NA,NA
+ophthalmological,MDMA,4,0.19570107697766123,,session,NA,NA,NA,NA
+pain,MDMA,6,0.1294631465656309,,session,NA,NA,NA,NA
+paresthesia,LSD,4,0.10786178677600462,,session,4,0.994916718778237,,follow_up
+perspiration,LSD,5,0.5111181119716915,,session,4,0.994916718778237,,follow_up
+perspiration,MDMA,6,0.07204286937813119,,session,NA,NA,NA,NA
+restlessness,MDMA,8,0.3739274447530834,,session,NA,NA,NA,NA
+rumination,MDMA,6,0.46854264542209967,,session,NA,NA,NA,NA
+sleep disorder,MDMA,13,0.06427352131812401,,session,8,0.5391371486469972,,follow_up
+sleep disorder,Psilocybin,4,0.7030830557290196,,session,NA,NA,NA,NA
+suicidal ideation,Psilocybin,6,0.2715231981630644,,session,NA,NA,NA,NA
+temperature perception disturbances,LSD,5,0.2902970549347227,,session,4,0.8085434819748507,,follow_up
+thinking abnormal,LSD,5,0.29921946153638534,,session,4,0.9775821636306836,,follow_up
+weakness,MDMA,3,0.6765358089875609,,session,NA,NA,NA,NA
+xerostomia,MDMA,4,0.8163167006030133,,session,NA,NA,NA,NA
