@@ -129,28 +129,28 @@ suppressPackageStartupMessages({
 
 .pooled_by_molecule_ae <- function(es){
   stopifnot(all(c("yi","vi","molecule","ae_term") %in% names(es)))
-  es %>%
+  grouped <- es %>%
     filter(is.finite(yi), is.finite(vi)) %>%
-    group_by(molecule, ae_term) %>%
-    group_modify(function(.x, .key){
-      k <- nrow(.x)
-      if (k < 2) {
-        tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
-      } else {
-        fit <- tryCatch(metafor::rma(yi, vi, data = .x, method = "REML"), error = function(e) NULL)
-        if (is.null(fit)) {
-          tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
-        } else {
-          tibble::tibble(
-            or    = exp(as.numeric(fit$b[1])),
-            ci_lo = exp(as.numeric(fit$ci.lb)),
-            ci_hi = exp(as.numeric(fit$ci.ub)),
-            pval  = suppressWarnings(as.numeric(fit$pval))[1],
-            k     = fit$k
-          )
-        }
-      }
-    }) %>%
+    group_by(molecule, ae_term)
+
+  .map_groups_dfr(grouped, function(dat, key) {
+    k <- nrow(dat)
+    empty <- tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
+    if (k < 2) {
+      return(empty)
+    }
+    fit <- tryCatch(metafor::rma(yi, vi, data = dat, method = "REML"), error = function(e) NULL)
+    if (is.null(fit)) {
+      return(empty)
+    }
+    tibble::tibble(
+      or    = exp(as.numeric(fit$b[1])),
+      ci_lo = exp(as.numeric(fit$ci.lb)),
+      ci_hi = exp(as.numeric(fit$ci.ub)),
+      pval  = suppressWarnings(as.numeric(fit$pval))[1],
+      k     = fit$k
+    )
+  }) %>%
     ungroup() %>%
     mutate(
       stars = .sig_stars_vec(pval),

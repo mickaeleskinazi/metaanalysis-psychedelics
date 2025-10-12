@@ -35,7 +35,7 @@ suppressPackageStartupMessages({
 # 1) Per-window slope within each molecule: yi ~ dose_mg (REML)
 dr_fit_per_window <- function(es, min_k_per_window = 2){
   stopifnot(all(c("molecule","dose_mg","time_window","yi","vi") %in% names(es)))
-  es %>%
+  grouped <- es %>%
     filter(!is.na(dose_mg), is.finite(yi), is.finite(vi)) %>%
     group_by(molecule, time_window) %>%
     group_modify(~{
@@ -74,7 +74,7 @@ dr_fit_per_window <- function(es, min_k_per_window = 2){
 # 2) Interaction test: yi ~ dose_mg * time_window within each molecule
 dr_test_session_vs_followup <- function(es, min_k_total = 4){
   stopifnot(all(c("molecule","dose_mg","time_window","yi","vi") %in% names(es)))
-  es %>%
+  grouped <- es %>%
     filter(!is.na(dose_mg), is.finite(yi), is.finite(vi)) %>%
     group_by(molecule) %>%
     group_modify(~{

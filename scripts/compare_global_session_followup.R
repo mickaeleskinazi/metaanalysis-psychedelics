@@ -10,6 +10,23 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
+.map_groups_dfr <- function(grouped_data, fn) {
+  keys   <- dplyr::group_keys(grouped_data)
+  splits <- dplyr::group_split(grouped_data, .keep = FALSE)
+  purrr::imap_dfr(splits, function(dat, idx) {
+    key <- keys[idx, , drop = FALSE]
+    res <- fn(dat, key)
+    if (!inherits(res, "data.frame")) {
+      stop("Grouped mapping function must return a data frame.")
+    }
+    if (!nrow(res)) {
+      return(res)
+    }
+    key_rep <- key[rep(1, nrow(res)), , drop = FALSE]
+    dplyr::bind_cols(key_rep, res)
+  })
+}
+
 source(here::here("R", "data_ingest.R"))
 source(here::here("R", "dose_response_models.R"))
 

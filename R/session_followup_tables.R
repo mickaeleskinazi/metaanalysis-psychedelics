@@ -1,5 +1,6 @@
 suppressPackageStartupMessages({
   library(dplyr)
+  library(purrr)
   library(readr)
   library(tidyr)
   library(metafor)
@@ -61,7 +62,7 @@ sig_stars <- function(p) {
 
 dr_fit_per_window <- function(es, min_k_per_window = 2) {
   stopifnot(all(c("molecule", "dose_mg", "time_window", "yi", "vi") %in% names(es)))
-  es %>%
+  grouped <- es %>%
     filter(!is.na(dose_mg), is.finite(yi), is.finite(vi)) %>%
     group_by(molecule, time_window) %>%
     group_modify(~{
@@ -100,7 +101,7 @@ dr_fit_per_window <- function(es, min_k_per_window = 2) {
 
 dr_test_session_vs_followup <- function(es, min_k_total = 4) {
   stopifnot(all(c("molecule", "dose_mg", "time_window", "yi", "vi") %in% names(es)))
-  es %>%
+  grouped <- es %>%
     filter(!is.na(dose_mg), is.finite(yi), is.finite(vi)) %>%
     group_by(molecule) %>%
     group_modify(~{
