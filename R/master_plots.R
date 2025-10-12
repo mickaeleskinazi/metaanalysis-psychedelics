@@ -342,30 +342,6 @@ plot_master_dr_by_molecule <- function(
 
   dir.create(dirname(outfile), recursive = TRUE, showWarnings = FALSE)
 
-  pooled <- .pooled_by_molecule_ae(es) %>% filter(k >= min_k)
-  if (!nrow(pooled)) {
-    warning("No adverse events with k >= ", min_k, ".")
-    return(invisible(NULL))
-  }
-
-  pooled <- pooled %>%
-    group_by(molecule) %>%
-    arrange(desc(sig), pval, .by_group = TRUE) %>%
-    mutate(ae_term = factor(ae_term, levels = unique(ae_term))) %>%
-    ungroup()
-
-  p <- ggplot(pooled, aes(x = or, y = ae_term)) +
-    geom_vline(xintercept = 1, linetype = "dashed") +
-    geom_errorbarh(aes(xmin = ci_lo, xmax = ci_hi, color = sig), height = 0, na.rm = TRUE) +
-    geom_point(aes(color = sig), size = 2, na.rm = TRUE) +
-    geom_text(aes(label = stars, color = sig), nudge_x = 0.02, hjust = 0, size = 4, na.rm = TRUE) +
-    scale_color_manual(values = c(`TRUE` = "red", `FALSE` = "grey30"), guide = "none") +
-    scale_x_log10() +
-    facet_wrap(~ molecule, scales = "free_y", nrow = 1) +
-    labs(x = "Odds ratio", y = NULL, title = "Forest plot by molecule (pooled across AEs)") +
-    theme_bw() +
-    theme(strip.background = element_rect(fill = "white"))
-
   ggsave(outfile, p, width = width, height = height, dpi = dpi)
   message("Saved: ", outfile)
   invisible(outfile)
