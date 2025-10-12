@@ -2,14 +2,25 @@ suppressPackageStartupMessages({
   library(dplyr); library(janitor); library(rlang); library(stringr)
 })
 
+.norm_key <- function(x) {
+  x <- iconv(x, to = "ASCII//TRANSLIT")
+  x[is.na(x)] <- ""
+  x <- tolower(x)
+  gsub("[^a-z0-9]+", "", x)
+}
+
 .detect_and_rename <- function(df, targets){
-  cn <- names(df); lower <- tolower(cn)
+  cn <- names(df)
+  cn_norm <- .norm_key(cn)
   getcol <- function(cands){
-    # exact first, then contains
-    ix <- match(cands, lower, nomatch = 0L); ix <- ix[ix > 0]
-    if (length(ix)) return(cn[ix[1]])
-    for (c in cands){
-      hit <- which(grepl(c, lower, fixed = TRUE))
+    cands_norm <- .norm_key(cands)
+    # exact first, then contains (using normalized tokens for accent-insensitive match)
+    for (cand in cands_norm){
+      ix <- which(cn_norm == cand)
+      if (length(ix)) return(cn[ix[1]])
+    }
+    for (cand in cands_norm){
+      hit <- which(grepl(cand, cn_norm, fixed = TRUE))
       if (length(hit)) return(cn[hit[1]])
     }
     NA_character_
@@ -76,7 +87,7 @@ load_data <- function(path, sheet){
     mutate(
       study_id    = as.character(study_id),
       molecule    = toupper(as.character(molecule)),
-      ae_term     = as.character(ae_term),
+      ae_term     = dplyr::na_if(trimws(as.character(ae_term)), ""),
       time_window = as.character(coalesce(time_window, "session")),
       dose_mg     = suppressWarnings(as.numeric(gsub(",", ".", as.character(dose_mg)))),
       events      = suppressWarnings(as.numeric(events)),
