@@ -2,14 +2,25 @@ suppressPackageStartupMessages({
   library(dplyr); library(janitor); library(rlang); library(stringr)
 })
 
+.norm_key <- function(x) {
+  x <- iconv(x, to = "ASCII//TRANSLIT")
+  x[is.na(x)] <- ""
+  x <- tolower(x)
+  gsub("[^a-z0-9]+", "", x)
+}
+
 .detect_and_rename <- function(df, targets){
-  cn <- names(df); lower <- tolower(cn)
+  cn <- names(df)
+  cn_norm <- .norm_key(cn)
   getcol <- function(cands){
-    # exact first, then contains
-    ix <- match(cands, lower, nomatch = 0L); ix <- ix[ix > 0]
-    if (length(ix)) return(cn[ix[1]])
-    for (c in cands){
-      hit <- which(grepl(c, lower, fixed = TRUE))
+    cands_norm <- .norm_key(cands)
+    # exact first, then contains (using normalized tokens for accent-insensitive match)
+    for (cand in cands_norm){
+      ix <- which(cn_norm == cand)
+      if (length(ix)) return(cn[ix[1]])
+    }
+    for (cand in cands_norm){
+      hit <- which(grepl(cand, cn_norm, fixed = TRUE))
       if (length(hit)) return(cn[hit[1]])
     }
     NA_character_
@@ -35,20 +46,137 @@ load_data <- function(path, sheet){
     group       = c("group","arm_label","armname","armlabel","group_name","condition","treatment"),
     arm_type    = c("arm_type","placebo_type","control_type","group_type"),
     molecule    = c("molecule","drug","substance","compound"),
-    ae_term     = c("ae_term","adverse_event","ae","outcome","event_name"),
+    ae_term     = c(
+      "ae_term","ae_terms","adverse_event","ae","outcome","event_name","event_term",
+      "event_label","ae_name","ae_label","ae_description","adverse_event_term",
+      "adverse_event_name","adverse_event_label","adverse_effect","side_effect",
+      "symptom","reaction","effet_indesirable","effets_indesirables",
+      "effet_secondaire","effets_secondaires","se_adverse_event"
+    ),
     time_window = c("time_window","window","timepoint","time","visit"),
     dose_mg     = c("dose_mg","dose","dose_mg_numeric","dose_mg_num","dose_milligram","lsd_dose_mg"),
-    events      = c("events","event","ae_n","cases","num_events","n_events"),
-    n           = c("n","total","n_total","sample_size","denominator")
+    events      = c(
+      "events","event","ae_n","cases","num_events","n_events",
+      "events_arm","ae_count","number_of_events","count_events"
+    ),
+    n           = c(
+      "n","total","n_total","sample_size","denominator",
+      "participants","participants_total","n_participants",
+      "n_participants_arm","arm_n","n_arm","participants_arm"
+    )
   )
   df <- .detect_and_rename(df, targets)
+
+  # Heuristic fallback for AE labels: when none of the aliases matched above we
+  # try to infer a reasonable candidate based on keyword combinations while
+  # avoiding the "events" column. This mirrors the intuition analysts use when
+  # manually inspecting unfamiliar spreadsheets.
+  if (!("ae_term" %in% names(df))) {
+    nm_lower <- tolower(iconv(names(df), to = "ASCII//TRANSLIT"))
+    keyword_sets <- list(
+      c("ae", "term"),
+      c("ae", "label"),
+      c("adverse", "event"),
+      c("event", "term"),
+      c("event", "label"),
+      c("event", "desc"),
+      c("event", "name"),
+      c("side", "effect"),
+      c("effet", "ind"),
+      c("effet", "second"),
+      "symptom"
+    )
+    pick_keywords <- function(keywords){
+      if (length(keywords) == 1L) {
+        hits <- which(grepl(keywords, nm_lower, fixed = TRUE))
+      } else {
+        hits <- which(vapply(nm_lower, function(nm){
+          all(vapply(keywords, function(kw) grepl(kw, nm, fixed = TRUE), logical(1)))
+        }, logical(1)))
+      }
+      # filter out the events column which is frequently just "events"
+      hits[names(df)[hits] != "events"]
+    }
+    idx <- NULL
+    for (kw in keyword_sets){
+      hits <- pick_keywords(kw)
+      if (length(hits)) {
+        idx <- hits[[1]]
+        break
+      }
+    }
+    if (!is.null(idx)) {
+      picked <- names(df)[[idx]]
+      rlang::inform(paste0("Auto-detected AE label column '", picked, "'"))
+      df <- dplyr::rename(df, ae_term = !!rlang::sym(picked))
+    }
+  }
+
+  if (!("ae_term" %in% names(df))) {
+    exclude <- c(
+      "study_id", "author_year", "arm_id", "group", "arm_type", "molecule",
+      "time_window", "dose_mg", "events", "n", "n_total", "n_events"
+    )
+    candidates <- setdiff(names(df), exclude)
+    if (length(candidates)) {
+      score_col <- function(col){
+        nm <- .norm_key(col)
+        score <- 0
+        pattern_hits <- c(
+          "aeterm", "aelabel", "adverseevent", "sideeffect", "symptom",
+          "effetindesirable", "effetsindesirables", "effetsecondaire",
+          "effetssecondaires", "reaction", "safety", "teae"
+        )
+        for (pat in pattern_hits) {
+          if (grepl(pat, nm, fixed = TRUE)) score <- score + 2
+        }
+        vals <- df[[col]]
+        if (is.character(vals) || is.factor(vals)) {
+          val_norm <- unique(.norm_key(trimws(as.character(vals))))
+          val_norm <- val_norm[nchar(val_norm) > 0]
+          if (length(val_norm)) {
+            if (any(grepl("event", val_norm, fixed = TRUE))) score <- score + 1
+            if (any(grepl("effet",  val_norm, fixed = TRUE))) score <- score + 1
+            if (any(grepl("symptom", val_norm, fixed = TRUE))) score <- score + 1
+            if (length(val_norm) > 1) score <- score + 1
+          }
+        }
+        score
+      }
+      scores <- vapply(candidates, score_col, numeric(1))
+      if (length(scores) && max(scores) >= 2) {
+        picked <- candidates[[which.max(scores)]]
+        rlang::inform(
+          paste0(
+            "Heuristically picked column '", picked,
+            "' to serve as adverse event labels based on its contents."
+          )
+        )
+        df <- dplyr::rename(df, ae_term = !!rlang::sym(picked))
+      }
+    }
+  }
+
+  # Some legacy ingestion scripts used ``n_total`` / ``n_events`` for counts.
+  # Harmonise them here if they slipped through the automatic detection above.
+  if ("n_total" %in% names(df) && !("n" %in% names(df))) {
+    df <- dplyr::rename(df, n = n_total)
+  }
+  if ("n_events" %in% names(df) && !("events" %in% names(df))) {
+    df <- dplyr::rename(df, events = n_events)
+  }
   
   # Friendly error if must-haves are missing (except group; we can synthesize it)
   must_have <- c("study_id","molecule","ae_term","time_window","dose_mg","events","n")
   missing <- setdiff(must_have, names(df))
   if (length(missing)){
-    cat("Columns in sheet:\n"); print(names(df))
-    stop("Missing required columns after auto-detect: ", paste(missing, collapse = ", "))
+    rlang::inform(paste0("Columns detected in sheet: ", paste(names(df), collapse = ", ")))
+    rlang::abort(
+      message = paste0(
+        "Missing required columns after auto-detect: ",
+        paste(missing, collapse = ", ")
+      )
+    )
   }
   
   # Normalize basic types
@@ -56,7 +184,7 @@ load_data <- function(path, sheet){
     mutate(
       study_id    = as.character(study_id),
       molecule    = toupper(as.character(molecule)),
-      ae_term     = as.character(ae_term),
+      ae_term     = dplyr::na_if(trimws(as.character(ae_term)), ""),
       time_window = as.character(coalesce(time_window, "session")),
       dose_mg     = suppressWarnings(as.numeric(gsub(",", ".", as.character(dose_mg)))),
       events      = suppressWarnings(as.numeric(events)),
@@ -145,8 +273,20 @@ suppressPackageStartupMessages({library(dplyr)})
 # Fonction pour construire des contrastes 2x2 (ref vs actif)
 # ref_policies = liste de priorité de références par molécule
 build_pairwise_2x2 <- function(raw, ref_policies){
-  stopifnot(all(c("study_id","molecule","ae_term","time_window","group","arm_type","dose_mg","events","n") %in% names(raw)))
-  
+  needed <- c("study_id","molecule","ae_term","time_window","group",
+              "arm_type","dose_mg","events","n")
+  missing_cols <- setdiff(needed, names(raw))
+  if (length(missing_cols)) {
+    rlang::abort(
+      message = paste0(
+        "build_pairwise_2x2() is missing required columns: ",
+        paste(missing_cols, collapse = ", "),
+        ". Available columns: ",
+        paste(names(raw), collapse = ", ")
+      )
+    )
+  }
+
   raw <- .norm_events_to_counts(raw)
   
   out <- list(); ii <- 1L
