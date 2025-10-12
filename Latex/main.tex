@@ -33,101 +33,10 @@
 \end{abstract}
 
 \section{Methods}
-\subsection{Study design and registration}
-This meta-analysis followed a predefined analytic protocol to evaluate adverse events (AEs) reported in controlled trials of psychedelic compounds. No prospective registration (e.g., PROSPERO) was filed; the protocol, data exports, and analytic scripts are archived within the project repository to enable reproducibility.
-
-\subsection{Eligibility criteria and information sources}
-Eligible studies were randomized or otherwise controlled human trials evaluating 3,4-methylenedioxymethamphetamine (MDMA), lysergic acid diethylamide (LSD), psilocybin, or ayahuasca that reported systematically collected AEs. Inactive placebo arms served as the preferred reference; if unavailable, the lowest active dose per molecule-specific hierarchy was selected. Records were excluded when dosing information was unclear, AE capture was unsystematic, or designs were uncontrolled, case-series, or animal based. Searches encompassed major databases (e.g., PubMed), trial registries (e.g., ClinicalTrials.gov), and grey literature resources (e.g., Cochrane Central) without date or language restrictions, supplemented by backward citation chasing of eligible reports.
-
-\subsection{Data extraction and items}
-Structured templates captured study identifier, molecule, arm identifier, number of participants per arm, harmonised AE term (\texttt{ae\_term}), assessment window (acute \emph{session} vs. longer-term \emph{follow-up}), participant counts experiencing each AE (observed or back-calculated from proportions), and administered dose in milligrams (with conversions from mg/kg where necessary). Extraction was performed independently by two analysts with discrepancies resolved by consensus. Arm-level contributions to the pooled evidence base, including contrasts and unique dose levels, are summarised in \Cref{tab:study-characteristics}.
-
-\subsection{Risk of bias assessment}
-Risk of bias was planned using Cochrane domains covering randomization, allocation concealment, blinding, and attrition. Several historical reports lacked sufficient detail for complete scoring; consequently, narrative descriptions were retained for contextual interpretation, and no quantitative down-weighting by risk-of-bias category was applied.
-
-\subsection{Synthesis methods}
-Active arms were paired against their designated reference arms to form $2\times2$ tables per contrast. Primary effect measures were risk ratios; risk differences were substituted in models that required stabilization, following \texttt{metafor} defaults. Random-effects models using restricted maximum likelihood (REML) generated pooled estimates overall and per \texttt{ae\_term}. Between-study heterogeneity was summarised using $\tau^2$ (REML) and $I^2$. Leave-one-out diagnostics were produced when at least three contrasts were available. Small-study bias assessments (funnel plots and Egger tests) were planned for pooled estimates with $k\geq10$.
-
-\subsection{Dose--response and subgroup modelling}
-Dose--response relationships were evaluated via meta-regression of study contrasts, fitting prespecified linear terms and restricted cubic splines when dose coverage spanned at least three non-reference levels per molecule. Time-window stratification (session vs. follow-up) was incorporated either through stratified models or interaction terms. Per-AE spline overlays were generated when multiple molecules reported the same harmonised AE term to permit cross-molecule comparisons.
-
-\subsection{Sensitivity analyses}
-Sensitivity analyses comprised leave-one-out recalculations, separate pooling by assessment window, and molecule-specific contrasts. Additional exploratory summaries contrasted session and follow-up slopes alongside per-AE significance patterns, linking to the comparative tables in \Cref{tab:cmp_topline,tab:cmp_ae_molecule} and the session-versus-follow-up visualisation in \Cref{fig:session-followup}.
-
-\subsection{Statistical software}
-All analyses were executed in R (version 4.3 or later). Key packages included \texttt{metafor} for random-effects estimation, \texttt{dplyr} and \texttt{tidyr} for data manipulation, \texttt{splines} and \texttt{dosresmeta} for dose--response modelling, and \texttt{ggplot2} with \texttt{patchwork} for figure assembly. Full scripts and exported artefacts are bundled with the repository to support replication.
-
-\IfFileExists{tables/study_characteristics.tex}{%
-  \begin{table}[ht]
-    \centering
-    \caption{Arm-level contrasts contributing to session and follow-up analyses by molecule. Dashes indicate windows without available contrasts.}
-    \label{tab:study-characteristics}
-    \input{tables/study_characteristics.tex}
-  \end{table}
-}{}
+\input{method}
 
 \section{Results}
-\subsection{Study selection}
-Screening identified controlled trials of MDMA, LSD, psilocybin, and ayahuasca reporting harmonised AE outcomes. Common exclusion reasons included uncontrolled designs, absent AE capture, and non-human evidence. The final dataset retained both session and, when available, follow-up assessments aligned to the reference-arm policy described above.
-
-\subsection{Study characteristics}
-Included trials spanned a wide dosing range and observation windows. Session-level contrasts were available for all four molecules, while follow-up contrasts were predominantly reported for LSD and MDMA. \Cref{tab:study-characteristics} summarises the number of contrasts and distinct dose levels informing each synthesis stratum.
-
-\subsection{Primary pooled synthesis}
-Random-effects pooling across molecules indicated elevated AE risk relative to reference arms, as depicted in the forest plot in \Cref{fig:overall-forest}. Molecule- and window-specific significance patterns, including the number of AE terms reaching statistical significance, are documented in \Cref{tab:cmp_topline}. Session analyses for LSD, MDMA, and psilocybin achieved statistical significance, whereas follow-up estimates were more uncertain because of sparse contrasts.
-
-\IfFileExists{figures/forest_combined_all_molecules.pdf}{%
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{figures/forest_combined_all_molecules.pdf}
-    \caption{Random-effects pooled AE risk ratios across molecules and assessment windows.}
-    \label{fig:overall-forest}
-  \end{figure}
-}{}
-
-\IfFileExists{../results_compare/tables/compare_topline_publication.tex}{%
-  \input{../results_compare/tables/compare_topline_publication.tex}
-}{}
-
-\subsection{Per-adverse-event findings}
-Harmonised per-AE models highlighted a subset of AE terms with statistically significant elevations. For LSD, nausea and headache reached significance, whereas MDMA analyses identified headache and depressive symptoms. Psilocybin models emphasised fatigue as the most consistent signal. The corresponding $p$-values are reported in \Cref{tab:cmp_ae_molecule}. Session-level dose--response overlays in \Cref{fig:per-ae-overlays} illustrate cross-molecule trajectories for shared AE terms.
-
-\IfFileExists{figures/master_dr_by_ae-session.pdf}{%
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{figures/master_dr_by_ae-session.pdf}
-    \caption{Session-level dose--response overlays for harmonised AE terms observed across multiple molecules.}
-    \label{fig:per-ae-overlays}
-  \end{figure}
-}{}
-
-\IfFileExists{../results_compare/tables/compare_by_ae_molecule.tex}{%
-  \input{../results_compare/tables/compare_by_ae_molecule.tex}
-}{}
-
-\subsection{Dose--response relationships}
-Dose--response meta-regression revealed molecule-specific patterns (\Cref{fig:dose-response}). MDMA demonstrated approximately monotonic increases in AE risk with higher doses, whereas LSD and psilocybin displayed non-linear trajectories consistent with restricted cubic spline fits. Ayahuasca contributed multiple contrasts but only one unique session dose and was therefore not modelled for continuous dose effects.
-
-\IfFileExists{figures/master_dr_by_molecule-session.pdf}{%
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{figures/master_dr_by_molecule-session.pdf}
-    \caption{Session-level dose--response curves from spline meta-regressions for each molecule.}
-    \label{fig:dose-response}
-  \end{figure}
-}{}
-
-\subsection{Session versus follow-up comparisons}
-Comparisons between session and follow-up windows suggested attenuation of AE signals at later assessments, as visualised in \Cref{fig:session-followup}. The tabulated contrasts in \Cref{tab:cmp_topline,tab:cmp_ae_molecule} show that several AE terms with session-level significance did not retain statistical support at follow-up, reflecting both diminished sample sizes and fewer reported contrasts.
-
-\IfFileExists{figures/dr_session_vs_followup.pdf}{%
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{figures/dr_session_vs_followup.pdf}
-    \caption{Comparison of session and follow-up dose--response slopes across molecules.}
-    \label{fig:session-followup}
-  \end{figure}
-}{}
+\input{results}
 
 \section{Discussion}
 % To be developed.
