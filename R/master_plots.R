@@ -48,25 +48,16 @@ suppressPackageStartupMessages({
 
 # Small helper for flexible column names in preds (AE × molecule)
 .maybe_restore_pred_col <- function(df_norm, df_orig, target, candidates){
-  if (target %in% names(df_norm) && !rlang::is_empty(df_norm[[target]])) {
+  if (target %in% names(df_norm)) {
     return(df_norm)
   }
 
   for (cand in candidates) {
-    if (cand %in% names(df_norm)) {
-      df_norm <- dplyr::rename(df_norm, !!target := !!rlang::sym(cand))
-      if (!rlang::is_empty(df_norm[[target]])) {
-        return(df_norm)
-      }
-    }
-
-    if (!missing(df_orig) && cand %in% names(df_orig)) {
+    if (cand %in% names(df_orig)) {
       vec <- df_orig[[cand]]
       if (!is.null(vec)) {
         df_norm[[target]] <- vec
-        if (!rlang::is_empty(df_norm[[target]])) {
-          return(df_norm)
-        }
+        return(df_norm)
       }
     }
   }
@@ -264,26 +255,20 @@ suppressPackageStartupMessages({
     target  = "xdose",
     candidates = c("xdose", "dose_norm", "dose_mg", "dose", "x", "dose_diff")
   )
-  df_all <- .maybe_restore_pred_col(
-    df_norm = df_all,
-    df_orig = df_all_orig,
-    target  = "fit",
-    candidates = c("fit", "pred", "estimate", "mu", "y")
-  )
-  df_all <- .maybe_restore_pred_col(
-    df_norm = df_all,
-    df_orig = df_all_orig,
-    target  = "lwr",
-    candidates = c("lwr", "ci_low", "ci_lb", "ylwr")
-  )
-  df_all <- .maybe_restore_pred_col(
-    df_norm = df_all,
-    df_orig = df_all_orig,
-    target  = "upr",
-    candidates = c("upr", "ci_high", "ci_ub", "yupr")
-  )
 
-  missing_norm <- setdiff(c("molecule", "ae_term", "xdose", "fit", "lwr", "upr"), names(df_all))
+  missing_norm <- setdiff(c("molecule", "ae_term", "xdose"), names(df_all))
+  if (length(missing_norm)) {
+    rlang::abort(
+      message = paste0(
+        "Normalized predictions are missing required columns (",
+        paste(missing_norm, collapse = ", "),
+        ") after rename. Available columns: ",
+        paste(names(df_all), collapse = ", ")
+      )
+    )
+  }
+
+  missing_norm <- setdiff(c("molecule", "ae_term", "xdose"), names(df_all))
   if (length(missing_norm)) {
     rlang::abort(
       message = paste0(
