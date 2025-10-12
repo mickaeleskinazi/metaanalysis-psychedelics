@@ -69,53 +69,33 @@ suppressPackageStartupMessages({
 
 .pooled_by_molecule_ae <- function(es){
   stopifnot(all(c("yi","vi","molecule","ae_term") %in% names(es)))
-  es2 <- es %>% filter(is.finite(yi), is.finite(vi))
-  if (!nrow(es2)) {
-    return(tibble::tibble(
-      molecule = character(),
-      ae_term  = character(),
-      or       = double(),
-      ci_lo    = double(),
-      ci_hi    = double(),
-      pval     = double(),
-      k        = integer(),
-      stars    = character(),
-      sig      = logical()
-    ))
-  }
-
-  groups <- es2 %>% group_by(molecule, ae_term) %>% group_split()
-  pooled <- purrr::map_dfr(groups, function(g){
-    k <- nrow(g)
-    base_row <- tibble::tibble(
-      molecule = g$molecule[[1]],
-      ae_term  = g$ae_term[[1]],
-      k        = k
-    )
-
-    if (k < 2) {
-      return(base_row %>% mutate(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_))
-    }
-
-    fit <- tryCatch(metafor::rma(yi, vi, data = g, method = "REML"), error = function(e) NULL)
-    if (is.null(fit)) {
-      base_row %>% mutate(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_)
-    } else {
-      base_row %>% mutate(
-        or    = exp(as.numeric(fit$b[1])),
-        ci_lo = exp(as.numeric(fit$ci.lb)),
-        ci_hi = exp(as.numeric(fit$ci.ub)),
-        pval  = suppressWarnings(as.numeric(fit$pval))[1]
-      )
-    }
-  })
-
-  pooled %>%
+  es %>%
+    filter(is.finite(yi), is.finite(vi)) %>%
+    group_by(molecule, ae_term) %>%
+    group_modify(function(.x, .key){
+      k <- nrow(.x)
+      if (k < 2) {
+        tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
+      } else {
+        fit <- tryCatch(metafor::rma(yi, vi, data = .x, method = "REML"), error = function(e) NULL)
+        if (is.null(fit)) {
+          tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
+        } else {
+          tibble::tibble(
+            or    = exp(as.numeric(fit$b[1])),
+            ci_lo = exp(as.numeric(fit$ci.lb)),
+            ci_hi = exp(as.numeric(fit$ci.ub)),
+            pval  = suppressWarnings(as.numeric(fit$pval))[1],
+            k     = fit$k
+          )
+        }
+      }
+    }) %>%
+    ungroup() %>%
     mutate(
       stars = .sig_stars_vec(pval),
       sig   = !is.na(pval) & pval < 0.05
-    ) %>%
-    select(molecule, ae_term, or, ci_lo, ci_hi, pval, k, stars, sig)
+    )
 }
 
 .plot_master_dr_by_ae_impl <- function(
@@ -361,6 +341,31 @@ plot_master_dr_by_molecule <- function(
     theme(strip.background = element_rect(fill = "white"))
 
   dir.create(dirname(outfile), recursive = TRUE, showWarnings = FALSE)
+
+  pooled <- .pooled_by_molecule_ae(es) %>% filter(k >= min_k)
+  if (!nrow(pooled)) {
+    warning("No adverse events with k >= ", min_k, ".")
+    return(invisible(NULL))
+  }
+
+  pooled <- pooled %>%
+    group_by(molecule) %>%
+    arrange(desc(sig), pval, .by_group = TRUE) %>%
+    mutate(ae_term = factor(ae_term, levels = unique(ae_term))) %>%
+    ungroup()
+
+  p <- ggplot(pooled, aes(x = or, y = ae_term)) +
+    geom_vline(xintercept = 1, linetype = "dashed") +
+    geom_errorbarh(aes(xmin = ci_lo, xmax = ci_hi, color = sig), height = 0, na.rm = TRUE) +
+    geom_point(aes(color = sig), size = 2, na.rm = TRUE) +
+    geom_text(aes(label = stars, color = sig), nudge_x = 0.02, hjust = 0, size = 4, na.rm = TRUE) +
+    scale_color_manual(values = c(`TRUE` = "red", `FALSE` = "grey30"), guide = "none") +
+    scale_x_log10() +
+    facet_wrap(~ molecule, scales = "free_y", nrow = 1) +
+    labs(x = "Odds ratio", y = NULL, title = "Forest plot by molecule (pooled across AEs)") +
+    theme_bw() +
+    theme(strip.background = element_rect(fill = "white"))
+
   ggsave(outfile, p, width = width, height = height, dpi = dpi)
   message("Saved: ", outfile)
   invisible(outfile)
