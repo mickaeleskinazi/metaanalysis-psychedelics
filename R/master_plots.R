@@ -69,53 +69,33 @@ suppressPackageStartupMessages({
 
 .pooled_by_molecule_ae <- function(es){
   stopifnot(all(c("yi","vi","molecule","ae_term") %in% names(es)))
-  es2 <- es %>% filter(is.finite(yi), is.finite(vi))
-  if (!nrow(es2)) {
-    return(tibble::tibble(
-      molecule = character(),
-      ae_term  = character(),
-      or       = double(),
-      ci_lo    = double(),
-      ci_hi    = double(),
-      pval     = double(),
-      k        = integer(),
-      stars    = character(),
-      sig      = logical()
-    ))
-  }
-
-  groups <- es2 %>% group_by(molecule, ae_term) %>% group_split()
-  pooled <- purrr::map_dfr(groups, function(g){
-    k <- nrow(g)
-    base_row <- tibble::tibble(
-      molecule = g$molecule[[1]],
-      ae_term  = g$ae_term[[1]],
-      k        = k
-    )
-
-    if (k < 2) {
-      return(base_row %>% mutate(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_))
-    }
-
-    fit <- tryCatch(metafor::rma(yi, vi, data = g, method = "REML"), error = function(e) NULL)
-    if (is.null(fit)) {
-      base_row %>% mutate(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_)
-    } else {
-      base_row %>% mutate(
-        or    = exp(as.numeric(fit$b[1])),
-        ci_lo = exp(as.numeric(fit$ci.lb)),
-        ci_hi = exp(as.numeric(fit$ci.ub)),
-        pval  = suppressWarnings(as.numeric(fit$pval))[1]
-      )
-    }
-  })
-
-  pooled %>%
+  es %>%
+    filter(is.finite(yi), is.finite(vi)) %>%
+    group_by(molecule, ae_term) %>%
+    group_modify(function(.x, .key){
+      k <- nrow(.x)
+      if (k < 2) {
+        tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
+      } else {
+        fit <- tryCatch(metafor::rma(yi, vi, data = .x, method = "REML"), error = function(e) NULL)
+        if (is.null(fit)) {
+          tibble::tibble(or = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_, pval = NA_real_, k = k)
+        } else {
+          tibble::tibble(
+            or    = exp(as.numeric(fit$b[1])),
+            ci_lo = exp(as.numeric(fit$ci.lb)),
+            ci_hi = exp(as.numeric(fit$ci.ub)),
+            pval  = suppressWarnings(as.numeric(fit$pval))[1],
+            k     = fit$k
+          )
+        }
+      }
+    }) %>%
+    ungroup() %>%
     mutate(
       stars = .sig_stars_vec(pval),
       sig   = !is.na(pval) & pval < 0.05
-    ) %>%
-    select(molecule, ae_term, or, ci_lo, ci_hi, pval, k, stars, sig)
+    )
 }
 
 .plot_master_dr_by_ae_impl <- function(
@@ -328,51 +308,21 @@ plot_master_dr_by_molecule <- function(
     outfile = "results/master/master_dr_by_molecule.pdf",
     width = 14,
     height = 4.5,
-    dpi = 300,
-    es = NULL
+    dpi = 300
 ){
-  # Support legacy calls that may have supplied a full results list or
-  # positioned arguments differently. If `preds_mol` looks like a full
-  # dose–response result (with a `preds` element), unwrap it. If it is
-  # missing or empty but an explicit `es` argument is provided, fall back
-  # to that value. This keeps the helper tolerant when sourced in older
-  # analysis scripts.
-  if (missing(preds_mol) || (is.null(preds_mol) && !is.null(es))) {
-    preds_mol <- es
-  }
-
-  if (is.list(preds_mol) && !tibble::is_tibble(preds_mol) && "preds" %in% names(preds_mol)) {
-    preds_mol <- preds_mol$preds
-  }
-
-  if (is.null(preds_mol)) {
-    preds_use <- tibble::tibble()
-  } else {
-    preds_use <- dplyr::as_tibble(preds_mol)
-  }
-
-  if (!"molecule" %in% names(preds_use)) {
-    if (!nrow(preds_use)) {
-      warning("No predictions supplied for master dose–response by molecule plot.")
-      return(invisible(NULL))
-    }
-    stop("Predictions must include a 'molecule' column. Columns found: ",
-         paste(names(preds_use), collapse = ", "))
-  }
-
-  if (!nrow(preds_use)) {
+  if (is.null(preds_mol) || !nrow(preds_mol)) {
     warning("No predictions supplied for master dose–response by molecule plot.")
     return(invisible(NULL))
   }
 
+  preds_use <- preds_mol
   if ("model" %in% names(preds_use)) {
     choose <- preds_use %>%
       group_by(molecule) %>%
       summarise(use_spline = any(model == "spline_df3"), .groups = "drop")
     preds_use <- preds_use %>%
       inner_join(choose, by = "molecule") %>%
-      filter((use_spline & model == "spline_df3") | (!use_spline & model == "linear")) %>%
-      select(-use_spline)
+      filter((use_spline & model == "spline_df3") | (!use_spline & model == "linear"))
   }
 
   preds_use <- .normalize_pred_cols_molecule(preds_use)
@@ -391,6 +341,31 @@ plot_master_dr_by_molecule <- function(
     theme(strip.background = element_rect(fill = "white"))
 
   dir.create(dirname(outfile), recursive = TRUE, showWarnings = FALSE)
+
+  pooled <- .pooled_by_molecule_ae(es) %>% filter(k >= min_k)
+  if (!nrow(pooled)) {
+    warning("No adverse events with k >= ", min_k, ".")
+    return(invisible(NULL))
+  }
+
+  pooled <- pooled %>%
+    group_by(molecule) %>%
+    arrange(desc(sig), pval, .by_group = TRUE) %>%
+    mutate(ae_term = factor(ae_term, levels = unique(ae_term))) %>%
+    ungroup()
+
+  p <- ggplot(pooled, aes(x = or, y = ae_term)) +
+    geom_vline(xintercept = 1, linetype = "dashed") +
+    geom_errorbarh(aes(xmin = ci_lo, xmax = ci_hi, color = sig), height = 0, na.rm = TRUE) +
+    geom_point(aes(color = sig), size = 2, na.rm = TRUE) +
+    geom_text(aes(label = stars, color = sig), nudge_x = 0.02, hjust = 0, size = 4, na.rm = TRUE) +
+    scale_color_manual(values = c(`TRUE` = "red", `FALSE` = "grey30"), guide = "none") +
+    scale_x_log10() +
+    facet_wrap(~ molecule, scales = "free_y", nrow = 1) +
+    labs(x = "Odds ratio", y = NULL, title = "Forest plot by molecule (pooled across AEs)") +
+    theme_bw() +
+    theme(strip.background = element_rect(fill = "white"))
+
   ggsave(outfile, p, width = width, height = height, dpi = dpi)
   message("Saved: ", outfile)
   invisible(outfile)
