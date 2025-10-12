@@ -101,38 +101,38 @@ build_es_all <- function(base_xlsx, sheet, ref_policies){
 
 compare_global_dose_slope_by_window <- function(es, min_k = 4) {
   stopifnot(all(c("molecule","dose_mg","time_window","yi","vi") %in% names(es)))
-  grouped <- es %>%
-    group_by(molecule)
+  es %>%
+    group_by(molecule) %>%
+    group_modify(~{
+      dat <- .x
+      dat <- dat %>% filter(is.finite(dose_mg), is.finite(yi), is.finite(vi))
+      dat <- dat %>% mutate(time_window = factor(time_window, levels = c("session","follow_up")))
 
-  .map_groups_dfr(grouped, function(dat, key) {
-    dat <- dat %>% filter(is.finite(dose_mg), is.finite(yi), is.finite(vi))
-    dat <- dat %>% mutate(time_window = factor(time_window, levels = c("session","follow_up")))
+      empty <- tibble(
+        beta_session   = double(),
+        beta_interact  = double(),
+        p_session      = double(),
+        p_interaction  = double(),
+        k              = integer()
+      )
 
-    empty <- tibble(
-      beta_session   = double(),
-      beta_interact  = double(),
-      p_session      = double(),
-      p_interaction  = double(),
-      k              = integer()
-    )
+      if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k) return(empty)
 
-    if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k) return(empty)
+      mod <- tryCatch(
+        metafor::rma(yi ~ dose_mg * time_window, vi = vi, data = dat, method = "REML"),
+        error = function(e) NULL
+      )
 
-    mod <- tryCatch(
-      metafor::rma(yi ~ dose_mg * time_window, vi = vi, data = dat, method = "REML"),
-      error = function(e) NULL
-    )
+      if (is.null(mod)) return(empty)
 
-    if (is.null(mod)) return(empty)
-
-    tibble(
-      beta_session   = as.numeric(coef(mod)["dose_mg"]),
-      beta_interact  = as.numeric(coef(mod)[grep("^dose_mg:time_window", names(coef(mod)))]),
-      p_session      = as.numeric(mod$pval["dose_mg"]),
-      p_interaction  = as.numeric(mod$pval[grep("^dose_mg:time_window", names(mod$pval))]),
-      k              = mod$k
-    )
-  }) %>%
+      tibble(
+        beta_session   = as.numeric(coef(mod)["dose_mg"]),
+        beta_interact  = as.numeric(coef(mod)[grep("^dose_mg:time_window", names(coef(mod)))]),
+        p_session      = as.numeric(mod$pval["dose_mg"]),
+        p_interaction  = as.numeric(mod$pval[grep("^dose_mg:time_window", names(mod$pval))]),
+        k              = mod$k
+      )
+    }) %>%
     ungroup()
 }
 
