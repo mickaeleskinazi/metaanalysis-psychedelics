@@ -10,7 +10,23 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-source(here::here("R", "compat_map_groups.R"))
+.map_groups_dfr <- function(grouped_data, fn) {
+  keys   <- dplyr::group_keys(grouped_data)
+  splits <- dplyr::group_split(grouped_data, .keep = FALSE)
+  purrr::imap_dfr(splits, function(dat, idx) {
+    key <- keys[idx, , drop = FALSE]
+    res <- fn(dat, key)
+    if (!inherits(res, "data.frame")) {
+      stop("Grouped mapping function must return a data frame.")
+    }
+    if (!nrow(res)) {
+      return(res)
+    }
+    key_rep <- key[rep(1, nrow(res)), , drop = FALSE]
+    dplyr::bind_cols(key_rep, res)
+  })
+}
+
 source(here::here("R", "data_ingest.R"))
 source(here::here("R", "dose_response_models.R"))
 
@@ -96,8 +112,17 @@ compare_global_dose_slope_by_window <- function(es, min_k = 4) {
   es %>%
     group_by(molecule) %>%
     group_modify(~{
-      dat <- .x %>% filter(is.finite(dose_mg), is.finite(yi), is.finite(vi)) %>%
-        mutate(time_window = factor(time_window, levels = c("session","follow_up")))
+      dat <- .x
+      dat <- dat %>% filter(is.finite(dose_mg), is.finite(yi), is.finite(vi))
+      dat <- dat %>% mutate(time_window = factor(time_window, levels = c("session","follow_up")))
+
+      empty <- tibble(
+        beta_session   = double(),
+        beta_interact  = double(),
+        p_session      = double(),
+        p_interaction  = double(),
+        k              = integer()
+      )
 
       if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k) return(empty)
 

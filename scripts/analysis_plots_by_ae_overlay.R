@@ -19,7 +19,22 @@ suppressPackageStartupMessages({
   library(metafor)
 })
 
-source(here::here("R", "compat_map_groups.R"))
+.map_groups_dfr <- function(grouped_data, fn) {
+  keys   <- dplyr::group_keys(grouped_data)
+  splits <- dplyr::group_split(grouped_data, .keep = FALSE)
+  purrr::imap_dfr(splits, function(dat, idx) {
+    key <- keys[idx, , drop = FALSE]
+    res <- fn(dat, key)
+    if (!inherits(res, "data.frame")) {
+      stop("Grouped mapping function must return a data frame.")
+    }
+    if (!nrow(res)) {
+      return(res)
+    }
+    key_rep <- key[rep(1, nrow(res)), , drop = FALSE]
+    dplyr::bind_cols(key_rep, res)
+  })
+}
 
 # ------------------------------------------------------------
 # Helper: significance stars
@@ -177,35 +192,34 @@ plot_forest_overlay_per_ae <- function(
 ){
   stopifnot(all(c("yi","vi","molecule","ae_term") %in% names(es)))
   dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
-
-  pooled <- es %>%
+  
+  grouped <- es %>%
     filter(is.finite(yi), is.finite(vi)) %>%
-    group_by(ae_term, molecule) %>%
-    group_modify(~{
-      dat <- .x
-      k   <- nrow(dat)
-      base <- tibble(
-        or = NA_real_,
-        lo = NA_real_,
-        hi = NA_real_,
-        p  = NA_real_,
-        k  = k
-      )
-      if (k < min_k) {
-        return(base)
-      }
-      fit <- tryCatch(rma(yi, vi, data = dat, method = "REML"), error = function(e) NULL)
-      if (is.null(fit)) {
-        return(base)
-      }
-      tibble(
-        or = exp(as.numeric(fit$b[1])),
-        lo = exp(as.numeric(fit$ci.lb)),
-        hi = exp(as.numeric(fit$ci.ub)),
-        p  = suppressWarnings(as.numeric(fit$pval))[1],
-        k  = fit$k
-      )
-    }) %>%
+    group_by(ae_term, molecule)
+
+  pooled <- .map_groups_dfr(grouped, function(dat, key) {
+    empty <- tibble(
+      or = NA_real_,
+      lo = NA_real_,
+      hi = NA_real_,
+      p  = NA_real_,
+      k  = nrow(dat)
+    )
+    if (nrow(dat) < min_k) {
+      return(empty)
+    }
+    fit <- tryCatch(rma(yi, vi, data = dat, method = "REML"), error = function(e) NULL)
+    if (is.null(fit)) {
+      return(empty)
+    }
+    tibble(
+      or = exp(as.numeric(fit$b[1])),
+      lo = exp(as.numeric(fit$ci.lb)),
+      hi = exp(as.numeric(fit$ci.ub)),
+      p  = suppressWarnings(as.numeric(fit$pval))[1],
+      k  = fit$k
+    )
+  }) %>%
     ungroup() %>%
     mutate(sig = !is.na(p) & p < 0.05)
   
