@@ -67,7 +67,8 @@ dr_fit_per_window <- function(es, min_k_per_window = 2){
         I2             = tryCatch(m$I2, error=function(e) NA_real_),
         tau2           = tryCatch(m$tau2, error=function(e) NA_real_)
       )
-    }) %>% ungroup() %>%
+    }) %>%
+    ungroup() %>%
     mutate(stars = .sig_stars(p_dose))
 }
 
@@ -93,7 +94,8 @@ dr_test_session_vs_followup <- function(es, min_k_total = 4){
         beta_interaction  = as.numeric(coef(m)[grep("^dose_mg:time_window", names(coef(m)))]),
         p_interaction     = as.numeric(m$pval[grep("^dose_mg:time_window", names(m$pval))])
       )
-    }) %>% ungroup() %>%
+    }) %>%
+    ungroup() %>%
     mutate(stars_interaction = .sig_stars(p_interaction))
 }
 

@@ -101,6 +101,14 @@ build_es_all <- function(base_xlsx, sheet, ref_policies){
 
 compare_global_dose_slope_by_window <- function(es, min_k = 4) {
   stopifnot(all(c("molecule","dose_mg","time_window","yi","vi") %in% names(es)))
+  empty <- tibble(
+    beta_session   = double(),
+    beta_interact  = double(),
+    p_session      = double(),
+    p_interaction  = double(),
+    k              = integer()
+  )
+
   es %>%
     group_by(molecule) %>%
     group_modify(~{
