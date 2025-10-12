@@ -11,8 +11,8 @@ norm_window_label <- function(x) {
     tolower() |>
     gsub("[^a-z0-9]+", "_", x = _) |>
     gsub("_+", "_", x = _) |>
-    sub("^_", "", .) |>
-    sub("_$", "", .)
+    sub("^_", "", x = _) |>
+    sub("_$", "", x = _)
 }
 
 build_es_for_window <- function(raw_all, window_value, ref_policies) {
