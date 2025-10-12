@@ -42,60 +42,12 @@ load_data <- function(path, sheet){
     ),
     time_window = c("time_window","window","timepoint","time","visit"),
     dose_mg     = c("dose_mg","dose","dose_mg_numeric","dose_mg_num","dose_milligram","lsd_dose_mg"),
-    events      = c(
-      "events","event","ae_n","cases","num_events","n_events",
-      "events_arm","ae_count","number_of_events","count_events"
-    ),
-    n           = c(
-      "n","total","n_total","sample_size","denominator",
-      "participants","participants_total","n_participants",
-      "n_participants_arm","arm_n","n_arm","participants_arm"
-    )
+    events      = c("events","event","ae_n","cases","num_events","n_events","events_arm","ae_count"),
+    n           = c("n","total","n_total","sample_size","denominator",
+                    "participants","participants_total","n_participants",
+                    "n_participants_arm","arm_n","n_arm")
   )
   df <- .detect_and_rename(df, targets)
-
-  # Heuristic fallback for AE labels: when none of the aliases matched above we
-  # try to infer a reasonable candidate based on keyword combinations while
-  # avoiding the "events" column. This mirrors the intuition analysts use when
-  # manually inspecting unfamiliar spreadsheets.
-  if (!("ae_term" %in% names(df))) {
-    nm_lower <- tolower(names(df))
-    keyword_sets <- list(
-      c("ae", "term"),
-      c("ae", "label"),
-      c("adverse", "event"),
-      c("event", "term"),
-      c("event", "label"),
-      c("event", "desc"),
-      c("event", "name"),
-      c("side", "effect"),
-      "symptom"
-    )
-    pick_keywords <- function(keywords){
-      if (length(keywords) == 1L) {
-        hits <- which(grepl(keywords, nm_lower, fixed = TRUE))
-      } else {
-        hits <- which(vapply(nm_lower, function(nm){
-          all(vapply(keywords, function(kw) grepl(kw, nm, fixed = TRUE), logical(1)))
-        }, logical(1)))
-      }
-      # filter out the events column which is frequently just "events"
-      hits[names(df)[hits] != "events"]
-    }
-    idx <- NULL
-    for (kw in keyword_sets){
-      hits <- pick_keywords(kw)
-      if (length(hits)) {
-        idx <- hits[[1]]
-        break
-      }
-    }
-    if (!is.null(idx)) {
-      picked <- names(df)[[idx]]
-      rlang::inform(paste0("Auto-detected AE label column '", picked, "'"))
-      df <- dplyr::rename(df, ae_term = !!rlang::sym(picked))
-    }
-  }
 
   # Some legacy ingestion scripts used ``n_total`` / ``n_events`` for counts.
   # Harmonise them here if they slipped through the automatic detection above.
