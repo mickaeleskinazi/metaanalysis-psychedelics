@@ -1,9 +1,28 @@
 suppressPackageStartupMessages({
   library(dplyr)
+  library(purrr)
   library(readr)
   library(tidyr)
   library(metafor)
 })
+
+.pluck_term_or_tail <- function(x, term) {
+  if (is.null(x)) return(NA_real_)
+  nm <- names(x)
+  if (!is.null(nm) && length(nm)) {
+    idx <- which(nm == term)
+    if (length(idx) == 0) {
+      idx <- which(tolower(nm) == tolower(term))
+    }
+    if (length(idx) >= 1) {
+      return(as.numeric(x[[idx[[1]]]]))
+    }
+  }
+  len <- length(x)
+  if (len == 0) return(NA_real_)
+  if (len == 1) return(as.numeric(x[[1]]))
+  as.numeric(x[[len]])
+}
 
 norm_window_label <- function(x) {
   x |>
@@ -43,24 +62,34 @@ sig_stars <- function(p) {
 
 dr_fit_per_window <- function(es, min_k_per_window = 2) {
   stopifnot(all(c("molecule", "dose_mg", "time_window", "yi", "vi") %in% names(es)))
+  empty <- tibble(
+    k              = integer(),
+    beta_dose      = double(),
+    se_dose        = double(),
+    z_dose         = double(),
+    p_dose         = double(),
+    ci_lb          = double(),
+    ci_ub          = double(),
+    I2             = double(),
+    tau2           = double()
+  )
+
   es %>%
     filter(!is.na(dose_mg), is.finite(yi), is.finite(vi)) %>%
     group_by(molecule, time_window) %>%
     group_modify(~{
       dat <- .x
-      if (nrow(dat) < min_k_per_window) return(NULL)
+      if (nrow(dat) < min_k_per_window) return(empty)
       m <- tryCatch(rma(yi ~ dose_mg, vi = vi, data = dat, method = "REML"), error = function(e) NULL)
-      if (is.null(m)) return(NULL)
+      if (is.null(m)) return(empty)
       tibble(
-        molecule       = dat$molecule[[1]],
-        time_window    = dat$time_window[[1]],
         k              = m$k,
         beta_dose      = as.numeric(coef(m)["dose_mg"]),
         se_dose        = as.numeric(m$se["dose_mg"]),
         z_dose         = as.numeric(m$zval["dose_mg"]),
         p_dose         = as.numeric(m$pval["dose_mg"]),
-        ci_lb          = as.numeric(m$ci.lb[["dose_mg"]]),
-        ci_ub          = as.numeric(m$ci.ub[["dose_mg"]]),
+        ci_lb          = .pluck_term_or_tail(m$ci.lb, "dose_mg"),
+        ci_ub          = .pluck_term_or_tail(m$ci.ub, "dose_mg"),
         I2             = suppressWarnings(tryCatch(m$I2,  error = function(e) NA_real_)),
         tau2           = suppressWarnings(tryCatch(m$tau2, error = function(e) NA_real_))
       )
@@ -71,16 +100,21 @@ dr_fit_per_window <- function(es, min_k_per_window = 2) {
 
 dr_test_session_vs_followup <- function(es, min_k_total = 4) {
   stopifnot(all(c("molecule", "dose_mg", "time_window", "yi", "vi") %in% names(es)))
+  empty <- tibble(
+    beta_dose_main    = double(),
+    beta_interaction  = double(),
+    p_interaction     = double()
+  )
+
   es %>%
     filter(!is.na(dose_mg), is.finite(yi), is.finite(vi)) %>%
     group_by(molecule) %>%
     group_modify(~{
       dat <- .x
-      if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k_total) return(NULL)
+      if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k_total) return(empty)
       m <- tryCatch(rma(yi ~ dose_mg * time_window, vi = vi, data = dat, method = "REML"), error = function(e) NULL)
-      if (is.null(m)) return(NULL)
+      if (is.null(m)) return(empty)
       tibble(
-        molecule          = dat$molecule[[1]],
         beta_dose_main    = as.numeric(coef(m)["dose_mg"]),
         beta_interaction  = as.numeric(coef(m)[grep("^dose_mg:time_window", names(coef(m)))]),
         p_interaction     = as.numeric(m$pval[grep("^dose_mg:time_window", names(m$pval))])

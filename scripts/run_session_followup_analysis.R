@@ -7,6 +7,7 @@ suppressPackageStartupMessages({
   library(purrr)
 })
 
+source(here::here("R", "compat_map_groups.R"))
 source(here::here("R", "data_ingest.R"))
 source(here::here("R", "dose_response_models.R"))
 source(here::here("R", "forest_plots.R"))
