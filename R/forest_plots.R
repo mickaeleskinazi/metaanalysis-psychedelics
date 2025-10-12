@@ -46,7 +46,7 @@ make_forest_plots_per_molecule_pdf <- function(es, outdir = "results/forest_plot
 }
 
 # Résumé par molécule : 1 ligne = 1 AE (toutes études/bras confondus)
-make_forest_summary_per_molecule <- function(es, outdir = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/forest_plots_summary"){
+make_forest_summary_per_molecule <- function(es, outdir = file.path("results", "forest_plots_summary")){
   dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
   if (!nrow(es)) return(invisible(NULL))
   

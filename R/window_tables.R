@@ -65,7 +65,7 @@ dr_test_session_vs_followup <- function(es, min_k_total = 4){
 # 3) Convenience wrapper: compute & export all tables
 make_dr_window_tables <- function(
     es,
-    out_dir = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results_compare",
+    out_dir = file.path("results", "compare"),
     min_k_per_window = 2,
     min_k_total      = 4
 ){
