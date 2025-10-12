@@ -1,11 +1,13 @@
 \subsection{Study selection}
-Screening identified controlled trials of MDMA, LSD, psilocybin, and ayahuasca that reported harmonized AE outcomes. Reasons for exclusion most commonly included uncontrolled designs and inadequate AE reporting. The final dataset comprised session- and, when available, follow-up assessments aligned to the prespecified reference-arm policy.
+Screening identified controlled trials of MDMA, LSD, psilocybin, and ayahuasca that reported harmonized AE outcomes. Reasons for exclusion most commonly included uncontrolled designs, duplicate publications, and inadequate AE capture. The final analytic dataset comprised 524 session-level contrasts (149 LSD, 197 MDMA, 162 psilocybin, and 16 ayahuasca) and 166 follow-up contrasts (108 LSD and 58 MDMA) derived after applying the prespecified reference-arm policy in \Cref{tab:study-characteristics}.
 
 \subsection{Study characteristics}
-Included trials spanned a wide range of doses and assessment windows. Session-level analyses were available for all four molecules, whereas follow-up contrasts were primarily reported for LSD and MDMA. Arm-level contributions to the synthesis are summarised in \Cref{tab:study-characteristics}.
+Included trials spanned one to six distinct dose tiers per molecule and covered both acute (session) and delayed (follow-up) assessments. Session-level analyses were available for all four molecules, whereas follow-up contrasts were confined to LSD and MDMA. Arm-level contributions, including the number of unique dose conditions per time window, are summarised in \Cref{tab:study-characteristics}.
 
 \subsection{Primary synthesis of adverse events}
-Random-effects pooling across molecules showed consistent elevation of AE risk relative to the designated reference arms, as illustrated by the combined forest plot in \Cref{fig:overall-forest}. Molecule-specific significance patterns and window-specific summaries are reported in \Cref{tab:cmp_topline}. Across session analyses, LSD, MDMA, and psilocybin each yielded statistically significant overall effects, whereas follow-up models were more sparsely populated and rarely reached significance.
+Random-effects pooling across molecules showed consistent elevation of AE risk relative to the designated reference arms, as illustrated by the combined forest plot in \Cref{fig:overall-forest}. Molecule-specific heterogeneity estimates appear in \Cref{tab:meta-summary}, where session-level $I^2$ ranged from 17.9\% (MDMA) to 52.6\% (psilocybin). Follow-up estimates for LSD (108 contrasts) retained statistical significance with null heterogeneity, whereas MDMA follow-up models (58 contrasts) trended toward significance but did not cross the conventional threshold ($p=0.057$). Corresponding significance counts are provided in \Cref{tab:topline-summary}, and molecule-specific forest plots are available in the supplementary figures for visual inspection of study-level effects.
+
+Session-level spline trajectories for each molecule and per-adverse-event overlays across molecules are juxtaposed in \Cref{fig:dose-response-panels}, illustrating the shared and divergent dose--response patterns that underpin the pooled contrasts. These visual summaries place the molecule-level patterns (left panel) alongside the harmonised adverse-event overlays (right panel) to contextualise the meta-analytic contrasts described below. A companion comparison of acute versus delayed slopes is presented in \Cref{fig:session-followup}, foreshadowing the attenuation themes revisited in later sections.
 
 \IfFileExists{figures/forest_combined_all_molecules.pdf}{%
   \begin{figure}[ht]
@@ -16,36 +18,81 @@ Random-effects pooling across molecules showed consistent elevation of AE risk r
   \end{figure}
 }{}
 
-\IfFileExists{../results_compare/tables/compare_topline_publication.tex}{\input{../results_compare/tables/compare_topline_publication.tex}}{}
-
-\subsection{Per-adverse-event findings}
-Harmonized per-AE models indicated that only a subset of AE terms demonstrated clear dose-related elevations. Significant session-level findings predominantly involved autonomic and gastrointestinal symptoms for MDMA, nausea and headache for LSD, and fatigue and hypertension for psilocybin, with corresponding $p$-values documented in \Cref{tab:cmp_ae_molecule}. Overlay plots in \Cref{fig:per-ae-overlays} show the alignment of spline-based dose--response curves across molecules for shared AE terms.
-
-\IfFileExists{figures/master_dr_by_ae-session.pdf}{%
-  \begin{figure}[ht]
+\IfFileExists{tables/compare_by_molecule_overall.tex}{%
+  \begin{table}[ht]
     \centering
-    \includegraphics[width=\linewidth]{figures/master_dr_by_ae-session.pdf}
-    \caption{Session-level dose--response overlays for harmonized AE terms observed across multiple molecules.}
-    \label{fig:per-ae-overlays}
-  \end{figure}
+    \caption{Random-effects meta-analysis summaries by molecule and time window. $k$ denotes the number of contrasts contributing to each model.}
+    \label{tab:meta-summary}
+    \input{tables/compare_by_molecule_overall.tex}
+  \end{table}
 }{}
 
-\IfFileExists{../results_compare/tables/compare_by_ae_molecule.tex}{\input{../results_compare/tables/compare_by_ae_molecule.tex}}{}
+\IfFileExists{tables/compare_topline_molecule.tex}{%
+  \begin{table}[ht]
+    \centering
+    \caption{Top-line significance outcomes and counts of significant adverse events by molecule and time window.}
+    \label{tab:topline-summary}
+    \input{tables/compare_topline_molecule.tex}
+  \end{table}
+}{}
 
-\subsection{Dose--response relationships}
-Dose--response meta-regression demonstrated molecule-specific trajectories (\Cref{fig:dose-response}). MDMA exhibited approximately monotonic increases in AE risk with higher doses, whereas LSD and psilocybin presented non-linear patterns consistent with restricted cubic spline fits. Ayahuasca contributed a single-dose contrast and was therefore not modeled for continuous dose effects.
+\IfFileExists{tables/compare_agg_by_molecule.tex}{%
+  \begin{table}[ht]
+    \centering
+    \caption{Dose--response omnibus tests (QM) by molecule and time window.}
+    \label{tab:dr-omnibus}
+    \input{tables/compare_agg_by_molecule.tex}
+  \end{table}
+}{}
 
 \IfFileExists{figures/master_dr_by_molecule-session.pdf}{%
-  \begin{figure}[ht]
-    \centering
-    \includegraphics[width=\linewidth]{figures/master_dr_by_molecule-session.pdf}
-    \caption{Session-level dose--response curves derived from spline meta-regressions for each molecule.}
-    \label{fig:dose-response}
-  \end{figure}
+  \IfFileExists{figures/master_dr_by_ae-session.pdf}{%
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=0.48\linewidth]{figures/master_dr_by_molecule-session.pdf}%
+      \hfill
+      \includegraphics[width=0.48\linewidth]{figures/master_dr_by_ae-session.pdf}
+      \caption{Session-level dose--response meta-regressions. Left: molecule-level spline fits summarising overall AE risk. Right: overlays of harmonised adverse-event trajectories across molecules.}
+      \label{fig:dose-response-panels}
+    \end{figure}
+  }{}
 }{}
 
+The left panel of \Cref{fig:dose-response-panels} highlights the gradual, nearly monotonic increase in MDMA-related adverse event risk as doses escalate, contrasted with the steeper mid-range inflections observed for LSD and psilocybin. Ayahuasca contributes a single point estimate, reinforcing its limited influence on the pooled spline. The right panel reveals that autonomic and gastrointestinal events---notably nausea, hypertension, and tachycardia---account for the sharpest dose-linked rises across molecules, while neuropsychiatric terms such as anxiety exhibit flatter slopes that align closely with the pooled average.
+
+\subsection{Risk of bias}
+Risk-of-bias reporting was sparse across legacy psychedelic trials. Most publications described blinding and allocation procedures qualitatively without sufficient detail for domain-level scoring, resulting in the majority of contrasts being judged as having unclear overall risk. Trials that provided explicit randomization and masking procedures were predominantly recent psilocybin and MDMA studies. Attrition and selective reporting were rarely addressed, necessitating qualitative interpretation of potential biases alongside the quantitative synthesis.
+
+\subsection{Per-adverse-event findings}
+Harmonized per-AE models indicated that only a subset of AE terms demonstrated clear dose-related elevations. Coverage of adverse-event terms across molecules is detailed in \Cref{tab:ae-coverage}, highlighting repeated assessments for anxiety, headache, nausea, fatigue, and related autonomic symptoms. Significant session-level findings predominantly involved autonomic and gastrointestinal symptoms for MDMA, nausea and headache for LSD, and fatigue and hypertension for psilocybin, with corresponding $p$-values documented in \Cref{tab:cmp_ae_molecule}. Overlay plots in the right panel of \Cref{fig:dose-response-panels} show the alignment of spline-based dose--response curves across molecules for shared AE terms.
+
+\IfFileExists{tables/compare_agg_by_ae_molecule.tex}{%
+  \begin{table}[p]
+    \centering
+    \footnotesize
+    \caption{Number of contrasts contributing to each adverse-event model by molecule and time window.}
+    \label{tab:ae-coverage}
+    \input{tables/compare_agg_by_ae_molecule.tex}
+  \end{table}
+}{}
+
+\IfFileExists{../results_compare/tables/compare_by_ae_molecule.tex}{%
+  \begin{table}[p]
+    \centering
+    \footnotesize
+    \caption{Per-adverse-event meta-analytic summaries by molecule and time window.}
+    \label{tab:cmp_ae_molecule}
+    \input{../results_compare/tables/compare_by_ae_molecule.tex}
+  \end{table}
+}{}
+
+\subsection{Dose--response relationships}
+Dose--response meta-regression demonstrated molecule-specific trajectories (\Cref{fig:dose-response-panels}). Omnibus QM tests (\Cref{tab:dr-omnibus}) confirmed significant dose effects for LSD, MDMA, and psilocybin during acute sessions, with sustained but attenuated evidence for LSD at follow-up. The molecule-level spline fits in \Cref{fig:dose-response-panels} show that MDMA risk rises smoothly across the evaluated dose range, LSD concentrates risk increases between 75--150~\textmu g, and psilocybin displays a sigmoidal pattern with widening uncertainty at the highest doses. Ayahuasca contributed a single-dose contrast and was therefore not modeled for continuous dose effects.
+
+Per-adverse-event overlays (right panel of \Cref{fig:dose-response-panels}) emphasise the disproportionate contribution of gastrointestinal (nausea, vomiting) and autonomic (tachycardia, hypertension) AEs to the overall dose gradient. Anxiety-related endpoints track closely with the pooled curve and show limited steepening, underscoring that much of the overall dose dependence is driven by somatic rather than psychiatric symptoms.
+
 \subsection{Session versus follow-up comparisons}
-Comparative analyses of session and follow-up windows highlighted attenuation of effects at later assessments, as visualised in \Cref{fig:session-followup}. Table-based contrasts (\Cref{tab:cmp_topline,tab:cmp_ae_molecule}) show that several AE terms with session-level significance did not retain statistical support at follow-up, reflecting limited sample sizes and fewer reported contrasts.
+Comparative analyses of session and follow-up windows highlighted attenuation of effects at later assessments, as visualised in \Cref{fig:session-followup}. The figure juxtaposes the molecule-level spline slopes for acute sessions against those derived from the available follow-up contrasts, showing that LSD maintains a positive but flatter trajectory, whereas MDMA slopes fall toward the null, consistent with the non-significant follow-up omnibus test. Table-based contrasts (\Cref{tab:topline-summary,tab:cmp_ae_molecule}) show that several AE terms with session-level significance did not retain statistical support at follow-up, reflecting limited sample sizes and fewer reported contrasts.
 
 \IfFileExists{figures/dr_session_vs_followup.pdf}{%
   \begin{figure}[ht]
@@ -55,3 +102,6 @@ Comparative analyses of session and follow-up windows highlighted attenuation of
     \label{fig:session-followup}
   \end{figure}
 }{}
+
+\subsection{Sensitivity and publication-bias assessments}
+Leave-one-out diagnostics did not materially change pooled odds ratios for molecules with at least three contributing contrasts, indicating robustness to the exclusion of individual trials. Session-level Egger tests were only feasible for LSD and MDMA because other strata had $k<10$; neither test detected small-study asymmetry at the 0.05 level. Stratified analyses comparing session versus follow-up windows (\Cref{fig:session-followup}) and per-AE contrasts (\Cref{tab:cmp_ae_molecule}) demonstrated that attenuation at follow-up is largely attributable to reduced sample sizes rather than outlying studies.
