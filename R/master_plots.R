@@ -47,13 +47,31 @@ suppressPackageStartupMessages({
 }
 
 # Small helper for flexible column names in preds (AE × molecule)
+.maybe_restore_pred_col <- function(df_norm, df_orig, target, candidates){
+  if (target %in% names(df_norm)) {
+    return(df_norm)
+  }
+
+  for (cand in candidates) {
+    if (cand %in% names(df_orig)) {
+      vec <- df_orig[[cand]]
+      if (!is.null(vec)) {
+        df_norm[[target]] <- vec
+        return(df_norm)
+      }
+    }
+  }
+
+  df_norm
+}
+
 .normalize_pred_cols <- function(df){
   df <- .ensure_pred_col(df, "molecule", c("molecule", "molecule_id", "drug", "substance", "compound", "molecule.x"))
   df <- .ensure_pred_col(df, "ae_term",  c("ae_term", "ae_terms", "adverse_event", "event_term", "event_label", "ae", "ae_term.x"))
 
   nm <- names(df)
   pick <- function(cands) { cands[cands %in% nm][1] }
-  .x  <- pick(c("dose_norm","xdose","dose_mg","dose"))
+  .x  <- pick(c("dose_norm","xdose","dose_mg","dose","x","dose_diff"))
   .y  <- pick(c("fit","pred","estimate","mu","y"))
   .l  <- pick(c("lwr","ci_low","ci_lb","ylwr"))
   .u  <- pick(c("upr","ci_high","ci_ub","yupr"))
@@ -71,7 +89,7 @@ suppressPackageStartupMessages({
 
   nm <- names(df)
   pick <- function(cands) { cands[cands %in% nm][1] }
-  .x  <- pick(c("dose_mg","xdose","dose","dose_norm"))
+  .x  <- pick(c("dose_mg","xdose","dose","dose_norm","x","dose_diff"))
   .y  <- pick(c("fit","pred","estimate","mu","y"))
   .l  <- pick(c("lwr","ci_low","ci_lb","ylwr"))
   .u  <- pick(c("upr","ci_high","ci_ub","yupr"))
@@ -223,7 +241,32 @@ suppressPackageStartupMessages({
     sig_tbl <- sig_tbl %>% semi_join(keep_pairs, by = c("molecule","ae_term"))
   }
 
+  df_all_orig <- df_all
   df_all <- .normalize_pred_cols(df_all)
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "ae_term",
+    candidates = c("ae_term", "ae", "ae_label", "adverse_event", "event", "event_term", "event_label")
+  )
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "xdose",
+    candidates = c("xdose", "dose_norm", "dose_mg", "dose", "x", "dose_diff")
+  )
+
+  missing_norm <- setdiff(c("molecule", "ae_term", "xdose"), names(df_all))
+  if (length(missing_norm)) {
+    rlang::abort(
+      message = paste0(
+        "Normalized predictions are missing required columns (",
+        paste(missing_norm, collapse = ", "),
+        ") after rename. Available columns: ",
+        paste(names(df_all), collapse = ", ")
+      )
+    )
+  }
 
   missing_norm <- setdiff(c("molecule", "ae_term", "xdose"), names(df_all))
   if (length(missing_norm)) {
