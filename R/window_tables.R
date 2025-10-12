@@ -40,9 +40,22 @@ dr_fit_per_window <- function(es, min_k_per_window = 2){
     group_by(molecule, time_window) %>%
     group_modify(~{
       dat <- .x
-      if (nrow(dat) < min_k_per_window) return(NULL)
+      empty <- tibble(
+        molecule       = character(),
+        time_window    = character(),
+        k              = integer(),
+        beta_dose      = double(),
+        se_dose        = double(),
+        z_dose         = double(),
+        p_dose         = double(),
+        ci_lb          = double(),
+        ci_ub          = double(),
+        I2             = double(),
+        tau2           = double()
+      )
+      if (nrow(dat) < min_k_per_window) return(empty)
       m <- tryCatch(rma(yi ~ dose_mg, vi = vi, data = dat, method = "REML"), error = function(e) NULL)
-      if (is.null(m)) return(NULL)
+      if (is.null(m)) return(empty)
       tibble(
         molecule       = dat$molecule[[1]],
         time_window    = dat$time_window[[1]],
@@ -68,9 +81,15 @@ dr_test_session_vs_followup <- function(es, min_k_total = 4){
     group_by(molecule) %>%
     group_modify(~{
       dat <- .x
-      if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k_total) return(NULL)
+      empty <- tibble(
+        molecule          = character(),
+        beta_dose_main    = double(),
+        beta_interaction  = double(),
+        p_interaction     = double()
+      )
+      if (length(unique(dat$time_window)) < 2 || nrow(dat) < min_k_total) return(empty)
       m <- tryCatch(rma(yi ~ dose_mg * time_window, vi = vi, data = dat, method = "REML"), error=function(e) NULL)
-      if (is.null(m)) return(NULL)
+      if (is.null(m)) return(empty)
       tibble(
         molecule          = dat$molecule[[1]],
         beta_dose_main    = as.numeric(coef(m)["dose_mg"]),
