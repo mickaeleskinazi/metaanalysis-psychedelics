@@ -305,6 +305,37 @@ suppressPackageStartupMessages({
       alphaL = ifelse(sig, 1.0, 0.55)
     )
 
+  dfp <- .maybe_restore_pred_col(
+    df_norm = dfp,
+    df_orig = df_all_orig,
+    target  = "fit",
+    candidates = c("fit", "pred", "estimate", "mu", "y")
+  )
+  dfp <- .maybe_restore_pred_col(
+    df_norm = dfp,
+    df_orig = df_all_orig,
+    target  = "lwr",
+    candidates = c("lwr", "ci_low", "ci_lb", "ylwr")
+  )
+  dfp <- .maybe_restore_pred_col(
+    df_norm = dfp,
+    df_orig = df_all_orig,
+    target  = "upr",
+    candidates = c("upr", "ci_high", "ci_ub", "yupr")
+  )
+
+  missing_plot <- setdiff(c("fit", "lwr", "upr"), names(dfp))
+  if (length(missing_plot)) {
+    rlang::abort(
+      message = paste0(
+        "Plot data are missing required columns (",
+        paste(missing_plot, collapse = ", "),
+        ") after join. Available columns: ",
+        paste(names(dfp), collapse = ", ")
+      )
+    )
+  }
+
   title_txt <- if (significant_only) {
     "Dose–response (significant AEs only)"
   } else {
