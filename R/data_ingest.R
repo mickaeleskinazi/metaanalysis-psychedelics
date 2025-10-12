@@ -35,7 +35,11 @@ load_data <- function(path, sheet){
     group       = c("group","arm_label","armname","armlabel","group_name","condition","treatment"),
     arm_type    = c("arm_type","placebo_type","control_type","group_type"),
     molecule    = c("molecule","drug","substance","compound"),
-    ae_term     = c("ae_term","adverse_event","ae","outcome","event_name"),
+    ae_term     = c(
+      "ae_term","adverse_event","ae","outcome","event_name","ae_name",
+      "ae_label","ae_description","adverse_event_term","adverse_event_name",
+      "adverse_event_label","adverse_effect","side_effect","symptom"
+    ),
     time_window = c("time_window","window","timepoint","time","visit"),
     dose_mg     = c("dose_mg","dose","dose_mg_numeric","dose_mg_num","dose_milligram","lsd_dose_mg"),
     events      = c("events","event","ae_n","cases","num_events","n_events","events_arm","ae_count"),
@@ -58,8 +62,13 @@ load_data <- function(path, sheet){
   must_have <- c("study_id","molecule","ae_term","time_window","dose_mg","events","n")
   missing <- setdiff(must_have, names(df))
   if (length(missing)){
-    cat("Columns in sheet:\n"); print(names(df))
-    stop("Missing required columns after auto-detect: ", paste(missing, collapse = ", "))
+    rlang::inform(paste0("Columns detected in sheet: ", paste(names(df), collapse = ", ")))
+    rlang::abort(
+      message = paste0(
+        "Missing required columns after auto-detect: ",
+        paste(missing, collapse = ", ")
+      )
+    )
   }
   
   # Normalize basic types
