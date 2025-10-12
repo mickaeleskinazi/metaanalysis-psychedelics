@@ -175,17 +175,26 @@ plot_forest_overlay_per_ae <- function(
 ){
   stopifnot(all(c("yi","vi","molecule","ae_term") %in% names(es)))
   dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
-  
+
   pooled <- es %>%
     filter(is.finite(yi), is.finite(vi)) %>%
     group_by(ae_term, molecule) %>%
-    group_modify(function(.x, .key){
-      if (nrow(.x) < min_k) {
-        return(tibble(or = NA_real_, lo = NA_real_, hi = NA_real_, p = NA_real_, k = nrow(.x)))
+    group_modify(~{
+      dat <- .x
+      k   <- nrow(dat)
+      base <- tibble(
+        or = NA_real_,
+        lo = NA_real_,
+        hi = NA_real_,
+        p  = NA_real_,
+        k  = k
+      )
+      if (k < min_k) {
+        return(base)
       }
-      fit <- tryCatch(rma(yi, vi, data = .x, method = "REML"), error = function(e) NULL)
+      fit <- tryCatch(rma(yi, vi, data = dat, method = "REML"), error = function(e) NULL)
       if (is.null(fit)) {
-        return(tibble(or = NA_real_, lo = NA_real_, hi = NA_real_, p = NA_real_, k = nrow(.x)))
+        return(base)
       }
       tibble(
         or = exp(as.numeric(fit$b[1])),
