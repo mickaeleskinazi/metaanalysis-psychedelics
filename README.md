@@ -32,6 +32,8 @@ Key scripts:
 - `scripts/run_session_followup_analysis.R` – compares session vs follow-up time windows and saves per-window artefacts.
 - `scripts/compare_global_session_followup.R` – global slope comparison between windows.
 - `scripts/compare_session_followup_from_saved_tables.R` – reconciles previously exported tables for reporting.
+- `scripts/compare_session_followup_tables_from_outputs.R` – builds the session vs follow-up comparison tables from existing
+  CSV exports (no model re-fitting required).
 - `scripts/analysis_plots_by_ae_overlay.R` – generates AE overlays when you need molecule comparisons.
 
 
@@ -61,20 +63,26 @@ Key scripts:
 
 ## 🚀 How to run
 
-From the project root:
+From the project root you can execute the entry-point scripts directly with `Rscript`:
 
-```r
-# Main follow-up analysis
-source("scripts/run_main_analysis.R")
+```bash
+# Main analysis (fits the models and generates plots/tables)
+Rscript scripts/run_main_analysis.R
 
-# Session vs follow-up comparison
-source("scripts/run_session_followup_analysis.R")
+# Session vs follow-up analysis with fresh model fits
+Rscript scripts/run_session_followup_analysis.R
+
+# Session vs follow-up tables only (reuses saved CSVs)
+# Optional arguments: <session_dir> <followup_dir> <output_dir>
+Rscript scripts/compare_session_followup_tables_from_outputs.R
 
 # Global slope comparison (optional)
-source("scripts/compare_global_session_followup.R")
+Rscript scripts/compare_global_session_followup.R
 ```
 
-Each script accepts parameters (see function definitions) so you can point to alternative files or output folders.
+Each script accepts parameters (see function definitions) so you can point to alternative files or output folders. The
+session/follow-up table helper defaults to the legacy `results_session/`, `results_followup/`, and `results_compare/`
+directories, but you can override them by supplying explicit paths when calling the script.
 
 ### 🔍 Verifying the pipeline end-to-end
 
