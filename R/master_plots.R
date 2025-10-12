@@ -9,11 +9,78 @@ suppressPackageStartupMessages({
   library(metafor)
 })
 
+.norm_pred_key <- function(x) {
+  x <- iconv(x, to = "ASCII//TRANSLIT")
+  x[is.na(x)] <- ""
+  tolower(gsub("[^a-z0-9]+", "", x))
+}
+
+.ensure_pred_col <- function(df, std, aliases) {
+  if (std %in% names(df)) {
+    return(df)
+  }
+
+  cn <- names(df)
+  cn_norm <- .norm_pred_key(cn)
+  aliases_norm <- .norm_pred_key(aliases)
+
+  pick_idx <- function(targets, exact = TRUE) {
+    for (cand in targets) {
+      hits <- if (exact) which(cn_norm == cand) else which(grepl(cand, cn_norm, fixed = TRUE))
+      if (length(hits)) {
+        return(hits[[1]])
+      }
+    }
+    NA_integer_
+  }
+
+  idx <- pick_idx(aliases_norm, exact = TRUE)
+  if (is.na(idx)) {
+    idx <- pick_idx(aliases_norm, exact = FALSE)
+  }
+
+  if (!is.na(idx)) {
+    df <- dplyr::rename(df, !!std := !!rlang::sym(cn[[idx]]))
+  }
+
+  df
+}
+
 # Small helper for flexible column names in preds (AE × molecule)
+.maybe_restore_pred_col <- function(df_norm, df_orig, target, candidates){
+  if (target %in% names(df_norm) && !rlang::is_empty(df_norm[[target]])) {
+    return(df_norm)
+  }
+
+  for (cand in candidates) {
+    if (cand %in% names(df_norm)) {
+      df_norm <- dplyr::rename(df_norm, !!target := !!rlang::sym(cand))
+      if (!rlang::is_empty(df_norm[[target]])) {
+        return(df_norm)
+      }
+    }
+
+    if (!missing(df_orig) && cand %in% names(df_orig)) {
+      vec <- df_orig[[cand]]
+      if (!is.null(vec)) {
+        df_norm[[target]] <- vec
+        if (!rlang::is_empty(df_norm[[target]])) {
+          return(df_norm)
+        }
+      }
+    }
+  }
+
+  df_norm
+}
+
 .normalize_pred_cols <- function(df){
+  df <- .ensure_pred_col(df, "molecule", c("molecule", "molecule_id", "drug", "substance", "compound", "molecule.x"))
+  df <- .ensure_pred_col(df, "ae_term",  c("ae_term", "ae_terms", "adverse_event", "event_term", "event_label", "ae", "ae_term.x"))
+
   nm <- names(df)
   pick <- function(cands) { cands[cands %in% nm][1] }
-  .x  <- pick(c("dose_norm","xdose","dose_mg","dose"))
+  .x  <- pick(c("dose_norm","xdose","dose_mg","dose","x","dose_diff"))
   .y  <- pick(c("fit","pred","estimate","mu","y"))
   .l  <- pick(c("lwr","ci_low","ci_lb","ylwr"))
   .u  <- pick(c("upr","ci_high","ci_ub","yupr"))
@@ -27,9 +94,11 @@ suppressPackageStartupMessages({
 
 # Variant for molecule-only predictions
 .normalize_pred_cols_molecule <- function(df){
+  df <- .ensure_pred_col(df, "molecule", c("molecule", "molecule_id", "drug", "substance", "compound", "molecule.x"))
+
   nm <- names(df)
   pick <- function(cands) { cands[cands %in% nm][1] }
-  .x  <- pick(c("dose_mg","xdose","dose","dose_norm"))
+  .x  <- pick(c("dose_mg","xdose","dose","dose_norm","x","dose_diff"))
   .y  <- pick(c("fit","pred","estimate","mu","y"))
   .l  <- pick(c("lwr","ci_low","ci_lb","ylwr"))
   .u  <- pick(c("upr","ci_high","ci_ub","yupr"))
@@ -181,7 +250,50 @@ suppressPackageStartupMessages({
     sig_tbl <- sig_tbl %>% semi_join(keep_pairs, by = c("molecule","ae_term"))
   }
 
+  df_all_orig <- df_all
   df_all <- .normalize_pred_cols(df_all)
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "ae_term",
+    candidates = c("ae_term", "ae", "ae_label", "adverse_event", "event", "event_term", "event_label")
+  )
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "xdose",
+    candidates = c("xdose", "dose_norm", "dose_mg", "dose", "x", "dose_diff")
+  )
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "fit",
+    candidates = c("fit", "pred", "estimate", "mu", "y")
+  )
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "lwr",
+    candidates = c("lwr", "ci_low", "ci_lb", "ylwr")
+  )
+  df_all <- .maybe_restore_pred_col(
+    df_norm = df_all,
+    df_orig = df_all_orig,
+    target  = "upr",
+    candidates = c("upr", "ci_high", "ci_ub", "yupr")
+  )
+
+  missing_norm <- setdiff(c("molecule", "ae_term", "xdose", "fit", "lwr", "upr"), names(df_all))
+  if (length(missing_norm)) {
+    rlang::abort(
+      message = paste0(
+        "Normalized predictions are missing required columns (",
+        paste(missing_norm, collapse = ", "),
+        ") after rename. Available columns: ",
+        paste(names(df_all), collapse = ", ")
+      )
+    )
+  }
 
   if (normalize_dose) {
     df_all <- df_all %>%
@@ -207,6 +319,37 @@ suppressPackageStartupMessages({
       lty    = ifelse(sig, "significant", "ns"),
       alphaL = ifelse(sig, 1.0, 0.55)
     )
+
+  dfp <- .maybe_restore_pred_col(
+    df_norm = dfp,
+    df_orig = df_all_orig,
+    target  = "fit",
+    candidates = c("fit", "pred", "estimate", "mu", "y")
+  )
+  dfp <- .maybe_restore_pred_col(
+    df_norm = dfp,
+    df_orig = df_all_orig,
+    target  = "lwr",
+    candidates = c("lwr", "ci_low", "ci_lb", "ylwr")
+  )
+  dfp <- .maybe_restore_pred_col(
+    df_norm = dfp,
+    df_orig = df_all_orig,
+    target  = "upr",
+    candidates = c("upr", "ci_high", "ci_ub", "yupr")
+  )
+
+  missing_plot <- setdiff(c("fit", "lwr", "upr"), names(dfp))
+  if (length(missing_plot)) {
+    rlang::abort(
+      message = paste0(
+        "Plot data are missing required columns (",
+        paste(missing_plot, collapse = ", "),
+        ") after join. Available columns: ",
+        paste(names(dfp), collapse = ", ")
+      )
+    )
+  }
 
   title_txt <- if (significant_only) {
     "Dose–response (significant AEs only)"
