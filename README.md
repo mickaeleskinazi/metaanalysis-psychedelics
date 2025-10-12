@@ -21,22 +21,12 @@ metaanalysis-psychedelics/
 ├── data/                     # Raw Excel inputs
 ├── R/                        # Reusable analysis modules (data prep, modelling, plotting)
 ├── scripts/                  # Entry-point scripts orchestrating analyses
-├── results*/                 # Generated outputs (tables, plots, publication artefacts)
+├── results/                  # Generated outputs (tables, plots, publication artefacts)
 ├── README.md
 └── ...
 ```
 
-> **Why two folders with R code?**
->
-> * `R/` behaves like an internal package: it stores **functions** (helpers for loading
->   data, fitting models, making plots, exporting tables, etc.). These files are not
->   meant to be sourced one by one by hand.
-> * `scripts/` contains the **entry points** that orchestrate the end-to-end workflows.
->   Each script starts by sourcing the modules under `R/` and then runs a complete
->   analysis (main follow-up, session vs follow-up comparison, global slope check,
->   overlay plots, …).
-
-Key entry-point scripts:
+Key scripts:
 
 - `scripts/run_main_analysis.R` – end-to-end pipeline for the main dataset (follow-up window).
 - `scripts/run_session_followup_analysis.R` – compares session vs follow-up time windows and saves per-window artefacts.
@@ -71,57 +61,41 @@ Key entry-point scripts:
 
 ## 🚀 How to run
 
-### 1. Install R packages once
-
-Open R (or RStudio) in the project root and install the required packages:
+From the project root:
 
 ```r
-install.packages(c(
-  "metafor", "dplyr", "tidyr", "readxl", "ggplot2", "purrr",
-  "janitor", "stringr", "here", "patchwork", "gt", "kableExtra",
-  "flextable", "officer"
-))
+# Main follow-up analysis
+source("scripts/run_main_analysis.R")
+
+# Session vs follow-up comparison
+source("scripts/run_session_followup_analysis.R")
+
+# Global slope comparison (optional)
+source("scripts/compare_global_session_followup.R")
 ```
 
-### 2. Choose how you want to launch the workflows
+Each script accepts parameters (see function definitions) so you can point to alternative files or output folders.
 
-You can run the entry-point scripts from **within R** (interactive) or from the
-**command line** with `Rscript`. The scripts automatically source the helpers in
-`R/`, so you only need to call one command per workflow.
+### 🔍 Verifying the pipeline end-to-end
 
-| Goal | Run from an R console | Run from a terminal |
-| --- | --- | --- |
-| Main follow-up analysis | `source("scripts/run_main_analysis.R")` | `Rscript scripts/run_main_analysis.R` |
-| Session vs follow-up comparison | `source("scripts/run_session_followup_analysis.R")` | `Rscript scripts/run_session_followup_analysis.R` |
-| Optional global slope check | `source("scripts/compare_global_session_followup.R")` | `Rscript scripts/compare_global_session_followup.R` |
+1. **Install packages** listed in the requirements section (`install.packages(c("metafor", "here", ...))`).
+2. **Run the scripts** above from an interactive R session or with `Rscript scripts/run_main_analysis.R` (etc.).
+3. **Inspect the console log** – each major step prints a numbered progress message so you can see where the pipeline is.
+4. **Check the output folders**:
+   - `results/main/` (follow-up analysis) – should contain `tables/`, `forest_plots/`, `dose_response/`, and `master/` sub-folders.
+   - `results/session/`, `results/follow_up/`, and `results/compare/` – confirm comparable artefacts exist for the session vs. follow-up workflow.
+   - `results/paper_tables/` – verify CSV/Word/HTML tables for manuscript use when `make_paper_tables = TRUE`.
+5. **Review generated CSVs** (e.g., `results/compare/tables/dr_session_followup_publication_table.csv`) to confirm model estimates are populated and that `stars` columns mark significant effects.
 
-Each script exposes arguments (see the top of the file) in case you need to point
-to a different Excel file or results directory, but the defaults reproduce the
-current study.
-
-### 3. Confirm everything finished
-
-1. Watch the console: the scripts print progress messages such as
-   `"1) Load & harmonize …"`, `"Comparative dose–response overlays …"`, etc.
-2. Inspect the outputs:
-   - `results/main/…` – follow-up analysis artefacts.
-   - `results_session/…` and `results_followup/…` – window-specific artefacts.
-   - `results_compare/…` – side-by-side plots and tables for session vs follow-up.
-   - `results/paper_tables/…` – publication-ready tables (when enabled).
-3. Open key CSV/PDF files (e.g. `results_compare/tables/dr_session_followup_publication_table.csv`
-   or `results_compare/dose_response/dr_session_vs_followup.pdf`) to verify that
-   estimates, confidence intervals, and plots have been generated.
-
-If a script stops with an error, the message will indicate the missing package,
-file, or column so you can address it and rerun the command.
+If any of the scripts stop with an error, the message will call out the missing file, package, or column that needs attention.
 
 ## 📈 Outputs
 
 `results/main/` – artefacts from the primary follow-up analysis (tables, forest plots, dose–response curves, master figures).
 
-`results_session/` & `results_followup/` – window-specific contrasts, models and plots.
+`results/session/` & `results/follow_up/` – window-specific contrasts, models and plots.
 
-`results_compare/` – side-by-side plots, comparative tables, and publication-ready summaries for session vs follow-up.
+`results/compare/` – side-by-side plots, comparative tables, and publication-ready summaries for session vs follow-up.
 
 `results/paper_tables/` – formatted tables for manuscripts or slide decks.
 

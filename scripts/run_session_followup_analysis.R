@@ -7,25 +7,14 @@ suppressPackageStartupMessages({
   library(purrr)
 })
 
-source_module <- function(...) {
-  path <- here::here(...)
-  if (!file.exists(path)) {
-    stop("Module not found: ", path)
-  }
-  env <- new.env(parent = globalenv())
-  sys.source(path, envir = env)
-  list2env(as.list(env), envir = globalenv())
-  invisible(path)
-}
-
-source_module("R", "data_ingest.R")
-source_module("R", "dose_response_models.R")
-source_module("R", "forest_plots.R")
-source_module("R", "dose_response_plots.R")
-source_module("R", "significance_tables.R")
-source_module("R", "session_followup_tables.R")
-source_module("R", "session_followup_dr_plots.R")
-source_module("R", "session_followup_forest_plots.R")
+source(here::here("R", "data_ingest.R"))
+source(here::here("R", "dose_response_models.R"))
+source(here::here("R", "forest_plots.R"))
+source(here::here("R", "dose_response_plots.R"))
+source(here::here("R", "significance_tables.R"))
+source(here::here("R", "session_followup_tables.R"))
+source(here::here("R", "session_followup_dr_plots.R"))
+source(here::here("R", "session_followup_forest_plots.R"))
 
 default_ref_policies <- list(
   MDMA       = c("inactive_placebo", "active_non_psy_placebo", "active_placebo"),
@@ -38,9 +27,9 @@ default_ref_policies <- list(
 run_session_followup_analysis <- function(
     data_xlsx = here::here("data", "Adverse-events-dose-v5.xlsx"),
     sheet = "Feuil1",
-    out_dir_session = here::here("results_session"),
-    out_dir_followup = here::here("results_followup"),
-    out_dir_compare = here::here("results_compare"),
+    out_dir_session = here::here("results", "session"),
+    out_dir_followup = here::here("results", "follow_up"),
+    out_dir_compare = here::here("results", "compare"),
     min_k = 2,
     fit_spline = TRUE
 ) {

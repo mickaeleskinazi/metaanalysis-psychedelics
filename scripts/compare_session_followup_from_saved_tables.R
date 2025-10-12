@@ -84,9 +84,9 @@ count_sig_ae <- function(df_coll){
 }
 
 compare_session_followup_from_saved_tables <- function(
-    dir_session = here::here("results_session", "tables"),
-    dir_followup = here::here("results_followup", "tables"),
-    out_dir = here::here("results_compare", "tables")
+    dir_session = here::here("results", "session", "tables"),
+    dir_followup = here::here("results", "follow_up", "tables"),
+    out_dir = here::here("results", "compare", "tables")
 ) {
   dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 

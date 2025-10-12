@@ -10,9 +10,9 @@ suppressPackageStartupMessages({
 source(here::here("scripts", "compare_session_followup_from_saved_tables.R"))
 
 make_publication_tables <- function(
-    dir_session = here::here("results_session", "tables"),
-    dir_followup = here::here("results_followup", "tables"),
-    out_dir = here::here("results_compare", "tables")) {
+    dir_session = here::here("results", "session", "tables"),
+    dir_followup = here::here("results", "follow_up", "tables"),
+    out_dir = here::here("results", "compare", "tables")) {
   res <- compare_session_followup_from_saved_tables(dir_session, dir_followup, out_dir)
   topline <- res$topline
 
