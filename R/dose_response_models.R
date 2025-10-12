@@ -4,7 +4,19 @@ suppressPackageStartupMessages({
 
 # --- Escalc en conservant dose_mg, ref_dose_mg, dose_diff ---
 build_escalc <- function(contrasts, add = 0.5){
-  if (is.null(contrasts) || !nrow(contrasts)) return(tibble())
+  empty_tpl <- tibble(
+    study_id    = character(),
+    molecule    = character(),
+    ae_term     = character(),
+    time_window = character(),
+    dose_mg     = double(),
+    ref_dose_mg = double(),
+    dose_diff   = double(),
+    yi          = double(),
+    vi          = double()
+  )
+
+  if (is.null(contrasts) || !nrow(contrasts)) return(empty_tpl)
   esc <- metafor::escalc(
     measure = "OR",
     ai = ai, bi = bi, ci = ci, di = di,
