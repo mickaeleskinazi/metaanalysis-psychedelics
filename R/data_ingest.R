@@ -47,115 +47,18 @@ load_data <- function(path, sheet){
     arm_type    = c("arm_type","placebo_type","control_type","group_type"),
     molecule    = c("molecule","drug","substance","compound"),
     ae_term     = c(
-      "ae_term","ae_terms","adverse_event","ae","outcome","event_name","event_term",
-      "event_label","ae_name","ae_label","ae_description","adverse_event_term",
-      "adverse_event_name","adverse_event_label","adverse_effect","side_effect",
-      "symptom","reaction","effet_indesirable","effets_indesirables",
-      "effet_secondaire","effets_secondaires","se_adverse_event"
+      "ae_term","adverse_event","ae","outcome","event_name","ae_name",
+      "ae_label","ae_description","adverse_event_term","adverse_event_name",
+      "adverse_event_label","adverse_effect","side_effect","symptom"
     ),
     time_window = c("time_window","window","timepoint","time","visit"),
     dose_mg     = c("dose_mg","dose","dose_mg_numeric","dose_mg_num","dose_milligram","lsd_dose_mg"),
-    events      = c(
-      "events","event","ae_n","cases","num_events","n_events",
-      "events_arm","ae_count","number_of_events","count_events"
-    ),
-    n           = c(
-      "n","total","n_total","sample_size","denominator",
-      "participants","participants_total","n_participants",
-      "n_participants_arm","arm_n","n_arm","participants_arm"
-    )
+    events      = c("events","event","ae_n","cases","num_events","n_events","events_arm","ae_count"),
+    n           = c("n","total","n_total","sample_size","denominator",
+                    "participants","participants_total","n_participants",
+                    "n_participants_arm","arm_n","n_arm")
   )
   df <- .detect_and_rename(df, targets)
-
-  # Heuristic fallback for AE labels: when none of the aliases matched above we
-  # try to infer a reasonable candidate based on keyword combinations while
-  # avoiding the "events" column. This mirrors the intuition analysts use when
-  # manually inspecting unfamiliar spreadsheets.
-  if (!("ae_term" %in% names(df))) {
-    nm_lower <- tolower(iconv(names(df), to = "ASCII//TRANSLIT"))
-    keyword_sets <- list(
-      c("ae", "term"),
-      c("ae", "label"),
-      c("adverse", "event"),
-      c("event", "term"),
-      c("event", "label"),
-      c("event", "desc"),
-      c("event", "name"),
-      c("side", "effect"),
-      c("effet", "ind"),
-      c("effet", "second"),
-      "symptom"
-    )
-    pick_keywords <- function(keywords){
-      if (length(keywords) == 1L) {
-        hits <- which(grepl(keywords, nm_lower, fixed = TRUE))
-      } else {
-        hits <- which(vapply(nm_lower, function(nm){
-          all(vapply(keywords, function(kw) grepl(kw, nm, fixed = TRUE), logical(1)))
-        }, logical(1)))
-      }
-      # filter out the events column which is frequently just "events"
-      hits[names(df)[hits] != "events"]
-    }
-    idx <- NULL
-    for (kw in keyword_sets){
-      hits <- pick_keywords(kw)
-      if (length(hits)) {
-        idx <- hits[[1]]
-        break
-      }
-    }
-    if (!is.null(idx)) {
-      picked <- names(df)[[idx]]
-      rlang::inform(paste0("Auto-detected AE label column '", picked, "'"))
-      df <- dplyr::rename(df, ae_term = !!rlang::sym(picked))
-    }
-  }
-
-  if (!("ae_term" %in% names(df))) {
-    exclude <- c(
-      "study_id", "author_year", "arm_id", "group", "arm_type", "molecule",
-      "time_window", "dose_mg", "events", "n", "n_total", "n_events"
-    )
-    candidates <- setdiff(names(df), exclude)
-    if (length(candidates)) {
-      score_col <- function(col){
-        nm <- .norm_key(col)
-        score <- 0
-        pattern_hits <- c(
-          "aeterm", "aelabel", "adverseevent", "sideeffect", "symptom",
-          "effetindesirable", "effetsindesirables", "effetsecondaire",
-          "effetssecondaires", "reaction", "safety", "teae"
-        )
-        for (pat in pattern_hits) {
-          if (grepl(pat, nm, fixed = TRUE)) score <- score + 2
-        }
-        vals <- df[[col]]
-        if (is.character(vals) || is.factor(vals)) {
-          val_norm <- unique(.norm_key(trimws(as.character(vals))))
-          val_norm <- val_norm[nchar(val_norm) > 0]
-          if (length(val_norm)) {
-            if (any(grepl("event", val_norm, fixed = TRUE))) score <- score + 1
-            if (any(grepl("effet",  val_norm, fixed = TRUE))) score <- score + 1
-            if (any(grepl("symptom", val_norm, fixed = TRUE))) score <- score + 1
-            if (length(val_norm) > 1) score <- score + 1
-          }
-        }
-        score
-      }
-      scores <- vapply(candidates, score_col, numeric(1))
-      if (length(scores) && max(scores) >= 2) {
-        picked <- candidates[[which.max(scores)]]
-        rlang::inform(
-          paste0(
-            "Heuristically picked column '", picked,
-            "' to serve as adverse event labels based on its contents."
-          )
-        )
-        df <- dplyr::rename(df, ae_term = !!rlang::sym(picked))
-      }
-    }
-  }
 
   # Some legacy ingestion scripts used ``n_total`` / ``n_events`` for counts.
   # Harmonise them here if they slipped through the automatic detection above.
