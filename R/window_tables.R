@@ -2,6 +2,25 @@ suppressPackageStartupMessages({
   library(dplyr); library(purrr); library(metafor); library(tidyr); library(readr); library(stringr)
 })
 
+.pluck_term_or_tail <- function(x, term) {
+  if (is.null(x)) return(NA_real_)
+  nm <- names(x)
+  if (!is.null(nm) && length(nm)) {
+    idx <- which(nm == term)
+    if (length(idx) == 0) {
+      idx <- which(tolower(nm) == tolower(term))
+    }
+    if (length(idx) >= 1) {
+      return(as.numeric(x[[idx[[1]]]]))
+    }
+  }
+  len <- length(x)
+  if (len == 0) return(NA_real_)
+  if (len == 1) return(as.numeric(x[[1]]))
+  # Typically the slope term is the final entry when the intercept is first.
+  as.numeric(x[[len]])
+}
+
 # stars helper
 .sig_stars <- function(p){
   dplyr::case_when(
@@ -32,8 +51,8 @@ dr_fit_per_window <- function(es, min_k_per_window = 2){
         se_dose        = as.numeric(m$se["dose_mg"]),
         z_dose         = as.numeric(m$zval["dose_mg"]),
         p_dose         = as.numeric(m$pval["dose_mg"]),
-        ci_lb          = as.numeric(m$ci.lb[["dose_mg"]]),
-        ci_ub          = as.numeric(m$ci.ub[["dose_mg"]]),
+        ci_lb          = .pluck_term_or_tail(m$ci.lb, "dose_mg"),
+        ci_ub          = .pluck_term_or_tail(m$ci.ub, "dose_mg"),
         I2             = tryCatch(m$I2, error=function(e) NA_real_),
         tau2           = tryCatch(m$tau2, error=function(e) NA_real_)
       )
