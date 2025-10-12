@@ -136,6 +136,25 @@ run_dr_by_molecule <- function(es, min_k = 4, fit_spline = TRUE){
 # --- DR par AE x molécule ---
 run_dr_by_ae <- function(es, min_k = 4, fit_spline = TRUE){
   if (!nrow(es)) return(list(models = tibble(), preds = tibble()))
+
+  empty_model_tpl <- tibble(
+    ae_term  = character(),
+    molecule = character(),
+    model    = character(),
+    term     = character(),
+    estimate = double(),
+    se       = double(),
+    z        = double(),
+    pval     = double(),
+    ci_low   = double(),
+    ci_high  = double(),
+    tau2     = double(),
+    QE       = double(),
+    k        = integer(),
+    I2       = double(),
+    QM       = double(),
+    QMp      = double()
+  )
   es2 <- es %>%
     group_by(ae_term, molecule) %>%
     filter(n() >= min_k, n_distinct(dose_diff[is.finite(dose_diff)]) >= 2) %>%
@@ -146,8 +165,9 @@ run_dr_by_ae <- function(es, min_k = 4, fit_spline = TRUE){
     m_lin <- fit_dr_linear(g); t_lin <- tidy_rma(m_lin, "linear")
     m_spl <- if (fit_spline) fit_dr_spline(g) else NULL
     t_spl <- tidy_rma(m_spl, "spline_df3")
-    bind_rows(t_lin, t_spl) %>%
-      mutate(ae_term = g$ae_term[[1]], molecule = g$molecule[[1]], .before = 1)
+    res <- bind_rows(t_lin, t_spl)
+    if (!nrow(res)) return(empty_model_tpl)
+    res %>% mutate(ae_term = g$ae_term[[1]], molecule = g$molecule[[1]], .before = 1)
   })
   
   preds_out <- purrr::map_dfr(groups, function(g){
