@@ -1,0 +1,4 @@
+molecule,n_session_only,n_follow_only,n_both,n_not_sig
+LSD,3,0,0,22
+MDMA,4,0,0,17
+PSILOCYBIN,2,0,0,11
