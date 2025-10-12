@@ -14,32 +14,25 @@ The main goal is to explore **dose–response relationships** for different mole
 
 ---
 
-## 📂 Project structure  
+## 📂 Project structure
 
-
+```
 metaanalysis-psychedelics/
-│
-├── data/ # Raw and processed datasets
-│ ├── psychedelic_adverse_events.xlsx
-│ └── README.md
-│
-├── scripts/ # R scripts for analysis
-│ ├── run_analysis.R
-│ ├── utils_data.R
-│ ├── analysis_dose_response.R
-│ ├── analysis_forest_plots.R
-│ └── analysis_tables.R
-│
-├── results/ # Outputs
-│ ├── tables/
-│ │ └── significance_results.csv
-│ ├── forest_plots/
-│ ├── dose_response/
-│ └── global_summary/
-│
-├── README.md # Project description
-├── LICENSE
-└── .gitignore
+├── data/                     # Raw Excel inputs
+├── R/                        # Reusable analysis modules (data prep, modelling, plotting)
+├── scripts/                  # Entry-point scripts orchestrating analyses
+├── results/                  # Generated outputs (tables, plots, publication artefacts)
+├── README.md
+└── ...
+```
+
+Key scripts:
+
+- `scripts/run_main_analysis.R` – end-to-end pipeline for the main dataset (follow-up window).
+- `scripts/run_session_followup_analysis.R` – compares session vs follow-up time windows and saves per-window artefacts.
+- `scripts/compare_global_session_followup.R` – global slope comparison between windows.
+- `scripts/compare_session_followup_from_saved_tables.R` – reconciles previously exported tables for reporting.
+- `scripts/analysis_plots_by_ae_overlay.R` – generates AE overlays when you need molecule comparisons.
 
 
 ---
@@ -59,28 +52,60 @@ metaanalysis-psychedelics/
 
 ---
 
-## 🛠️ Requirements  
-- R (≥ 4.2.0)  
-- R packages:  
-  ```r
-  install.packages(c("metafor", "dplyr", "tidyr", "readxl", "ggplot2"))
+## 🛠️ Requirements
 
-🚀 How to run
+- R (≥ 4.2.0)
+- Suggested packages (install with `install.packages()`):
+  - `metafor`, `dplyr`, `tidyr`, `readxl`, `ggplot2`, `purrr`, `janitor`, `stringr`, `here`,
+    `patchwork`, `gt`, `kableExtra`, `flextable`, `officer`
 
-Clone the repository:git clone https://github.com/your-username/metaanalysis-psychedelics.git
-cd metaanalysis-psychedelics
-Run the main script in R:source("scripts/run_analysis.R")
-Results (tables + plots) will be saved in results/.
+## 🚀 How to run
 
-📈 Outputs
+From the project root:
 
-results/tables/ – Statistical tables (estimates, CI, p-values, significance).
+```r
+# Main follow-up analysis
+source("scripts/run_main_analysis.R")
 
-results/forest_plots/ – Forest plots per AE.
+# Session vs follow-up comparison
+source("scripts/run_session_followup_analysis.R")
 
-results/dose_response/ – Dose–response plots by molecule.
+# Global slope comparison (optional)
+source("scripts/compare_global_session_followup.R")
+```
 
-results/global_summary/ – Overview graphics of molecules × AEs.
+Each script accepts parameters (see function definitions) so you can point to alternative files or output folders.
+
+### 🔍 Verifying the pipeline end-to-end
+
+1. **Install packages** listed in the requirements section (`install.packages(c("metafor", "here", ...))`).
+2. **Run the scripts** above from an interactive R session or with `Rscript scripts/run_main_analysis.R` (etc.).
+3. **Inspect the console log** – each major step prints a numbered progress message so you can see where the pipeline is.
+4. **Check the output folders**:
+   - `results/main/` (follow-up analysis) – should contain `tables/`, `forest_plots/`, `dose_response/`, and `master/` sub-folders.
+   - `results/session/`, `results/follow_up/`, and `results/compare/` – confirm comparable artefacts exist for the session vs. follow-up workflow.
+   - `results/paper_tables/` – verify CSV/Word/HTML tables for manuscript use when `make_paper_tables = TRUE`.
+5. **Review generated CSVs** (e.g., `results/compare/tables/dr_session_followup_publication_table.csv`) to confirm model estimates are populated and that `stars` columns mark significant effects.
+
+If any of the scripts stop with an error, the message will call out the missing file, package, or column that needs attention.
+
+## 📈 Outputs
+
+`results/main/` – artefacts from the primary follow-up analysis (tables, forest plots, dose–response curves, master figures).
+
+`results/session/` & `results/follow_up/` – window-specific contrasts, models and plots.
+
+`results/compare/` – side-by-side plots, comparative tables, and publication-ready summaries for session vs follow-up.
+
+`results/paper_tables/` – formatted tables for manuscripts or slide decks.
+
+## 🔮 Suggested enhancements
+
+- Add study-level moderators (e.g., dosing paradigm, psychotherapy support, participant diagnosis) to explore heterogeneity.
+- Incorporate risk-of-bias assessments and conduct sensitivity analyses excluding high-risk studies.
+- Harmonise adverse-event terminology using controlled vocabularies (MedDRA) to ease cross-study comparisons.
+- Extend the database with emerging molecules (e.g., DMT, mescaline) and longitudinal outcomes beyond acute/follow-up windows.
+- Export machine-readable metadata (JSON) for downstream dashboards or reproducible manuscripts (e.g., Quarto bookdown).
 
 📄 License
 

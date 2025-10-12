@@ -11,6 +11,7 @@
 # ------------------------------------------------------------
 
 suppressPackageStartupMessages({
+  library(here)
   library(dplyr)
   library(ggplot2)
   library(purrr)
@@ -41,7 +42,7 @@ sig_stars_vec <- function(p){
 plot_dr_overlay_per_ae <- function(
     preds,
     models,
-    outdir = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/master/dr_overlay_by_ae",
+    outdir = here::here("results", "master", "dr_overlay_by_ae"),
     min_molecules = 2,
     normalize_dose = TRUE,
     width = 8, height = 5, dpi = 300
@@ -167,7 +168,7 @@ plot_dr_overlay_per_ae <- function(
 # ------------------------------------------------------------
 plot_forest_overlay_per_ae <- function(
     es,
-    outdir = "/Users/mickaeleskinazi/Documents/GitHub/metaanalysis-psychedelics/results/master/forest_overlay_by_ae",
+    outdir = here::here("results", "master", "forest_overlay_by_ae"),
     min_k = 3,
     min_molecules = 2,
     width = 7, height = 4, dpi = 300
