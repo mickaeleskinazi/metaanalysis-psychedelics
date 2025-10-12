@@ -35,20 +35,88 @@ load_data <- function(path, sheet){
     group       = c("group","arm_label","armname","armlabel","group_name","condition","treatment"),
     arm_type    = c("arm_type","placebo_type","control_type","group_type"),
     molecule    = c("molecule","drug","substance","compound"),
-    ae_term     = c("ae_term","adverse_event","ae","outcome","event_name"),
+    ae_term     = c(
+      "ae_term","adverse_event","ae","outcome","event_name","ae_name",
+      "ae_label","ae_description","adverse_event_term","adverse_event_name",
+      "adverse_event_label","adverse_effect","side_effect","symptom"
+    ),
     time_window = c("time_window","window","timepoint","time","visit"),
     dose_mg     = c("dose_mg","dose","dose_mg_numeric","dose_mg_num","dose_milligram","lsd_dose_mg"),
-    events      = c("events","event","ae_n","cases","num_events","n_events"),
-    n           = c("n","total","n_total","sample_size","denominator")
+    events      = c(
+      "events","event","ae_n","cases","num_events","n_events",
+      "events_arm","ae_count","number_of_events","count_events"
+    ),
+    n           = c(
+      "n","total","n_total","sample_size","denominator",
+      "participants","participants_total","n_participants",
+      "n_participants_arm","arm_n","n_arm","participants_arm"
+    )
   )
   df <- .detect_and_rename(df, targets)
+
+  # Heuristic fallback for AE labels: when none of the aliases matched above we
+  # try to infer a reasonable candidate based on keyword combinations while
+  # avoiding the "events" column. This mirrors the intuition analysts use when
+  # manually inspecting unfamiliar spreadsheets.
+  if (!("ae_term" %in% names(df))) {
+    nm_lower <- tolower(names(df))
+    keyword_sets <- list(
+      c("ae", "term"),
+      c("ae", "label"),
+      c("adverse", "event"),
+      c("event", "term"),
+      c("event", "label"),
+      c("event", "desc"),
+      c("event", "name"),
+      c("side", "effect"),
+      "symptom"
+    )
+    pick_keywords <- function(keywords){
+      if (length(keywords) == 1L) {
+        hits <- which(grepl(keywords, nm_lower, fixed = TRUE))
+      } else {
+        hits <- which(vapply(nm_lower, function(nm){
+          all(vapply(keywords, function(kw) grepl(kw, nm, fixed = TRUE), logical(1)))
+        }, logical(1)))
+      }
+      # filter out the events column which is frequently just "events"
+      hits[names(df)[hits] != "events"]
+    }
+    idx <- NULL
+    for (kw in keyword_sets){
+      hits <- pick_keywords(kw)
+      if (length(hits)) {
+        idx <- hits[[1]]
+        break
+      }
+    }
+    if (!is.null(idx)) {
+      picked <- names(df)[[idx]]
+      rlang::inform(paste0("Auto-detected AE label column '", picked, "'"))
+      df <- dplyr::rename(df, ae_term = !!rlang::sym(picked))
+    }
+  }
+
+  # Some legacy ingestion scripts used ``n_total`` / ``n_events`` for counts.
+  # Harmonise them here if they slipped through the automatic detection above.
+  if ("n_total" %in% names(df) && !("n" %in% names(df))) {
+    df <- dplyr::rename(df, n = n_total)
+  }
+  if ("n_events" %in% names(df) && !("events" %in% names(df))) {
+    df <- dplyr::rename(df, events = n_events)
+  }
   
   # Friendly error if must-haves are missing (except group; we can synthesize it)
   must_have <- c("study_id","molecule","ae_term","time_window","dose_mg","events","n")
   missing <- setdiff(must_have, names(df))
   if (length(missing)){
-    cat("Columns in sheet:\n"); print(names(df))
-    stop("Missing required columns after auto-detect: ", paste(missing, collapse = ", "))
+    rlang::inform(paste0("Columns detected in sheet: ", paste(names(df), collapse = ", ")))
+    rlang::abort(
+      message = paste0(
+        "Missing required columns after auto-detect: ",
+        paste(missing, collapse = ", ")
+      )
+    )
   }
   
   # Normalize basic types
@@ -145,8 +213,20 @@ suppressPackageStartupMessages({library(dplyr)})
 # Fonction pour construire des contrastes 2x2 (ref vs actif)
 # ref_policies = liste de priorité de références par molécule
 build_pairwise_2x2 <- function(raw, ref_policies){
-  stopifnot(all(c("study_id","molecule","ae_term","time_window","group","arm_type","dose_mg","events","n") %in% names(raw)))
-  
+  needed <- c("study_id","molecule","ae_term","time_window","group",
+              "arm_type","dose_mg","events","n")
+  missing_cols <- setdiff(needed, names(raw))
+  if (length(missing_cols)) {
+    rlang::abort(
+      message = paste0(
+        "build_pairwise_2x2() is missing required columns: ",
+        paste(missing_cols, collapse = ", "),
+        ". Available columns: ",
+        paste(names(raw), collapse = ", ")
+      )
+    )
+  }
+
   raw <- .norm_events_to_counts(raw)
   
   out <- list(); ii <- 1L
