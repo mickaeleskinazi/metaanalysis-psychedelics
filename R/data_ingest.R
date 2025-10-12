@@ -38,10 +38,21 @@ load_data <- function(path, sheet){
     ae_term     = c("ae_term","adverse_event","ae","outcome","event_name"),
     time_window = c("time_window","window","timepoint","time","visit"),
     dose_mg     = c("dose_mg","dose","dose_mg_numeric","dose_mg_num","dose_milligram","lsd_dose_mg"),
-    events      = c("events","event","ae_n","cases","num_events","n_events"),
-    n           = c("n","total","n_total","sample_size","denominator")
+    events      = c("events","event","ae_n","cases","num_events","n_events","events_arm","ae_count"),
+    n           = c("n","total","n_total","sample_size","denominator",
+                    "participants","participants_total","n_participants",
+                    "n_participants_arm","arm_n","n_arm")
   )
   df <- .detect_and_rename(df, targets)
+
+  # Some legacy ingestion scripts used ``n_total`` / ``n_events`` for counts.
+  # Harmonise them here if they slipped through the automatic detection above.
+  if ("n_total" %in% names(df) && !("n" %in% names(df))) {
+    df <- dplyr::rename(df, n = n_total)
+  }
+  if ("n_events" %in% names(df) && !("events" %in% names(df))) {
+    df <- dplyr::rename(df, events = n_events)
+  }
   
   # Friendly error if must-haves are missing (except group; we can synthesize it)
   must_have <- c("study_id","molecule","ae_term","time_window","dose_mg","events","n")
@@ -145,8 +156,20 @@ suppressPackageStartupMessages({library(dplyr)})
 # Fonction pour construire des contrastes 2x2 (ref vs actif)
 # ref_policies = liste de priorité de références par molécule
 build_pairwise_2x2 <- function(raw, ref_policies){
-  stopifnot(all(c("study_id","molecule","ae_term","time_window","group","arm_type","dose_mg","events","n") %in% names(raw)))
-  
+  needed <- c("study_id","molecule","ae_term","time_window","group",
+              "arm_type","dose_mg","events","n")
+  missing_cols <- setdiff(needed, names(raw))
+  if (length(missing_cols)) {
+    rlang::abort(
+      message = paste0(
+        "build_pairwise_2x2() is missing required columns: ",
+        paste(missing_cols, collapse = ", "),
+        ". Available columns: ",
+        paste(names(raw), collapse = ", ")
+      )
+    )
+  }
+
   raw <- .norm_events_to_counts(raw)
   
   out <- list(); ii <- 1L
