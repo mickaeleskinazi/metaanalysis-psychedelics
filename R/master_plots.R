@@ -268,6 +268,18 @@ suppressPackageStartupMessages({
     )
   }
 
+  missing_norm <- setdiff(c("molecule", "ae_term", "xdose"), names(df_all))
+  if (length(missing_norm)) {
+    rlang::abort(
+      message = paste0(
+        "Normalized predictions are missing required columns (",
+        paste(missing_norm, collapse = ", "),
+        ") after rename. Available columns: ",
+        paste(names(df_all), collapse = ", ")
+      )
+    )
+  }
+
   if (normalize_dose) {
     df_all <- df_all %>%
       group_by(ae_term, molecule) %>%
