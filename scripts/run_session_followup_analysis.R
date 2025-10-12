@@ -7,14 +7,25 @@ suppressPackageStartupMessages({
   library(purrr)
 })
 
-source(here::here("R", "data_ingest.R"))
-source(here::here("R", "dose_response_models.R"))
-source(here::here("R", "forest_plots.R"))
-source(here::here("R", "dose_response_plots.R"))
-source(here::here("R", "significance_tables.R"))
-source(here::here("R", "session_followup_tables.R"))
-source(here::here("R", "session_followup_dr_plots.R"))
-source(here::here("R", "session_followup_forest_plots.R"))
+source_module <- function(...) {
+  path <- here::here(...)
+  if (!file.exists(path)) {
+    stop("Module not found: ", path)
+  }
+  env <- new.env(parent = globalenv())
+  sys.source(path, envir = env)
+  list2env(as.list(env), envir = globalenv())
+  invisible(path)
+}
+
+source_module("R", "data_ingest.R")
+source_module("R", "dose_response_models.R")
+source_module("R", "forest_plots.R")
+source_module("R", "dose_response_plots.R")
+source_module("R", "significance_tables.R")
+source_module("R", "session_followup_tables.R")
+source_module("R", "session_followup_dr_plots.R")
+source_module("R", "session_followup_forest_plots.R")
 
 default_ref_policies <- list(
   MDMA       = c("inactive_placebo", "active_non_psy_placebo", "active_placebo"),

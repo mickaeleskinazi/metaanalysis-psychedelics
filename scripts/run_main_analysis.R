@@ -8,13 +8,24 @@ suppressPackageStartupMessages({
   library(stringr)
 })
 
-source(here::here("R", "data_ingest.R"))
-source(here::here("R", "dose_response_models.R"))
-source(here::here("R", "forest_plots.R"))
-source(here::here("R", "dose_response_plots.R"))
-source(here::here("R", "significance_tables.R"))
-source(here::here("R", "master_plots.R"))
-source(here::here("R", "publication_tables.R"))
+source_module <- function(...) {
+  path <- here::here(...)
+  if (!file.exists(path)) {
+    stop("Module not found: ", path)
+  }
+  env <- new.env(parent = globalenv())
+  sys.source(path, envir = env)
+  list2env(as.list(env), envir = globalenv())
+  invisible(path)
+}
+
+source_module("R", "data_ingest.R")
+source_module("R", "dose_response_models.R")
+source_module("R", "forest_plots.R")
+source_module("R", "dose_response_plots.R")
+source_module("R", "significance_tables.R")
+source_module("R", "master_plots.R")
+source_module("R", "publication_tables.R")
 
 # Default reference arm preferences -------------------------------------------------
 default_ref_policies <- list(
