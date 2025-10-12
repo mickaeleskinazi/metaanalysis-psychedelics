@@ -9,8 +9,48 @@ suppressPackageStartupMessages({
   library(metafor)
 })
 
+.norm_pred_key <- function(x) {
+  x <- iconv(x, to = "ASCII//TRANSLIT")
+  x[is.na(x)] <- ""
+  tolower(gsub("[^a-z0-9]+", "", x))
+}
+
+.ensure_pred_col <- function(df, std, aliases) {
+  if (std %in% names(df)) {
+    return(df)
+  }
+
+  cn <- names(df)
+  cn_norm <- .norm_pred_key(cn)
+  aliases_norm <- .norm_pred_key(aliases)
+
+  pick_idx <- function(targets, exact = TRUE) {
+    for (cand in targets) {
+      hits <- if (exact) which(cn_norm == cand) else which(grepl(cand, cn_norm, fixed = TRUE))
+      if (length(hits)) {
+        return(hits[[1]])
+      }
+    }
+    NA_integer_
+  }
+
+  idx <- pick_idx(aliases_norm, exact = TRUE)
+  if (is.na(idx)) {
+    idx <- pick_idx(aliases_norm, exact = FALSE)
+  }
+
+  if (!is.na(idx)) {
+    df <- dplyr::rename(df, !!std := !!rlang::sym(cn[[idx]]))
+  }
+
+  df
+}
+
 # Small helper for flexible column names in preds (AE × molecule)
 .normalize_pred_cols <- function(df){
+  df <- .ensure_pred_col(df, "molecule", c("molecule", "molecule_id", "drug", "substance", "compound", "molecule.x"))
+  df <- .ensure_pred_col(df, "ae_term",  c("ae_term", "ae_terms", "adverse_event", "event_term", "event_label", "ae", "ae_term.x"))
+
   nm <- names(df)
   pick <- function(cands) { cands[cands %in% nm][1] }
   .x  <- pick(c("dose_norm","xdose","dose_mg","dose"))
@@ -27,6 +67,8 @@ suppressPackageStartupMessages({
 
 # Variant for molecule-only predictions
 .normalize_pred_cols_molecule <- function(df){
+  df <- .ensure_pred_col(df, "molecule", c("molecule", "molecule_id", "drug", "substance", "compound", "molecule.x"))
+
   nm <- names(df)
   pick <- function(cands) { cands[cands %in% nm][1] }
   .x  <- pick(c("dose_mg","xdose","dose","dose_norm"))
@@ -182,6 +224,18 @@ suppressPackageStartupMessages({
   }
 
   df_all <- .normalize_pred_cols(df_all)
+
+  missing_norm <- setdiff(c("molecule", "ae_term", "xdose"), names(df_all))
+  if (length(missing_norm)) {
+    rlang::abort(
+      message = paste0(
+        "Normalized predictions are missing required columns (",
+        paste(missing_norm, collapse = ", "),
+        ") after rename. Available columns: ",
+        paste(names(df_all), collapse = ", ")
+      )
+    )
+  }
 
   if (normalize_dose) {
     df_all <- df_all %>%
