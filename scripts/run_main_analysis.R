@@ -87,6 +87,7 @@ run_main_analysis <- function(
     make_forest_plots(es, file.path(out_dir_window, "forest_plots"))
     make_forest_plots_per_molecule_pdf(es, file.path(out_dir_window, "forest_plots_by_molecule"))
     make_forest_summary_per_molecule(es, file.path(out_dir_window, "forest_plots_summary"))
+    make_forest_tables(es, file.path(tables_dir, "forest"), min_k = min_k)
 
     message(sprintf("→ Window '%s': dose–response plots …", window_value))
     plot_dr_by_molecule_split(dr_mol$preds, dr_mol$models, file.path(out_dir_window, "dose_response/by_molecule_split"))
@@ -169,6 +170,11 @@ run_main_analysis <- function(
       out_dir = compare_tables_dir,
       min_k_per_window = min_k,
       min_k_total = max(4, 2 * min_k)
+    )
+    make_forest_tables(
+      es = es_all,
+      out_dir = file.path(compare_dir, "tables", "forest"),
+      min_k = min_k
     )
 
     session_agg_ae <- window_results$session$tables$agg_by_ae_molecule %>%
