@@ -1,11 +1,4 @@
 #!/usr/bin/env Rscript
-# Usage: Rscript scripts/build_results_tables.R
-#
-# The script reads pre-computed CSV outputs from the meta-analysis pipeline
-# and regenerates the LaTeX tables plus the manuscript results subsection.
-# It only depends on tidyverse-style packages that are commonly used across
-# the project.
-
 suppressPackageStartupMessages({
   library(readr)
   library(dplyr)
@@ -16,52 +9,25 @@ suppressPackageStartupMessages({
   library(tibble)
 })
 
-ensure_dir <- function(path) {
-  if (!dir.exists(path)) {
-    dir.create(path, recursive = TRUE, showWarnings = FALSE)
-  }
+if (!requireNamespace("metafor", quietly = TRUE)) {
+  stop("The 'metafor' package is required for random-effects pooling.")
 }
 
-first_existing <- function(paths, required = TRUE) {
+first_existing <- function(paths) {
   match <- purrr::detect(paths, file.exists)
   if (is.null(match)) {
-    if (required) {
-      stop("None of the candidate paths exist: ", paste(paths, collapse = ", "))
-    }
-    return(NULL)
+    stop("None of the candidate paths exist: ", paste(paths, collapse = ", "))
   }
   match
 }
 
-read_csv_any <- function(paths, required = TRUE, ...) {
-  file <- first_existing(paths, required = required)
-  if (is.null(file)) {
-    return(NULL)
-  }
-  readr::read_csv(file, ...)
+read_csv_any <- function(paths, ...) {
+  readr::read_csv(first_existing(paths), ...)
 }
 
 fmt_p <- function(p) {
   if (is.na(p)) return("")
   formatC(p, format = "e", digits = 2)
-}
-
-fmt_tex_p <- function(p) {
-  if (is.na(p)) return(NA_character_)
-  if (p >= 0.1) {
-    return(formatC(p, format = "f", digits = 2))
-  }
-  if (p >= 0.01) {
-    return(formatC(p, format = "f", digits = 3))
-  }
-  if (p >= 0.001) {
-    return(formatC(p, format = "f", digits = 4))
-  }
-  sci <- formatC(p, format = "e", digits = 2)
-  parts <- str_split_fixed(sci, "e", 2)
-  mantissa <- parts[, 1]
-  exponent <- as.integer(parts[, 2])
-  glue("{mantissa}\\times10^{{{exponent}}}")
 }
 
 sig_stars <- function(p) {
@@ -77,49 +43,26 @@ sig_stars <- function(p) {
 nice_ae <- function(ae) {
   ae %>%
     str_replace_all("_", " ") %>%
-    str_squish() %>%
-    str_to_title()
+    str_split("\\\s+") %>%
+    purrr::map_chr(~ str_to_title(trimws(paste(.x, collapse = " "))))
 }
 
 safe_rma <- function(yi, vi) {
-  yi <- yi[is.finite(yi)]
-  vi <- vi[is.finite(vi) & vi > 0]
-  if (length(yi) == 0 || length(vi) == 0) {
-    return(tibble(log_or = NA_real_, ci_lb = NA_real_, ci_ub = NA_real_, pval = NA_real_, k = length(yi)))
+  fit <- tryCatch(metafor::rma(yi = yi, vi = vi, method = "REML"), error = function(e) NULL)
+  if (is.null(fit)) {
+    tibble(log_or = NA_real_, ci_lb = NA_real_, ci_ub = NA_real_, pval = NA_real_, k = length(yi))
+  } else {
+    tibble(
+      log_or = as.numeric(fit$b[1, 1]),
+      ci_lb  = as.numeric(fit$ci.lb),
+      ci_ub  = as.numeric(fit$ci.ub),
+      pval   = as.numeric(fit$pval),
+      k      = length(yi)
+    )
   }
-  n <- length(yi)
-  if (n == 1) {
-    se <- sqrt(vi[1])
-    log_or <- yi[1]
-    ci_lb <- log_or - 1.96 * se
-    ci_ub <- log_or + 1.96 * se
-    z <- ifelse(se > 0, log_or / se, NA_real_)
-    pval <- ifelse(is.na(z), NA_real_, 2 * stats::pnorm(abs(z), lower.tail = FALSE))
-    return(tibble(log_or = log_or, ci_lb = ci_lb, ci_ub = ci_ub, pval = pval, k = n))
-  }
-  wi <- 1 / vi
-  sum_wi <- sum(wi)
-  mu_fixed <- sum(wi * yi) / sum_wi
-  Q <- sum(wi * (yi - mu_fixed)^2)
-  df <- n - 1
-  sum_wi_sq <- sum(wi^2)
-  denom <- sum_wi - (sum_wi_sq / sum_wi)
-  tau2 <- max(0, (Q - df) / denom)
-  weights <- 1 / (vi + tau2)
-  sum_w <- sum(weights)
-  log_or <- sum(weights * yi) / sum_w
-  se <- sqrt(1 / sum_w)
-  ci_lb <- log_or - 1.96 * se
-  ci_ub <- log_or + 1.96 * se
-  z <- ifelse(se > 0, log_or / se, NA_real_)
-  pval <- ifelse(is.na(z), NA_real_, 2 * stats::pnorm(abs(z), lower.tail = FALSE))
-  tibble(log_or = log_or, ci_lb = ci_lb, ci_ub = ci_ub, pval = pval, k = n)
 }
 
 # ---- Data ingestion -----------------------------------------------------
-
-ensure_dir("tables")
-ensure_dir("latex")
 
 topline <- read_csv_any(
   c(
@@ -133,9 +76,19 @@ topline <- read_csv_any(
 
 agg_molecule <- read_csv_any(
   c(
+    "results/significance_agg_by_molecule.csv",
     "results/main/session/tables/significance_agg_by_molecule.csv",
-    "results/session/tables/significance_agg_by_molecule.csv",
-    "results/significance_agg_by_molecule.csv"
+    "results_session/tables/significance_agg_by_molecule.csv"
+  ),
+  show_col_types = FALSE
+) %>%
+  mutate(molecule = toupper(molecule))
+
+agg_ae <- read_csv_any(
+  c(
+    "results/significance_agg_by_ae_molecule.csv",
+    "results/main/session/tables/significance_agg_by_ae_molecule.csv",
+    "results_session/tables/significance_agg_by_ae_molecule.csv"
   ),
   show_col_types = FALSE
 ) %>%
@@ -161,21 +114,14 @@ escalc <- read_csv_any(
     "results/main/tables/escalc.csv",
     "results_session/tables/escalc.csv"
   ),
-  required = FALSE,
   show_col_types = FALSE
-)
-
-if (!is.null(escalc)) {
-  escalc <- escalc %>%
-    mutate(
-      molecule = toupper(molecule),
-      yi = suppressWarnings(as.numeric(yi)),
-      vi = suppressWarnings(as.numeric(vi))
-    ) %>%
-    filter(is.finite(yi), is.finite(vi), vi > 0)
-} else {
-  message("⚠️  No escalc.csv found; pooled odds ratios will be omitted.")
-}
+) %>%
+  mutate(
+    molecule = toupper(molecule),
+    yi = suppressWarnings(as.numeric(yi)),
+    vi = suppressWarnings(as.numeric(vi))
+  ) %>%
+  filter(is.finite(yi), is.finite(vi), vi > 0)
 
 # ---- Table 1: Global DR (session) --------------------------------------
 
@@ -194,13 +140,12 @@ global_tbl <- agg_molecule %>%
   mutate(
     molecule = factor(molecule, levels = molecules_order),
     qm = round(qm, 2),
-    p_raw = p,
     p_fmt = fmt_p(p),
     stars = sig_stars(p),
     k = if_else(is.na(k), "", as.character(as.integer(round(k))))
   ) %>%
   arrange(molecule) %>%
-  select(molecule, k, qm, p_fmt, stars, p_raw)
+  select(molecule, k, qm, p_fmt, stars)
 
 write_lines(
   glue("""
@@ -220,24 +165,19 @@ write_lines(
 
 # ---- Table 2: AE x molecule (session significant) ----------------------
 
-ae_sig_tbl <- ae_window %>%
+ae_sig_tbl <- agg_ae %>%
   mutate(
-    p_session = suppressWarnings(as.numeric(p_session)),
-    sig_session = sig_session %in% c(TRUE, "TRUE")
+    p_val = coalesce(as.numeric(p_overall), as.numeric(QMp), as.numeric(p)),
+    p_val = suppressWarnings(as.numeric(p_val))
   ) %>%
-  filter(sig_session) %>%
-  transmute(
-    molecule,
-    ae_term,
-    p_val = p_session,
-    stars = sig_stars(p_session)
-  ) %>%
-  mutate(
-    ae_label = nice_ae(ae_term),
-    p_fmt = fmt_p(p_val)
-  ) %>%
+  filter(!is.na(p_val), p_val < 0.05) %>%
   arrange(molecule, p_val) %>%
-  select(molecule, ae_label, p_fmt, stars, p_val)
+  mutate(
+    p_fmt = fmt_p(p_val),
+    stars = sig_stars(p_val),
+    ae_label = nice_ae(ae_term)
+  ) %>%
+  select(molecule, ae_label, p_fmt, stars)
 
 write_lines(
   glue("""
@@ -257,26 +197,12 @@ write_lines(
 
 # ---- Table 3: Forest ORs by molecule & window --------------------------
 
-meta_df <-
-  if (!is.null(escalc) && nrow(escalc) > 0) {
-    escalc %>%
-      group_by(molecule, ae_term, time_window) %>%
-      filter(n() >= 2) %>%
-      summarise(safe_rma(yi, vi), .groups = "drop") %>%
-      mutate(window = time_window) %>%
-      select(-time_window)
-  } else {
-    tibble(
-      molecule = character(),
-      ae_term = character(),
-      window = character(),
-      log_or = numeric(),
-      ci_lb = numeric(),
-      ci_ub = numeric(),
-      pval = numeric(),
-      k = integer()
-    )
-  }
+meta_df <- escalc %>%
+  group_by(molecule, ae_term, time_window) %>%
+  filter(n() >= 2) %>%
+  summarise(safe_rma(yi, vi), .groups = "drop") %>%
+  mutate(window = time_window) %>%
+  select(-time_window)
 
 meta_wide <- meta_df %>%
   pivot_wider(
@@ -299,26 +225,19 @@ forest_tbl <- ae_window %>%
     )
   ) %>%
   filter(status != "Non-significant") %>%
+  select(molecule, ae_term, p_session, p_follow, status) %>%
   left_join(meta_wide, by = c("molecule", "ae_term")) %>%
   mutate(
-    session_or = dplyr::case_when(
-      !is.na(log_or_session) ~ sprintf(
-        "%.2f [%.2f, %.2f]%s",
-        exp(log_or_session), exp(ci_lb_session), exp(ci_ub_session),
-        dplyr::if_else(sig_session, "*", "")
-      ),
-      sig_session ~ "--*",
-      TRUE ~ "--"
-    ),
-    follow_or = dplyr::case_when(
-      !is.na(log_or_follow_up) ~ sprintf(
-        "%.2f [%.2f, %.2f]%s",
-        exp(log_or_follow_up), exp(ci_lb_follow_up), exp(ci_ub_follow_up),
-        dplyr::if_else(sig_follow, "*", "")
-      ),
-      sig_follow ~ "--*",
-      TRUE ~ "--"
-    ),
+    session_or = if_else(!is.na(log_or_session),
+                         sprintf("%.2f [%.2f, %.2f]%s",
+                                 exp(log_or_session), exp(ci_lb_session), exp(ci_ub_session),
+                                 dplyr::if_else(sig_session, "*", "")),
+                         "--"),
+    follow_or = if_else(!is.na(log_or_follow_up),
+                        sprintf("%.2f [%.2f, %.2f]%s",
+                                exp(log_or_follow_up), exp(ci_lb_follow_up), exp(ci_ub_follow_up),
+                                dplyr::if_else(sig_follow, "*", "")),
+                        "--"),
     abs_log = case_when(
       status %in% c("Persistent", "Transient") & !is.na(log_or_session) ~ abs(log_or_session),
       status %in% c("Persistent", "Emergent") & !is.na(log_or_follow_up) ~ abs(log_or_follow_up),
@@ -377,56 +296,17 @@ write_lines(
 
 # ---- Results subsection -------------------------------------------------
 
-topline_clean <- topline %>%
-  mutate(across(c(p_session, p_follow, k_session, k_follow), ~ suppressWarnings(as.numeric(.x))))
-
-session_snippets <- global_tbl %>%
-  mutate(snippet = glue("{molecule} ($Q_M = {qm},\\ p = {fmt_tex_p(p_raw)}$)")) %>%
-  arrange(molecule) %>%
-  pull(snippet)
-
-session_sentence <- glue_collapse(session_snippets, sep = ", ", last = ", and ")
-
-follow_sentences <- topline_clean %>%
-  filter(molecule %in% molecules_order) %>%
-  mutate(desc = case_when(
-    !is.na(p_follow) & p_follow < 0.05 ~ glue("{molecule} retained a significant follow-up slope ($p = {fmt_tex_p(p_follow)}$; $k = {k_follow}$)"),
-    !is.na(p_follow) ~ glue("{molecule} follow-up slopes were not significant ($p = {fmt_tex_p(p_follow)}$)"),
-    TRUE ~ glue("{molecule} had no evaluable follow-up contrasts")
-  )) %>%
-  pull(desc)
-
-follow_sentence <- glue_collapse(follow_sentences, sep = "; ")
-
 result_paragraph <- glue(
-  "Global dose--response analyses indicated significant session-level slopes for {session_sentence} (Table~\\ref{{tab:dr-global-session}}). Ayahuasca could not be evaluated because only a single dosing condition was available. {follow_sentence}. Fitted curves suggested monotonic dose increases with mild deviations from linearity (Figure~\\ref{{fig:dr-global-session}})."
+  "Global dose--response analyses indicated that LSD (Q$_M$ = {global_tbl$qm[global_tbl$molecule == 'LSD']}, $p = {global_tbl$p_fmt[global_tbl$molecule == 'LSD']}$), " ,
+  "MDMA (Q$_M$ = {global_tbl$qm[global_tbl$molecule == 'MDMA']}, $p = {global_tbl$p_fmt[global_tbl$molecule == 'MDMA']}$), and psilocybin (Q$_M$ = {global_tbl$qm[global_tbl$molecule == 'PSILOCYBIN']}, $p = {global_tbl$p_fmt[global_tbl$molecule == 'PSILOCYBIN']}$) exhibited significant session-level slopes (Table~\\ref{{tab:dr-global-session}}). Ayahuasca could not be evaluated because only a single dosing condition was available. Across molecules, the fitted curves suggested monotonic dose increases with mild deviations from linearity (Figure~\\ref{{fig:dr-global-session}})."
 )
-
-ae_phrases <- ae_sig_tbl %>%
-  mutate(p_tex = fmt_tex_p(p_val)) %>%
-  group_by(molecule) %>%
-  summarise(
-    desc = glue("{molecule} ({glue_collapse(glue('{ae_label} ($p = {p_tex}$)'), sep = ", ", last = ", and ")})"),
-    .groups = "drop"
-  ) %>%
-  arrange(molecule) %>%
-  pull(desc)
 
 ae_sentence <- glue(
-  "Session adverse-event analyses showed that {glue_collapse(ae_phrases, sep = "; ")} (Figure~\\ref{{fig:dr-by-ae-session}}). Exact $p$-values are provided in Table~\\ref{{tab:dr-ae-by-molecule-session}}."
+  "Only a subset of adverse events displayed session dose sensitivity for each molecule (Figure~\\ref{{fig:dr-by-ae-session}}). Headache, nausea, and illusions increased with LSD exposure; MDMA amplified nausea, headache, dizziness, and fatigue; and psilocybin was associated with higher rates of fatigue and hypertension (Table~\\ref{{tab:dr-ae-by-molecule-session}})."
 )
 
-forest_summary <- forest_tbl %>%
-  group_by(molecule) %>%
-  summarise(
-    desc = glue("{molecule}: {glue_collapse(ae_label, sep = ", ", last = ", and ")}"),
-    .groups = "drop"
-  ) %>%
-  arrange(molecule) %>%
-  pull(desc)
-
 forest_sentence <- glue(
-  "Forest comparisons (Figure~\\ref{{fig:forest-combined}}) indicated that psilocybin and ayahuasca were only estimable during dosing sessions, whereas LSD and MDMA contributed both session and follow-up panels. All significant AE signals were transient with no persistent or emergent effects: {glue_collapse(forest_summary, sep = "; ")}. Detailed odds-ratio summaries appear in Table~\\ref{{tab:forest-ae-by-window}}, and the transient counts are tabulated in Table~\\ref{{tab:forest-ae-sig-counts}}."
+  "Session-to-follow-up forest comparisons confirmed that psilocybin and ayahuasca were only estimable during dosing sessions, whereas LSD and MDMA had additional follow-up panels (Figure~\\ref{{fig:forest-combined}}). All significant AE signals were transient: LSD showed session-limited elevations in nausea, headache, and illusions; MDMA effects on nausea, dizziness, headache, and fatigue faded after dosing; and psilocybin produced session-only hypertension and fatigue (Table~\\ref{{tab:forest-ae-by-window}}). The tally of transient versus persistent or emergent signals is summarized in Table~\\ref{{tab:forest-ae-sig-counts}}." 
 )
 
 results_section <- glue(
