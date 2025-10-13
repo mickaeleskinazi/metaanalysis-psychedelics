@@ -56,6 +56,7 @@ run_session_followup_analysis <- function(
     save_agg_significance_by_ae_molecule(dr_ae$models,  file.path(tables_dir, "significance_agg_by_ae_molecule.csv"))
 
     make_forest_summary_per_molecule(es, file.path(out_dir, "forest_plots_summary"))
+    make_forest_tables(es, file.path(tables_dir, "forest"), min_k = min_k)
     plot_dr_by_molecule_split(dr_mol$preds, dr_mol$models, file.path(out_dir, "dose_response/by_molecule_split"))
 
     list(es = es, dr_mol = dr_mol, dr_ae = dr_ae)
@@ -99,6 +100,11 @@ run_session_followup_analysis <- function(
     out_dir = file.path(out_dir_compare, "tables"),
     min_k_per_window = min_k,
     min_k_total = max(4, 2 * min_k)
+  )
+  make_forest_tables(
+    es = es_all,
+    out_dir = file.path(out_dir_compare, "tables", "forest"),
+    min_k = min_k
   )
 
   invisible(list(

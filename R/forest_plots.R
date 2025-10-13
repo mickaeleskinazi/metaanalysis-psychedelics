@@ -88,3 +88,194 @@ make_forest_summary_per_molecule <- function(es, outdir = file.path("results", "
   }
   invisible(NULL)
 }
+
+.normalize_window <- function(x){
+  x <- as.character(x)
+  x <- tolower(x)
+  x <- gsub("[^a-z0-9]+", "_", x)
+  x <- gsub("_+", "_", x)
+  x <- sub("^_", "", x)
+  sub("_$", "", x)
+}
+
+.fmt_p <- function(p){
+  ifelse(is.na(p), "", ifelse(p < 0.001, "<0.001", formatC(p, format = "f", digits = 3)))
+}
+
+.sig_stars_chr <- function(p){
+  out <- rep("", length(p))
+  out[!is.na(p) & p < 0.001] <- "***"
+  out[!is.na(p) & p >= 0.001 & p < 0.01] <- "**"
+  out[!is.na(p) & p >= 0.01  & p < 0.05] <- "*"
+  out
+}
+
+#' Create tabular exports of pooled forest statistics per molecule × AE × window
+#'
+#' @param es Effect-size data frame containing yi/vi columns and grouping variables.
+#' @param out_dir Output directory where CSV files will be written.
+#' @param min_k Minimum number of contrasts required to fit a pooled model.
+#'
+#' @return Invisibly returns a list with the long, wide, and publication-style tables.
+make_forest_tables <- function(es,
+                               out_dir = file.path("results", "forest_tables"),
+                               min_k = 2){
+  required_cols <- c("yi", "vi", "molecule", "ae_term", "time_window")
+  if (!all(required_cols %in% names(es))) {
+    stop("Effect size table is missing required columns: ",
+         paste(setdiff(required_cols, names(es)), collapse = ", "))
+  }
+
+  dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
+  if (!nrow(es)) {
+    empty_long <- tibble::tibble(
+      molecule = character(),
+      time_window = character(),
+      ae_term = character(),
+      k = integer(),
+      log_or = double(),
+      se = double(),
+      z = double(),
+      pval = double(),
+      ci_lb = double(),
+      ci_ub = double(),
+      or = double(),
+      or_ci_lb = double(),
+      or_ci_ub = double(),
+      tau2 = double(),
+      I2 = double(),
+      QE = double(),
+      QEp = double(),
+      stars = character(),
+      log_or_ci = character(),
+      or_ci = character(),
+      pval_fmt = character(),
+      QEp_fmt = character(),
+      status = character()
+    )
+    readr::write_csv(empty_long, file.path(out_dir, "forest_by_molecule_ae_window.csv"))
+    readr::write_csv(empty_long, file.path(out_dir, "forest_by_molecule_ae_window_publication.csv"))
+    readr::write_csv(tibble::tibble(), file.path(out_dir, "forest_by_molecule_ae_window_wide.csv"))
+    return(invisible(list(long = empty_long, wide = tibble::tibble(), publication = empty_long)))
+  }
+
+  es <- es %>% mutate(time_window = .normalize_window(time_window))
+
+  grouped <- es %>%
+    filter(is.finite(yi), is.finite(vi)) %>%
+    group_by(molecule, time_window, ae_term)
+
+  pooled <- grouped %>%
+    group_modify(~{
+      dat <- .x
+      k_obs <- nrow(dat)
+      base <- tibble::tibble(
+        k = as.integer(k_obs),
+        log_or = NA_real_,
+        se = NA_real_,
+        z = NA_real_,
+        pval = NA_real_,
+        ci_lb = NA_real_,
+        ci_ub = NA_real_,
+        tau2 = NA_real_,
+        I2 = NA_real_,
+        QE = NA_real_,
+        QEp = NA_real_
+      )
+      if (k_obs < min_k) {
+        return(base)
+      }
+      fit <- tryCatch(
+        metafor::rma(yi, vi, data = dat, method = "REML"),
+        error = function(e) NULL
+      )
+      if (is.null(fit)) {
+        return(base)
+      }
+      tibble::tibble(
+        k = as.integer(fit$k),
+        log_or = as.numeric(fit$b[1]),
+        se = suppressWarnings(as.numeric(fit$se[1])),
+        z = suppressWarnings(as.numeric(fit$zval[1])),
+        pval = suppressWarnings(as.numeric(fit$pval[1])),
+        ci_lb = as.numeric(fit$ci.lb),
+        ci_ub = as.numeric(fit$ci.ub),
+        tau2 = suppressWarnings(tryCatch(as.numeric(fit$tau2), error = function(e) NA_real_)),
+        I2 = suppressWarnings(tryCatch(as.numeric(fit$I2), error = function(e) NA_real_)),
+        QE = suppressWarnings(tryCatch(as.numeric(fit$QE), error = function(e) NA_real_)),
+        QEp = suppressWarnings(tryCatch(as.numeric(fit$QEp), error = function(e) NA_real_))
+      )
+    }) %>%
+    ungroup()
+
+  pooled <- pooled %>%
+    mutate(
+      or = exp(log_or),
+      or_ci_lb = exp(ci_lb),
+      or_ci_ub = exp(ci_ub),
+      stars = .sig_stars_chr(pval),
+      pval_fmt = .fmt_p(pval),
+      QEp_fmt = .fmt_p(QEp),
+      status = dplyr::case_when(
+        k < min_k ~ "insufficient_k",
+        !is.na(log_or) ~ "ok",
+        TRUE ~ "model_error"
+      ),
+      log_or_ci = dplyr::if_else(
+        !is.na(log_or) & !is.na(ci_lb) & !is.na(ci_ub),
+        sprintf("%.3f [%.3f, %.3f]%s", log_or, ci_lb, ci_ub,
+                dplyr::if_else(stars == "", "", paste0(" ", stars))),
+        ""
+      ),
+      or_ci = dplyr::if_else(
+        !is.na(or) & !is.na(or_ci_lb) & !is.na(or_ci_ub),
+        sprintf("%.2f [%.2f, %.2f]%s", or, or_ci_lb, or_ci_ub,
+                dplyr::if_else(stars == "", "", paste0(" ", stars))),
+        ""
+      )
+    ) %>%
+    mutate(I2 = suppressWarnings(as.numeric(I2)),
+           tau2 = suppressWarnings(as.numeric(tau2))) %>%
+    arrange(molecule, time_window, ae_term)
+
+  readr::write_csv(pooled, file.path(out_dir, "forest_by_molecule_ae_window.csv"))
+
+  if (nrow(pooled)) {
+    wide <- pooled %>%
+      tidyr::pivot_wider(
+        id_cols = c(molecule, ae_term),
+        names_from = time_window,
+        values_from = c(log_or, ci_lb, ci_ub, or, or_ci_lb, or_ci_ub,
+                        pval, pval_fmt, stars, k, I2, tau2, QE, QEp,
+                        log_or_ci, or_ci, status),
+        names_sep = "."
+      ) %>%
+      arrange(molecule, ae_term)
+  } else {
+    wide <- tibble::tibble()
+  }
+
+  readr::write_csv(wide, file.path(out_dir, "forest_by_molecule_ae_window_wide.csv"))
+
+  publication <- pooled %>%
+    transmute(
+      Molecule = molecule,
+      `Adverse event` = ae_term,
+      Window = time_window,
+      k = k,
+      `OR [95% CI]` = or_ci,
+      `log(OR) [95% CI]` = log_or_ci,
+      `p` = pval_fmt,
+      Stars = stars,
+      `τ²` = tau2,
+      `I²` = I2,
+      `Q` = QE,
+      `p(Q)` = QEp_fmt,
+      Status = status
+    )
+
+  readr::write_csv(publication, file.path(out_dir, "forest_by_molecule_ae_window_publication.csv"))
+
+  invisible(list(long = pooled, wide = wide, publication = publication))
+}
