@@ -81,6 +81,9 @@ source("scripts/compare_session_followup_tables_from_outputs.R")
 
 # Global slope comparison (optional)
 Rscript scripts/compare_global_session_followup.R
+
+# Regenerate manuscript-ready LaTeX tables and narrative (no model refit)
+Rscript scripts/build_results_tables.R
 ```
 
 Each script accepts parameters (see function definitions) so you can point to alternative files or output folders. The
