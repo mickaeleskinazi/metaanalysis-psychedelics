@@ -1,0 +1,5 @@
+molecule,n_studies,participants_arms,dose_range_active,n_unique_doses,n_inactive_placebo,n_active_nonpsy_pl,n_active_psy_pl,n_unspecified_pl,active_placebo_substances,inactive_placebo_substances,windows,n_studies_fu,n_arms_fu,n_unique_ae_fu,n_active_arms_fu,n_active_doses_fu
+AYAHUASCA,2,46,0.36–0.36,1,2,0,0,0,NA,inactive,— / —,,,,,
+LSD,6,1114,0.10–200.00,8,5,0,3,0,NA,inactive,— / Follow-up,,,,,
+MDMA,10,539,75.00–150.00,5,9,0,4,1,NA,"inactive, lacose, lactose",— / Follow-up,,,,,
+PSILOCYBIN,8,666,10.00–40.00,3,4,3,1,0,"diphenhydramine, niacin",mannitol,— / —,,,,,

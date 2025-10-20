@@ -1,0 +1,5 @@
+molecule,n_studies,participants_unique_study,participants_arms_sum,dose_range_active,n_unique_doses,windows,example_inactive_placebo_subs,example_active_placebo_subs
+AYAHUASCA,2,24,46,0.36–0.36,1,Session / —,inactive,inactive
+LSD,6,234,1114,0.10–200.00,8,Session / Follow-up,inactive,"inactive, LSD"
+MDMA,10,215,539,75.00–150.00,5,Session / Follow-up,"inactive, lacose, lactose","inactive, lacose, lactose, MDMA"
+PSILOCYBIN,8,300,666,10.00–40.00,3,Session / —,"diphenhydramine, mannitol","diphenhydramine, mannitol, niacin, psilocybin"

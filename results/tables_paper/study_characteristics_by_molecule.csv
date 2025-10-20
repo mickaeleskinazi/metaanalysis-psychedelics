@@ -1,0 +1,5 @@
+molecule,n_studies,participants_total,studies_with_inactive_placebo,studies_with_active_nonpsy_placebo,studies_with_active_psy_comp,studies_with_placebo_unspecified,studies_with_session,studies_with_follow_up,unique_ae_terms_total,dose_min_session,dose_max_session,dose_min_follow,dose_max_follow,n_active_doses_session,n_active_doses_follow,dose_range_session,dose_range_follow
+AYAHUASCA,2,46,2,0,0,0,0,0,16,Inf,-Inf,Inf,-Inf,0,0,—,—
+LSD,6,305,2,0,2,0,0,3,84,Inf,-Inf,0.1,200,0,6,—,0.1–200
+MDMA,10,403,7,1,2,0,0,3,164,Inf,-Inf,75,125,0,2,—,75.0–125
+PSILOCYBIN,8,517,4,3,1,0,0,0,134,Inf,-Inf,Inf,-Inf,0,0,—,—

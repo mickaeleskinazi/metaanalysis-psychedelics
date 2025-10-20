@@ -1,0 +1,7 @@
+molecule,time_window,n_studies_with_window,n_active_arms,n_active_doses,n_unique_ae_terms
+AYAHUASCA,_e_ion,2,1,1,12
+LSD,Follow-up,3,6,6,29
+LSD,_e_ion,6,6,8,60
+MDMA,Follow-up,3,2,2,22
+MDMA,_e_ion,9,2,5,67
+PSILOCYBIN,_e_ion,8,2,3,96

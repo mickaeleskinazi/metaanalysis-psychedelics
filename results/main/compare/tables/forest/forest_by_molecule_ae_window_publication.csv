@@ -121,7 +121,7 @@ MDMA,xerostomia,follow_up,2,"0.54 [0.11, 2.60]","-0.608 [-2.171, 0.956]",0.446,,
 MDMA,abdominal discomfort,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,abdominal pain,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,abdominal pain upper,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,anxiety,session,14,"3.74 [2.02, 6.91] ***","1.318 [0.703, 1.933] ***",<0.001,***,5.985212151616349e-6,4.1988759907004913e-4,12.132315232552134,0.517,ok
+MDMA,anxiety,session,13,"4.27 [2.29, 7.97] ***","1.451 [0.828, 2.075] ***",<0.001,***,0,0,9.10864977553071,0.694,ok
 MDMA,arthralgia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,attention disturbance,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,autonomic,session,5,"3.87 [0.94, 15.84]","1.353 [-0.057, 2.763]",0.060,,1.5097979232738854,58.44929203245396,9.612032394119064,0.047,ok
@@ -140,14 +140,14 @@ MDMA,dissociation,session,3,"1.11 [0.33, 3.77]","0.104 [-1.119, 1.328]",0.867,,0
 MDMA,dizziness,session,7,"5.31 [2.55, 11.06] ***","1.669 [0.935, 2.403] ***",<0.001,***,2.0898047504536246e-7,2.038578411178174e-5,5.865144452949316,0.438,ok
 MDMA,dry mouth,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,emotional disorder,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,fatigue,session,12,"2.37 [1.22, 4.60] *","0.861 [0.197, 1.525] *",0.011,*,0.15969384023910255,11.645843576474814,11.849708465078884,0.375,ok
+MDMA,fatigue,session,11,"2.76 [1.46, 5.23] **","1.016 [0.377, 1.655] **",0.002,**,0.04882350385801066,4.113373749759461,8.812923631886912,0.550,ok
 MDMA,feeling abnormal,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,feeling cold,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,feeling hot,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,feeling jittery,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,flushing,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,genitourinary,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,headache,session,12,"3.83 [1.35, 10.88] *","1.343 [0.299, 2.387] *",0.012,*,1.963721048548376,61.17048150020025,30.283935669096707,0.001,ok
+MDMA,headache,session,11,"5.03 [1.83, 13.80] **","1.615 [0.605, 2.624] **",0.002,**,1.6099170743657822,57.867407990303285,25.02959715544511,0.005,ok
 MDMA,heart rate increased,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,hyperhidrosis,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,hypoaesthesia,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -155,27 +155,27 @@ MDMA,impaired gait,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,infectious,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,insomnia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,irritability,session,5,"0.64 [0.24, 1.73]","-0.448 [-1.441, 0.546]",0.377,,0,0,2.4492484392454195,0.654,ok
-MDMA,jaw tension,session,11,"2.94 [1.45, 5.97] **","1.080 [0.373, 1.787] **",0.003,**,7.882698001759856e-6,5.442551610617304e-4,11.213635778887932,0.341,ok
+MDMA,jaw tension,session,10,"3.50 [1.70, 7.18] ***","1.252 [0.533, 1.972] ***",<0.001,***,0,0,7.6623077572119165,0.569,ok
 MDMA,lack of appetite,session,8,"2.97 [1.04, 8.52] *","1.089 [0.036, 2.142] *",0.043,*,1.069132266945932,46.72978871533349,13.205597071931834,0.067,ok
 MDMA,muscle spasms,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,muscle tension,session,8,"1.72 [0.49, 6.09]","0.544 [-0.720, 1.807]",0.399,,1.8144810378575051,56.61030651491874,16.037552932810343,0.025,ok
+MDMA,muscle tension,session,7,"2.42 [0.68, 8.55]","0.882 [-0.382, 2.146]",0.172,,1.588513339902132,55.636143568062536,13.395729600454452,0.037,ok
 MDMA,muscle tightness,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,myalgia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,mydriasis,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,nausea,session,10,"3.02 [1.23, 7.44] *","1.105 [0.203, 2.007] *",0.016,*,0.7284223949706804,36.36446970802226,14.33977241498232,0.111,ok
+MDMA,nausea,session,9,"4.02 [1.74, 9.28] **","1.392 [0.556, 2.228] **",0.001,**,0.4093125033634965,25.69710530729469,10.057086477043072,0.261,ok
 MDMA,neck pain,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,nightmare,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,nystagmus,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,ophthalmological,session,4,"1.86 [0.35, 9.79]","0.619 [-1.043, 2.282]",0.465,,1.275928563667552,44.51204897129897,5.326295270384001,0.149,ok
-MDMA,pain,session,7,"0.91 [0.26, 3.16]","-0.090 [-1.332, 1.152]",0.887,,0.7201818000209229,25.873851181881424,7.088909084096417,0.313,ok
+MDMA,pain,session,6,"1.31 [0.36, 4.69]","0.268 [-1.010, 1.546]",0.681,,0.6296583083322144,24.762247795988415,5.868241712503336,0.319,ok
 MDMA,pain in jaw,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,palpitations,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,panic attack,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,paraesthesia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,perspiration,session,6,"1.50 [0.46, 4.92]","0.405 [-0.784, 1.593]",0.504,,0.9463311868668333,43.11614046779802,8.755707236989554,0.119,ok
-MDMA,restlessness,session,9,"1.85 [0.77, 4.45]","0.616 [-0.260, 1.492]",0.168,,0.47953123747571275,27.51288798601008,11.114572115974406,0.195,ok
+MDMA,restlessness,session,8,"2.29 [0.97, 5.39]","0.827 [-0.031, 1.685]",0.059,,0.3503476138996513,23.186779901786203,8.617971457634853,0.281,ok
 MDMA,rumination,session,5,"1.43 [0.50, 4.04]","0.357 [-0.684, 1.397]",0.502,,4.91831347119799e-7,3.424111831087369e-5,4.087964149467312,0.394,ok
-MDMA,sleep disorder,session,13,"3.02 [1.48, 6.18] **","1.106 [0.391, 1.821] **",0.002,**,0.249444366822192,14.519176402617115,15.109715693342133,0.235,ok
+MDMA,sleep disorder,session,12,"3.61 [1.83, 7.11] ***","1.284 [0.607, 1.962] ***",<0.001,***,0.0454619321161328,3.156352404048041,11.435512043759594,0.408,ok
 MDMA,suicidal ideation,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,temperature perception disturbances,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,thirst,session,1,,,,,NA,NA,NA,,insufficient_k

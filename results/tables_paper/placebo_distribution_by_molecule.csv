@@ -1,0 +1,10 @@
+molecule,placebo_type,n_arms,pct
+AYAHUASCA,placebo_inactif,2,100
+LSD,placebo_inactif,5,62.5
+LSD,placebo_actif_psychedelique,3,37.5
+MDMA,placebo_inactif,9,64.28571428571429
+MDMA,placebo_actif_psychedelique,4,28.571428571428573
+MDMA,placebo_actif_non_psychedelique,1,7.142857142857143
+PSILOCYBIN,placebo_inactif,4,50
+PSILOCYBIN,placebo_actif_non_psychedelique,3,37.5
+PSILOCYBIN,placebo_actif_psychedelique,1,12.5
