@@ -156,7 +156,7 @@ PSILOCYBIN,depressed mood,session,2,"9.56 [1.19, 76.72] *","2.257 [0.174, 4.340]
 PSILOCYBIN,depression,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,diarrhea,session,3,"0.16 [0.00, 5.78]","-1.828 [-5.409, 1.754]",0.317,,7.822741264558793,78.52854452671397,10.1033121900725,0.006,ok
 PSILOCYBIN,diverticulitis,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,dizziness,session,4,"3.79 [0.85, 16.85]","1.331 [-0.162, 2.824]",0.081,,0,0,1.8066482084063997,0.613,ok
+PSILOCYBIN,dizziness,session,5,"3.59 [0.93, 13.81]","1.278 [-0.070, 2.625]",0.063,,0,0,1.8331846372703537,0.766,ok
 PSILOCYBIN,dyspepsia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,dysphoria,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,dyspnea,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -164,7 +164,7 @@ PSILOCYBIN,edema,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,endodontic procedure,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,euphoric mood,session,2,"10.86 [1.37, 85.92] *","2.385 [0.316, 4.453] *",0.024,*,0,0,0.016259740964682357,0.899,ok
 PSILOCYBIN,eye infection,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,fatigue,session,5,"1.19 [0.08, 18.28]","0.173 [-2.560, 2.906]",0.901,,7.918474974058273,82.5460973840181,28.740667287586927,<0.001,ok
+PSILOCYBIN,fatigue,session,6,"1.21 [0.12, 12.15]","0.194 [-2.109, 2.497]",0.869,,6.333622962551935,77.94124023826592,29.31107198185242,<0.001,ok
 PSILOCYBIN,feeling abnormal,session,2,"0.14 [0.00, 174.38]","-1.977 [-9.116, 5.161]",0.587,,24.168699115104502,91.09421617507857,11.228657911071892,<0.001,ok
 PSILOCYBIN,food allergy,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,food poisoning,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -176,6 +176,7 @@ PSILOCYBIN,hyperglycemia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,hypertension,session,4,"7.64 [0.67, 87.55]","2.033 [-0.406, 4.472]",0.102,,4.3016340910329065,69.70036066896412,9.529744169864445,0.023,ok
 PSILOCYBIN,hyperventilation,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,hypoesthesia,session,1,,,,,NA,NA,NA,,insufficient_k
+PSILOCYBIN,hypoglycemia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,hyponatremia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,illusion,session,2,"2.29 [1.03, 5.10] *","0.828 [0.025, 1.630] *",0.043,*,0,0,0.425578153860605,0.514,ok
 PSILOCYBIN,influenza,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -213,7 +214,7 @@ PSILOCYBIN,sexual abuse,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,sinus congestion,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,sinus headache,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,skin cosmetic procedure,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,sleep disorder,session,4,"1.70 [0.04, 75.97]","0.533 [-3.264, 4.330]",0.783,,13.297481016591355,88.8753042331614,29.242048873871745,<0.001,ok
+PSILOCYBIN,sleep disorder,session,5,"1.66 [0.08, 33.46]","0.505 [-2.500, 3.510]",0.742,,9.83545861781627,84.36619797975084,29.330785322942848,<0.001,ok
 PSILOCYBIN,stress,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,suicidal behavior,session,2,"3.59 [0.33, 38.65]","1.279 [-1.096, 3.654]",0.291,,0,0,0.5894618053432613,0.443,ok
 PSILOCYBIN,suicidal ideation,session,6,"4.30 [1.35, 13.66] *","1.458 [0.301, 2.614] *",0.014,*,0,0,3.342566170288537,0.647,ok

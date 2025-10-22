@@ -1,4 +1,4 @@
 molecule,p_session,stars_session,k_session,p_follow,stars_follow,k_follow,n_session_only,n_follow_only,n_both,n_not_sig,p_session_fmt,p_follow_fmt
 LSD,7.49301419986991e-4,***,149,0.0023458377711466135,**,108,3,0,0,22,<0.001,0.002
 MDMA,1.6316650334163559e-4,***,194,0.0565136396041937,,58,2,0,0,19,<0.001,0.057
-PSILOCYBIN,3.9415443454037465e-11,***,162,NA,NA,NA,2,0,0,11,<0.001,
+PSILOCYBIN,9.245341359612807e-11,***,166,NA,NA,NA,3,0,0,10,<0.001,
