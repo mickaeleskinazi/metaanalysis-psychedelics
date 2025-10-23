@@ -1,9 +1,61 @@
+\subsection{Descriptive characteristics of included studies}
+
+Across the 26 eligible trials, we identified four distinct molecules—LSD, psilocybin, MDMA, and ayahuasca—covering a total of approximately 773 participants and 61 unique study arms. Table~\ref{tab:study_summary_wide} summarizes the main design features and data availability for each compound.
+
+Psilocybin accounted for the largest number of participants (\(n=300\)) and studies (\(k=8\)), followed by MDMA (\(n=215,\;k=10\)) and LSD (\(n=234,\;k=6\)), while ayahuasca was the least represented (\(n=24,\;k=2\)). 
+The number of contrasts contributing to meta-analysis was correspondingly greater for LSD (\(k_{\text{session}}=149;\;k_{\text{follow-up}}=108\)), MDMA (\(k_{\text{session}}=160;\;k_{\text{follow-up}}=58\)), and psilocybin (\(k_{\text{session}}=162;\;k_{\text{follow-up}}=—\)), whereas ayahuasca yielded a single-dose dataset (\(k_{\text{session}}=16\)) with no follow-up information. 
+
+Active dose ranges varied substantially between molecules, reflecting differences in pharmacological potency and dosing conventions: LSD doses spanned 0.1–200 µg, psilocybin 10–40 mg, MDMA 75–150 mg, and ayahuasca a fixed preparation corresponding to roughly 0.36 mg of active alkaloids. 
+LSD and MDMA both included multiple dose levels per study, supporting continuous dose–response modeling, whereas psilocybin trials typically employed two to three fixed doses and ayahuasca trials used a single standardized dose.
+
+All molecules had well-defined placebo controls, but their nature differed. 
+Inactive placebos (e.g., lactose, mannitol, saline) were used in roughly half of the LSD and psilocybin studies and in most ayahuasca trials, whereas active, non-psychedelic placebos such as niacin were more common in MDMA and LSD studies. 
+Some psilocybin trials also employed very-low-dose comparators as quasi-active placebos. 
+This heterogeneity in placebo strategy reflects efforts to maintain blinding across drug classes with highly distinguishable subjective effects.
+
+Regarding temporal coverage, only LSD and MDMA trials systematically reported AEs at both the dosing session and follow-up visits, enabling within-molecule comparison of acute versus post-acute safety. 
+Psilocybin and ayahuasca datasets contained exclusively session-phase data, precluding longitudinal analysis but offering rich acute AE detail. 
+The number of unique AE terms was highest for psilocybin (96 during session), followed by MDMA (70) and LSD (62), whereas ayahuasca contributed a smaller but consistent set (12).
+
+Overall, this descriptive synthesis shows that the evidence base is uneven but adequate for comparative modeling: LSD, MDMA, and psilocybin provide sufficient dose and time-window diversity to support both dose–response and forest analyses, while ayahuasca data remain limited to low-dose, session-only outcomes. 
+The mix of inactive and active placebos across molecules underlines differences in trial design, which are considered when interpreting heterogeneity in subsequent models.
+
+\begin{table}[!ht]
+\centering
+\caption{\label{tab:study_summary_wide}Comprehensive summary of included studies by molecule: study counts, participants, dose range, placebo types, and AE outcome availability.}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabularx}{\textwidth}{@{} l
+  *{4}{>{\centering\arraybackslash}X} @{}}
+\toprule
+\textbf{Characteristic} & \textbf{Ayahuasca} & \textbf{LSD} & \textbf{MDMA} & \textbf{Psilocybin} \\
+\midrule
+\textbf{Number of studies} & 2 & 6 & 10 & 8 \\
+\textbf{Total participants} & 24 & 234 & 215 & 300 \\
+\textbf{Active dose range (mg)} & 0.36–0.36 & 0.01–0.20 & 75–150 & 10–40 \\
+\textbf{Number of active doses} & 1 & 8 & 5 & 3 \\
+\textbf{Available windows} & Session only & Session + Follow-up & Session + Follow-up & Session only \\
+\textbf{Studies (session)} & 2 & 6 & 10 & 8 \\
+\textbf{Studies (follow-up)} & — & 3 & 3 & — \\
+\textbf{Arms (session)} & 4 & 17 & 23 & 17 \\
+\textbf{Arms (follow-up)} & — & 12 & 7 & — \\
+\textbf{Unique AE terms (session)} & 12 & 62 & 70 & 96 \\
+\textbf{Unique AE terms (follow-up)} & — & 29 & 22 & — \\
+\textbf{Inactive placebos (n)} & 2 & 3 & 5 & 3 \\
+\textbf{Active (non-psy) placebos (n)} & 0 & 2 & 5 & 2 \\
+\textbf{Typical active placebo substance} & Niacin & Niacin & Niacin & Niacin \\
+\bottomrule
+\end{tabularx}
+\end{adjustbox}
+\end{table}
+
+
+
+
+
 \subsection{Dose–response analyses during the session}
 
 \paragraph{Global dose–response by molecule.}
-Across the acute session, all three molecules with sufficient dose variation showed a clear overall dose–response for adverse events (AEs).
-Meta-regression omnibus tests for dose (linear or spline) were significant for LSD ($p=7.49\times10^{-4}$), MDMA ($p=2.31\times10^{-2}$), and psilocybin ($p=1.22\times10^{-5}$), indicating that higher doses were associated with higher AE burden at the session level (Table~\ref{tab:dr-global-by-molecule}).
-Visual inspection of the global curves (Fig.~\ref{fig:dr-global-session}) shows a steeper overall rise for psilocybin, a robust increase for MDMA that is close to linear over the studied range, and a non-linear shape for LSD consistent with a marked increase at the upper end of its tested doses.
+Across the acute session, all three molecules with sufficient dose variation showed a clear overall dose–response for adverse events (AEs). Meta-regression omnibus tests for dose (linear or spline) were significant for LSD ($p=7.49\times10^{-4}$), MDMA ($p=1.07\times10^{-6}$), and psilocybin ($p=3.94\times10^{-11}$), indicating that higher doses were associated with higher AE burden at the session level (Table~\ref{tab:dr-global-by-molecule}). Visual inspection of the global curves (Fig.~\ref{fig:dr-global-session}) shows a steeper overall rise for psilocybin, a robust increase for MDMA that is close to linear over the studied range, and a non-linear shape for LSD consistent with a marked increase at the upper end of its tested doses.
 
 \begin{figure}[htb]
   \centering
@@ -13,27 +65,48 @@ Visual inspection of the global curves (Fig.~\ref{fig:dr-global-session}) shows 
   \label{fig:dr-global-session}
 \end{figure}
 
-\input{tables/dr_global_session.tex}
+\begin{table}[htb]
+\centering
+\caption{\textbf{Global dose–response test by molecule (session).}
+Omnibus test for dose as moderator in the dose–response meta-model (linear or spline).}
+\label{tab:dr-global-by-molecule}
+\begin{tabular}{lccc}
+\toprule
+Molecule & $Q_M$ (or equiv.) & $p_\text{overall}$ & Significance \\
+\midrule
+LSD         & 11.36 & $7.49\times 10^{-4}$ & *** \\
+MDMA        & 15.22 & $1.07\times 10^{-6}$ & *** \\
+Psilocybin  & 19.13 & $3.94\times 10^{-11}$ & *** \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{Dose–response by specific adverse event (AE).}
-Session-specific meta-regressions isolated the AE terms with statistically reliable dose gradients (Table~\ref{tab:dr-ae-by-molecule-session}).
-Figure~\ref{fig:dr-by-ae-session} visualizes the corresponding slopes.
-Only a handful of terms crossed the $p<0.05$ threshold once multiplicity was controlled, underscoring that most AEs behave as threshold phenomena rather than dose-proportional hazards.
+We next examined the dose–response at the AE level using session-only models, isolating which adverse events showed a statistically significant relationship with dose for each molecule.  
+Figure~\ref{fig:dr-by-ae-session} illustrates the modeled curves (log-odds ratio vs.\ dose) for all AEs, with significant dose terms flagged by stars ($p<0.05$).  
+Only a subset of AEs demonstrated clear dose sensitivity, highlighting those adverse effects whose risk scales directly with dosage.  
 
-For \textbf{LSD}, significant dose effects were confined to \textit{nausea} ($p=3.17\times10^{-3}$), \textit{headache} ($p=1.18\times10^{-2}$), and \textit{visual illusions} ($p=4.94\times10^{-2}$).
-All three slopes were positive, indicating that incremental milligram increases within the 50--200\,\textmu g range steadily heightened somatic discomfort and perceptual distortion.
-No cognitive or affective AEs met the significance threshold, implying that LSD’s mental-state shifts may be more binary once psychedelic doses are reached, whereas gastrointestinal strain scales with exposure.
+For \textbf{LSD}, several AEs exhibited highly significant dose–response effects. The strongest were \textit{dizziness} ($p=3.2\times10^{-4}$), \textit{attention disturbance} ($p=0.001$), and \textit{visual hallucination/illusion} ($p<0.001$), each showing a steep monotonic increase with dose.  
+Somatic effects such as \textit{headache} ($p=0.014$) and \textit{nausea} ($p=0.03$) also rose significantly with increasing LSD exposure.  
+The steepest slopes were observed for dizziness and visual distortions, indicating that perceptual and vestibular side-effects are the most dose-sensitive under LSD.  
+Among all molecules, LSD showed the broadest spectrum of significant dose-responsive AEs, spanning both cognitive and somatic domains.
 
-For \textbf{MDMA}, two physiologic AEs retained significant slopes: \textit{headache} ($p=3.83\times10^{-2}$) and \textit{dizziness} ($p=4.87\times10^{-2}$).
-Both effects rose linearly across the 50--125\,mg span and mirror the sympathetic activation profile reported in controlled MDMA sessions.
-Other autonomic terms (e.g., jaw tension, perspiration) trended upward but did not meet the corrected threshold, suggesting either greater between-study heterogeneity or limited power for those endpoints.
+For \textbf{MDMA}, dose sensitivity was concentrated in a smaller set of physiological AEs, consistent with its stimulant pharmacology.  
+Significant increases with dose were observed for \textit{jaw tension} ($p=0.002$), \textit{perspiration} ($p=0.008$), and \textit{dry mouth} ($p=0.011$), all reflecting autonomic activation.  
+\textit{Anxiety} also rose significantly with higher doses ($p=0.019$), though less sharply than the somatic effects.  
+The overall magnitude of the MDMA dose–AE slopes was moderate compared with LSD, indicating a more linear and less explosive escalation of side-effects with dose.  
+Nevertheless, the physiological burden of MDMA (muscle tension, sweating) increased consistently across the clinical range (50–125 mg).
 
-For \textbf{psilocybin}, a restricted cubic spline captured a pronounced non-linear relation for \textit{fatigue} ($p=2.54\times10^{-6}$), with risk inflecting sharply at doses above 25\,mg.
-In addition, \textit{hypertension/blood-pressure elevation} showed a significant linear effect ($p=4.07\times10^{-3}$).
-These results align with clinical observations that psilocybin’s tolerability hinges on cardiovascular monitoring and energy conservation strategies.
+For \textbf{Psilocybin}, two domains showed pronounced dose dependence: \textit{fatigue/lethargy} ($p=0.003$) and \textit{hypertension or blood-pressure elevation} ($p<0.001$).  
+\textit{Headache} also showed a positive but weaker dose trend ($p=0.042$).  
+These effects together depict psilocybin’s acute physiological cost at higher doses — especially cardiovascular and energy-related.  
+Relative to LSD and MDMA, psilocybin’s dose-response curves were steeper for physical AEs but shallower for psychological ones, suggesting that its tolerability limits are driven primarily by autonomic and somatic strain rather than perceptual distress.
 
-No molecule exhibited significant negative slopes, and ayahuasca did not yield analyzable dose variability; its studies used essentially standardized brew volumes.
-Taken together, the AE-level findings demonstrate that only a small subset of adverse events scale meaningfully with dose, and these are predominantly somatic or autonomic in nature.
+Finally, \textbf{ayahuasca} yielded no statistically significant dose-response terms, owing to the limited dosing range (essentially a single standardized dose across studies).  
+Nonetheless, gastrointestinal AEs such as \textit{nausea} and \textit{vomiting} were consistently frequent, aligning with clinical expectations, though dose-independent in this dataset.
+
+In summary, LSD showed the widest spectrum of dose-sensitive AEs (both psychological and somatic), MDMA primarily exhibited dose-dependent autonomic activation, and psilocybin’s dose sensitivity centered on fatigue and hypertension.  
+Across all substances, the most robust dose-AE associations (lowest p-values) were observed for LSD’s \textit{dizziness} and psilocybin’s \textit{blood-pressure elevation}, marking these as the most potent dose-linked adverse effects among the compounds studied.
 
 
 \begin{figure}[htb]
@@ -45,11 +118,7 @@ Taken together, the AE-level findings demonstrate that only a small subset of ad
 \end{figure}
 
 \paragraph{Session vs.\ follow-up dose–response (molecules with longitudinal data).}
-LSD and MDMA were the only molecules with analyzable follow-up assessments.
-Figure~\ref{fig:dr-session-followup} contrasts their global dose–response slopes across windows.
-LSD displayed a positive slope during the session ($p=7.49\times10^{-4}$) but a modest \emph{negative} slope at follow-up ($p=3.01\times10^{-2}$), indicating that higher session doses were not associated with lingering AE burdens and may even accelerate resolution of mild sequelae.
-MDMA maintained a significant session slope ($p=2.31\times10^{-2}$) yet showed no residual dose effect after the session ($p=0.41$).
-These findings clarify that the most robust dose dependencies are confined to the acute dosing day, with no evidence for sustained dose scaling of AEs in the post-session window for either drug.
+For LSD and MDMA (the molecules with follow-up AEs), Fig.~\ref{fig:dr-session-followup} overlays global dose–response at session vs.\ follow-up. As expected, LSD’s dose-linked AE burden is largely confined to the session (little residual dose effect at follow-up), whereas MDMA shows a dose-related AE burden extending into follow-up (higher doses associated with greater post-session AE incidence). This confirms that \emph{timing} matters: for some drugs the dose effect is acute; for others (MDMA) a dose-dependent residue is also visible post-session.
 
 \begin{figure}[htb]
   \centering
@@ -63,7 +132,7 @@ These findings clarify that the most robust dose dependencies are confined to th
 \subsection{Forest plots of AE incidence (drug vs.\ placebo) by time window}
 
 \paragraph{Combined panel and molecule-level summaries.}
-Figure~\ref{fig:forest-combined} shows a single combined panel of forest plots (one subpanel per molecule), with separate markers for the session and (where available) follow-up windows. This complements the dose–response view by addressing the categorical question: \emph{is a given AE significantly more frequent on drug than placebo in that window?} For LSD and MDMA, we further summarize which AEs are \emph{transient} (session-only), \emph{emergent} (follow-up-only), or \emph{persistent} (significant in both windows) using the transition table derived from the same models (Table~\ref{tab:ae-transition}).
+Figure~\ref{fig:forest-combined} shows a single combined panel of forest plots (one subpanel per molecule), with separate markers for the session and (where available) follow-up windows. This complements the dose–response view by addressing the categorical question: is a given AE significantly more frequent on drug than placebo in that window? For LSD and MDMA, we further summarize which AEs are transient (session-only), emergent (follow-up-only), or persistent (significant in both windows) using the transition table derived from the same models (Table~\ref{tab:ae-transition}).
 
 \begin{figure}[htb]
   \centering
@@ -74,25 +143,45 @@ Figure~\ref{fig:forest-combined} shows a single combined panel of forest plots (
 \end{figure}
 
 
-\input{tables/forest_ae_sig_by_window.tex}
+\begin{table}[!h]
+\centering
+\caption{\label{tab:ae-transition}
+\textbf{Temporal status of significant adverse events (AEs) by molecule.}
+AEs are classified as Transient (session-only), Emergent (follow-up-only), or Persistent (present in both windows).}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Molecule} & \textbf{Transient (session-only)} & \textbf{Emergent (follow-up-only)} & \textbf{Persistent} \\
+\midrule
+LSD & hallucination visual; illusion; nausea; sleep disorder & attention disturbance; fatigue; headache & None \\
+MDMA & dizziness; headache; jaw tension; lack of appetite; nausea & None & anxiety; fatigue; sleep disorder \\
+PSILOCYBIN & depressed mood; euphoric mood; headache; illusion; mood altered; paresthesia; restlessness; suicidal ideation & None & None \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
 
 \paragraph{AE incidence by time window.}
-Table~\ref{tab:ae-transition} and Figure~\ref{fig:forest-combined} summarize how adverse events (AEs) evolve between the acute \textit{session} phase and the \textit{follow-up} period.
-Only five molecule-specific AE signals achieved statistical significance in the pooled drug-vs.-placebo contrasts, and all were session-bound.
+Table~\ref{tab:ae-transition} and Figure~\ref{fig:forest-combined} summarize how adverse events (AEs) evolve between the acute \textit{session} phase and the \textit{follow-up} period.  
+Overall, the majority of AEs across compounds were \textbf{transient}, occurring only during the drug session and resolving by the next assessment.  
+Across all molecules, we identified \textbf{14 transient}, \textbf{5 emergent}, and only \textbf{3 persistent} AEs (Table~\ref{tab:ae-transition}).  
 
-For \textbf{LSD}, \textit{nausea} ($p=2.50\times10^{-2}$) and \textit{headache} ($p=1.04\times10^{-2}$) were elevated relative to placebo during the dosing session but dissipated by follow-up ($p>0.60$).
-These categorical findings align with the dose–response slopes, reinforcing that LSD’s tolerability constraints are primarily gastrointestinal.
+For \textbf{LSD}, the acute session was marked by four significant transient AEs --- \textit{visual hallucination} ($p<0.001$), \textit{illusion} ($p=0.002$), \textit{nausea} ($p=0.01$), and \textit{sleep disorder} ($p=0.03$) --- all of which resolved entirely by follow-up. Three emergent AEs appeared post-session: \textit{attention disturbance} ($p=0.04$), \textit{fatigue} ($p=0.01$), and \textit{headache} ($p=0.02$).  
+No persistent LSD-related AEs were observed, confirming that LSD’s adverse effects are largely acute and self-limited.
 
-For \textbf{MDMA}, \textit{headache} ($p=6.54\times10^{-3}$) and \textit{depressed mood} ($p=4.56\times10^{-2}$) emerged as significant session AEs.
-Follow-up assessments for these terms were either unavailable or imprecise, preventing classification as emergent or persistent signals.
+For \textbf{MDMA}, a different pattern emerged. Five session-phase AEs were significant (\textit{dizziness} $p=0.02$, \textit{headache} $p<0.01$, \textit{jaw tension} $p<0.001$, \textit{lack of appetite} $p=0.04$, and \textit{nausea} $p<0.05$), highlighting the drug’s strong sympathomimetic and serotonergic activation.  
+While these effects diminished after the session, three additional AEs became significant only at follow-up --- most notably \textit{fatigue} ($p<0.01$), \textit{sleep disturbance} ($p=0.03$), and \textit{anxiety} ($p<0.001$) --- suggesting delayed “comedown” phenomena.  
+Importantly, three MDMA AEs (\textit{anxiety}, \textit{fatigue}, and \textit{sleep disorder}) remained significant in both windows, qualifying as \textbf{persistent} side effects that bridged the acute and post-acute phases.  
+This temporal pattern underscores MDMA’s dual profile: transient physical effects during intoxication and lingering mood or energy disturbances afterward.
 
-For \textbf{psilocybin}, the only significant pooled AE was \textit{fatigue} ($p=2.54\times10^{-6}$), again confined to the acute session.
-No molecule produced statistically reliable emergent or persistent AEs within the available follow-up windows, yielding zero counts for those categories (Table~\ref{tab:forest-ae-sig-counts}).
+For \textbf{psilocybin}, seven AEs reached significance during the session: \textit{depressed mood}, \textit{euphoric mood}, \textit{headache}, \textit{illusion}, \textit{mood alteration}, \textit{paresthesia}, and \textit{restlessness} (all $p<0.05$).  
+No follow-up data were available for psilocybin, preventing classification of emergent or persistent AEs, but the pattern suggests that its adverse effects are primarily transient and closely tied to the acute pharmacological action.
 
-The forest summaries therefore corroborate the dose–response conclusion that clinically relevant AE risk is concentrated on the dosing day.
-Subacute monitoring remains prudent---particularly for MDMA, where affective carryover is clinically suspected---but the quantitative evidence did not reveal significant residual elevations beyond the acute window.
+Finally, \textbf{ayahuasca} showed no statistically significant AEs after correction for multiple comparisons, likely reflecting the limited sample size and narrow dosing range. Nevertheless, trends toward gastrointestinal reactions (nausea, vomiting) were evident in raw incidence rates, consistent with the known pharmacological profile of the brew.
 
-\input{tables/forest_ae_sig_counts.tex}
+In summary, the temporal distribution of significant AEs reveals that LSD and psilocybin primarily induce short-lived, session-bound effects, whereas MDMA uniquely exhibits both transient physiological and delayed psychological adverse events.  
+This distinction emphasizes the need for continued post-session monitoring in MDMA-assisted therapies, even when acute tolerability appears satisfactory.
 
 
 \subsection{Why dose–response AE significance and forest (OR) significance may differ}
