@@ -1,0 +1,112 @@
+\section{Discussion}
+
+Our meta-analysis integrates 508 randomized contrasts spanning 149 LSD, 197 MDMA, and 162 psilocybin session-level comparisons, providing a granular view of adverse event (AE) risk during and after psychedelic-assisted therapy (Table~\ref{tab:dr-global-by-molecule}).
+Across molecules, the global dose--response models confirm that higher session doses increase AE odds, with psilocybin showing the steepest gradient ($Q_M=19.13$, $p=1.22\times10^{-5}$), LSD a robust but more moderate slope ($Q_M=11.36$, $p=7.49\times10^{-4}$), and MDMA a weaker yet significant trend ($Q_M=5.16$, $p=2.31\times10^{-2}$).
+While the longitudinal dose--response curves flatten by follow-up (Figure~\ref{fig:dr-session-followup}), the molecule-specific forest plots reveal that a handful of categorical AE signals do persist after the dosing day, underscoring the need to interpret gradient-based and contrast-based evidence together.
+
+\subsection{Translating dose--response findings into clinical guardrails}
+
+The AE-specific regressions (Table~\ref{tab:dr-ae-by-molecule-session}) demonstrate that only a limited subset of adverse experiences scales directly with dose, and those events are predominantly somatic.
+For LSD, nausea, headache, and visual illusions intensified with higher microgram exposures.
+These results echo the structured monitoring protocols proposed by Hinkle et~al. (2024) and reinforce that once psychedelic threshold dosing is reached, mental-state perturbations behave more like on/off phenomena than gradated toxicities.
+
+MDMA, in contrast, manifested dose-linked dizziness and headache.
+Both slopes rose linearly across the 50--125\,mg range, consistent with the sympathetic activation highlighted by Colcott et~al. (2024).
+Clinically, this supports pre-session hydration, electrolyte monitoring, and staged titration for participants with migraine or vestibular vulnerability.
+
+Psilocybin displayed the most pronounced dose response at the AE level: a non-linear surge in fatigue above 25\,mg and a linear increase in hypertension risk ($p=4.07\times10^{-3}$).
+These findings dovetail with the cardiovascular screening recommendations articulated by Breeksema et~al. (2022).
+No analyzed molecule exhibited significant negative slopes, and ayahuasca trials lacked sufficient dosing variability for inference, highlighting a continued evidence gap for traditional brew formulations.
+
+\subsection{Temporal dynamics of adverse events}
+
+Forest analyses complement the dose--response slopes by revealing when AE risks are clinically salient.
+Only five molecule-specific signals remained significant after multiplicity correction, and all were confined to the dosing day in the aggregate counts (Table~\ref{tab:ae-transition}).
+However, inspection of the molecule-level forest plots (Figure~\ref{fig:forest-combined}) reveals clinically meaningful persistence for specific AEs.
+For LSD, follow-up odds ratios remained elevated for \textit{headache} (OR\,=\,10.70, $p<10^{-4}$), \textit{fatigue} (OR\,=\,14.21, $p<10^{-3}$), and \textit{attention disturbance} (OR\,=\,7.95, $p=2.0\times10^{-3}$).
+MDMA displayed sustained follow-up elevations for \textit{anxiety} (OR\,=\,4.93, $p=2.6\times10^{-3}$), \textit{sleep disorder} (OR\,=\,3.83, $p=3.8\times10^{-4}$), and \textit{fatigue} (OR\,=\,11.85, $p<10^{-3}$).
+These persistent signals were not dose-proportional in the longitudinal regressions, suggesting that once triggered they may reflect post-session neurobiological or psychosocial processes rather than continued pharmacologic exposure.
+In contrast, psilocybin’s significant signals remained session-bound, with fatigue resolving by the earliest follow-up visits.
+
+The session forest plots also captured protective patterns.
+Notably, LSD was associated with fewer acute \textit{sleep disorder} reports than placebo (OR\,=\,0.33, $p=0.016$), hinting that its soporific afterglow may aid participants who struggle with insomnia in the immediate recovery phase.
+Such molecule-specific relief effects are rarely highlighted in the clinical literature but can inform supportive care (e.g., scheduled quiet time vs. stimulant use) during the post-acute window.
+
+Dose--response contrasts between session and follow-up windows add nuance to these categorical findings.
+LSD retained a significant positive slope during the session but exhibited a modest negative slope at follow-up, implying that while categorical follow-up AEs persist, their incidence is not further magnified by higher doses.
+MDMA’s follow-up slope was null, reinforcing that the drug’s sympathomimetic stress is tightly temporally coupled to the dosing period even as certain AEs linger categorically.
+Taken together, the longitudinal data argue for intensive medical monitoring on the dosing day followed by symptom-targeted follow-up touchpoints that prioritize anxiety, sleep quality, and somatic fatigue checks.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Clinically salient categorical AE signals from molecule-specific forest plots.}
+  \label{tab:persistent-forest}
+  \resizebox{\textwidth}{!}{%%
+  \begin{tabular}{p{0.16\textwidth}p{0.14\textwidth}p{0.28\textwidth}p{0.42\textwidth}}
+    \toprule
+    Molecule & Window & Significant AE signals (direction) & Clinical interpretation \\
+    \midrule
+    LSD & Session & Sleep disorder (lower odds vs. placebo) & Acute sedation and structured quiet periods may be leveraged therapeutically, but clinicians should anticipate rebound headache and fatigue once stimulation resumes. \\
+    LSD & Follow-up & Headache, fatigue, attention disturbance (higher odds) & Persistent somatic drag warrants multi-day hydration, non-opioid analgesia plans, and cognitive pacing, especially for patients with work or caregiving responsibilities. \\
+    MDMA & Follow-up & Anxiety, sleep disorder, fatigue (higher odds) & Sympathetic activation may evolve into post-session dysautonomia; plan for evening check-ins, sleep hygiene reinforcement, and as-needed anxiolytic or beta-blocker collaboration. \\
+    Psilocybin & Session & Fatigue, suicidal ideation (higher odds) & Intensified monitoring is necessary for individuals with baseline suicidality; ensure post-session observation and crisis protocols, particularly in depression-focused trials (e.g., Goodwin~2022; Bogenschutz~2022). \\
+    \bottomrule
+  \end{tabular}}}
+\end{table}
+
+The psilocybin suicidality signal warrants particular attention.
+Both Goodwin et~al. (2022) and Bogenschutz et~al. (2022) enrolled participants with severe, recurrent depression or alcohol use disorder who entered the trials with high baseline suicidality scores.
+Their intensive symptom surveillance---including active probing during integration---likely inflated the observed odds ratios (OR\,=\,4.30, $p=0.014$) relative to community practice, yet the convergence of two independent phase~II programs signals a real need for post-session observation, crisis-response rehearsal, and coordination with existing mental-health providers.
+Importantly, the dose--response models did not identify a gradient for suicidal ideation, implying that risk management hinges on screening and psychosocial containment rather than micro-adjusting psilocybin dose.
+
+\subsection{Matching molecules to patient archetypes}
+
+To translate these quantitative patterns into actionable clinical decision-making, we propose the framework in Table~\ref{tab:clinical-matching}.
+The table integrates our AE signals with common patient archetypes drawn from contemporary psychedelic-assisted therapy programs: older adults with cardiovascular disease, individuals with high anxiety or trauma-related arousal, and patients managing complex polypharmacy.
+For each profile we highlight the molecule whose AE profile is most congruent and recommend mitigating strategies when risk signals suggest caution.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Results-informed molecule selection and monitoring recommendations for representative clinical profiles.}
+  \label{tab:clinical-matching}
+  \resizebox{\textwidth}{!}{%%
+  \begin{tabular}{p{0.23\textwidth}p{0.24\textwidth}p{0.28\textwidth}p{0.21\textwidth}}
+    \toprule
+    Patient profile & Key safety concerns & Preferred molecule / dose strategy & Monitoring and mitigation \\
+    \midrule
+    Older adult with controlled hypertension & Psilocybin-driven hypertension; MDMA sympathomimetic load; LSD follow-up headache/fatigue & LSD at 50--75\,\textmu g to blunt pressor swings while accepting manageable delayed somatic drag & Baseline ECG; intra-session blood-pressure cycling every 20\,min; schedule day-2 analgesia/sleep check-in; ondansetron availability for nausea \\
+    Middle-aged patient with cardiovascular disease and polypharmacy & Drug--drug interactions via CYP2D6 (MDMA) or serotonergic load (psilocybin); external reports of MDMA arrhythmia & Carefully titrated psilocybin (15--20\,mg) only with cardiology clearance; avoid MDMA in beta-blocker or SSRI users; consider LSD microdosing protocols if fatigue intolerable & Continuous BP and pulse oximetry during session; coordinate with prescribing cardiologist; 48-hour follow-up for blood-pressure and fatigue surveillance \\
+    Anxiety-prone trauma survivor & Post-session MDMA anxiety/sleep disruption; LSD visual intensity & MDMA with conservative titration (80\,mg plus optional 40\,mg booster) plus coping plans; arrange sleep hygiene coaching and as-needed non-benzodiazepine anxiolytics & Real-time affect monitoring; overnight access to support line; structured follow-up psychotherapy within 24 and 72 hours to manage lingering anxiety and insomnia \\
+    Patient with chronic pain and sleep fragility & Concern about psilocybin fatigue and suicidal ideation; MDMA follow-up fatigue; LSD delayed headache despite acute sleep relief & Psilocybin at 20\,mg if suicidality low and caregiver available; alternatively, low-dose LSD with preplanned non-opioid analgesia & Provide post-session fatigue and mood diary; arrange sleep quality check at 48 hours; ensure crisis plan for depressive symptoms when using psilocybin \\
+    Geriatric patient with mild cognitive impairment & Polypharmacy with anticholinergics; susceptibility to LSD attention disturbance & Low-dose psilocybin (10--15\,mg) with cardiovascular screening; reserve LSD for environments offering cognitive pacing and caregiver reinforcement & Cognitive orientation checks every 30\,min; caregiver presence during integration; reinforce hydration, electrolyte balance, and scheduled rest breaks \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+The recommendations highlight three guiding principles: (i) cardiovascular comorbidity warrants caution with psilocybin because of its clear hypertension and fatigue signals as well as the concentration of suicidal ideation events in treatment-resistant depression trials (Goodwin et~al., 2022; Bogenschutz et~al., 2022), (ii) MDMA’s lingering anxiety, sleep disruption, and fatigue necessitate structured multi-day follow-up despite the absence of a dose gradient, with special attention to cardiovascular strain reported in external phase~III programs, and (iii) LSD’s combination of gastrointestinal burden and delayed headache/fatigue argues for proactive antiemetic and analgesic strategies while capitalizing on its acute sleep-stabilizing effects for patients with insomnia risk.
+
+\subsection{Implications for protocol design}
+
+The convergence of dose--response and forest analyses supports several refinements to clinical protocols.
+Dose selection should prioritize the lowest effective range that meets therapeutic objectives while acknowledging the steepness of psilocybin’s fatigue curve beyond 25\,mg.
+Staged escalation---especially for MDMA and LSD---can individualize tolerability without materially compromising efficacy, yet the categorical persistence of anxiety and sleep disruption after MDMA underscores the importance of at least 48~hours of structured follow-up.
+Likewise, LSD programs should incorporate delayed check-ins that assess headache, fatigue, and attentional drift, even when acute monitoring is uneventful.
+
+Adverse-event taxonomies should continue to disaggregate somatic and psychological domains.
+Somatic AEs (nausea, headache, hypertension) are far more likely to exhibit dose gradients than psychological phenomena, informing both informed-consent language and mitigation toolkits such as vestibular stabilization exercises or prophylactic triptans for headache-prone patients (Hinkle et~al., 2024).
+Psychological endpoints, by contrast, often manifest categorically.
+The suicidality signals seen in psilocybin depression trials almost certainly reflect population selection and intensive symptom probing rather than pharmacologic induction, yet they compel explicit crisis planning during integration visits and demonstrate why depression programs require rapid-response safety nets.
+
+\subsection{Limitations and future research}
+
+Several limitations temper these conclusions.
+Follow-up data remain sparse, especially for psilocybin and ayahuasca, limiting detection of delayed AEs and forcing us to triangulate MDMA cardiovascular risks from external reports of arrhythmia and hypertensive events.
+Study heterogeneity---from psychotherapy frameworks to AE ascertainment windows---likely attenuated power for certain endpoints, and most trials excluded participants with uncontrolled medical illness, meaning that recommendations for complex comorbidity rely on extrapolation from observational work (Breeksema et~al., 2022; Colcott et~al., 2024).
+Future work should prioritize harmonized AE reporting standards, head-to-head comparisons of titration schedules, prospective registries that capture long-term safety profiles across diverse patient populations, and qualitative follow-up that distinguishes pharmacologic persistence from psychological processing effects.
+
+\subsection{Conclusion}
+
+In sum, this meta-analysis delineates a clear, molecule-specific safety landscape for psychedelic-assisted therapy.
+Dose-dependent AE risk is concentrated in somatic domains during the dosing session, yet forest-derived follow-up signals highlight persistent anxiety, sleep disruption, headache, and fatigue for select molecules.
+Clinicians can leverage these findings to tailor molecule selection, dosing, and monitoring to the needs of elderly patients, individuals with cardiovascular comorbidities, and those prone to anxiety or fatigue, pairing acute vigilance with targeted follow-up.
+By integrating rigorous quantitative synthesis with pragmatic clinical guardrails, we move closer to a precision-matched deployment of psychedelics that maximizes therapeutic benefit while safeguarding patient well-being across both session and recovery phases.
