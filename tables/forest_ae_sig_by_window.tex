@@ -1,20 +1,38 @@
 \begin{table}[htbp]
   \centering
-  \caption{Significant pooled odds ratios (OR) for adverse events (AEs) by molecule and time window.}
-  \label{tab:forest-ae-by-window}
-  \begin{tabular}{lllcl}
+  \caption{Significant pooled adverse event (AE) signals by molecule, window, and persistence profile. Odds ratios (ORs) reflect drug vs. placebo contrasts.}
+  \label{tab:ae-transition}
+  \resizebox{\textwidth}{!}{%%
+  \begin{tabular}{llllcll}
     \toprule
-    Molecule & AE & Session OR [95\% CI] & Follow-up OR [95\% CI] & Status \\
+    Molecule & AE & Window & $k$ & OR [95\% CI] & $p$ & Temporal profile \\
     \midrule
-    LSD & Nausea & 2.24 [0.97, 5.15]* & -- & Transient \\
-    LSD & Headache & 0.61 [0.26, 1.41]* & -- & Transient \\
-    LSD & Illusion & -- & -- & Transient \\
-    MDMA & Nausea & 3.01 [1.46, 6.23]* & -- & Transient \\
-    MDMA & Dizziness & 1.81 [0.90, 3.65]* & -- & Transient \\
-    MDMA & Headache & 1.09 [0.64, 1.86]* & -- & Transient \\
-    MDMA & Fatigue & 1.07 [0.60, 1.89]* & -- & Transient \\
-    PSILOCYBIN & Hypertension & 5.40 [0.52, 56.20]* & -- & Transient \\
-    PSILOCYBIN & Fatigue & 0.81 [0.32, 2.06]* & -- & Transient \\
+    LSD & Attention disturbance & Follow-up & 6 & 7.95 [2.13, 29.65] ** & 0.002 & Emergent (follow-up-only) \\
+    LSD & Fatigue & Follow-up & 2 & 14.21 [3.13, 64.43] *** & <0.001 & Emergent (follow-up-only) \\
+    LSD & Hallucination (visual) & Session & 4 & 2.77 [1.36, 5.65] ** & 0.005 & Transient (session-only) \\
+    LSD & Headache & Follow-up & 6 & 10.70 [3.65, 31.38] *** & <0.001 & Emergent (follow-up-only) \\
+    LSD & Illusion & Session & 4 & 13.50 [6.13, 29.73] *** & <0.001 & Transient (session-only) \\
+    LSD & Nausea & Session & 5 & 4.19 [1.48, 11.83] ** & 0.007 & Transient (session-only) \\
+    LSD & Sleep disorder & Session & 2 & 0.33 [0.13, 0.81] * & 0.016 & Transient (session-only) \\
+    MDMA & Anxiety & Session & 13 & 4.27 [2.29, 7.97] *** & <0.001 & Persistent (session \& follow-up) \\
+    MDMA & Anxiety & Follow-up & 4 & 4.93 [1.75, 13.95] ** & 0.003 & Persistent (session \& follow-up) \\
+    MDMA & Dizziness & Session & 7 & 5.31 [2.55, 11.06] *** & <0.001 & Transient (session-only) \\
+    MDMA & Fatigue & Session & 11 & 2.76 [1.46, 5.23] ** & 0.002 & Persistent (session \& follow-up) \\
+    MDMA & Fatigue & Follow-up & 4 & 11.85 [3.98, 35.28] *** & <0.001 & Persistent (session \& follow-up) \\
+    MDMA & Headache & Session & 11 & 5.03 [1.83, 13.80] ** & 0.002 & Transient (session-only) \\
+    MDMA & Jaw tension & Session & 10 & 3.50 [1.70, 7.18] *** & <0.001 & Transient (session-only) \\
+    MDMA & Lack of appetite & Session & 8 & 2.97 [1.04, 8.52] * & 0.043 & Transient (session-only) \\
+    MDMA & Nausea & Session & 9 & 4.02 [1.74, 9.28] ** & 0.001 & Transient (session-only) \\
+    MDMA & Sleep disorder & Session & 12 & 3.61 [1.83, 7.11] *** & <0.001 & Persistent (session \& follow-up) \\
+    MDMA & Sleep disorder & Follow-up & 8 & 3.83 [1.83, 8.04] *** & <0.001 & Persistent (session \& follow-up) \\
+    PSILOCYBIN & Depressed mood & Session & 2 & 9.56 [1.19, 76.72] * & 0.034 & Transient (session-only) \\
+    PSILOCYBIN & Euphoric mood & Session & 2 & 10.86 [1.37, 85.92] * & 0.024 & Transient (session-only) \\
+    PSILOCYBIN & Headache & Session & 9 & 10.46 [2.98, 36.67] *** & <0.001 & Transient (session-only) \\
+    PSILOCYBIN & Illusion & Session & 2 & 2.29 [1.03, 5.10] * & 0.043 & Transient (session-only) \\
+    PSILOCYBIN & Mood altered & Session & 2 & 12.25 [1.55, 96.83] * & 0.018 & Transient (session-only) \\
+    PSILOCYBIN & Paresthesia & Session & 2 & 8.55 [1.05, 69.31] * & 0.044 & Transient (session-only) \\
+    PSILOCYBIN & Restlessness & Session & 2 & 0.05 [0.00, 0.89] * & 0.041 & Transient (session-only) \\
+    PSILOCYBIN & Suicidal ideation & Session & 6 & 4.30 [1.35, 13.66] * & 0.014 & Transient (session-only) \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}}
 \end{table}
