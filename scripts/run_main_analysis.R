@@ -1,3 +1,6 @@
+# =========================
+# FILE: run_main_analysis.R
+# =========================
 #!/usr/bin/env Rscript
 
 suppressPackageStartupMessages({
@@ -6,259 +9,241 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(purrr)
   library(stringr)
+  library(readr)
 })
 
+# =============================================================================
+# SOURCES
+# =============================================================================
 source(here::here("R", "compat_map_groups.R"))
-source(here::here("R", "data_ingest.R"))
-source(here::here("R", "dose_response_models.R"))
+source(here::here("R", "data_ingest.R"))            # load_data(), build_pairwise_2x2()
+source(here::here("R", "dose_response_models.R"))   # build_escalc(), run_dr_*
 source(here::here("R", "forest_plots.R"))
 source(here::here("R", "dose_response_plots.R"))
-source(here::here("R", "significance_tables.R"))
 source(here::here("R", "master_plots.R"))
-source(here::here("R", "publication_tables.R"))
-source(here::here("R", "session_followup_tables.R"))
 source(here::here("R", "session_followup_dr_plots.R"))
 source(here::here("R", "session_followup_forest_plots.R"))
+source(here::here("R", "bubble_weight_plots.R"))
+source(here::here("R", "psilocybin_controls.R"))
+source(here::here("R", "publication_figures.R"))
 
-# Default reference arm preferences -------------------------------------------------
+# =============================================================================
+# UTILITIES
+# =============================================================================
+safe_dir <- function(path){
+  dir.create(path, recursive = TRUE, showWarnings = FALSE)
+  invisible(path)
+}
+
+norm_window_label <- function(x) {
+  x <- tolower(trimws(as.character(x)))
+  dplyr::case_when(
+    x %in% c("session","acute","in-session","in session") ~ "session",
+    x %in% c("followup","follow-up","follow up","follow_up") ~ "follow_up",
+    TRUE ~ x
+  )
+}
+
+extract_study_year <- function(author_year){
+  as.integer(stringr::str_extract(as.character(author_year), "(19|20)\\d{2}"))
+}
+
+build_es_for_window <- function(raw, window_value, ref_policies) {
+  raw_w <- dplyr::filter(raw, time_window == window_value)
+  if (!nrow(raw_w)) return(tibble())
+  
+  contrasts <- build_pairwise_2x2(raw_w, ref_policies = ref_policies)
+  if (is.null(contrasts) || !nrow(contrasts)) return(tibble())
+  
+  es <- build_escalc(contrasts)
+  
+  if ("study_id" %in% names(es) && all(c("study_id","study_year") %in% names(raw_w))) {
+    es <- es %>% left_join(raw_w %>% distinct(study_id, study_year), by = "study_id")
+  }
+  
+  es
+}
+
+# =============================================================================
+# DEFAULT REFERENCE POLICIES
+# =============================================================================
 default_ref_policies <- list(
-  MDMA       = c("inactive_placebo", "active_non_psy_placebo", "active_placebo", "placebo_actif", "placebo_inactif", "placebo_actif_non_psychedelic" ),
-  LSD        = c("inactive_placebo", "active_non_psy_placebo", "active_placebo", "placebo_actif", "placebo_inactif", "placebo_actif_non_psychedelic" ),
-  PSILOCYBIN = c("inactive_placebo", "active_non_psy_placebo", "active_placebo", "placebo_actif", "placebo_inactif", "placebo_actif_non_psychedelic" ),
-  AYAHUASCA  = c("inactive_placebo", "active_non_psy_placebo", "active_placebo", "placebo_actif", "placebo_inactif", "placebo_actif_non_psychedelic" ),
-  .default   = c("inactive_placebo", "active_non_psy_placebo", "active_placebo", "placebo_actif", "placebo_inactif", "placebo_actif_non_psychedelic" )
+  MDMA       = c("inactive_placebo","active_non_psy_placebo","active_placebo"),
+  LSD        = c("inactive_placebo","active_non_psy_placebo","active_placebo"),
+  PSILOCYBIN = c("inactive_placebo","active_non_psy_placebo","active_placebo"),
+  AYAHUASCA  = c("inactive_placebo","active_non_psy_placebo","active_placebo"),
+  .default   = c("inactive_placebo","active_non_psy_placebo","active_placebo")
 )
 
+# =============================================================================
+# MAIN
+# =============================================================================
 run_main_analysis <- function(
     data_xlsx = here::here("data", "Adverse-events-dose-v5.xlsx"),
-    sheet = "Feuil1",
-    out_dir = here::here("results", "main"),
-    min_k = 2,
-    fit_spline = TRUE,
-    make_paper_tables = TRUE,
-    paper_dir = here::here("results", "paper_tables"),
-    compare_dir = file.path(out_dir, "compare")) {
-  if (!file.exists(data_xlsx)) {
-    stop("Data file not found: ", data_xlsx)
-  }
+    sheet     = "Feuil1",
+    out_dir   = here::here("results", "main"),
+    min_k     = 2,
+    df_spline = 3
+) {
+  if (!file.exists(data_xlsx)) stop("Data file not found: ", data_xlsx)
+  safe_dir(out_dir)
   
-  dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+  message("1) Load & harmonize data …")
+  raw <- load_data(data_xlsx, sheet = sheet) %>%
+    mutate(time_window = norm_window_label(time_window))
   
-  message("1) Load & harmonize …")
-  raw <- load_data(data_xlsx, sheet = sheet)
-  if (!"time_window" %in% names(raw)) {
-    stop("Loaded data does not contain a 'time_window' column.")
-  }
-  raw <- raw %>% mutate(time_window = norm_window_label(time_window))
-  
-  available_windows <- unique(raw$time_window)
-  if (!length(available_windows)) {
-    stop("No time windows found in the dataset.")
-  }
-  
-  window_order <- c("session", "follow_up")
-  ordered_windows <- unique(c(intersect(window_order, available_windows),
-                              setdiff(available_windows, window_order)))
-  
-  run_window <- function(window_value) {
-    out_dir_window <- file.path(out_dir, window_value)
-    paper_dir_window <- file.path(paper_dir, window_value)
-    dir.create(out_dir_window, recursive = TRUE, showWarnings = FALSE)
-    
-    message(sprintf("→ Window '%s': build contrasts …", window_value))
-    es <- build_es_for_window(raw, window_value, ref_policies = default_ref_policies)
-    if (is.null(es) || !nrow(es)) {
-      warning("No effect sizes constructed for window '", window_value, "'.")
-      return(NULL)
-    }
-    
-    message(sprintf("→ Window '%s': dose–response models …", window_value))
-    dr_mol <- run_dr_by_molecule(es, min_k = min_k, fit_spline = fit_spline)
-    dr_ae  <- run_dr_by_ae(es, min_k = min_k, fit_spline = fit_spline)
-    
-    tables_dir <- file.path(out_dir_window, "tables")
-    dir.create(tables_dir, recursive = TRUE, showWarnings = FALSE)
-    sig_mol <- save_significance_table(dr_mol$models, file.path(tables_dir, "significance_by_molecule_models.csv"))
-    sig_ae  <- save_significance_table(dr_ae$models,  file.path(tables_dir, "significance_by_ae_models.csv"))
-    agg_mol <- save_agg_significance_by_molecule(dr_mol$models, file.path(tables_dir, "significance_agg_by_molecule.csv"))
-    agg_ae  <- save_agg_significance_by_ae_molecule(dr_ae$models,  file.path(tables_dir, "significance_agg_by_ae_molecule.csv"))
-    
-    message(sprintf("→ Window '%s': forest plots …", window_value))
-    make_forest_plots(es, file.path(out_dir_window, "forest_plots"))
-    make_forest_plots_per_molecule_pdf(es, file.path(out_dir_window, "forest_plots_by_molecule"))
-    make_forest_summary_per_molecule(es, file.path(out_dir_window, "forest_plots_summary"))
-    make_forest_tables(es, file.path(tables_dir, "forest"), min_k = min_k)
-    
-    message(sprintf("→ Window '%s': dose–response plots …", window_value))
-    plot_dr_by_molecule_split(dr_mol$preds, dr_mol$models, file.path(out_dir_window, "dose_response/by_molecule_split"))
-    plot_dr_per_molecule_across_ae_facets(dr_ae$preds, dr_ae$models, file.path(out_dir_window, "dose_response/by_molecule_facets"))
-    plot_dr_per_ae_normalized_dose(dr_ae$preds, file.path(out_dir_window, "dose_response/by_ae_normalized"))
-    
-    message(sprintf("→ Window '%s': master plots …", window_value))
-    master_dir <- file.path(out_dir_window, "master")
-    dir.create(master_dir, recursive = TRUE, showWarnings = FALSE)
-    plot_master_dr_by_molecule(dr_mol$preds, file.path(master_dir, "master_dr_by_molecule.pdf"))
-    plot_master_forest_by_molecule(es, file.path(master_dir, "master_forest_by_molecule.pdf"), min_k = 3)
-    plot_master_dr_by_ae(
-      preds               = dr_ae$preds,
-      models              = dr_ae$models,
-      outfile             = file.path(master_dir, "master_dr_by_ae.pdf"),
-      max_ae_per_molecule = 20,
-      significant_only    = TRUE
-    )
-    
-    if (isTRUE(make_paper_tables)) {
-      message(sprintf("→ Window '%s': publication tables …", window_value))
-      dir.create(paper_dir_window, recursive = TRUE, showWarnings = FALSE)
-      make_all_paper_tables(
-        path_mol_agg    = file.path(tables_dir, "significance_agg_by_molecule.csv"),
-        path_ae_mol_agg = file.path(tables_dir, "significance_agg_by_ae_molecule.csv"),
-        path_models_ae  = file.path(tables_dir, "significance_by_ae_models.csv"),
-        output_dir      = paper_dir_window
-      )
-    }
-    
-    list(
-      es = es,
-      dr_molecule = dr_mol,
-      dr_ae = dr_ae,
-      tables = list(
-        significance_by_molecule = sig_mol,
-        significance_by_ae = sig_ae,
-        agg_by_molecule = agg_mol,
-        agg_by_ae_molecule = agg_ae
-      ),
-      out_dir = out_dir_window,
-      paper_dir = paper_dir_window
-    )
-  }
-  
-  window_results <- purrr::map(ordered_windows, run_window)
-  names(window_results) <- ordered_windows
-  window_results <- purrr::compact(window_results)
-  
-  comparison_outputs <- NULL
-  
-  if (all(c("session", "follow_up") %in% names(window_results))) {
-    message("→ Comparative outputs (session vs follow-up) …")
-    dir.create(compare_dir, recursive = TRUE, showWarnings = FALSE)
-    compare_tables_dir <- file.path(compare_dir, "tables")
-    dir.create(compare_tables_dir, recursive = TRUE, showWarnings = FALSE)
-    
-    es_all <- dplyr::bind_rows(
-      window_results$session$es %>% mutate(time_window = "session"),
-      window_results$follow_up$es %>% mutate(time_window = "follow_up")
-    )
-    
-    forest_compare_all_molecules(
-      es_all,
-      outdir = file.path(compare_dir, "forest_by_ae_side_by_side")
-    )
-    forest_compare_all_molecules_combined(
-      es_all,
-      outfile = file.path(compare_dir, "forest_combined_all_molecules.pdf")
-    )
-    
-    dr_compare_all_molecules(
-      preds_session  = window_results$session$dr_molecule$preds,
-      preds_followup = window_results$follow_up$dr_molecule$preds,
-      outfile        = file.path(compare_dir, "dose_response", "dr_session_vs_followup.pdf")
-    )
-    
-    make_dr_window_tables(
-      es = es_all,
-      out_dir = compare_tables_dir,
-      min_k_per_window = min_k,
-      min_k_total = max(4, 2 * min_k)
-    )
-    make_forest_tables(
-      es = es_all,
-      out_dir = file.path(compare_dir, "tables", "forest"),
-      min_k = min_k
-    )
-    
-    session_agg_ae <- window_results$session$tables$agg_by_ae_molecule %>%
-      mutate(
-        p_session = p_overall,
-        stars_session = stars,
-        k_session = k_total,
-        QM_session = QM,
-        QMp_session = QMp
-      ) %>%
-      select(ae_term, molecule, p_session, stars_session, k_session, QM_session, QMp_session)
-    
-    follow_agg_ae <- window_results$follow_up$tables$agg_by_ae_molecule %>%
-      mutate(
-        p_follow = p_overall,
-        stars_follow = stars,
-        k_follow = k_total,
-        QM_follow = QM,
-        QMp_follow = QMp
-      ) %>%
-      select(ae_term, molecule, p_follow, stars_follow, k_follow, QM_follow, QMp_follow)
-    
-    ae_compare <- dplyr::full_join(session_agg_ae, follow_agg_ae, by = c("ae_term", "molecule")) %>%
-      mutate(
-        sig_session = !is.na(p_session) & p_session < 0.05,
-        sig_follow  = !is.na(p_follow)  & p_follow  < 0.05,
-        window_presence = dplyr::case_when(
-          sig_session & sig_follow ~ "session_and_follow_up",
-          sig_session & !sig_follow ~ "session_only",
-          !sig_session & sig_follow ~ "follow_up_only",
-          TRUE ~ "not_significant"
-        )
-      )
-    readr::write_csv(ae_compare, file.path(compare_tables_dir, "ae_significance_by_window.csv"))
-    
-    ae_counts <- ae_compare %>%
-      group_by(molecule) %>%
-      summarise(
-        n_session_only = sum(window_presence == "session_only", na.rm = TRUE),
-        n_follow_only  = sum(window_presence == "follow_up_only", na.rm = TRUE),
-        n_both         = sum(window_presence == "session_and_follow_up", na.rm = TRUE),
-        n_not_sig      = sum(window_presence == "not_significant", na.rm = TRUE),
-        .groups = "drop"
-      )
-    readr::write_csv(ae_counts, file.path(compare_tables_dir, "ae_significance_counts_by_molecule.csv"))
-    
-    session_agg_mol <- window_results$session$tables$agg_by_molecule %>%
-      transmute(
-        molecule,
-        p_session = p_overall,
-        stars_session = stars,
-        k_session = k_total
-      )
-    follow_agg_mol <- window_results$follow_up$tables$agg_by_molecule %>%
-      transmute(
-        molecule,
-        p_follow = p_overall,
-        stars_follow = stars,
-        k_follow = k_total
-      )
-    
-    topline <- full_join(session_agg_mol, follow_agg_mol, by = "molecule") %>%
-      left_join(ae_counts, by = "molecule") %>%
-      mutate(
-        p_session_fmt = ifelse(is.na(p_session), "", ifelse(p_session < 0.001, "<0.001", formatC(p_session, format = "f", digits = 3))),
-        p_follow_fmt  = ifelse(is.na(p_follow), "", ifelse(p_follow < 0.001, "<0.001", formatC(p_follow, format = "f", digits = 3)))
-      )
-    readr::write_csv(topline, file.path(compare_tables_dir, "topline_session_followup_summary.csv"))
-    
-    comparison_outputs <- list(
-      es_all = es_all,
-      ae_compare = ae_compare,
-      ae_counts = ae_counts,
-      topline = topline
-    )
+  if ("author_year" %in% names(raw)) {
+    raw <- raw %>% mutate(study_year = extract_study_year(author_year))
   } else {
-    message("⚠️ Skipping comparative outputs: both 'session' and 'follow_up' windows are required.")
+    raw <- raw %>% mutate(study_year = NA_integer_)
   }
   
-  invisible(list(
-    raw = raw,
-    windows = window_results,
-    comparison = comparison_outputs
-  ))
+  if (exists("run_psilocybin_controls", mode = "function")) {
+    message("→ Controls: psilocybin (session) …")
+    try(run_psilocybin_controls(
+      data_xlsx   = data_xlsx,
+      sheet       = sheet,
+      out_dir     = here::here("results", "controls_psilocybin"),
+      window      = "session",
+      era_cutoff  = 2018
+    ), silent = TRUE)
+  }
+  
+  windows <- intersect(c("session","follow_up"), unique(raw$time_window))
+  if (!length(windows)) stop("No valid time windows in data.")
+  
+  models_to_run <- list(
+    linear = list(model = "linear", df_spline = NA_integer_),
+    spline = list(model = "spline", df_spline = df_spline)
+  )
+  
+  run_window <- function(w){
+    
+    message("→ Window '", w, "': build effect sizes")
+    es <- build_es_for_window(raw, w, default_ref_policies)
+    if (!nrow(es)) return(NULL)
+    
+    out_w <- file.path(out_dir, w)
+    safe_dir(out_w)
+    
+    # Bubble weights (optional)
+    try({
+      bubble_dir <- file.path(out_w, "paper_figures")
+      safe_dir(bubble_dir)
+      plot_bubble_weights_by_molecule(
+        es       = es,
+        outfile  = file.path(bubble_dir, paste0("FigX_Bubble_weights_", w, ".pdf")),
+        top_n_ae = 16,
+        min_k_ae = 3
+      )
+    }, silent = TRUE)
+    
+    # Forest plots (classic) (optional)
+    try({
+      make_forest_plots(es, file.path(out_w, "forest_plots"))
+      make_forest_plots_per_molecule_pdf(es, file.path(out_w, "forest_plots_by_molecule"))
+      make_forest_summary_per_molecule(es, file.path(out_w, "forest_plots_summary"))
+    }, silent = TRUE)
+    
+    dr <- purrr::imap(models_to_run, function(spec, tag){
+      
+      message("   → DR ", tag, " …")
+      
+      out_tag <- file.path(out_w, tag)
+      safe_dir(out_tag)
+      
+     dr_mol_obs <- run_dr_by_molecule(es, min_k=min_k, grid="observed",
+                                 model=spec$model, df_spline=spec$df_spline)
+
+dr_mol_plot <- run_dr_by_molecule(es, min_k=min_k, grid="continuous", n_grid=200,
+                                  model=spec$model, df_spline=spec$df_spline)
+
+# AE always linear
+dr_ae_obs  <- run_dr_by_ae(es, min_k=min_k, grid="observed",
+                           model="linear", df_spline=NA_integer_)
+dr_ae_plot <- run_dr_by_ae(es, min_k=min_k, grid="continuous", n_grid=120,
+                           model="linear", df_spline=NA_integer_)
+      
+      # --- tables
+      tab_dir <- file.path(out_tag, "tables")
+      safe_dir(tab_dir)
+      
+      write_csv(dr_mol_obs$models, file.path(tab_dir, paste0("dr_models_by_molecule_", w, "_", tag, ".csv")))
+      write_csv(dr_ae_obs$models,  file.path(tab_dir, paste0("dr_models_by_ae_", w, "_", tag, ".csv")))
+      
+      dr_ae_sig <- dr_ae_obs$models %>%
+        mutate(
+          p_adj_bh_global = p.adjust(pval, method = "BH")
+        ) %>%
+        group_by(molecule) %>%
+        mutate(
+          p_adj_bh_by_mol = p.adjust(pval, method = "BH")
+        ) %>%
+        ungroup() %>%
+        mutate(
+          sig_p05          = !is.na(pval) & pval < 0.05,
+          sig_fdr_global05 = !is.na(p_adj_bh_global) & p_adj_bh_global < 0.05,
+          sig_fdr_mol05    = !is.na(p_adj_bh_by_mol) & p_adj_bh_by_mol < 0.05
+        ) %>%
+        arrange(pval)
+      
+      write_csv(dr_ae_sig, file.path(tab_dir, paste0("dr_models_by_ae_", w, "_", tag, "_with_sig_flags.csv")))
+      write_csv(filter(dr_ae_sig, sig_p05),
+                file.path(tab_dir, paste0("dr_models_by_ae_", w, "_", tag, "_significant_p05.csv")))
+      write_csv(filter(dr_ae_sig, sig_fdr_global05),
+                file.path(tab_dir, paste0("dr_models_by_ae_", w, "_", tag, "_significant_fdr05_global.csv")))
+      write_csv(filter(dr_ae_sig, sig_fdr_mol05),
+                file.path(tab_dir, paste0("dr_models_by_ae_", w, "_", tag, "_significant_fdr05_by_molecule.csv")))
+      
+      # --- standard DR plots (optional)
+      try({
+        dr_dir <- file.path(out_tag, "dose_response")
+        safe_dir(dr_dir)
+        plot_dr_by_molecule_split(dr_mol_plot$preds, outdir = file.path(dr_dir, "by_molecule"))
+        plot_dr_per_molecule_across_ae_facets(dr_ae_plot$preds, outdir = file.path(dr_dir, "by_ae_facets"))
+        plot_dr_per_ae_normalized_dose(dr_ae_plot$preds, outdir = file.path(dr_dir, "by_ae_normalized"))
+      }, silent = TRUE)
+      
+      # --- master plots (optional)
+      try({
+        master_dir <- file.path(out_tag, "master")
+        safe_dir(master_dir)
+        plot_master_dr_by_molecule(dr_mol_plot$preds, outfile = file.path(master_dir, paste0("master_dr_by_molecule_", tag, ".pdf")))
+        plot_master_dr_by_ae(preds = dr_ae_plot$preds, outfile = file.path(master_dir, paste0("master_dr_by_ae_", tag, ".pdf")), significant_only = FALSE)
+      }, silent = TRUE)
+      
+      # --- paper figs (session only, per model)
+      if (w == "session") {
+        make_paper_figures_for_window(
+          window_value = "session",
+          es = es,
+          dr_mol_plot = dr_mol_plot,
+          dr_ae_plot  = dr_ae_plot,
+          out_dir = out_tag,
+          model = spec$model,
+          df_spline = df_spline,
+          only_session = TRUE
+        )
+      }
+      
+      list(mol_obs = dr_mol_obs, ae_obs = dr_ae_obs, mol_plot = dr_mol_plot, ae_plot = dr_ae_plot)
+    })
+    
+    list(es = es, dr = dr)
+  }
+  
+  results <- purrr::map(windows, run_window)
+  names(results) <- windows
+  results <- purrr::compact(results)
+  
+  if (all(c("session","follow_up") %in% names(results))) {
+    message("→ Paper comparison figures (session vs follow-up): linear + spline")
+    make_paper_figures_comparison(results, out_dir = out_dir, df_spline = df_spline)
+  } else {
+    message("⚠️ Follow-up window missing: comparison not produced.")
+  }
+  
+  invisible(results)
 }
 
 if (identical(environment(), globalenv())) {

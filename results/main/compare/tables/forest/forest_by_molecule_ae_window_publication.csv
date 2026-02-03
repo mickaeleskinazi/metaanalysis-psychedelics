@@ -1,61 +1,61 @@
 Molecule,Adverse event,Window,k,OR [95% CI],log(OR) [95% CI],p,Stars,τ²,I²,Q,p(Q),Status
-AYAHUASCA,anxiety,session,2,"0.69 [0.03, 14.02]","-0.372 [-3.385, 2.640]",0.809,,3.6514600359200116,76.43400347940756,4.243402137169036,0.039,ok
+AYAHUASCA,anxiety,session,2,"0.69 [0.03, 14.02]","-0.372 [-3.385, 2.640]",0.809,,3.6514600359200085,76.43400347940755,4.243402137169037,0.039,ok
 AYAHUASCA,confusion,session,1,,,,,NA,NA,NA,,insufficient_k
 AYAHUASCA,diarrhea,session,1,,,,,NA,NA,NA,,insufficient_k
 AYAHUASCA,dissociation,session,1,,,,,NA,NA,NA,,insufficient_k
 AYAHUASCA,distress,session,1,,,,,NA,NA,NA,,insufficient_k
 AYAHUASCA,drowsiness,session,1,,,,,NA,NA,NA,,insufficient_k
-AYAHUASCA,headache,session,2,"0.87 [0.13, 5.96]","-0.135 [-2.056, 1.785]",0.890,,1.0659190342732394,54.56079410595212,2.200742685362357,0.138,ok
+AYAHUASCA,headache,session,2,"0.87 [0.13, 5.96]","-0.135 [-2.056, 1.785]",0.890,,1.0659190342732394,54.560794105952105,2.200742685362357,0.138,ok
 AYAHUASCA,hypertension,session,1,,,,,NA,NA,NA,,insufficient_k
-AYAHUASCA,nausea,session,2,"2.49 [0.30, 20.44]","0.913 [-1.192, 3.017]",0.395,,1.4930216593233778,64.5358554473093,2.819749390865059,0.093,ok
+AYAHUASCA,nausea,session,2,"2.49 [0.30, 20.44]","0.913 [-1.192, 3.017]",0.395,,1.4930216593233765,64.53585544730929,2.819749390865059,0.093,ok
 AYAHUASCA,restlessness,session,1,,,,,NA,NA,NA,,insufficient_k
 AYAHUASCA,tachycardia,session,1,,,,,NA,NA,NA,,insufficient_k
 AYAHUASCA,vomiting,session,2,"1.48 [0.21, 10.38]","0.395 [-1.549, 2.339]",0.690,,1.1686011017958424,58.87488485387112,2.4316041339865544,0.119,ok
-LSD,Balance_disorder,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
+LSD,Balance_disorder,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
 LSD,Fatigue,follow_up,4,"2.89 [0.55, 15.22]","1.061 [-0.601, 2.723]",0.211,,0,0,0.413400444696687,0.937,ok
-LSD,Mydriasis,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
-LSD,Pseudo_hallucination,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
+LSD,Mydriasis,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
+LSD,Pseudo_hallucination,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
 LSD,Tremor,follow_up,4,"1.42 [0.22, 9.16]","0.354 [-1.508, 2.215]",0.710,,0,0,0.30591486683215174,0.959,ok
-LSD,Vomiting,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
+LSD,Vomiting,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
 LSD,accident with fracture,follow_up,1,,,,,NA,NA,NA,,insufficient_k
-LSD,altered state of consciousness,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
+LSD,altered state of consciousness,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
 LSD,anxiety,follow_up,4,"4.22 [0.84, 21.27]","1.441 [-0.175, 3.057]",0.081,,0,0,0.8522489589035378,0.837,ok
-LSD,attention disturbance,follow_up,6,"7.95 [2.13, 29.65] **","2.073 [0.757, 3.389] **",0.002,**,0.5368290331421096,19.812770081533117,5.747280566351543,0.332,ok
-LSD,depressed mood,follow_up,4,"4.21 [0.84, 21.19]","1.437 [-0.179, 3.054]",0.081,,0,0,0.8210611081417892,0.844,ok
+LSD,attention disturbance,follow_up,6,"7.95 [2.13, 29.65] **","2.073 [0.757, 3.389] **",0.002,**,0.5368290331421102,19.812770081533134,5.747280566351545,0.332,ok
+LSD,depressed mood,follow_up,4,"4.21 [0.84, 21.19]","1.437 [-0.179, 3.054]",0.081,,0,0,0.8210611081417891,0.844,ok
 LSD,depression,follow_up,1,,,,,NA,NA,NA,,insufficient_k
 LSD,dizziness,follow_up,5,"1.59 [0.35, 7.16]","0.464 [-1.040, 1.969]",0.545,,0,0,0.5511527017444418,0.968,ok
 LSD,emotional distress,follow_up,4,"1.42 [0.22, 9.16]","0.354 [-1.508, 2.215]",0.710,,0,0,0.3059148668321517,0.959,ok
-LSD,euphoric mood,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
+LSD,euphoric mood,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
 LSD,fatigue,follow_up,2,"14.21 [3.13, 64.43] ***","2.654 [1.142, 4.166] ***",<0.001,***,0,0,0,1.000,ok
-LSD,feeling abnormal,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
-LSD,hallucination visual,follow_up,4,"1.43 [0.22, 9.19]","0.356 [-1.505, 2.218]",0.707,,0,0,0.3246810399190461,0.955,ok
+LSD,feeling abnormal,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
+LSD,hallucination visual,follow_up,4,"1.43 [0.22, 9.19]","0.356 [-1.505, 2.218]",0.707,,0,0,0.32468103991904607,0.955,ok
 LSD,headache,follow_up,6,"10.70 [3.65, 31.38] ***","2.371 [1.295, 3.446] ***",<0.001,***,0,0,1.7451413631234165,0.883,ok
-LSD,hypertension,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
+LSD,hypertension,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
 LSD,illusion,follow_up,4,"2.46 [0.46, 13.28]","0.900 [-0.786, 2.587]",0.295,,0,0,0.25880234216902903,0.968,ok
 LSD,impaired gait,follow_up,1,,,,,NA,NA,NA,,insufficient_k
 LSD,lack of appetite,follow_up,4,"2.31 [0.41, 13.17]","0.839 [-0.900, 2.578]",0.345,,0,0,0.6414389839617336,0.887,ok
-LSD,nausea,follow_up,5,"2.20 [0.53, 9.12]","0.790 [-0.630, 2.210]",0.275,,0,0,0.650431091963658,0.957,ok
+LSD,nausea,follow_up,5,"2.20 [0.53, 9.12]","0.790 [-0.630, 2.210]",0.275,,0,0,0.6504310919636579,0.957,ok
 LSD,panic_attack,follow_up,1,,,,,NA,NA,NA,,insufficient_k
-LSD,paresthesia,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
-LSD,perspiration,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360238e-4,1.000,ok
-LSD,temperature perception disturbances,follow_up,4,"1.42 [0.22, 9.16]","0.354 [-1.508, 2.215]",0.710,,0,0,0.30591486683215163,0.959,ok
+LSD,paresthesia,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
+LSD,perspiration,follow_up,4,"0.98 [0.14, 7.05]","-0.019 [-1.991, 1.953]",0.985,,0,0,1.1573917738360239e-4,1.000,ok
+LSD,temperature perception disturbances,follow_up,4,"1.42 [0.22, 9.16]","0.354 [-1.508, 2.215]",0.710,,0,0,0.3059148668321517,0.959,ok
 LSD,thinking abnormal,follow_up,4,"1.42 [0.22, 9.16]","0.354 [-1.508, 2.215]",0.710,,0,0,0.30591486683215174,0.959,ok
 LSD,ADHD_exacerbation,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,Balance_disorder,session,4,"0.81 [0.32, 2.03]","-0.216 [-1.139, 0.708]",0.647,,0,0,1.912501348429598,0.591,ok
+LSD,Balance_disorder,session,4,"0.81 [0.32, 2.03]","-0.216 [-1.139, 0.708]",0.647,,0,0,1.9125013484295983,0.591,ok
 LSD,COVID19,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,Fatigue,session,4,"1.15 [0.50, 2.61]","0.138 [-0.684, 0.959]",0.743,,0,0,1.1156402574032296,0.773,ok
-LSD,Mydriasis,session,4,"1.77 [0.80, 3.93]","0.573 [-0.221, 1.367]",0.157,,5.156438817466387e-7,7.587548759705972e-5,3.052151671089371,0.384,ok
-LSD,Pseudo_hallucination,session,4,"0.90 [0.37, 2.21]","-0.103 [-1.001, 0.795]",0.822,,2.125353049578756e-6,2.4130308023841523e-4,1.8343098141204817,0.607,ok
-LSD,Tremor,session,4,"1.05 [0.36, 3.03]","0.047 [-1.012, 1.107]",0.930,,0.3004558739132996,25.482783722513577,4.224245520162409,0.238,ok
+LSD,Fatigue,session,4,"1.15 [0.50, 2.61]","0.138 [-0.684, 0.959]",0.743,,0,0,1.1156402574032294,0.773,ok
+LSD,Mydriasis,session,4,"1.77 [0.80, 3.93]","0.573 [-0.221, 1.367]",0.157,,5.156438817991279e-7,7.587548760478335e-5,3.0521516710893715,0.384,ok
+LSD,Pseudo_hallucination,session,4,"0.90 [0.37, 2.21]","-0.103 [-1.001, 0.795]",0.822,,2.12535304958678e-6,2.4130308023932623e-4,1.8343098141204817,0.607,ok
+LSD,Tremor,session,4,"1.05 [0.36, 3.03]","0.047 [-1.012, 1.107]",0.930,,0.3004558739132997,25.48278372251358,4.22424552016241,0.238,ok
 LSD,Vomiting,session,4,"0.80 [0.31, 2.04]","-0.226 [-1.162, 0.711]",0.637,,0,0,2.4991932668789634,0.475,ok
 LSD,affect liability,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,altered perception of music,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,altered state of consciousness,session,4,"0.54 [0.16, 1.90]","-0.609 [-1.858, 0.640]",0.339,,0.4186255099105972,25.213130686795132,3.4919376794144585,0.322,ok
+LSD,altered state of consciousness,session,4,"0.54 [0.16, 1.90]","-0.609 [-1.858, 0.640]",0.339,,0.4186255099105971,25.213130686795125,3.4919376794144585,0.322,ok
 LSD,anemia,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,anger,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,anxiety,session,7,"1.02 [0.51, 2.05]","0.021 [-0.678, 0.720]",0.953,,0,0,3.184713656278019,0.785,ok
 LSD,anxiety_worsening,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,attention disturbance,session,5,"0.47 [0.13, 1.72]","-0.760 [-2.060, 0.539]",0.252,,0.5643530041714958,25.416885142634445,4.232076046099822,0.376,ok
+LSD,attention disturbance,session,5,"0.47 [0.13, 1.72]","-0.760 [-2.060, 0.539]",0.252,,0.5643530041714961,25.416885142634452,4.232076046099821,0.376,ok
 LSD,bradyphrenia,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,chills,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,depersonalization,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -64,67 +64,72 @@ LSD,depression,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,depression_worsening,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,derealization,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,dizziness,session,6,"1.00 [0.57, 1.77]","0.002 [-0.566, 0.571]",0.994,,0,0,2.124869219546725,0.832,ok
-LSD,emotional distress,session,5,"0.70 [0.26, 1.85]","-0.360 [-1.334, 0.614]",0.469,,2.3693088583583975e-7,1.8087097857311435e-5,4.097601950136996,0.393,ok
-LSD,euphoric mood,session,4,"2.08 [0.97, 4.44]","0.733 [-0.026, 1.491]",0.058,,1.692702890142686e-8,2.7844540661539442e-6,2.853406261910735,0.415,ok
+LSD,emotional distress,session,5,"0.70 [0.26, 1.85]","-0.360 [-1.334, 0.614]",0.469,,2.3693088529063175e-7,1.8087097815690733e-5,4.097601950136996,0.393,ok
+LSD,euphoric mood,session,4,"2.08 [0.97, 4.44]","0.733 [-0.026, 1.491]",0.058,,1.6927028922216438e-8,2.7844540695737766e-6,2.8534062619107345,0.415,ok
 LSD,fatigue,session,2,"0.38 [0.12, 1.23]","-0.977 [-2.159, 0.205]",0.105,,0,0,3.848632516632701e-4,0.984,ok
-LSD,feeling abnormal,session,5,"0.49 [0.16, 1.51]","-0.704 [-1.818, 0.410]",0.216,,1.9112323391201314e-7,1.1219386744561124e-5,5.442656637658044,0.245,ok
+LSD,feeling abnormal,session,5,"0.49 [0.16, 1.51]","-0.704 [-1.818, 0.410]",0.216,,1.9112323346151973e-7,1.1219386718116093e-5,5.442656637658044,0.245,ok
 LSD,feeling of relaxation,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,feeling_intoxicated,session,2,"0.31 [0.06, 1.59]","-1.166 [-2.798, 0.467]",0.162,,0,0,2.4321641999489705e-4,0.988,ok
 LSD,femur fracture,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,hallucination,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,hallucination visual,session,4,"2.77 [1.36, 5.65] **","1.019 [0.306, 1.732] **",0.005,**,0,0,0.4399519971221445,0.932,ok
-LSD,headache,session,8,"1.40 [0.64, 3.06]","0.338 [-0.441, 1.118]",0.395,,0.6102240874687193,51.04772913815128,13.808996949142431,0.055,ok
+LSD,hallucination visual,session,4,"2.77 [1.36, 5.65] **","1.019 [0.306, 1.732] **",0.005,**,0,0,0.43995199712214444,0.932,ok
+LSD,headache,session,8,"1.40 [0.64, 3.06]","0.338 [-0.441, 1.118]",0.395,,0.6102240874687191,51.047729138151276,13.80899694914243,0.055,ok
 LSD,hypertension,session,4,"1.34 [0.61, 2.94]","0.292 [-0.494, 1.079]",0.467,,0,0,0.22157386003465956,0.974,ok
-LSD,illusion,session,4,"13.50 [6.13, 29.73] ***","2.603 [1.813, 3.392] ***",<0.001,***,0.17339214758907445,26.71735313409292,4.134328602410906,0.247,ok
+LSD,illusion,session,4,"13.50 [6.13, 29.73] ***","2.603 [1.813, 3.392] ***",<0.001,***,0.17339214758907456,26.71735313409294,4.134328602410906,0.247,ok
 LSD,illusions,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,impaired gait,session,3,"1.20 [0.57, 2.53]","0.184 [-0.560, 0.928]",0.628,,0,0,1.4980825069869061,0.473,ok
 LSD,lack of appetite,session,4,"0.36 [0.12, 1.11]","-1.026 [-2.159, 0.106]",0.076,,0,0,0.8384044349891788,0.840,ok
 LSD,menorrhagia,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,mydriasis,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,nausea,session,5,"4.19 [1.48, 11.83] **","1.432 [0.393, 2.470] **",0.007,**,0.8567603029261076,61.299475184922095,10.196593021608692,0.037,ok
+LSD,nausea,session,5,"4.19 [1.48, 11.83] **","1.432 [0.393, 2.470] **",0.007,**,0.8567603029261076,61.29947518492209,10.19659302160869,0.037,ok
 LSD,neoplasm progression,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,palmar-plantar erythrodysaesthesia syndrome,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,paresthesia,session,4,"1.09 [0.43, 2.73]","0.083 [-0.839, 1.005]",0.860,,0.12454859493645279,13.912345982969017,2.9519132202369427,0.399,ok
+LSD,paresthesia,session,4,"1.09 [0.43, 2.73]","0.083 [-0.839, 1.005]",0.860,,0.1245485949364525,13.912345982968988,2.9519132202369422,0.399,ok
 LSD,perseveration,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,perspiration,session,5,"1.69 [0.78, 3.68]","0.525 [-0.254, 1.304]",0.186,,0,0,3.195418632152751,0.526,ok
+LSD,perspiration,session,5,"1.69 [0.78, 3.68]","0.525 [-0.254, 1.304]",0.186,,0,0,3.1954186321527502,0.526,ok
 LSD,pneumonia,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,pruritus,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,serious ae,session,1,,,,,NA,NA,NA,,insufficient_k
 LSD,skin lesion,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,sleep disorder,session,2,"0.33 [0.13, 0.81] *","-1.105 [-2.003, -0.207] *",0.016,*,0,0,0.08267637237827062,0.774,ok
+LSD,sleep disorder,session,2,"0.33 [0.13, 0.81] *","-1.105 [-2.003, -0.207] *",0.016,*,0,0,0.08267637237827061,0.774,ok
 LSD,tachyphrenia,session,1,,,,,NA,NA,NA,,insufficient_k
-LSD,temperature perception disturbances,session,5,"0.66 [0.16, 2.80]","-0.413 [-1.858, 1.031]",0.575,,1.08606311022328,40.83464411829293,7.1893150007580235,0.126,ok
+LSD,temperature perception disturbances,session,5,"0.66 [0.16, 2.80]","-0.413 [-1.858, 1.031]",0.575,,1.0860631102232794,40.834644118292914,7.1893150007580235,0.126,ok
 LSD,thinking abnormal,session,5,"1.02 [0.44, 2.36]","0.018 [-0.822, 0.858]",0.966,,0,0,1.837145176530325,0.766,ok
 LSD,time perception altered,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,anxiety,follow_up,4,"4.93 [1.75, 13.95] **","1.596 [0.557, 2.635] **",0.003,**,0,0,2.311999562580352,0.510,ok
+MDMA,anxiety,follow_up,5,"3.86 [1.42, 10.48] **","1.350 [0.351, 2.349] **",0.008,**,0.03207559706297848,2.3743868747310106,4.477718424895839,0.345,ok
 MDMA,autonomic,follow_up,2,"0.75 [0.16, 3.45]","-0.283 [-1.805, 1.238]",0.715,,0,0,0.7719009161656354,0.380,ok
-MDMA,decreased concentration,follow_up,3,"1.83 [0.59, 5.70]","0.604 [-0.532, 1.741]",0.297,,0,0,0.04988989255754542,0.975,ok
-MDMA,depression,follow_up,3,"2.91 [0.94, 9.00]","1.067 [-0.063, 2.197]",0.064,,0,0,1.9242082095231656,0.382,ok
+MDMA,decreased concentration,follow_up,4,"1.98 [0.70, 5.61]","0.681 [-0.364, 1.725]",0.201,,0,0,0.16252051742208704,0.983,ok
+MDMA,depressed mood,follow_up,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,depression,follow_up,3,"2.91 [0.94, 9.00]","1.067 [-0.063, 2.197]",0.064,,0,0,1.9242082095231652,0.382,ok
 MDMA,dissociation,follow_up,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,dizziness,follow_up,2,"1.73 [0.43, 6.99]","0.550 [-0.845, 1.944]",0.440,,0,0,0.03675247121073725,0.848,ok
-MDMA,fatigue,follow_up,4,"11.85 [3.98, 35.28] ***","2.472 [1.381, 3.563] ***",<0.001,***,0,0,1.0108950031417305,0.799,ok
-MDMA,headache,follow_up,4,"2.18 [0.79, 6.01]","0.781 [-0.230, 1.793]",0.130,,0,0,0.3354893012827576,0.953,ok
+MDMA,dizziness,follow_up,3,"1.21 [0.33, 4.40]","0.191 [-1.101, 1.483]",0.772,,9.965080105924616e-7,6.270004036740162e-5,1.834605773030558,0.400,ok
+MDMA,drowsiness,follow_up,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,fatigue,follow_up,5,"10.48 [3.81, 28.78] ***","2.349 [1.339, 3.360] ***",<0.001,***,0,0,1.3528610233225424,0.852,ok
+MDMA,feeling cold,follow_up,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,headache,follow_up,5,"2.42 [0.94, 6.24]","0.885 [-0.062, 1.831]",0.067,,0,0,0.6570845490678863,0.957,ok
 MDMA,infectious,follow_up,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,irritability,follow_up,3,"2.08 [0.58, 7.48]","0.731 [-0.550, 2.012]",0.263,,0,0,0.594267091474497,0.743,ok
-MDMA,jaw tension,follow_up,2,"1.38 [0.34, 5.62]","0.320 [-1.086, 1.726]",0.655,,0,0,0.2591261746693648,0.611,ok
-MDMA,lack of appetite,follow_up,4,"1.58 [0.55, 4.50]","0.455 [-0.594, 1.505]",0.395,,0,0,2.2487858939531464,0.522,ok
+MDMA,irritability,follow_up,4,"1.65 [0.50, 5.38]","0.499 [-0.684, 1.682]",0.408,,0,0,1.452666888991792,0.693,ok
+MDMA,jaw tension,follow_up,3,"0.99 [0.27, 3.63]","-0.011 [-1.312, 1.290]",0.987,,1.872804434411676e-6,1.2053079666636878e-4,1.7425645371851004,0.418,ok
+MDMA,lack of appetite,follow_up,5,"1.60 [0.60, 4.26]","0.473 [-0.504, 1.450]",0.343,,0,0,2.2569260909301785,0.689,ok
 MDMA,muscle tension,follow_up,3,"1.98 [0.52, 7.44]","0.681 [-0.645, 2.007]",0.314,,0,0,0.8902765729948003,0.641,ok
 MDMA,nausea,follow_up,2,"1.08 [0.26, 4.55]","0.074 [-1.365, 1.514]",0.919,,0,0,0.5699807682622494,0.450,ok
-MDMA,ophthalmological,follow_up,2,"0.25 [0.04, 1.70]","-1.370 [-3.267, 0.528]",0.157,,0,0,0.6494399761265087,0.420,ok
+MDMA,ophthalmological,follow_up,2,"0.25 [0.04, 1.70]","-1.370 [-3.267, 0.528]",0.157,,0,0,0.6494399761265088,0.420,ok
 MDMA,pain,follow_up,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,paresthesia,follow_up,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,perspiration,follow_up,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,restlessness,follow_up,2,"0.65 [0.14, 3.02]","-0.435 [-1.974, 1.105]",0.580,,0,0,0.6099180566873896,0.435,ok
-MDMA,rumination,follow_up,2,"1.44 [0.35, 5.88]","0.364 [-1.043, 1.771]",0.612,,0,0,6.191404305651104e-4,0.980,ok
-MDMA,sleep disorder,follow_up,8,"3.83 [1.83, 8.04] ***","1.344 [0.603, 2.085] ***",<0.001,***,0,0,5.8481625879067805,0.558,ok
-MDMA,weakness,follow_up,2,"1.08 [0.26, 4.55]","0.074 [-1.365, 1.514]",0.919,,0,0,0.5699807682622494,0.450,ok
-MDMA,xerostomia,follow_up,2,"0.54 [0.11, 2.60]","-0.608 [-2.171, 0.956]",0.446,,0,0,0.4473336534607459,0.504,ok
+MDMA,rumination,follow_up,3,"1.03 [0.28, 3.77]","0.026 [-1.275, 1.328]",0.968,,0,0,1.5409067774609917,0.463,ok
+MDMA,sleep disorder,follow_up,10,"3.26 [1.63, 6.53] ***","1.181 [0.486, 1.877] ***",<0.001,***,0,0,7.883471501956634,0.546,ok
+MDMA,thirst,follow_up,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,weakness,follow_up,3,"0.91 [0.25, 3.37]","-0.090 [-1.395, 1.214]",0.892,,0,0,0.8517368802216896,0.653,ok
+MDMA,xerostomia,follow_up,2,"0.54 [0.11, 2.60]","-0.608 [-2.171, 0.956]",0.446,,0,0,0.44733365346074594,0.504,ok
 MDMA,abdominal discomfort,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,abdominal pain,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,abdominal pain upper,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,anxiety,session,13,"4.27 [2.29, 7.97] ***","1.451 [0.828, 2.075] ***",<0.001,***,0,0,9.10864977553071,0.694,ok
+MDMA,anxiety,session,14,"4.43 [2.41, 8.13] ***","1.487 [0.879, 2.096] ***",<0.001,***,0,0,9.373375644512233,0.744,ok
 MDMA,arthralgia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,attention disturbance,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,autonomic,session,5,"3.87 [0.94, 15.84]","1.353 [-0.057, 2.763]",0.060,,1.5097979232738854,58.44929203245396,9.612032394119064,0.047,ok
+MDMA,autonomic,session,5,"3.87 [0.94, 15.84]","1.353 [-0.057, 2.763]",0.060,,1.5097979232738845,58.44929203245395,9.612032394119066,0.047,ok
 MDMA,back pain,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,binge eating,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,bruxism,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -132,68 +137,70 @@ MDMA,chest discomfort,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,chills,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,covid-19,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,decreased appetite,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,decreased concentration,session,4,"1.09 [0.36, 3.28]","0.084 [-1.021, 1.188]",0.882,,0,0,2.2006460524150047,0.532,ok
-MDMA,depressed mood,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,depression,session,6,"1.28 [0.47, 3.48]","0.244 [-0.758, 1.246]",0.633,,0.18791937882991872,11.959925063903471,5.503788156501037,0.358,ok
+MDMA,decreased concentration,session,5,"1.36 [0.49, 3.77]","0.305 [-0.716, 1.327]",0.558,,0,0,3.2665904425082033,0.514,ok
+MDMA,depressed mood,session,2,"1.49 [0.40, 5.51]","0.397 [-0.913, 1.707]",0.553,,0,0,0.10133701665860712,0.750,ok
+MDMA,depression,session,6,"1.28 [0.47, 3.48]","0.244 [-0.758, 1.246]",0.633,,0.18791937882991896,11.959925063903485,5.503788156501037,0.358,ok
 MDMA,diarrhea,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,dissociation,session,3,"1.11 [0.33, 3.77]","0.104 [-1.119, 1.328]",0.867,,0,0,1.3664078878130999,0.505,ok
-MDMA,dizziness,session,7,"5.31 [2.55, 11.06] ***","1.669 [0.935, 2.403] ***",<0.001,***,2.0898047504536246e-7,2.038578411178174e-5,5.865144452949316,0.438,ok
+MDMA,dizziness,session,8,"4.64 [2.27, 9.47] ***","1.534 [0.820, 2.249] ***",<0.001,***,4.793986619369914e-7,4.3170203568677115e-5,8.285847734297242,0.308,ok
+MDMA,drowsiness,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,dry mouth,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,emotional disorder,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,fatigue,session,11,"2.76 [1.46, 5.23] **","1.016 [0.377, 1.655] **",0.002,**,0.04882350385801066,4.113373749759461,8.812923631886912,0.550,ok
+MDMA,fatigue,session,12,"2.80 [1.53, 5.13] ***","1.030 [0.424, 1.635] ***",<0.001,***,0,0,8.815661010106155,0.639,ok
 MDMA,feeling abnormal,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,feeling cold,session,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,feeling cold,session,2,"3.91 [1.18, 12.97] *","1.365 [0.167, 2.562] *",0.026,*,0,0,0.04851452202124777,0.826,ok
 MDMA,feeling hot,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,feeling jittery,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,flushing,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,genitourinary,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,headache,session,11,"5.03 [1.83, 13.80] **","1.615 [0.605, 2.624] **",0.002,**,1.6099170743657822,57.867407990303285,25.02959715544511,0.005,ok
+MDMA,headache,session,12,"4.88 [1.90, 12.55] **","1.585 [0.640, 2.529] **",0.001,**,1.4507523341082653,54.57276887617032,25.32532598782918,0.008,ok
 MDMA,heart rate increased,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,hyperhidrosis,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,hypoaesthesia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,impaired gait,session,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,impaired gait/balance,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,infectious,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,insomnia,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,irritability,session,5,"0.64 [0.24, 1.73]","-0.448 [-1.441, 0.546]",0.377,,0,0,2.4492484392454195,0.654,ok
-MDMA,jaw tension,session,10,"3.50 [1.70, 7.18] ***","1.252 [0.533, 1.972] ***",<0.001,***,0,0,7.6623077572119165,0.569,ok
-MDMA,lack of appetite,session,8,"2.97 [1.04, 8.52] *","1.089 [0.036, 2.142] *",0.043,*,1.069132266945932,46.72978871533349,13.205597071931834,0.067,ok
+MDMA,irritability,session,6,"0.62 [0.24, 1.58]","-0.485 [-1.431, 0.460]",0.315,,0,0,2.5076854784885647,0.775,ok
+MDMA,jaw tension,session,11,"3.14 [1.56, 6.32] **","1.144 [0.443, 1.844] **",0.001,**,2.510387231762868e-6,1.7674956415265273e-4,9.350574341924133,0.499,ok
+MDMA,lack of appetite,session,9,"2.85 [1.10, 7.42] *","1.049 [0.093, 2.005] *",0.031,*,0.8492872080430066,40.09156953376926,13.342521478616673,0.101,ok
 MDMA,muscle spasms,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,muscle tension,session,7,"2.42 [0.68, 8.55]","0.882 [-0.382, 2.146]",0.172,,1.588513339902132,55.636143568062536,13.395729600454452,0.037,ok
+MDMA,muscle tension,session,8,"2.35 [0.76, 7.24]","0.853 [-0.273, 1.980]",0.138,,1.2712096678883062,49.04660986594275,13.44611680459041,0.062,ok
 MDMA,muscle tightness,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,myalgia,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,mydriasis,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,nausea,session,9,"4.02 [1.74, 9.28] **","1.392 [0.556, 2.228] **",0.001,**,0.4093125033634965,25.69710530729469,10.057086477043072,0.261,ok
+MDMA,nausea,session,9,"4.02 [1.74, 9.28] **","1.392 [0.556, 2.228] **",0.001,**,0.409312503363496,25.69710530729467,10.057086477043072,0.261,ok
 MDMA,neck pain,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,nightmare,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,nystagmus,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,ophthalmological,session,4,"1.86 [0.35, 9.79]","0.619 [-1.043, 2.282]",0.465,,1.275928563667552,44.51204897129897,5.326295270384001,0.149,ok
-MDMA,pain,session,6,"1.31 [0.36, 4.69]","0.268 [-1.010, 1.546]",0.681,,0.6296583083322144,24.762247795988415,5.868241712503336,0.319,ok
+MDMA,ophthalmological,session,4,"1.86 [0.35, 9.79]","0.619 [-1.043, 2.282]",0.465,,1.2759285636675537,44.512048971299,5.326295270384001,0.149,ok
+MDMA,pain,session,6,"1.31 [0.36, 4.69]","0.268 [-1.010, 1.546]",0.681,,0.6296583083322145,24.76224779598842,5.868241712503337,0.319,ok
 MDMA,pain in jaw,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,palpitations,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,panic attack,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,paraesthesia,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,perspiration,session,6,"1.50 [0.46, 4.92]","0.405 [-0.784, 1.593]",0.504,,0.9463311868668333,43.11614046779802,8.755707236989554,0.119,ok
-MDMA,restlessness,session,8,"2.29 [0.97, 5.39]","0.827 [-0.031, 1.685]",0.059,,0.3503476138996513,23.186779901786203,8.617971457634853,0.281,ok
-MDMA,rumination,session,5,"1.43 [0.50, 4.04]","0.357 [-0.684, 1.397]",0.502,,4.91831347119799e-7,3.424111831087369e-5,4.087964149467312,0.394,ok
-MDMA,sleep disorder,session,12,"3.61 [1.83, 7.11] ***","1.284 [0.607, 1.962] ***",<0.001,***,0.0454619321161328,3.156352404048041,11.435512043759594,0.408,ok
+MDMA,perspiration,session,7,"1.33 [0.45, 3.94]","0.283 [-0.805, 1.370]",0.610,,0.7820652235688581,36.66841741449924,9.30474793048954,0.157,ok
+MDMA,restlessness,session,9,"2.24 [1.03, 4.90] *","0.807 [0.026, 1.588] *",0.043,*,0.21455224144451385,15.05524519414158,8.645744516248495,0.373,ok
+MDMA,rumination,session,6,"1.26 [0.47, 3.39]","0.234 [-0.752, 1.220]",0.642,,6.597132365993888e-7,4.255641693606259e-5,4.613606837698692,0.465,ok
+MDMA,sleep disorder,session,13,"3.26 [1.65, 6.43] ***","1.181 [0.501, 1.861] ***",<0.001,***,0.12011464329377057,7.67646645689516,13.194033653081902,0.355,ok
 MDMA,suicidal ideation,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,temperature perception disturbances,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,thirst,session,1,,,,,NA,NA,NA,,insufficient_k
+MDMA,thirst,session,2,"1.23 [0.32, 4.74]","0.204 [-1.149, 1.556]",0.768,,0,0,0.027174889605577065,0.869,ok
 MDMA,tremor,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,upper respiratory tract infection,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,vision blurred,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,visual impairment,session,1,,,,,NA,NA,NA,,insufficient_k
 MDMA,vomiting,session,1,,,,,NA,NA,NA,,insufficient_k
-MDMA,weakness,session,3,"0.95 [0.22, 4.22]","-0.047 [-1.532, 1.439]",0.951,,0,0,1.3953420965377024,0.498,ok
-MDMA,xerostomia,session,4,"2.53 [0.81, 7.95]","0.928 [-0.217, 2.073]",0.112,,0,0,2.475567256108889,0.480,ok
-PSILOCYBIN,abdominal pain,session,4,"2.84 [0.71, 11.40]","1.045 [-0.343, 2.433]",0.140,,0,0,1.5205539791933769,0.678,ok
+MDMA,weakness,session,4,"0.82 [0.22, 3.13]","-0.197 [-1.536, 1.141]",0.773,,0,0,1.6055003069749731,0.658,ok
+MDMA,xerostomia,session,4,"2.53 [0.81, 7.95]","0.928 [-0.217, 2.073]",0.112,,0,0,2.4755672561088895,0.480,ok
+PSILOCYBIN,abdominal pain,session,4,"2.84 [0.71, 11.40]","1.045 [-0.343, 2.433]",0.140,,0,0,1.5205539791933766,0.678,ok
 PSILOCYBIN,alcohol intoxication,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,anemia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,anger,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,anxiety,session,7,"3.13 [0.32, 31.01]","1.140 [-1.155, 3.434]",0.330,,7.427434011489256,78.08467079512617,26.320156390828394,<0.001,ok
+PSILOCYBIN,anxiety,session,7,"3.13 [0.32, 31.01]","1.140 [-1.155, 3.434]",0.330,,7.427434011489258,78.08467079512619,26.3201563908284,<0.001,ok
 PSILOCYBIN,any adverse event,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,arthralgia,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,back pain,session,3,"2.69 [0.40, 18.20]","0.989 [-0.924, 2.902]",0.311,,0.32886748093092316,11.22310920030204,2.0182021504558256,0.365,ok
+PSILOCYBIN,back pain,session,3,"2.69 [0.40, 18.20]","0.989 [-0.924, 2.902]",0.311,,0.3288674809309232,11.223109200302043,2.018202150455826,0.365,ok
 PSILOCYBIN,biopsy,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,bronchitis,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,bronchitis bacterial,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -205,9 +212,9 @@ PSILOCYBIN,cough,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,cystitis,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,depressed mood,session,2,"9.56 [1.19, 76.72] *","2.257 [0.174, 4.340] *",0.034,*,0,0,0.0630087977152026,0.802,ok
 PSILOCYBIN,depression,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,diarrhea,session,3,"0.16 [0.00, 5.78]","-1.828 [-5.409, 1.754]",0.317,,7.822741264558793,78.52854452671397,10.1033121900725,0.006,ok
+PSILOCYBIN,diarrhea,session,3,"0.16 [0.00, 5.78]","-1.828 [-5.409, 1.754]",0.317,,7.8227412645587915,78.52854452671396,10.1033121900725,0.006,ok
 PSILOCYBIN,diverticulitis,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,dizziness,session,5,"3.59 [0.93, 13.81]","1.278 [-0.070, 2.625]",0.063,,0,0,1.8331846372703537,0.766,ok
+PSILOCYBIN,dizziness,session,5,"3.59 [0.93, 13.81]","1.278 [-0.070, 2.625]",0.063,,0,0,1.833184637270354,0.766,ok
 PSILOCYBIN,dyspepsia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,dysphoria,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,dyspnea,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -215,13 +222,13 @@ PSILOCYBIN,edema,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,endodontic procedure,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,euphoric mood,session,2,"10.86 [1.37, 85.92] *","2.385 [0.316, 4.453] *",0.024,*,0,0,0.016259740964682357,0.899,ok
 PSILOCYBIN,eye infection,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,fatigue,session,6,"1.21 [0.12, 12.15]","0.194 [-2.109, 2.497]",0.869,,6.333622962551935,77.94124023826592,29.31107198185242,<0.001,ok
-PSILOCYBIN,feeling abnormal,session,2,"0.14 [0.00, 174.38]","-1.977 [-9.116, 5.161]",0.587,,24.168699115104502,91.09421617507857,11.228657911071892,<0.001,ok
+PSILOCYBIN,fatigue,session,6,"1.21 [0.12, 12.15]","0.194 [-2.109, 2.497]",0.869,,6.333622962551933,77.94124023826592,29.311071981852425,<0.001,ok
+PSILOCYBIN,feeling abnormal,session,2,"0.14 [0.00, 174.38]","-1.977 [-9.116, 5.161]",0.587,,24.168699115104502,91.09421617507859,11.228657911071892,<0.001,ok
 PSILOCYBIN,food allergy,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,food poisoning,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,fungal infection,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,gingivitis,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,headache,session,9,"10.46 [2.98, 36.67] ***","2.348 [1.093, 3.602] ***",<0.001,***,2.3128172574082453,71.28967309001781,29.320997565390854,<0.001,ok
+PSILOCYBIN,headache,session,9,"10.46 [2.98, 36.67] ***","2.348 [1.093, 3.602] ***",<0.001,***,2.312817257408247,71.28967309001784,29.320997565390858,<0.001,ok
 PSILOCYBIN,hospitalisation,session,2,"2.01 [0.17, 24.21]","0.697 [-1.792, 3.187]",0.583,,0,0,0.20153777567450176,0.653,ok
 PSILOCYBIN,hyperglycemia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,hypertension,session,4,"7.64 [0.67, 87.55]","2.033 [-0.406, 4.472]",0.102,,4.3016340910329065,69.70036066896412,9.529744169864445,0.023,ok
@@ -232,24 +239,24 @@ PSILOCYBIN,hyponatremia,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,illusion,session,2,"2.29 [1.03, 5.10] *","0.828 [0.025, 1.630] *",0.043,*,0,0,0.425578153860605,0.514,ok
 PSILOCYBIN,influenza,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,influenza like illness,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,intentional self‑injury,session,2,"5.27 [0.61, 45.60]","1.661 [-0.497, 3.820]",0.131,,0,0,5.788131969876221e-4,0.981,ok
+PSILOCYBIN,intentional self‑injury,session,2,"5.27 [0.61, 45.60]","1.661 [-0.497, 3.820]",0.131,,0,0,5.788131969876222e-4,0.981,ok
 PSILOCYBIN,irritability,session,2,"7.24 [0.87, 60.11]","1.979 [-0.138, 4.096]",0.067,,0,0,0.06731654878937196,0.795,ok
 PSILOCYBIN,limb injury,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,lower resp. tract congestion,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,malignant melanoma,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,mallory-weiss syndrom,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,memory impairment,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,migraine,session,3,"0.22 [0.01, 4.12]","-1.536 [-4.489, 1.416]",0.308,,4.938451838275631,73.46222378653496,8.182069553942096,0.017,ok
+PSILOCYBIN,migraine,session,3,"0.22 [0.01, 4.12]","-1.536 [-4.489, 1.416]",0.308,,4.938451838275632,73.46222378653496,8.182069553942094,0.017,ok
 PSILOCYBIN,mood altered,session,2,"12.25 [1.55, 96.83] *","2.506 [0.438, 4.573] *",0.018,*,0,0,0.18224715450616885,0.669,ok
 PSILOCYBIN,muscle strain,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,musculoskeletal pain,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,myalgia,session,3,"3.72 [0.69, 20.04]","1.314 [-0.371, 2.998]",0.126,,0,0,1.5870816468495321,0.452,ok
 PSILOCYBIN,nasal congestion,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,nausea,session,8,"4.02 [0.90, 18.05]","1.392 [-0.110, 2.893]",0.069,,3.3182996816687176,78.87982747743459,37.93495843248868,<0.001,ok
+PSILOCYBIN,nausea,session,8,"4.02 [0.90, 18.05]","1.392 [-0.110, 2.893]",0.069,,3.3182996816687176,78.8798274774346,37.93495843248868,<0.001,ok
 PSILOCYBIN,oropharyngeal pain,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,pain,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,pain in extremity,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,palpitations,session,2,"0.08 [0.00, 8.94]","-2.580 [-7.350, 2.190]",0.289,,10.198148263316988,86.0006311277484,7.143179161327175,0.008,ok
+PSILOCYBIN,palpitations,session,2,"0.08 [0.00, 8.94]","-2.580 [-7.350, 2.190]",0.289,,10.198148263316991,86.0006311277484,7.143179161327174,0.008,ok
 PSILOCYBIN,panic reaction,session,2,"5.78 [0.66, 50.63]","1.755 [-0.414, 3.924]",0.113,,0,0,0.23839266722317767,0.625,ok
 PSILOCYBIN,paresthesia,session,2,"8.55 [1.05, 69.31] *","2.146 [0.054, 4.239] *",0.044,*,0,0,0.022302357751704034,0.881,ok
 PSILOCYBIN,peripheral swelling,session,1,,,,,NA,NA,NA,,insufficient_k
@@ -265,7 +272,7 @@ PSILOCYBIN,sexual abuse,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,sinus congestion,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,sinus headache,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,skin cosmetic procedure,session,1,,,,,NA,NA,NA,,insufficient_k
-PSILOCYBIN,sleep disorder,session,5,"1.66 [0.08, 33.46]","0.505 [-2.500, 3.510]",0.742,,9.83545861781627,84.36619797975084,29.330785322942848,<0.001,ok
+PSILOCYBIN,sleep disorder,session,5,"1.66 [0.08, 33.46]","0.505 [-2.500, 3.510]",0.742,,9.835458617816267,84.36619797975082,29.330785322942845,<0.001,ok
 PSILOCYBIN,stress,session,1,,,,,NA,NA,NA,,insufficient_k
 PSILOCYBIN,suicidal behavior,session,2,"3.59 [0.33, 38.65]","1.279 [-1.096, 3.654]",0.291,,0,0,0.5894618053432613,0.443,ok
 PSILOCYBIN,suicidal ideation,session,6,"4.30 [1.35, 13.66] *","1.458 [0.301, 2.614] *",0.014,*,0,0,3.342566170288537,0.647,ok

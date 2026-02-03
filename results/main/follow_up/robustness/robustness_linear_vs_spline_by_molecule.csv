@@ -1,0 +1,3 @@
+molecule,k_linear,I2_linear,tau2_linear,beta_linear,p_linear,stars_linear,dir_linear,spline_model,df_spline,k_spline,I2_spline,tau2_spline,QM_spline,p_spline,stars_spline,sig_linear,sig_spline,robustness
+LSD,108,0,0,-0.005117907755524285,0.03013836247148788,*,negative,spline_df3,3,108,0,0,14.455973212440798,0.002345837771146657,**,TRUE,TRUE,both_significant
+MDMA,75,0,1.4399210443055774e-6,3.1276670588744053e-4,0.9588304297031951,,positive,spline_df3,3,75,0,6.599588814289424e-8,2.1916189016138823,0.533601072356435,,FALSE,FALSE,neither_significant

@@ -1,4 +1,0 @@
-molecule,k_session,I2_session,tau2_session,p_overall_session,stars_session,window.x,k_follow,I2_follow,tau2_follow,p_overall_follow,stars_follow,window.y
-LSD,149,19.839318969756317,0.313554966258424,8.395224454178167e-4,***,session,108,0,0,0.00234583777114661,**,follow_up
-MDMA,197,17.98890887029511,0.28243974659397886,1.7041291949259615e-4,***,session,58,0,1.3348402200175193e-6,0.0565136396041937,,follow_up
-Psilocybin,162,52.62855765244486,1.707959561712057,3.9415443454037465e-11,***,session,NA,NA,NA,NA,NA,NA

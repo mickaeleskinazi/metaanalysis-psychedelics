@@ -1,5 +1,5 @@
 molecule,session_effect,followup_effect,interaction
 AYAHUASCA,NA,NA,NA
 LSD,"0.004 [0.002, 0.007] ","-0.005 [-0.010, -0.000] ",NA
-MDMA,"0.014 [0.001, 0.027] ","-0.007 [-0.025, 0.011] ",NA
+MDMA,"0.015 [0.005, 0.025] ","0.007 [-0.006, 0.019] ",NA
 PSILOCYBIN,"-0.068 [-0.099, -0.036] ",NA,NA

@@ -1,8 +1,17 @@
+# =========================
+# FILE: R/dose_response_models.R
+# =========================
 suppressPackageStartupMessages({
-  library(dplyr); library(purrr); library(tibble); library(metafor); library(splines)
+  library(dplyr)
+  library(purrr)
+  library(tibble)
+  library(metafor)
+  library(splines)
 })
 
-# --- Escalc en conservant dose_mg, ref_dose_mg, dose_diff ---
+# ============================================================
+# Effect sizes (OR) with HA correction only for zero cells
+# ============================================================
 build_escalc <- function(contrasts, add = 0.5){
   empty_tpl <- tibble(
     study_id    = character(),
@@ -15,284 +24,226 @@ build_escalc <- function(contrasts, add = 0.5){
     yi          = double(),
     vi          = double()
   )
-
   if (is.null(contrasts) || !nrow(contrasts)) return(empty_tpl)
+  
+  needed <- c("ai","bi","ci","di","study_id","molecule","ae_term",
+              "time_window","dose_mg","ref_dose_mg","dose_diff")
+  miss <- setdiff(needed, names(contrasts))
+  if (length(miss)) stop("build_escalc(): missing columns: ", paste(miss, collapse=", "))
+  
   esc <- metafor::escalc(
     measure = "OR",
     ai = ai, bi = bi, ci = ci, di = di,
-    add = add, to = "only0",
-    data = contrasts
+    data = contrasts,
+    add = add, to = "only0"
   )
-  esc %>%
+  
+  as_tibble(esc) %>%
     transmute(
-      study_id, molecule, ae_term, time_window,
-      dose_mg = as.numeric(dose_mg),
+      study_id    = as.character(study_id),
+      molecule    = toupper(as.character(molecule)),
+      ae_term     = as.character(ae_term),
+      time_window = as.character(time_window),
+      dose_mg     = as.numeric(dose_mg),
       ref_dose_mg = as.numeric(ref_dose_mg),
-      dose_diff = as.numeric(dose_diff),
-      yi, vi
+      dose_diff   = as.numeric(dose_diff),
+      yi          = as.numeric(yi),
+      vi          = as.numeric(vi)
+    ) %>%
+    filter(is.finite(yi), is.finite(vi), is.finite(dose_mg))
+}
+
+# ============================================================
+# Grid helper
+# ============================================================
+make_grid <- function(doses_obs, grid = c("observed","truncated","continuous"), n_grid = 120){
+  grid <- match.arg(grid)
+  doses_obs <- sort(unique(as.numeric(doses_obs)))
+  doses_obs <- doses_obs[is.finite(doses_obs)]
+  if (!length(doses_obs)) return(double())
+  
+  if (grid == "observed") return(doses_obs)
+  
+  if (grid == "truncated") {
+    if (length(doses_obs) < 3) return(doses_obs)
+    q <- stats::quantile(doses_obs, c(0.05, 0.95), na.rm = TRUE, names = FALSE)
+    return(doses_obs[doses_obs >= q[1] & doses_obs <= q[2]])
+  }
+  
+  rng <- range(doses_obs, na.rm = TRUE)
+  if (!is.finite(rng[1]) || !is.finite(rng[2]) || rng[1] == rng[2]) return(doses_obs)
+  seq(rng[1], rng[2], length.out = n_grid)
+}
+
+# ============================================================
+# Fit DR models
+# - linear: yi ~ dose_mg
+# - spline: yi ~ ns(dose_mg, df)
+#
+# IMPORTANT FIX:
+# metafor::predict.rma() matches newmods by *names*.
+# We store the exact names of fitted mod columns and reuse them at prediction.
+# ============================================================
+fit_dr <- function(dat, model = c("linear","spline"), df_spline = 3){
+  model <- match.arg(model)
+  dat <- dat %>% filter(is.finite(yi), is.finite(vi), is.finite(dose_mg))
+  if (nrow(dat) < 2 || n_distinct(dat$dose_mg) < 2) return(NULL)
+  
+  if (model == "linear") {
+    m <- tryCatch(
+      metafor::rma(yi, vi, mods = ~ dose_mg, data = dat, method = "REML"),
+      error = function(e) NULL
     )
-}
-
-# --- Helpers ---
-make_dose_grid <- function(x, n = 120){
-  x <- x[is.finite(x)]
-  if (!length(x)) return(numeric(0))
-  r <- range(x)
-  if (r[1] == r[2]) return(sort(unique(x)))
-  seq(r[1], r[2], length.out = n)
-}
-
-fit_dr_linear <- function(dat){
-  dat <- dat %>% filter(is.finite(yi), is.finite(vi), is.finite(dose_diff))
-  if (nrow(dat) < 2 || dplyr::n_distinct(dat$dose_diff) < 2) return(NULL)
-  tryCatch(metafor::rma(yi, vi, mods = ~ dose_diff, data = dat, method = "REML"),
-           error = function(e) NULL)
-}
-
-fit_dr_spline <- function(dat, df_spline = 3){
-  dat <- dat %>% filter(is.finite(yi), is.finite(vi), is.finite(dose_diff))
-  if (dplyr::n_distinct(dat$dose_diff) < 3 || nrow(dat) < df_spline + 1) return(NULL)
-  tryCatch(metafor::rma(yi, vi, mods = ~ ns(dose_diff, df = df_spline),
-                        data = dat, method = "REML"),
-           error = function(e) NULL)
-}
-
-tidy_rma <- function(m, model_label){
-  if (is.null(m)) return(tibble())
-  coefs <- tryCatch(coef(m), error = function(e) numeric(0))
-  if (length(coefs) == 0) return(tibble())
-  V   <- tryCatch(vcov(m), error = function(e) NULL)
-  ses <- if (!is.null(V)) sqrt(diag(V)) else rep(NA_real_, length(coefs))
-  z   <- coefs / ses
-  p   <- 2*pnorm(abs(z), lower.tail = FALSE)
-  ci  <- tryCatch(confint(m), error = function(e) NULL)
-  ci_low  <- if (!is.null(ci) && "ci.lb" %in% names(ci)) as.numeric(ci$ci.lb) else rep(NA_real_, length(coefs))
-  ci_high <- if (!is.null(ci) && "ci.ub" %in% names(ci)) as.numeric(ci$ci.ub) else rep(NA_real_, length(coefs))
-  QM  <- suppressWarnings(as.numeric(m$QM)); QMp <- suppressWarnings(as.numeric(m$QMp))
-  tibble(
-    model   = model_label,
-    term    = names(coefs),
-    estimate= as.numeric(coefs),
-    se      = as.numeric(ses),
-    z       = as.numeric(z),
-    pval    = as.numeric(p),
-    ci_low  = ci_low,
-    ci_high = ci_high,
-    tau2    = suppressWarnings(as.numeric(m$tau2)),
-    QE      = suppressWarnings(as.numeric(m$QE)),
-    k       = suppressWarnings(as.integer(m$k)),
-    I2      = suppressWarnings(pmax(0, (m$QE - (m$k - 1))/m$QE) * 100),
-    QM      = QM, QMp = QMp
+    return(m)
+  }
+  
+  # spline needs at least 3 distinct doses to be meaningful/stable
+  if (nrow(dat) < 3 || n_distinct(dat$dose_mg) < 3) return(NULL)
+  
+  X <- splines::ns(dat$dose_mg, df = df_spline)
+  m <- tryCatch(
+    metafor::rma(yi, vi, mods = X, data = dat, method = "REML"),
+    error = function(e) NULL
+  )
+  if (is.null(m)) return(NULL)
+  
+  # Capture exact mod column names used internally by metafor
+  mod_names <- tryCatch(colnames(m$X)[-1], error = function(e) NULL)  # drop intercept
+  
+  list(
+    model     = m,
+    df_spline = df_spline,
+    knots     = attr(X, "knots"),
+    bknots    = attr(X, "Boundary.knots"),
+    mod_names = mod_names
   )
 }
 
-predict_spline <- function(m, doses_diff){
-  if (is.null(m) || !length(doses_diff)) return(tibble())
-  X_fit <- tryCatch(m$X, error = function(e) NULL); if (is.null(X_fit)) return(tibble())
-  p <- ncol(X_fit) - 1L; if (p <= 0) return(tibble())
-  B <- splines::ns(doses_diff, df = p) %>% as.matrix()
-  colnames(B) <- colnames(X_fit)[-1]
-  pr <- predict(m, newmods = B)
-  tibble(dose_diff = doses_diff, fit = as.numeric(pr$pred), lwr = as.numeric(pr$ci.lb), upr = as.numeric(pr$ci.ub))
+predict_dr <- function(m, doses, model = c("linear","spline")){
+  model <- match.arg(model)
+  if (is.null(m) || !length(doses)) return(tibble())
+  
+  if (model == "linear") {
+    pr <- predict(m, newmods = doses)
+    return(tibble(dose_mg = doses, fit = pr$pred, lwr = pr$ci.lb, upr = pr$ci.ub))
+  }
+  
+  # spline: m is a list created by fit_dr()
+  Xnew <- splines::ns(
+    doses,
+    df = m$df_spline,
+    knots = m$knots,
+    Boundary.knots = m$bknots
+  )
+  
+  # Force names to match fitted model (prevents "Could not find variable 's3' in the model")
+  if (!is.null(m$mod_names) && ncol(Xnew) == length(m$mod_names)) {
+    colnames(Xnew) <- m$mod_names
+  } else {
+    colnames(Xnew) <- NULL  # fallback: positional matching
+  }
+  
+  pr <- predict(m$model, newmods = Xnew)
+  tibble(dose_mg = doses, fit = pr$pred, lwr = pr$ci.lb, upr = pr$ci.ub)
 }
 
-predict_linear <- function(m, doses_diff){
-  if (is.null(m) || !length(doses_diff)) return(tibble())
-  pr <- predict(m, newmods = as.numeric(doses_diff))
-  tibble(dose_diff = doses_diff, fit = as.numeric(pr$pred), lwr = as.numeric(pr$ci.lb), upr = as.numeric(pr$ci.ub))
-}
-
-# --- DR globale par molécule ---
-run_dr_by_molecule <- function(es, min_k = 4, fit_spline = TRUE){
-  if (!nrow(es)) return(list(models = tibble(), preds = tibble()))
+# ============================================================
+# Global DR by molecule (linear + spline supported)
+# ============================================================
+run_dr_by_molecule <- function(es, min_k = 2,
+                               model = c("linear","spline"),
+                               df_spline = 3,
+                               grid = c("observed","truncated","continuous"),
+                               n_grid = 120){
+  model <- match.arg(model)
+  grid  <- match.arg(grid)
+  
   es2 <- es %>%
+    filter(is.finite(yi), is.finite(vi), is.finite(dose_mg)) %>%
     group_by(molecule) %>%
-    filter(n() >= min_k, n_distinct(dose_diff[is.finite(dose_diff)]) >= 2) %>%
+    filter(n() >= min_k, n_distinct(dose_mg) >= 2) %>%
     ungroup()
-  groups <- es2 %>% group_by(molecule) %>% group_split()
   
-  models_out <- purrr::map_dfr(groups, function(g){
-    m_lin <- fit_dr_linear(g); t_lin <- tidy_rma(m_lin, "linear")
-    m_spl <- if (fit_spline) fit_dr_spline(g) else NULL
-    t_spl <- tidy_rma(m_spl, "spline_df3")
-    bind_rows(t_lin, t_spl) %>% mutate(molecule = g$molecule[[1]], .before = 1)
+  preds <- map_dfr(split(es2, es2$molecule), function(g){
+    doses <- make_grid(g$dose_mg, grid = grid, n_grid = n_grid)
+    m <- fit_dr(g, model = model, df_spline = df_spline)
+    if (is.null(m)) return(tibble())
+    
+    predict_dr(m, doses, model = model) %>%
+      mutate(molecule = g$molecule[1], model = model)
   })
   
-  preds_out <- purrr::map_dfr(groups, function(g){
-    doses <- make_dose_grid(g$dose_diff, n = 120)
-    if (!length(doses)) return(tibble())
-    m_lin <- fit_dr_linear(g); m_spl <- if (fit_spline) fit_dr_spline(g) else NULL
-    p <- if (!is.null(m_spl)) predict_spline(m_spl, doses) %>% mutate(model = "spline_df3")
-    else if (!is.null(m_lin)) predict_linear(m_lin, doses) %>% mutate(model = "linear")
-    else tibble()
-    if (!nrow(p)) return(p)
-    ref_mean <- mean(g$ref_dose_mg, na.rm = TRUE)
-    p %>% mutate(molecule = g$molecule[[1]], dose_mg = dose_diff + ref_mean, .before = 1)
-  })
-  
-  list(models = models_out, preds = preds_out)
-}
-
-# --- DR par AE x molécule ---
-run_dr_by_ae <- function(es, min_k = 4, fit_spline = TRUE){
-  if (!nrow(es)) return(list(models = tibble(), preds = tibble()))
-
-  empty_model_tpl <- tibble(
-    ae_term  = character(),
-    molecule = character(),
-    model    = character(),
-    term     = character(),
-    estimate = double(),
-    se       = double(),
-    z        = double(),
-    pval     = double(),
-    ci_low   = double(),
-    ci_high  = double(),
-    tau2     = double(),
-    QE       = double(),
-    k        = integer(),
-    I2       = double(),
-    QM       = double(),
-    QMp      = double()
-  )
-  es2 <- es %>%
-    group_by(ae_term, molecule) %>%
-    filter(n() >= min_k, n_distinct(dose_diff[is.finite(dose_diff)]) >= 2) %>%
-    ungroup()
-  groups <- es2 %>% group_by(ae_term, molecule) %>% group_split()
-  
-  models_out <- purrr::map_dfr(groups, function(g){
-    m_lin <- fit_dr_linear(g); t_lin <- tidy_rma(m_lin, "linear")
-    m_spl <- if (fit_spline) fit_dr_spline(g) else NULL
-    t_spl <- tidy_rma(m_spl, "spline_df3")
-    res <- bind_rows(t_lin, t_spl)
-    if (!nrow(res)) return(empty_model_tpl)
-    res %>% mutate(ae_term = g$ae_term[[1]], molecule = g$molecule[[1]], .before = 1)
-  })
-  
-  preds_out <- purrr::map_dfr(groups, function(g){
-    doses <- make_dose_grid(g$dose_diff, n = 120)
-    if (!length(doses)) return(tibble())
-    m_lin <- fit_dr_linear(g); m_spl <- if (fit_spline) fit_dr_spline(g) else NULL
-    p <- if (!is.null(m_spl)) predict_spline(m_spl, doses) %>% mutate(model = "spline_df3")
-    else if (!is.null(m_lin)) predict_linear(m_lin, doses) %>% mutate(model = "linear")
-    else tibble()
-    if (!nrow(p)) return(p)
-    ref_mean <- mean(g$ref_dose_mg, na.rm = TRUE)
-    p %>% mutate(ae_term = g$ae_term[[1]], molecule = g$molecule[[1]], dose_mg = dose_diff + ref_mean, .before = 1)
-  })
-  
-  list(models = models_out, preds = preds_out)
-}
-
-# ---- LSD dose-response: linear vs spline (robust to dropped spline cols) ----
-run_dr_lsd_compare <- function(es){
-  library(metafor); library(dplyr)
-  dat <- es %>% filter(molecule == "LSD",
-                       is.finite(yi), is.finite(vi),
-                       is.finite(dose_diff))
-  if (!nrow(dat)) return(list(linear=NULL, spline=NULL))
-  
-  mod_lin <- tryCatch(
-    rma(yi, vi, mods = ~ dose_diff, data = dat, method="REML"),
-    error = function(e) NULL
-  )
-  
-  mod_spl <- tryCatch(
-    rma(yi, vi, mods = ~ splines::ns(dose_diff, df=3), data = dat, method="REML"),
-    error = function(e) NULL
-  )
-  
-  list(linear = mod_lin, spline = mod_spl, data = dat)
-}
-
-.predict_with_same_basis <- function(model, new_dose_diff){
-  # Build a newmods matrix whose column names exactly match model$X (minus intercept)
-  X <- tryCatch(model$X, error = function(e) NULL)
-  if (is.null(X)) return(NULL)
-  col_target <- colnames(X)
-  # first column is intercept "(Intrcpt)" in metafor; drop it
-  col_target <- col_target[setdiff(seq_along(col_target), 1L)]
-  p <- length(col_target)
-  if (p == 0) {
-    # no moderators; predict with NULL newmods
-    return(predict(model, newmods = NULL))
-  }
-  # Build a ns() with df = p to match kept columns, then force names to match
-  B <- as.matrix(splines::ns(new_dose_diff, df = p))
-  # Ensure column count matches; if needed, truncate or recycle safely
-  if (ncol(B) != p) {
-    # Align shape
-    if (ncol(B) > p) B <- B[, seq_len(p), drop = FALSE]
-    if (ncol(B) < p) {
-      # pad with zeros (conservative)
-      B <- cbind(B, matrix(0, nrow = nrow(B), ncol = p - ncol(B)))
-    }
-  }
-  colnames(B) <- col_target
-  predict(model, newmods = B)
-}
-
-plot_dr_lsd_compare <- function(models){
-  library(ggplot2); library(dplyr)
-  dat <- models$data
-  if (is.null(dat) || !nrow(dat)) return(NULL)
-  
-  # grid over the observed range
-  grid <- seq(min(dat$dose_diff, na.rm=TRUE),
-              max(dat$dose_diff, na.rm=TRUE),
-              length.out = 120)
-  
-  preds <- list()
-  
-  if (!is.null(models$linear)) {
-    p <- predict(models$linear, newmods = grid)
-    preds$linear <- tibble(
-      model = "linear",
-      dose_diff = grid,
-      fit = as.numeric(p$pred),
-      lwr = as.numeric(p$ci.lb),
-      upr = as.numeric(p$ci.ub)
-    )
-  }
-  
-  if (!is.null(models$spline)) {
-    p <- .predict_with_same_basis(models$spline, grid)
-    if (!inherits(p, "try-error") && !is.null(p)) {
-      preds$spline <- tibble(
-        model = "spline",
-        dose_diff = grid,
-        fit = as.numeric(p$pred),
-        lwr = as.numeric(p$ci.lb),
-        upr = as.numeric(p$ci.ub)
+  models <- es2 %>%
+    split(.$molecule) %>%
+    map_dfr(function(g){
+      m <- fit_dr(g, model = model, df_spline = df_spline)
+      if (is.null(m)) return(tibble())
+      
+      mm <- if (model == "spline") m$model else m
+      
+      tibble(
+        molecule  = g$molecule[1],
+        model     = model,
+        df_spline = ifelse(model == "spline", df_spline, NA_integer_),
+        k         = mm$k,
+        QM        = mm$QM,
+        QMp       = mm$QMp,
+        I2        = mm$I2,
+        # linear: slope + p; spline: omnibus p = QMp
+        beta      = if (model == "linear") as.numeric(coef(mm)[2]) else NA_real_,
+        pval      = if (model == "linear") as.numeric(mm$pval[2]) else as.numeric(mm$QMp)
       )
-    }
-  }
+    })
   
-  dfp <- bind_rows(preds)
-  if (!nrow(dfp)) return(NULL)
-  
-  ggplot(dfp, aes(dose_diff, fit, color = model, fill = model)) +
-    geom_hline(yintercept = 0, linetype = "dashed") +
-    geom_line(linewidth = 1) +
-    geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.18, color = NA) +
-    labs(
-      x = "LSD dose difference (mg vs reference)",
-      y = "log(OR) vs reference",
-      title = "LSD dose–response: linear vs spline (robust prediction)"
-    ) +
-    theme_bw()
+  list(preds = preds, models = models)
 }
 
-# (optional) print linear coef/p-value for quick interpretation
-print_lsd_linear_summary <- function(models){
-  if (is.null(models$linear)) { message("No linear model fitted."); return(invisible(NULL)) }
-  s <- summary(models$linear)
-  cat("\nLSD linear meta-regression (logOR ~ dose_diff)\n",
-      "Intercept:", round(s$beta[1,1], 3), 
-      " [", round(s$ci.lb[1],3), ", ", round(s$ci.ub[1],3), "]\n",
-      "Slope (per mg):", round(s$beta[2,1], 3),
-      " [", round(s$ci.lb[2],3), ", ", round(s$ci.ub[2],3), "]",
-      "  p=", signif(s$pval[2], 3), "\n", sep = "")
-  invisible(s)
+# ============================================================
+# DR by AE × molecule
+# (You can still run spline here; if you don't want spline for AEs,
+# just call run_dr_by_ae(..., model="linear") in run_main_analysis)
+# ============================================================
+run_dr_by_ae <- function(es, min_k = 2,
+                         model = c("linear","spline"),
+                         df_spline = 3,
+                         grid = c("observed","truncated","continuous"),
+                         n_grid = 120){
+  model <- match.arg(model)
+  grid  <- match.arg(grid)
+  
+  es2 <- es %>%
+    filter(is.finite(yi), is.finite(vi), is.finite(dose_mg)) %>%
+    group_by(molecule, ae_term) %>%
+    filter(n() >= min_k, n_distinct(dose_mg) >= 2) %>%
+    ungroup()
+  
+  preds <- map_dfr(split(es2, interaction(es2$molecule, es2$ae_term, drop = TRUE)), function(g){
+    doses <- make_grid(g$dose_mg, grid = grid, n_grid = n_grid)
+    m <- fit_dr(g, model = model, df_spline = df_spline)
+    if (is.null(m)) return(tibble())
+    
+    predict_dr(m, doses, model = model) %>%
+      mutate(molecule = g$molecule[1], ae_term = g$ae_term[1], model = model)
+  })
+  
+  models <- es2 %>%
+    split(interaction(es2$molecule, es2$ae_term, drop = TRUE)) %>%
+    map_dfr(function(g){
+      m <- fit_dr(g, model = model, df_spline = df_spline)
+      if (is.null(m)) return(tibble())
+      
+      mm <- if (model == "spline") m$model else m
+      
+      tibble(
+        molecule  = g$molecule[1],
+        ae_term   = g$ae_term[1],
+        model     = model,
+        df_spline = ifelse(model == "spline", df_spline, NA_integer_),
+        k         = mm$k,
+        beta      = if (model == "linear") as.numeric(coef(mm)[2]) else NA_real_,
+        pval      = if (model == "linear") as.numeric(mm$pval[2]) else as.numeric(mm$QMp)
+      )
+    })
+  
+  list(preds = preds, models = models)
 }
