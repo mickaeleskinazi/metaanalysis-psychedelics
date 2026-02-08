@@ -1,4 +1,0 @@
-molecule,p_session_fmt,stars_session,n_sig_session,p_follow_fmt,stars_follow,n_sig_follow
-LSD,<0.001,***,2,0.002,**,0
-MDMA,<0.001,***,1,0.057,NA,0
-Psilocybin,<0.001,***,1,,NA,NA
