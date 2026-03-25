@@ -37,6 +37,7 @@ run_main_analysis <- function(
     out_dir = here::here("results", "main"),
     min_k = 2,
     fit_spline = TRUE,
+    df_spline = 3,
     make_paper_tables = TRUE,
     paper_dir = here::here("results", "paper_tables"),
     compare_dir = file.path(out_dir, "compare")) {
@@ -87,8 +88,21 @@ run_main_analysis <- function(
     }
     
     message(sprintf("→ Window '%s': dose–response models …", window_value))
-    dr_mol <- run_dr_by_molecule(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
-    dr_ae  <- run_dr_by_ae(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
+    dr_model <- if (isTRUE(fit_spline)) "spline" else "linear"
+    dr_mol <- run_dr_by_molecule(
+      es,
+      min_k = min_k,
+      model = dr_model,
+      df_spline = df_spline,
+      grid = "observed"
+    )
+    dr_ae  <- run_dr_by_ae(
+      es,
+      min_k = min_k,
+      model = dr_model,
+      df_spline = df_spline,
+      grid = "observed"
+    )
     
     message(sprintf("→ Window '%s': robustness tables …", window_value))
     rob_dir <- file.path(out_dir_window, "robustness")
