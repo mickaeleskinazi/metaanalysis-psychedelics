@@ -2,6 +2,10 @@
 
 suppressPackageStartupMessages({
   library(here)
+  library(readxl)
+  library(dplyr)
+  library(purrr)
+  library(stringr)
 })
 
 source(here::here("R", "compat_map_groups.R"))
@@ -321,6 +325,3 @@ run_main_analysis <- function(
   ))
 }
 
-if (identical(environment(), globalenv())) {
-  run_main_analysis()
-}
