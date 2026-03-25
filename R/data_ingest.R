@@ -90,8 +90,8 @@ load_data <- function(path, sheet){
       ae_term     = dplyr::na_if(trimws(as.character(ae_term)), ""),
       time_window = as.character(coalesce(time_window, "session")),
       dose_mg     = suppressWarnings(as.numeric(gsub(",", ".", as.character(dose_mg)))),
-      events      = suppressWarnings(as.numeric(events)),
-      n           = suppressWarnings(as.numeric(n))
+      events      = suppressWarnings(as.numeric(gsub(",", ".", as.character(events)))),
+      n           = suppressWarnings(as.numeric(gsub(",", ".", as.character(n))))
     )
   
   # --- NEW: derive group + arm_type from arm_id when needed ---
