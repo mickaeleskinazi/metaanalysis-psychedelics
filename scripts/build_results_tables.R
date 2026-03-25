@@ -84,6 +84,20 @@ agg_molecule <- read_csv_any(
 ) %>%
   mutate(molecule = toupper(molecule))
 
+dr_molecule_session <- read_csv_any(
+  c(
+    "results/main/session/tables/dr_models_by_molecule_session.csv",
+    "results_session/tables/dr_models_by_molecule_session.csv"
+  ),
+  show_col_types = FALSE
+) %>%
+  mutate(
+    molecule = toupper(molecule),
+    k = suppressWarnings(as.numeric(k)),
+    pval = suppressWarnings(as.numeric(pval)),
+    QM = suppressWarnings(as.numeric(QM))
+  )
+
 agg_ae <- read_csv_any(
   c(
     "results/significance_agg_by_ae_molecule.csv",
@@ -130,10 +144,15 @@ molecules_order <- c("LSD", "MDMA", "PSILOCYBIN", "AYAHUASCA")
 global_tbl <- agg_molecule %>%
   select(molecule, QM, p_overall, k_total) %>%
   rename(qm = QM, p = p_overall, k = k_total) %>%
+  left_join(
+    dr_molecule_session %>% select(molecule, k_model = k, p_model = pval, qm_model = QM),
+    by = "molecule"
+  ) %>%
   left_join(topline %>% select(molecule, k_session, p_session), by = "molecule") %>%
   mutate(
-    k = coalesce(k_session, k),
-    p = coalesce(p_session, p)
+    k = coalesce(k_model, k_session, k),
+    p = coalesce(p_model, p_session, p),
+    qm = coalesce(qm_model, qm)
   ) %>%
   mutate(across(c(k, qm, p), ~ suppressWarnings(as.numeric(.x)))) %>%
   filter(molecule %in% molecules_order, !is.na(p)) %>%
