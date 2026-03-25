@@ -37,9 +37,11 @@ run_main_analysis <- function(
     out_dir = here::here("results", "main"),
     min_k = 2,
     fit_spline = TRUE,
+    df_spline = 3,
     make_paper_tables = TRUE,
     paper_dir = here::here("results", "paper_tables"),
-    compare_dir = file.path(out_dir, "compare")) {
+    compare_dir = file.path(out_dir, "compare"),
+    run_reporting_tables = TRUE) {
   if (!file.exists(data_xlsx)) {
     stop("Data file not found: ", data_xlsx)
   }
@@ -87,8 +89,21 @@ run_main_analysis <- function(
     }
     
     message(sprintf("→ Window '%s': dose–response models …", window_value))
-    dr_mol <- run_dr_by_molecule(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
-    dr_ae  <- run_dr_by_ae(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
+    dr_model <- if (isTRUE(fit_spline)) "spline" else "linear"
+    dr_mol <- run_dr_by_molecule(
+      es,
+      min_k = min_k,
+      model = dr_model,
+      df_spline = df_spline,
+      grid = "observed"
+    )
+    dr_ae  <- run_dr_by_ae(
+      es,
+      min_k = min_k,
+      model = dr_model,
+      df_spline = df_spline,
+      grid = "observed"
+    )
     
     message(sprintf("→ Window '%s': robustness tables …", window_value))
     rob_dir <- file.path(out_dir_window, "robustness")
@@ -280,6 +295,27 @@ run_main_analysis <- function(
     )
   } else {
     message("⚠️ Skipping comparative outputs: both 'session' and 'follow_up' windows are required.")
+  }
+
+  if (isTRUE(run_reporting_tables)) {
+    message("→ Build manuscript summary tables (tables/, latex/) …")
+    tryCatch(
+      sys.source(here::here("scripts", "build_results_tables.R"), envir = new.env(parent = globalenv())),
+      error = function(e) warning("Could not run scripts/build_results_tables.R: ", conditionMessage(e))
+    )
+  }
+
+  message("✅ Pipeline finished.")
+  message("Results directories:")
+  message(" - Main per-window outputs: ", out_dir)
+  message(" - Session tables: ", file.path(out_dir, "session", "tables"))
+  message(" - Follow-up tables: ", file.path(out_dir, "follow_up", "tables"))
+  message(" - Session vs follow-up comparison: ", compare_dir)
+  if (isTRUE(make_paper_tables)) {
+    message(" - Publication tables: ", paper_dir)
+  }
+  if (isTRUE(run_reporting_tables)) {
+    message(" - Manuscript tex + narrative: tables/ and latex/")
   }
   
   invisible(list(
