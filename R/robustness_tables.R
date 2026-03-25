@@ -5,6 +5,25 @@ suppressPackageStartupMessages({
   library(tidyr)
 })
 
+normalize_robustness_models <- function(models_df){
+  if (is.null(models_df) || !nrow(models_df)) return(models_df)
+  if (!"model" %in% names(models_df)) models_df$model <- NA_character_
+  if (!"df_spline" %in% names(models_df)) models_df$df_spline <- NA_real_
+  if (!"term" %in% names(models_df)) models_df$term <- "dose_diff"
+  if (!"estimate" %in% names(models_df) && "beta" %in% names(models_df)) {
+    models_df$estimate <- models_df$beta
+  }
+  
+  models_df %>%
+    mutate(
+      model = case_when(
+        !is.na(df_spline) & str_detect(model, "^spline$") ~ paste0("spline_df", as.integer(df_spline)),
+        TRUE ~ as.character(model)
+      ),
+      term = coalesce(as.character(term), "dose_diff")
+    )
+}
+
 sig_stars <- function(p){
   dplyr::case_when(
     is.na(p) ~ "",
@@ -20,6 +39,7 @@ sig_stars <- function(p){
 robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha = 0.05){
   stopifnot(is.data.frame(models_df))
   dir.create(dirname(outfile_csv), recursive = TRUE, showWarnings = FALSE)
+  models_df <- normalize_robustness_models(models_df)
   
   # linear dose term
   lin <- models_df %>%
@@ -82,6 +102,7 @@ robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha =
 robustness_ae_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha = 0.05){
   stopifnot(is.data.frame(models_df))
   dir.create(dirname(outfile_csv), recursive = TRUE, showWarnings = FALSE)
+  models_df <- normalize_robustness_models(models_df)
   
   lin <- models_df %>%
     filter(model == "linear", term == "dose_diff") %>%
