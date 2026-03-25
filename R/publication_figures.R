@@ -7,7 +7,7 @@
 # - High-quality export (PDF vector, dpi=600, bg=white)
 # - time_window normalized to session / follow_up everywhere
 # - Fig2: include ALL significant AEs per molecule (p<0.05), with optional per-molecule fallback fill
-# - Fig2: WINDOW COLORS IN COLOR (not black/grey), legend simplified
+# - Fig2: WINDOW COLORS I N COLOR (not black/grey), legend simplified
 #
 # NOTE: This file is self-contained. Replace your current R/publication_figures.R with this.
 
