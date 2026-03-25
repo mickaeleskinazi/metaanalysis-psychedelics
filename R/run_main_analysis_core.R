@@ -6,7 +6,6 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(purrr)
   library(stringr)
-  library(readr)
 })
 
 source(here::here("R", "compat_map_groups.R"))
@@ -122,8 +121,6 @@ run_main_analysis <- function(
     
     tables_dir <- file.path(out_dir_window, "tables")
     dir.create(tables_dir, recursive = TRUE, showWarnings = FALSE)
-    readr::write_csv(dr_mol$models, file.path(tables_dir, paste0("dr_models_by_molecule_", window_value, ".csv")))
-    readr::write_csv(dr_ae$models,  file.path(tables_dir, paste0("dr_models_by_ae_", window_value, ".csv")))
     sig_mol <- save_significance_table(dr_mol$models, file.path(tables_dir, "significance_by_molecule_models.csv"))
     sig_ae  <- save_significance_table(dr_ae$models,  file.path(tables_dir, "significance_by_ae_models.csv"))
     agg_mol <- save_agg_significance_by_molecule(dr_mol$models, file.path(tables_dir, "significance_agg_by_molecule.csv"))
@@ -182,14 +179,6 @@ run_main_analysis <- function(
   window_results <- purrr::map(ordered_windows, run_window)
   names(window_results) <- ordered_windows
   window_results <- purrr::compact(window_results)
-
-  # Consolidated effect-size export used by reporting table builders.
-  if (length(window_results)) {
-    tables_root <- file.path(out_dir, "tables")
-    dir.create(tables_root, recursive = TRUE, showWarnings = FALSE)
-    escalc_all <- purrr::imap_dfr(window_results, ~ .x$es %>% mutate(time_window = .y))
-    readr::write_csv(escalc_all, file.path(tables_root, "escalc.csv"))
-  }
   
   comparison_outputs <- NULL
   
@@ -335,3 +324,4 @@ run_main_analysis <- function(
     comparison = comparison_outputs
   ))
 }
+
