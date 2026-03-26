@@ -5,6 +5,29 @@ suppressPackageStartupMessages({
   library(tidyr)
 })
 
+normalize_robustness_models <- function(models_df){
+  if (is.null(models_df) || !nrow(models_df)) return(models_df)
+  needed_num <- c("k","I2","tau2","QM","QMp","pval","beta","estimate")
+  for (nm in needed_num) {
+    if (!nm %in% names(models_df)) models_df[[nm]] <- NA_real_
+  }
+  if (!"model" %in% names(models_df)) models_df$model <- NA_character_
+  if (!"df_spline" %in% names(models_df)) models_df$df_spline <- NA_real_
+  if (!"term" %in% names(models_df)) models_df$term <- "dose_diff"
+  if (!"estimate" %in% names(models_df) && "beta" %in% names(models_df)) {
+    models_df$estimate <- models_df$beta
+  }
+  
+  models_df %>%
+    mutate(
+      model = case_when(
+        !is.na(df_spline) & str_detect(model, "^spline$") ~ paste0("spline_df", as.integer(df_spline)),
+        TRUE ~ as.character(model)
+      ),
+      term = coalesce(as.character(term), "dose_diff")
+    )
+}
+
 sig_stars <- function(p){
   dplyr::case_when(
     is.na(p) ~ "",
@@ -20,10 +43,19 @@ sig_stars <- function(p){
 robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha = 0.05){
   stopifnot(is.data.frame(models_df))
   dir.create(dirname(outfile_csv), recursive = TRUE, showWarnings = FALSE)
+  models_df <- normalize_robustness_models(models_df)
+  if (!"QM" %in% names(models_df)) models_df$QM <- NA_real_
+  if (!"QMp" %in% names(models_df)) models_df$QMp <- NA_real_
+  if (!"I2" %in% names(models_df)) models_df$I2 <- NA_real_
+  if (!"tau2" %in% names(models_df)) models_df$tau2 <- NA_real_
   
   # linear dose term
   lin <- models_df %>%
     filter(model == "linear", term == "dose_diff") %>%
+    mutate(
+      I2 = if ("I2" %in% names(.)) suppressWarnings(as.numeric(I2)) else NA_real_,
+      tau2 = if ("tau2" %in% names(.)) suppressWarnings(as.numeric(tau2)) else NA_real_
+    ) %>%
     transmute(
       molecule,
       k_linear = k,
@@ -43,6 +75,12 @@ robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha =
   # spline omnibus (take one row per molecule per spline model)
   spl <- models_df %>%
     filter(str_detect(model, "^spline")) %>%
+    mutate(
+      I2 = if ("I2" %in% names(.)) suppressWarnings(as.numeric(I2)) else NA_real_,
+      tau2 = if ("tau2" %in% names(.)) suppressWarnings(as.numeric(tau2)) else NA_real_,
+      QM = if ("QM" %in% names(.)) suppressWarnings(as.numeric(QM)) else NA_real_,
+      QMp = if ("QMp" %in% names(.)) suppressWarnings(as.numeric(QMp)) else NA_real_
+    ) %>%
     group_by(molecule, model) %>%
     summarise(
       k_spline = first(k),
@@ -82,6 +120,9 @@ robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha =
 robustness_ae_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha = 0.05){
   stopifnot(is.data.frame(models_df))
   dir.create(dirname(outfile_csv), recursive = TRUE, showWarnings = FALSE)
+  models_df <- normalize_robustness_models(models_df)
+  if (!"QM" %in% names(models_df)) models_df$QM <- NA_real_
+  if (!"QMp" %in% names(models_df)) models_df$QMp <- NA_real_
   
   lin <- models_df %>%
     filter(model == "linear", term == "dose_diff") %>%
@@ -101,6 +142,10 @@ robustness_ae_molecule_linear_vs_spline <- function(models_df, outfile_csv, alph
   
   spl <- models_df %>%
     filter(str_detect(model, "^spline")) %>%
+    mutate(
+      QM = if ("QM" %in% names(.)) suppressWarnings(as.numeric(QM)) else NA_real_,
+      QMp = if ("QMp" %in% names(.)) suppressWarnings(as.numeric(QMp)) else NA_real_
+    ) %>%
     group_by(ae_term, molecule, model) %>%
     summarise(
       k_spline = first(k),
