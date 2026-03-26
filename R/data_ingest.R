@@ -90,8 +90,8 @@ load_data <- function(path, sheet){
       ae_term     = dplyr::na_if(trimws(as.character(ae_term)), ""),
       time_window = as.character(coalesce(time_window, "session")),
       dose_mg     = suppressWarnings(as.numeric(gsub(",", ".", as.character(dose_mg)))),
-      events      = suppressWarnings(as.numeric(events)),
-      n           = suppressWarnings(as.numeric(n))
+      events      = suppressWarnings(as.numeric(gsub(",", ".", as.character(events)))),
+      n           = suppressWarnings(as.numeric(gsub(",", ".", as.character(n))))
     )
   
   # --- NEW: derive group + arm_type from arm_id when needed ---
@@ -150,13 +150,21 @@ load_data <- function(path, sheet){
 suppressPackageStartupMessages({ library(dplyr); library(tidyr) })
 
 # Utilitaire interne: convertir events en comptes si ce sont des proportions
-#. Règle: si max(events) <= 1 et n >= 1, alors events := round(events * n)
+#. Règle (ligne par ligne):
+#. - si 0 <= events <= 1 et n >= 1, on interprète events comme proportion
+#.   et on convertit en compte: round(events * n)
+#. - sinon, on conserve la valeur telle quelle (déjà en compte)
 .norm_events_to_counts <- function(df){
   if (!("events" %in% names(df)) || !("n" %in% names(df))) return(df)
-  has_prop <- suppressWarnings(max(df$events, na.rm = TRUE) <= 1)
-  if (is.finite(has_prop) && isTRUE(has_prop)) {
-    df <- df %>% mutate(events = round(as.numeric(events) * as.numeric(n)))
-  }
+  df <- df %>%
+    mutate(
+      events_num = suppressWarnings(as.numeric(events)),
+      n_num = suppressWarnings(as.numeric(n)),
+      is_prop = is.finite(events_num) & is.finite(n_num) &
+        n_num >= 1 & events_num >= 0 & events_num <= 1,
+      events = dplyr::if_else(is_prop, round(events_num * n_num), events_num)
+    ) %>%
+    select(-events_num, -n_num, -is_prop)
   df
 }
 
