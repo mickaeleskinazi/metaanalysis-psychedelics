@@ -339,3 +339,7 @@ run_main_analysis <- function(
     comparison = comparison_outputs
   ))
 }
+
+if (identical(environment(), globalenv())) {
+  run_main_analysis()
+}
