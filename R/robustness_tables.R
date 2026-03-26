@@ -44,6 +44,10 @@ robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha =
   # linear dose term
   lin <- models_df %>%
     filter(model == "linear", term == "dose_diff") %>%
+    mutate(
+      I2 = if ("I2" %in% names(.)) suppressWarnings(as.numeric(I2)) else NA_real_,
+      tau2 = if ("tau2" %in% names(.)) suppressWarnings(as.numeric(tau2)) else NA_real_
+    ) %>%
     transmute(
       molecule,
       k_linear = k,
@@ -63,6 +67,12 @@ robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha =
   # spline omnibus (take one row per molecule per spline model)
   spl <- models_df %>%
     filter(str_detect(model, "^spline")) %>%
+    mutate(
+      I2 = if ("I2" %in% names(.)) suppressWarnings(as.numeric(I2)) else NA_real_,
+      tau2 = if ("tau2" %in% names(.)) suppressWarnings(as.numeric(tau2)) else NA_real_,
+      QM = if ("QM" %in% names(.)) suppressWarnings(as.numeric(QM)) else NA_real_,
+      QMp = if ("QMp" %in% names(.)) suppressWarnings(as.numeric(QMp)) else NA_real_
+    ) %>%
     group_by(molecule, model) %>%
     summarise(
       k_spline = first(k),
