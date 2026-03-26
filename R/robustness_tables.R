@@ -132,6 +132,10 @@ robustness_ae_molecule_linear_vs_spline <- function(models_df, outfile_csv, alph
   
   spl <- models_df %>%
     filter(str_detect(model, "^spline")) %>%
+    mutate(
+      QM = if ("QM" %in% names(.)) suppressWarnings(as.numeric(QM)) else NA_real_,
+      QMp = if ("QMp" %in% names(.)) suppressWarnings(as.numeric(QMp)) else NA_real_
+    ) %>%
     group_by(ae_term, molecule, model) %>%
     summarise(
       k_spline = first(k),
