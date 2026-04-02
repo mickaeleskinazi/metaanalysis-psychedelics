@@ -7,15 +7,15 @@ suppressPackageStartupMessages({
 
 normalize_robustness_models <- function(models_df){
   if (is.null(models_df) || !nrow(models_df)) return(models_df)
-  needed_num <- c("k","I2","tau2","QM","QMp","pval","beta","estimate")
+  needed_num <- c("k","I2","tau2","QM","QMp","pval","beta")
   for (nm in needed_num) {
     if (!nm %in% names(models_df)) models_df[[nm]] <- NA_real_
   }
   if (!"model" %in% names(models_df)) models_df$model <- NA_character_
   if (!"df_spline" %in% names(models_df)) models_df$df_spline <- NA_real_
   if (!"term" %in% names(models_df)) models_df$term <- "dose_diff"
-  if (!"estimate" %in% names(models_df) && "beta" %in% names(models_df)) {
-    models_df$estimate <- models_df$beta
+  if (!"estimate" %in% names(models_df)) {
+    models_df$estimate <- if ("beta" %in% names(models_df)) models_df$beta else NA_real_
   }
   
   models_df %>%
