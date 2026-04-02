@@ -43,6 +43,11 @@ sig_stars <- function(p){
 robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha = 0.05){
   stopifnot(is.data.frame(models_df))
   dir.create(dirname(outfile_csv), recursive = TRUE, showWarnings = FALSE)
+  if (is.null(models_df) || !nrow(models_df)) {
+    out <- tibble::tibble()
+    write_csv(out, outfile_csv)
+    return(invisible(out))
+  }
   models_df <- normalize_robustness_models(models_df)
   if (!"QM" %in% names(models_df)) models_df$QM <- NA_real_
   if (!"QMp" %in% names(models_df)) models_df$QMp <- NA_real_
@@ -120,6 +125,11 @@ robustness_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha =
 robustness_ae_molecule_linear_vs_spline <- function(models_df, outfile_csv, alpha = 0.05){
   stopifnot(is.data.frame(models_df))
   dir.create(dirname(outfile_csv), recursive = TRUE, showWarnings = FALSE)
+  if (is.null(models_df) || !nrow(models_df)) {
+    out <- tibble::tibble()
+    write_csv(out, outfile_csv)
+    return(invisible(out))
+  }
   models_df <- normalize_robustness_models(models_df)
   if (!"QM" %in% names(models_df)) models_df$QM <- NA_real_
   if (!"QMp" %in% names(models_df)) models_df$QMp <- NA_real_
