@@ -77,6 +77,11 @@ run_main_analysis <- function(
   ordered_windows <- unique(c(intersect(window_order, available_windows),
                               setdiff(available_windows, window_order)))
   
+
+  has_required_cols <- function(df, cols) {
+    is.data.frame(df) && all(cols %in% names(df))
+  }
+
   run_window <- function(window_value) {
     out_dir_window <- file.path(out_dir, window_value)
     paper_dir_window <- file.path(paper_dir, window_value)
@@ -136,26 +141,46 @@ run_main_analysis <- function(
     make_forest_tables(es, file.path(tables_dir, "forest"), min_k = min_k)
     
     message(sprintf("→ Window '%s': dose–response plots …", window_value))
-    plot_dr_by_molecule_split(dr_mol$preds, dr_mol$models, file.path(out_dir_window, "dose_response/by_molecule_split"))
-    plot_dr_per_molecule_across_ae_facets(dr_ae$preds, dr_ae$models, file.path(out_dir_window, "dose_response/by_molecule_facets"))
-    plot_dr_per_ae_normalized_dose(dr_ae$preds, file.path(out_dir_window, "dose_response/by_ae_normalized"))
-    
+    if (has_required_cols(dr_mol$preds, c("molecule", "dose_mg", "fit", "lwr", "upr")) && nrow(dr_mol$preds) > 0) {
+      plot_dr_by_molecule_split(dr_mol$preds, dr_mol$models, file.path(out_dir_window, "dose_response/by_molecule_split"))
+    } else {
+      warning("Skipping by_molecule dose–response plots for window '", window_value,
+              "' because preds is empty or missing required columns.")
+    }
+    if (has_required_cols(dr_ae$preds, c("molecule", "ae_term", "dose_mg", "fit", "lwr", "upr")) && nrow(dr_ae$preds) > 0) {
+      plot_dr_per_molecule_across_ae_facets(dr_ae$preds, dr_ae$models, file.path(out_dir_window, "dose_response/by_molecule_facets"))
+      plot_dr_per_ae_normalized_dose(dr_ae$preds, file.path(out_dir_window, "dose_response/by_ae_normalized"))
+    } else {
+      warning("Skipping AE dose–response plots for window '", window_value,
+              "' because preds is empty or missing required columns.")
+    }
+
     message(sprintf("→ Window '%s': master plots …", window_value))
     master_dir <- file.path(out_dir_window, "master")
     dir.create(master_dir, recursive = TRUE, showWarnings = FALSE)
-    plot_master_dr_by_molecule(dr_mol$preds, file.path(master_dir, "master_dr_by_molecule.pdf"))
+    if (has_required_cols(dr_mol$preds, c("molecule", "dose_mg", "fit", "lwr", "upr")) && nrow(dr_mol$preds) > 0) {
+      plot_master_dr_by_molecule(dr_mol$preds, file.path(master_dir, "master_dr_by_molecule.pdf"))
+    } else {
+      warning("Skipping master DR by molecule for window '", window_value,
+              "' because preds is empty or missing required columns.")
+    }
     if (exists("plot_master_forest_by_molecule", mode = "function")) {
       plot_master_forest_by_molecule(es, file.path(master_dir, "master_forest_by_molecule.pdf"), min_k = 3)
     } else {
       warning("plot_master_forest_by_molecule() not found; skipping master forest PDF.")
     }
-    plot_master_dr_by_ae(
-      preds               = dr_ae$preds,
-      models              = dr_ae$models,
-      outfile             = file.path(master_dir, "master_dr_by_ae.pdf"),
-      max_ae_per_molecule = 20,
-      significant_only    = TRUE
-    )
+    if (has_required_cols(dr_ae$preds, c("molecule", "ae_term", "dose_mg", "fit", "lwr", "upr")) && nrow(dr_ae$preds) > 0) {
+      plot_master_dr_by_ae(
+        preds               = dr_ae$preds,
+        models              = dr_ae$models,
+        outfile             = file.path(master_dir, "master_dr_by_ae.pdf"),
+        max_ae_per_molecule = 20,
+        significant_only    = TRUE
+      )
+    } else {
+      warning("Skipping master DR by AE for window '", window_value,
+              "' because preds is empty or missing required columns.")
+    }
     
     if (isTRUE(make_paper_tables)) {
       message(sprintf("→ Window '%s': publication tables …", window_value))
@@ -217,11 +242,18 @@ run_main_analysis <- function(
       outfile = file.path(compare_dir, "forest_combined_all_molecules.pdf")
     )
     
-    dr_compare_all_molecules(
-      preds_session  = window_results$session$dr_molecule$preds,
-      preds_followup = window_results$follow_up$dr_molecule$preds,
-      outfile        = file.path(compare_dir, "dose_response", "dr_session_vs_followup.pdf")
-    )
+    if (has_required_cols(window_results$session$dr_molecule$preds, c("molecule", "dose_mg", "fit", "lwr", "upr")) &&
+        has_required_cols(window_results$follow_up$dr_molecule$preds, c("molecule", "dose_mg", "fit", "lwr", "upr")) &&
+        nrow(window_results$session$dr_molecule$preds) > 0 &&
+        nrow(window_results$follow_up$dr_molecule$preds) > 0) {
+      dr_compare_all_molecules(
+        preds_session  = window_results$session$dr_molecule$preds,
+        preds_followup = window_results$follow_up$dr_molecule$preds,
+        outfile        = file.path(compare_dir, "dose_response", "dr_session_vs_followup.pdf")
+      )
+    } else {
+      warning("Skipping session vs follow-up DR comparison plot because preds are empty or missing required columns.")
+    }
     
     make_dr_window_tables(
       es = es_all,
