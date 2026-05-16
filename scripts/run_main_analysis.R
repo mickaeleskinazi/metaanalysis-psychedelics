@@ -20,6 +20,7 @@ source(here::here("R", "session_followup_tables.R"))
 source(here::here("R", "session_followup_dr_plots.R"))
 source(here::here("R", "session_followup_forest_plots.R"))
 source(here::here("R", "robustness_tables.R"))
+source(here::here("R", "absolute_rate_tables.R"))
 
 
 # Default reference arm preferences -------------------------------------------------
@@ -87,8 +88,25 @@ run_main_analysis <- function(
     }
     
     message(sprintf("→ Window '%s': dose–response models …", window_value))
-    dr_mol <- run_dr_by_molecule(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
-    dr_ae  <- run_dr_by_ae(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
+    dr_mol_linear <- run_dr_by_molecule(es, min_k = min_k, model = "linear", grid = "observed")
+    dr_ae_linear  <- run_dr_by_ae(es, min_k = min_k, model = "linear", grid = "observed")
+
+    if (isTRUE(fit_spline)) {
+      dr_mol_spline <- run_dr_by_molecule(es, min_k = min_k, model = "spline", df_spline = 3, grid = "observed")
+      dr_ae_spline  <- run_dr_by_ae(es, min_k = min_k, model = "spline", df_spline = 3, grid = "observed")
+
+      dr_mol <- list(
+        preds = dplyr::bind_rows(dr_mol_linear$preds, dr_mol_spline$preds),
+        models = dplyr::bind_rows(dr_mol_linear$models, dr_mol_spline$models)
+      )
+      dr_ae <- list(
+        preds = dplyr::bind_rows(dr_ae_linear$preds, dr_ae_spline$preds),
+        models = dplyr::bind_rows(dr_ae_linear$models, dr_ae_spline$models)
+      )
+    } else {
+      dr_mol <- dr_mol_linear
+      dr_ae  <- dr_ae_linear
+    }
     
     message(sprintf("→ Window '%s': robustness tables …", window_value))
     rob_dir <- file.path(out_dir_window, "robustness")
@@ -138,12 +156,27 @@ run_main_analysis <- function(
     if (isTRUE(make_paper_tables)) {
       message(sprintf("→ Window '%s': publication tables …", window_value))
       dir.create(paper_dir_window, recursive = TRUE, showWarnings = FALSE)
-      make_all_paper_tables(
-        path_mol_agg    = file.path(tables_dir, "significance_agg_by_molecule.csv"),
-        path_ae_mol_agg = file.path(tables_dir, "significance_agg_by_ae_molecule.csv"),
-        path_models_ae  = file.path(tables_dir, "significance_by_ae_models.csv"),
-        output_dir      = paper_dir_window
-      )
+
+      path_mol_agg <- file.path(tables_dir, "significance_agg_by_molecule.csv")
+      path_ae_mol_agg <- file.path(tables_dir, "significance_agg_by_ae_molecule.csv")
+      path_models_ae <- file.path(tables_dir, "significance_by_ae_models.csv")
+
+      # Publication tables are primarily intended for session/follow_up windows.
+      # Some extra windows (e.g., "overall") may not always produce all inputs.
+      if (window_value %in% c("session", "follow_up") &&
+          file.exists(path_mol_agg) && file.exists(path_ae_mol_agg) && file.exists(path_models_ae)) {
+        make_all_paper_tables(
+          path_mol_agg    = path_mol_agg,
+          path_ae_mol_agg = path_ae_mol_agg,
+          path_models_ae  = path_models_ae,
+          output_dir      = paper_dir_window
+        )
+      } else {
+        warning(sprintf(
+          "Skipping publication tables for window '%s' (missing inputs or non-primary window).",
+          window_value
+        ))
+      }
     }
     
     list(
@@ -161,6 +194,15 @@ run_main_analysis <- function(
     )
   }
   
+  message("→ Supplementary absolute-rate tables …")
+  absolute_rate_outputs <- make_absolute_rate_tables(
+    raw = raw,
+    out_dir = file.path(paper_dir, "absolute_rates"),
+    min_total_n = 1,
+    top_n_ae_per_group = 10,
+    write_outputs = TRUE
+  )
+
   window_results <- purrr::map(ordered_windows, run_window)
   names(window_results) <- ordered_windows
   window_results <- purrr::compact(window_results)
@@ -285,7 +327,8 @@ run_main_analysis <- function(
   invisible(list(
     raw = raw,
     windows = window_results,
-    comparison = comparison_outputs
+    comparison = comparison_outputs,
+    absolute_rates = absolute_rate_outputs
   ))
 }
 
