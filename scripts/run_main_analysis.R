@@ -20,6 +20,7 @@ source(here::here("R", "session_followup_tables.R"))
 source(here::here("R", "session_followup_dr_plots.R"))
 source(here::here("R", "session_followup_forest_plots.R"))
 source(here::here("R", "robustness_tables.R"))
+source(here::here("R", "absolute_rate_tables.R"))
 
 
 # Default reference arm preferences -------------------------------------------------
@@ -87,8 +88,25 @@ run_main_analysis <- function(
     }
     
     message(sprintf("→ Window '%s': dose–response models …", window_value))
-    dr_mol <- run_dr_by_molecule(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
-    dr_ae  <- run_dr_by_ae(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
+    dr_mol_linear <- run_dr_by_molecule(es, min_k = min_k, model = "linear", grid = "observed")
+    dr_ae_linear  <- run_dr_by_ae(es, min_k = min_k, model = "linear", grid = "observed")
+
+    if (isTRUE(fit_spline)) {
+      dr_mol_spline <- run_dr_by_molecule(es, min_k = min_k, model = "spline", df_spline = 3, grid = "observed")
+      dr_ae_spline  <- run_dr_by_ae(es, min_k = min_k, model = "spline", df_spline = 3, grid = "observed")
+
+      dr_mol <- list(
+        preds = dplyr::bind_rows(dr_mol_linear$preds, dr_mol_spline$preds),
+        models = dplyr::bind_rows(dr_mol_linear$models, dr_mol_spline$models)
+      )
+      dr_ae <- list(
+        preds = dplyr::bind_rows(dr_ae_linear$preds, dr_ae_spline$preds),
+        models = dplyr::bind_rows(dr_ae_linear$models, dr_ae_spline$models)
+      )
+    } else {
+      dr_mol <- dr_mol_linear
+      dr_ae  <- dr_ae_linear
+    }
     
     message(sprintf("→ Window '%s': robustness tables …", window_value))
     rob_dir <- file.path(out_dir_window, "robustness")
@@ -161,6 +179,15 @@ run_main_analysis <- function(
     )
   }
   
+  message("→ Supplementary absolute-rate tables …")
+  absolute_rate_outputs <- make_absolute_rate_tables(
+    raw = raw,
+    out_dir = file.path(paper_dir, "absolute_rates"),
+    min_total_n = 1,
+    top_n_ae_per_group = 10,
+    write_outputs = TRUE
+  )
+
   window_results <- purrr::map(ordered_windows, run_window)
   names(window_results) <- ordered_windows
   window_results <- purrr::compact(window_results)
@@ -285,7 +312,8 @@ run_main_analysis <- function(
   invisible(list(
     raw = raw,
     windows = window_results,
-    comparison = comparison_outputs
+    comparison = comparison_outputs,
+    absolute_rates = absolute_rate_outputs
   ))
 }
 
