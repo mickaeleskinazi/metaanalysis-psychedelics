@@ -54,6 +54,34 @@ Key scripts:
 
 ---
 
+
+### Outcome definition (for manuscript reporting)
+Use the following **complete Outcome text** in Methods (before Statistical analyses and Results):
+
+> **Outcome.** The primary outcome was the odds of adverse-event (AE) occurrence as a function of psychedelic dose, estimated from arm-level AE counts across randomized controlled trials. To avoid combining clinically distinct temporal profiles, outcomes were pre-specified and analysed separately according to assessment window: acute/session outcomes (AEs occurring during administration or in the immediate post-session period) and follow-up outcomes (AEs reported at later post-acute assessments). The same dose–response meta-analytic framework was applied independently within each time window at both the global molecule level (pooling all extractable AEs within each substance) and the molecule × AE level (modelling individual harmonized AE terms). AE-level models were fit separately for each molecule (LSD, MDMA, psilocybin) and were not pooled into a single pan-substance effect. Multiplicity-adjusted significance reporting was applied. Session-versus-follow-up comparisons were treated as secondary analyses and are reported in dedicated tables and figures.
+
+
+Suggested wording when placebo composition is partially missing:
+- **Placebo condition**: Placebo composition was not reported in several trials. Among studies with known composition, inactive placebos (lactose capsules or saline) were used in both ayahuasca trials (2/2, 100%), 6 MDMA studies, 3 LSD studies, and 1 psilocybin study.
+
+Repository mapping for this outcome structure:
+- Session outputs: `results/main/session/` and `results/paper_tables/session/`.
+- Follow-up outputs: `results/main/follow_up/` and `results/paper_tables/follow_up/`.
+- Cross-window comparisons: `results/main/compare/` (especially `tables/topline_session_followup_summary.csv` and `tables/dr_session_followup_publication_table.csv`).
+
+---
+
+
+### Sensitivity analyses (for manuscript Methods)
+Use the following text in Methods to match the Results statements:
+
+> **Sensitivity analyses.** We evaluated model-specification robustness by refitting all dose–response analyses under two prespecified functional forms: (i) a linear dose term and (ii) a restricted cubic spline specification (natural spline, 3 degrees of freedom). This was done separately within each assessment window (session and follow-up), both at the global substance level and at the molecule × AE level, using the same eligibility thresholds as the primary analyses. For each analysis unit, we compared significance patterns across specifications and classified results as concordant (both significant), linear-only, spline-only, or non-significant. Robustness summaries were reported in Supplementary Table S1 (global substance level) and Supplementary Table S2 (AE level counts by molecule/window).
+
+Operational mapping in this repository:
+- Robustness inputs are generated in `scripts/run_main_analysis.R` and saved per window under `results/main/<window>/robustness/`.
+- Main files: `robustness_linear_vs_spline_by_molecule.csv` and `robustness_linear_vs_spline_by_ae_molecule.csv`.
+- Supplement-ready summary tables are produced by `R/robustness_report_tables.R` (S1/S2 exports).
+
 ## 🛠️ Requirements
 
 - R (≥ 4.2.0)
