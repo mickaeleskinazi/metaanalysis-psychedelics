@@ -117,3 +117,50 @@ plot_master_dr_by_ae <- function(preds,
   
   invisible(NULL)
 }
+
+# =============================================================================
+# Master forest by molecule (single figure)
+# =============================================================================
+plot_master_forest_by_molecule <- function(es, outfile, min_k = 3) {
+  .require_cols(es, c("molecule", "ae_term", "yi", "vi"), where = "es")
+
+  df <- es %>%
+    filter(is.finite(yi), is.finite(vi), vi > 0) %>%
+    group_by(molecule, ae_term) %>%
+    summarise(
+      k = n(),
+      yi = mean(yi, na.rm = TRUE),
+      vi = mean(vi, na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    filter(k >= min_k) %>%
+    mutate(
+      se = sqrt(vi),
+      ci_low = yi - 1.96 * se,
+      ci_high = yi + 1.96 * se
+    ) %>%
+    arrange(molecule, desc(abs(yi)))
+
+  if (!nrow(df)) {
+    warning("plot_master_forest_by_molecule(): no rows after filtering (check min_k / data).")
+    return(invisible(NULL))
+  }
+
+  p <- ggplot(df, aes(x = yi, y = reorder(ae_term, yi))) +
+    geom_vline(xintercept = 0, linetype = 2, alpha = 0.5) +
+    geom_errorbarh(aes(xmin = ci_low, xmax = ci_high), height = 0.15, alpha = 0.8) +
+    geom_point(aes(size = k), alpha = 0.9) +
+    facet_wrap(~ molecule, scales = "free_y") +
+    labs(
+      title = "Forest summary by molecule",
+      x = "Effect size (log OR)",
+      y = "Adverse event",
+      size = "k"
+    ) +
+    theme_minimal(base_size = 10)
+
+  dir.create(dirname(outfile), recursive = TRUE, showWarnings = FALSE)
+  ggsave(outfile, p, width = 12, height = 8)
+
+  invisible(NULL)
+}
