@@ -156,12 +156,27 @@ run_main_analysis <- function(
     if (isTRUE(make_paper_tables)) {
       message(sprintf("→ Window '%s': publication tables …", window_value))
       dir.create(paper_dir_window, recursive = TRUE, showWarnings = FALSE)
-      make_all_paper_tables(
-        path_mol_agg    = file.path(tables_dir, "significance_agg_by_molecule.csv"),
-        path_ae_mol_agg = file.path(tables_dir, "significance_agg_by_ae_molecule.csv"),
-        path_models_ae  = file.path(tables_dir, "significance_by_ae_models.csv"),
-        output_dir      = paper_dir_window
-      )
+
+      path_mol_agg <- file.path(tables_dir, "significance_agg_by_molecule.csv")
+      path_ae_mol_agg <- file.path(tables_dir, "significance_agg_by_ae_molecule.csv")
+      path_models_ae <- file.path(tables_dir, "significance_by_ae_models.csv")
+
+      # Publication tables are primarily intended for session/follow_up windows.
+      # Some extra windows (e.g., "overall") may not always produce all inputs.
+      if (window_value %in% c("session", "follow_up") &&
+          file.exists(path_mol_agg) && file.exists(path_ae_mol_agg) && file.exists(path_models_ae)) {
+        make_all_paper_tables(
+          path_mol_agg    = path_mol_agg,
+          path_ae_mol_agg = path_ae_mol_agg,
+          path_models_ae  = path_models_ae,
+          output_dir      = paper_dir_window
+        )
+      } else {
+        warning(sprintf(
+          "Skipping publication tables for window '%s' (missing inputs or non-primary window).",
+          window_value
+        ))
+      }
     }
     
     list(
