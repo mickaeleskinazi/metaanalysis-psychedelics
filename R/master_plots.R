@@ -21,6 +21,7 @@ suppressPackageStartupMessages({
 # Master DR by molecule (single figure)
 # =============================================================================
 plot_master_dr_by_molecule <- function(preds, outfile) {
+  if (is.null(preds) || !nrow(preds)) return(invisible(NULL))
   .require_cols(preds, c("molecule", "dose_mg", "fit", "lwr", "upr"), where = "preds")
   
   df <- preds %>% arrange(molecule, dose_mg)
@@ -56,6 +57,7 @@ plot_master_dr_by_ae <- function(preds,
                                  max_ae_per_molecule = 20,
                                  significant_only = TRUE,
                                  p_threshold = 0.05) {
+  if (is.null(preds) || !nrow(preds)) return(invisible(NULL))
   
   .require_cols(preds, c("molecule", "ae_term", "dose_mg", "fit", "lwr", "upr"), where = "preds")
   
