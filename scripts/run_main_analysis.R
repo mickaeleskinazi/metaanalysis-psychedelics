@@ -20,6 +20,7 @@ source(here::here("R", "session_followup_tables.R"))
 source(here::here("R", "session_followup_dr_plots.R"))
 source(here::here("R", "session_followup_forest_plots.R"))
 source(here::here("R", "robustness_tables.R"))
+source(here::here("R", "absolute_rate_tables.R"))
 
 
 # Default reference arm preferences -------------------------------------------------
@@ -161,6 +162,15 @@ run_main_analysis <- function(
     )
   }
   
+  message("→ Supplementary absolute-rate tables …")
+  absolute_rate_outputs <- make_absolute_rate_tables(
+    raw = raw,
+    out_dir = file.path(paper_dir, "absolute_rates"),
+    min_total_n = 1,
+    top_n_ae_per_group = 10,
+    write_outputs = TRUE
+  )
+
   window_results <- purrr::map(ordered_windows, run_window)
   names(window_results) <- ordered_windows
   window_results <- purrr::compact(window_results)
@@ -285,7 +295,8 @@ run_main_analysis <- function(
   invisible(list(
     raw = raw,
     windows = window_results,
-    comparison = comparison_outputs
+    comparison = comparison_outputs,
+    absolute_rates = absolute_rate_outputs
   ))
 }
 
