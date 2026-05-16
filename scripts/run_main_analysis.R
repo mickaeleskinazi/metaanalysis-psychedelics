@@ -88,8 +88,25 @@ run_main_analysis <- function(
     }
     
     message(sprintf("→ Window '%s': dose–response models …", window_value))
-    dr_mol <- run_dr_by_molecule(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
-    dr_ae  <- run_dr_by_ae(es, min_k = min_k, fit_spline = fit_spline, grid = "observed")
+    dr_mol_linear <- run_dr_by_molecule(es, min_k = min_k, model = "linear", grid = "observed")
+    dr_ae_linear  <- run_dr_by_ae(es, min_k = min_k, model = "linear", grid = "observed")
+
+    if (isTRUE(fit_spline)) {
+      dr_mol_spline <- run_dr_by_molecule(es, min_k = min_k, model = "spline", df_spline = 3, grid = "observed")
+      dr_ae_spline  <- run_dr_by_ae(es, min_k = min_k, model = "spline", df_spline = 3, grid = "observed")
+
+      dr_mol <- list(
+        preds = dplyr::bind_rows(dr_mol_linear$preds, dr_mol_spline$preds),
+        models = dplyr::bind_rows(dr_mol_linear$models, dr_mol_spline$models)
+      )
+      dr_ae <- list(
+        preds = dplyr::bind_rows(dr_ae_linear$preds, dr_ae_spline$preds),
+        models = dplyr::bind_rows(dr_ae_linear$models, dr_ae_spline$models)
+      )
+    } else {
+      dr_mol <- dr_mol_linear
+      dr_ae  <- dr_ae_linear
+    }
     
     message(sprintf("→ Window '%s': robustness tables …", window_value))
     rob_dir <- file.path(out_dir_window, "robustness")
