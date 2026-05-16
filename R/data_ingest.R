@@ -56,7 +56,8 @@ load_data <- function(path, sheet){
     events      = c("events","event","ae_n","cases","num_events","n_events","events_arm","ae_count"),
     n           = c("n","total","n_total","sample_size","denominator",
                     "participants","participants_total","n_participants",
-                    "n_participants_arm","arm_n","n_arm")
+                    "n_participants_arm","arm_n","n_arm"),
+    absolute_events = c("absolute_events", "absolute_event", "ae_absolute", "events_absolute")
   )
   df <- .detect_and_rename(df, targets)
 
@@ -93,6 +94,13 @@ load_data <- function(path, sheet){
       events      = suppressWarnings(as.numeric(gsub(",", ".", as.character(events)))),
       n           = suppressWarnings(as.numeric(gsub(",", ".", as.character(n))))
     )
+
+  if ("absolute_events" %in% names(df)) {
+    df <- df %>%
+      mutate(
+        absolute_events = suppressWarnings(as.numeric(gsub(",", ".", as.character(absolute_events))))
+      )
+  }
   
   # --- NEW: derive group + arm_type from arm_id when needed ---
   # 1) start from any provided group; otherwise fall back to arm_id
