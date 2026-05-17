@@ -14,6 +14,14 @@ suppressPackageStartupMessages({
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+=======
+# optional: absolute_events (preferred for clinician-facing absolute tables)
+>>>>>>> theirs
+=======
+# optional: absolute_events (preferred for clinician-facing absolute tables)
+>>>>>>> theirs
 =======
 # optional: absolute_events (preferred for clinician-facing absolute tables)
 >>>>>>> theirs
@@ -51,7 +59,15 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
   needed <- c("molecule", "ae_term", "time_window", "events", "n")
+=======
+  needed <- c("molecule", "ae_term", "time_window", "n")
+>>>>>>> theirs
+=======
+  needed <- c("molecule", "ae_term", "time_window", "n")
+>>>>>>> theirs
 =======
   needed <- c("molecule", "ae_term", "time_window", "n")
 >>>>>>> theirs
@@ -97,11 +113,17 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
       events = suppressWarnings(as.numeric(events)),
       n = suppressWarnings(as.numeric(n))
     ) %>%
     filter(!is.na(molecule), !is.na(ae_term), !is.na(time_window), is.finite(events), is.finite(n), n > 0)
 =======
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 =======
@@ -134,6 +156,12 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs
@@ -162,7 +190,15 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
       events_total = sum(events, na.rm = TRUE),
+=======
+      events_total = sum(events_for_absolute, na.rm = TRUE),
+>>>>>>> theirs
+=======
+      events_total = sum(events_for_absolute, na.rm = TRUE),
+>>>>>>> theirs
 =======
       events_total = sum(events_for_absolute, na.rm = TRUE),
 >>>>>>> theirs
@@ -201,6 +237,14 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+=======
+    mutate(events_source = "row-wise preference: absolute_events else events") %>%
+>>>>>>> theirs
+=======
+    mutate(events_source = "row-wise preference: absolute_events else events") %>%
+>>>>>>> theirs
 =======
     mutate(events_source = "row-wise preference: absolute_events else events") %>%
 >>>>>>> theirs
@@ -239,7 +283,15 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
       events_total = sum(events, na.rm = TRUE),
+=======
+      events_total = sum(events_for_absolute, na.rm = TRUE),
+>>>>>>> theirs
+=======
+      events_total = sum(events_for_absolute, na.rm = TRUE),
+>>>>>>> theirs
 =======
       events_total = sum(events_for_absolute, na.rm = TRUE),
 >>>>>>> theirs
@@ -278,6 +330,14 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+=======
+    mutate(events_source = "row-wise preference: absolute_events else events") %>%
+>>>>>>> theirs
+=======
+    mutate(events_source = "row-wise preference: absolute_events else events") %>%
+>>>>>>> theirs
 =======
     mutate(events_source = "row-wise preference: absolute_events else events") %>%
 >>>>>>> theirs
@@ -317,6 +377,14 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+=======
+    mutate(events_source = "row-wise preference: absolute_events else events") %>%
+>>>>>>> theirs
+=======
+    mutate(events_source = "row-wise preference: absolute_events else events") %>%
+>>>>>>> theirs
 =======
     mutate(events_source = "row-wise preference: absolute_events else events") %>%
 >>>>>>> theirs
@@ -360,7 +428,15 @@ make_absolute_rate_tables <- function(raw,
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
       "- rates are descriptive: events_total / n_total",
+=======
+      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
+>>>>>>> theirs
+=======
+      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
+>>>>>>> theirs
 =======
       "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
 >>>>>>> theirs
