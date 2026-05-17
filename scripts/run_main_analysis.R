@@ -40,7 +40,8 @@ run_main_analysis <- function(
     fit_spline = TRUE,
     make_paper_tables = TRUE,
     paper_dir = here::here("results", "paper_tables"),
-    compare_dir = file.path(out_dir, "compare")) {
+    compare_dir = file.path(out_dir, "compare"),
+    include_non_primary_windows = FALSE) {
   if (!file.exists(data_xlsx)) {
     stop("Data file not found: ", data_xlsx)
   }
@@ -72,8 +73,12 @@ run_main_analysis <- function(
   }
   
   window_order <- c("session", "follow_up")
-  ordered_windows <- unique(c(intersect(window_order, available_windows),
-                              setdiff(available_windows, window_order)))
+  if (isTRUE(include_non_primary_windows)) {
+    ordered_windows <- unique(c(intersect(window_order, available_windows),
+                                setdiff(available_windows, window_order)))
+  } else {
+    ordered_windows <- intersect(window_order, available_windows)
+  }
   
   run_window <- function(window_value) {
     out_dir_window <- file.path(out_dir, window_value)
