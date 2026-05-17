@@ -158,16 +158,109 @@ make_absolute_rate_tables <- function(raw,
     ungroup() %>%
     arrange(time_window, molecule, desc(rate_pct), ae_term)
 
+  label_window <- function(x) {
+    dplyr::case_when(
+      x == "session" ~ "Session",
+      x == "follow_up" ~ "Follow-up",
+      x == "overall" ~ "Overall",
+      TRUE ~ str_to_sentence(str_replace_all(x, "_", " "))
+    )
+  }
+
+  fmt_count <- function(x) {
+    ifelse(is.na(x), "", format(round(x, 0), trim = TRUE, scientific = FALSE))
+  }
+
   fmt_rate_cell <- function(events, denominator, pct) {
     dplyr::case_when(
       is.na(events) | is.na(denominator) | is.na(pct) ~ "",
       TRUE ~ sprintf(
-        "%s/%s (%.1f%%)",
-        format(round(events, 1), trim = TRUE, scientific = FALSE),
-        format(round(denominator, 0), trim = TRUE, scientific = FALSE),
-        pct
+        "%s/%s (%s%%)",
+        fmt_count(events),
+        fmt_count(denominator),
+        fmt_count(pct)
       )
     )
+  }
+
+  write_clinician_top15_publication <- function(x, out_dir) {
+    caption <- "Absolute rates of the most frequently reported adverse events"
+    note <- "Top 15 adverse events per molecule and time window. Total participants is adverse-event specific because not every study reported every event."
+
+    if (requireNamespace("gt", quietly = TRUE)) {
+      gt_tbl <- x %>%
+        gt::gt(groupname_col = "Window") %>%
+        gt::tab_header(
+          title = gt::md("**Absolute adverse-event rates**"),
+          subtitle = gt::md("_Top 15 events by molecule and time window_")
+        ) %>%
+        gt::cols_align("left", columns = c("Molecule", "Adverse event", "Display")) %>%
+        gt::cols_align("center", columns = c("Rank", "Number of studies", "Total participants", "Events", "Events per 1000")) %>%
+        gt::fmt_number(
+          columns = c("Events", "Events per 1000"),
+          decimals = 0
+        ) %>%
+        gt::tab_options(
+          table.background.color = "white",
+          table.border.top.color = "#D8D3E6",
+          table.border.top.width = gt::px(1),
+          table.border.bottom.color = "#D8D3E6",
+          table.border.bottom.width = gt::px(1),
+          column_labels.background.color = "#F4F1FA",
+          column_labels.font.weight = "bold",
+          column_labels.border.top.color = "#D8D3E6",
+          column_labels.border.bottom.color = "#D8D3E6",
+          row.striping.background_color = "#FAFAFC",
+          table.font.color = "#24212B",
+          data_row.padding = gt::px(5),
+          source_notes.font.size = gt::px(10)
+        ) %>%
+        gt::opt_row_striping(row_striping = TRUE) %>%
+        gt::tab_style(
+          style = gt::cell_fill(color = "#F7F4FC"),
+          locations = gt::cells_row_groups()
+        ) %>%
+        gt::tab_source_note(gt::md(note))
+
+      gt::gtsave(gt_tbl, file.path(out_dir, "Sx_absolute_rates_clinician_top15.html"))
+    }
+
+    if (requireNamespace("flextable", quietly = TRUE) && requireNamespace("officer", quietly = TRUE)) {
+      ft <- flextable::flextable(x) %>%
+        flextable::set_caption(caption) %>%
+        flextable::theme_booktabs() %>%
+        flextable::bg(part = "header", bg = "#F4F1FA") %>%
+        flextable::color(part = "all", color = "#24212B") %>%
+        flextable::bold(part = "header") %>%
+        flextable::fontsize(part = "all", size = 8.5) %>%
+        flextable::fontsize(part = "header", size = 9) %>%
+        flextable::align(part = "all", align = "center") %>%
+        flextable::align(j = c("Molecule", "Adverse event", "Display"), align = "left", part = "all") %>%
+        flextable::valign(part = "all", valign = "center") %>%
+        flextable::padding(part = "all", padding = 3) %>%
+        flextable::autofit()
+
+      doc <- officer::read_docx()
+      doc <- flextable::body_add_flextable(doc, ft)
+      print(doc, target = file.path(out_dir, "Sx_absolute_rates_clinician_top15.docx"))
+    }
+
+    if (requireNamespace("knitr", quietly = TRUE) && requireNamespace("kableExtra", quietly = TRUE)) {
+      tex <- knitr::kable(
+        x,
+        format = "latex",
+        booktabs = TRUE,
+        escape = TRUE,
+        caption = caption
+      ) %>%
+        kableExtra::kable_styling(
+          full_width = FALSE,
+          position = "center",
+          font_size = 8,
+          latex_options = c("hold_position", "striped", "scale_down")
+        )
+      writeLines(tex, file.path(out_dir, "Sx_absolute_rates_clinician_top15.tex"))
+    }
   }
 
   # -------------------------------------------------------------------------
@@ -180,14 +273,14 @@ make_absolute_rate_tables <- function(raw,
     mutate(rank = row_number()) %>%
     ungroup() %>%
     transmute(
-      Window = time_window,
+      Window = label_window(time_window),
       Molecule = molecule,
       Rank = rank,
       `Adverse event` = str_to_sentence(ae_term),
       `Number of studies` = n_studies,
-      `Total participants` = n_total,
-      Events = events_total,
-      `Events per 1000` = 1000 * rate,
+      `Total participants` = round(n_total, 0),
+      Events = round(events_total, 0),
+      `Events per 1000` = round(1000 * rate, 0),
       Display = fmt_rate_cell(events_total, n_total, rate_pct)
     ) %>%
     arrange(Window, Molecule, Rank)
@@ -199,6 +292,7 @@ make_absolute_rate_tables <- function(raw,
     readr::write_csv(by_ae, file.path(out_dir, "Sx_absolute_rates_by_ae.csv"))
     readr::write_csv(top_ae, file.path(out_dir, "Sx_absolute_rates_topAE.csv"))
     readr::write_csv(clinical_top15, file.path(out_dir, "Sx_absolute_rates_clinician_top15.csv"))
+    write_clinician_top15_publication(clinical_top15, out_dir)
     readr::write_csv(by_ae_study, file.path(out_dir, "Sx_absolute_rates_by_ae_study.csv"))
     readr::write_csv(by_ae_arm, file.path(out_dir, "Sx_absolute_rates_by_ae_arm.csv"))
     readr::write_csv(arm_denominators, file.path(out_dir, "Sx_absolute_rates_denominators.csv"))
