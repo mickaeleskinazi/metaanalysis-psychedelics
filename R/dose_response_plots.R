@@ -35,6 +35,7 @@ suppressPackageStartupMessages({
 # models is ignored (preds-only) but accepted for backward compatibility.
 # =============================================================================
 plot_dr_by_molecule_split <- function(preds, models = NULL, outdir) {
+  if (is.null(preds) || !nrow(preds)) return(invisible(NULL))
   .require_cols(preds, c("molecule", "dose_mg", "fit", "lwr", "upr"), where = "preds")
   .ensure_dir(outdir)
   
@@ -72,6 +73,7 @@ plot_dr_per_molecule_across_ae_facets <- function(preds, models = NULL, outdir,
                                                   max_ae_per_molecule = 16,
                                                   significant_only = FALSE,
                                                   p_threshold = 0.05) {
+  if (is.null(preds) || !nrow(preds)) return(invisible(NULL))
   .require_cols(preds, c("molecule", "ae_term", "dose_mg", "fit", "lwr", "upr"), where = "preds")
   .ensure_dir(outdir)
   
@@ -125,6 +127,7 @@ plot_dr_per_molecule_across_ae_facets <- function(preds, models = NULL, outdir,
 plot_dr_per_ae_normalized_dose <- function(preds, outdir,
                                            max_ae_total = 60,
                                            min_points_per_curve = 2) {
+  if (is.null(preds) || !nrow(preds)) return(invisible(NULL))
   .require_cols(preds, c("molecule", "ae_term", "dose_mg", "fit", "lwr", "upr"), where = "preds")
   .ensure_dir(outdir)
   
