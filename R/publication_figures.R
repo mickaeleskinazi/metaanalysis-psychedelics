@@ -359,13 +359,16 @@ plot_fig2_dr_top_aes_spline_facets <- function(
   if (is.null(preds_ae) || !nrow(preds_ae)) return(invisible(NULL))
   if (is.null(models_ae) || !nrow(models_ae)) return(invisible(NULL))
 
+  models_requested <- unique(as.character(model))
+  model_labels <- c("linear" = "Linear", "spline" = "Spline", "spline_df3" = "Spline")
+
   preds <- preds_ae %>%
     mutate(
       molecule = toupper(as.character(molecule)),
       model = as.character(model)
     ) %>%
     filter(
-      .data$model == !!model,
+      .data$model %in% models_requested,
       molecule %in% molecules,
       is.finite(dose_mg),
       is.finite(fit)
@@ -380,7 +383,7 @@ plot_fig2_dr_top_aes_spline_facets <- function(
       k = suppressWarnings(as.numeric(k))
     ) %>%
     filter(
-      .data$model == !!model,
+      .data$model %in% models_requested,
       molecule %in% molecules,
       is.finite(k),
       k >= min_k
@@ -418,15 +421,23 @@ plot_fig2_dr_top_aes_spline_facets <- function(
         transmute(
           molecule,
           ae_term,
+          model,
           sig_label = if_else(!is.na(pval) & pval < 0.05, "Significant", "Not significant")
         ),
-      by = c("molecule", "ae_term")
+      by = c("molecule", "ae_term", "model")
     ) %>%
     filter(ae_term %in% ae_keep) %>%
     make_plot_dose("dose_mg") %>%
     mutate(
       molecule = factor(molecule, levels = molecules),
       ae_term = factor(ae_term, levels = ae_keep),
+      model_label = dplyr::coalesce(unname(model_labels[model]), str_to_sentence(model)),
+      model_label = factor(model_label, levels = unique(unname(model_labels[models_requested]))),
+      facet_label = paste0(str_to_sentence(as.character(ae_term)), "\n", model_label),
+      facet_label = factor(
+        facet_label,
+        levels = as.vector(outer(str_to_sentence(ae_keep), levels(model_label), paste, sep = "\n"))
+      ),
       sig_label = factor(sig_label, levels = c("Significant", "Not significant"))
     )
 
@@ -446,7 +457,7 @@ plot_fig2_dr_top_aes_spline_facets <- function(
     geom_hline(yintercept = 0, color = "grey78", linewidth = 0.35) +
     geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.10, linewidth = 0, show.legend = FALSE) +
     geom_line(linewidth = 1.05) +
-    facet_wrap(~ ae_term, ncol = 3, scales = "free") +
+    facet_wrap(~ facet_label, ncol = 3, scales = "free") +
     scale_color_manual(values = mol_colors(), drop = FALSE) +
     scale_fill_manual(values = mol_colors(), drop = FALSE) +
     scale_linetype_manual(values = c("Significant" = "solid", "Not significant" = "22")) +
@@ -461,7 +472,7 @@ plot_fig2_dr_top_aes_spline_facets <- function(
       linetype = guide_legend(title = "Dose-slope", nrow = 1, override.aes = list(color = "black", linewidth = 2))
     )
 
-  n_facets <- length(unique(df$ae_term))
+  n_facets <- length(unique(df$facet_label))
   height <- max(7.2, ceiling(n_facets / 3) * 2.45 + 1.8)
   save_pub(outfile, p, width = 12.2, height = height)
   invisible(p)

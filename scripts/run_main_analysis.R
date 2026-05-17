@@ -87,16 +87,16 @@ make_publication_figures <- function(window_results,
   plot_fig2_dr_top_aes_spline_facets(
     preds_ae = window_results$session$dr_ae$preds,
     models_ae = window_results$session$dr_ae$models,
-    outfile = file.path(out_dir, "Fig2_DR_sharedAEs_linear.pdf"),
+    outfile = file.path(out_dir, "Fig2_DR_sharedAEs_linear_spline.pdf"),
     min_k = max(3, min_k),
     top_n_ae = Inf,
-    significant_only = FALSE,
-    model = "linear"
+    significant_only = TRUE,
+    model = c("linear", "spline")
   )
 
   invisible(list(
     fig1 = file.path(out_dir, "Fig1_Global_DR_session_followup.pdf"),
-    fig2 = file.path(out_dir, "Fig2_DR_sharedAEs_linear.pdf")
+    fig2 = file.path(out_dir, "Fig2_DR_sharedAEs_linear_spline.pdf")
   ))
 }
 
