@@ -5,93 +5,14 @@ suppressPackageStartupMessages({
 })
 
 # Build supplementary absolute-rate tables to contextualize OR-based analyses.
-# raw must contain at least: molecule, ae_term, time_window, events, n
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
-=======
-# optional: absolute_events (preferred for clinician-facing absolute tables)
->>>>>>> theirs
+# Required columns in `raw`: molecule, ae_term, time_window, study_id, n
+# Optional columns: absolute_events (preferred), events (fallback)
 make_absolute_rate_tables <- function(raw,
                                       out_dir,
                                       min_total_n = 1,
                                       top_n_ae_per_group = 10,
                                       write_outputs = TRUE) {
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-  needed <- c("molecule", "ae_term", "time_window", "events", "n")
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
-=======
-  needed <- c("molecule", "ae_term", "time_window", "n")
->>>>>>> theirs
+  needed <- c("molecule", "ae_term", "time_window", "study_id", "n")
   missing_cols <- setdiff(needed, names(raw))
   if (length(missing_cols)) {
     stop(
@@ -99,45 +20,13 @@ make_absolute_rate_tables <- function(raw,
       paste(missing_cols, collapse = ", ")
     )
   }
-
+  
   dat <- raw %>%
     mutate(
       molecule = toupper(as.character(molecule)),
       ae_term = as.character(ae_term),
       time_window = as.character(time_window),
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-      events = suppressWarnings(as.numeric(events)),
-      n = suppressWarnings(as.numeric(n))
-    ) %>%
-    filter(!is.na(molecule), !is.na(ae_term), !is.na(time_window), is.finite(events), is.finite(n), n > 0)
-=======
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
+      study_id = as.character(study_id),
       events = if ("events" %in% names(.)) suppressWarnings(as.numeric(events)) else NA_real_,
       absolute_events = if ("absolute_events" %in% names(.)) suppressWarnings(as.numeric(absolute_events)) else NA_real_,
       n = suppressWarnings(as.numeric(n)),
@@ -148,324 +37,131 @@ make_absolute_rate_tables <- function(raw,
         TRUE ~ "missing"
       )
     ) %>%
-    filter(!is.na(molecule), !is.na(ae_term), !is.na(time_window), is.finite(events_for_absolute), is.finite(n), n > 0)
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs
-
-  # Global absolute rates: "any AE" aggregate over all AE rows.
-  global <- dat %>%
-    group_by(time_window, molecule) %>%
+    filter(
+      !is.na(molecule),
+      !is.na(ae_term),
+      !is.na(time_window),
+      !is.na(study_id),
+      is.finite(events_for_absolute),
+      is.finite(n),
+      n > 0
+    )
+  
+  # ---------------------------------------------------------------------------
+  # 1) AE-level absolute rates (base analytique)
+  #    On agrège d'abord à l'échelle étude × molécule × fenêtre × AE
+  #    pour éviter les duplications de lignes.
+  # ---------------------------------------------------------------------------
+  by_ae_study <- dat %>%
+    group_by(time_window, molecule, study_id, ae_term) %>%
     summarise(
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-      events_total = sum(events, na.rm = TRUE),
-=======
       events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
       n_total = sum(n, na.rm = TRUE),
-      rate = events_total / n_total,
+      rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
       rate_pct = 100 * rate,
       .groups = "drop"
-    ) %>%
-    filter(n_total >= min_total_n) %>%
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-    arrange(time_window, molecule)
-
-  # AE-level absolute rates by molecule and window.
-  by_ae <- dat %>%
+    )
+  
+  by_ae <- by_ae_study %>%
     group_by(time_window, molecule, ae_term) %>%
     summarise(
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-      events_total = sum(events, na.rm = TRUE),
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-=======
-      events_total = sum(events_for_absolute, na.rm = TRUE),
->>>>>>> theirs
-      n_total = sum(n, na.rm = TRUE),
-      rate = events_total / n_total,
+      n_studies = n_distinct(study_id),
+      events_total = sum(events_total, na.rm = TRUE),
+      n_total = sum(n_total, na.rm = TRUE),
+      rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
       rate_pct = 100 * rate,
       .groups = "drop"
     ) %>%
     filter(n_total >= min_total_n) %>%
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-=======
     mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
     arrange(time_window, molecule, desc(rate_pct), ae_term)
-
-  # Compact supplementary table: top N AEs per molecule×window.
+  
+  # ---------------------------------------------------------------------------
+  # 2) Global "any AE" par molécule × fenêtre
+  #    Priorité: utiliser explicitement ae_term == "any adverse event"
+  #    pour éviter de sommer des n à travers tous les AE (double-comptage).
+  # ---------------------------------------------------------------------------
+  any_ae_labels <- c(
+    "any adverse event", "any ae", "overall adverse events", "all adverse events"
+  )
+  
+  dat_any <- dat %>%
+    filter(tolower(trimws(ae_term)) %in% any_ae_labels)
+  
+  if (nrow(dat_any) > 0) {
+    global <- dat_any %>%
+      group_by(time_window, molecule, study_id) %>%
+      summarise(
+        events_total = sum(events_for_absolute, na.rm = TRUE),
+        n_total = sum(n, na.rm = TRUE),
+        .groups = "drop"
+      ) %>%
+      group_by(time_window, molecule) %>%
+      summarise(
+        n_studies = n_distinct(study_id),
+        events_total = sum(events_total, na.rm = TRUE),
+        n_total = sum(n_total, na.rm = TRUE),
+        rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
+        rate_pct = 100 * rate,
+        .groups = "drop"
+      ) %>%
+      filter(n_total >= min_total_n) %>%
+      mutate(
+        global_definition = "ae_term == any adverse event",
+        events_source = "row-wise preference: absolute_events else events"
+      ) %>%
+      arrange(time_window, molecule)
+  } else {
+    # fallback explicite si "any adverse event" absent
+    global <- by_ae %>%
+      group_by(time_window, molecule) %>%
+      summarise(
+        n_studies = max(n_studies, na.rm = TRUE),
+        events_total = sum(events_total, na.rm = TRUE),
+        n_total = sum(n_total, na.rm = TRUE),
+        rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
+        rate_pct = 100 * rate,
+        .groups = "drop"
+      ) %>%
+      filter(n_total >= min_total_n) %>%
+      mutate(
+        global_definition = "fallback: sum across AE rows (interpret with caution)",
+        events_source = "row-wise preference: absolute_events else events"
+      ) %>%
+      arrange(time_window, molecule)
+  }
+  
+  # ---------------------------------------------------------------------------
+  # 3) Top AE par molécule × fenêtre
+  # ---------------------------------------------------------------------------
   top_ae <- by_ae %>%
     group_by(time_window, molecule) %>%
     slice_max(order_by = rate_pct, n = top_n_ae_per_group, with_ties = FALSE) %>%
     ungroup() %>%
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
-=======
-    mutate(events_source = "row-wise preference: absolute_events else events") %>%
->>>>>>> theirs
     arrange(time_window, molecule, desc(rate_pct), ae_term)
-
+  
   if (isTRUE(write_outputs)) {
     dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
-
+    
     readr::write_csv(global, file.path(out_dir, "Sx_absolute_rates_global.csv"))
     readr::write_csv(by_ae, file.path(out_dir, "Sx_absolute_rates_by_ae.csv"))
     readr::write_csv(top_ae, file.path(out_dir, "Sx_absolute_rates_topAE.csv"))
-
+    readr::write_csv(by_ae_study, file.path(out_dir, "Sx_absolute_rates_by_ae_study.csv"))
+    
     note <- c(
       "Absolute-rate supplementary tables",
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-      "- rates are descriptive: events_total / n_total",
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-=======
-      "- rates are descriptive: events_total / n_total (events_total uses absolute_events when available, otherwise events)",
->>>>>>> theirs
-      "- values are aggregated at arm level from extracted trial data",
-      "- these tables complement OR-based meta-analytic outputs"
+      "- events_total uses absolute_events when available, otherwise events",
+      "- AE-level tables aggregate at study × molecule × window × AE before pooling",
+      "- Global table uses ae_term='any adverse event' when available",
+      "- If absent, fallback sums AE rows (possible denominator duplication; interpret cautiously)"
     )
     writeLines(note, con = file.path(out_dir, "README_absolute_rates.txt"))
   }
-
-  list(global = global, by_ae = by_ae, top_ae = top_ae)
+  
+  list(
+    global = global,
+    by_ae = by_ae,
+    top_ae = top_ae,
+    by_ae_study = by_ae_study
+  )
 }
