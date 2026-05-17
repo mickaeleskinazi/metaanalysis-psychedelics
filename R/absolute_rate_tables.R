@@ -5,8 +5,8 @@ suppressPackageStartupMessages({
 })
 
 # Build supplementary absolute-rate tables to contextualize OR-based analyses.
-# Required columns in `raw`: molecule, ae_term, time_window, study_id, n
-# Optional columns: absolute_events (preferred), events (fallback)
+# Required in `raw`: molecule, ae_term, time_window, study_id, n
+# Optional in `raw`: absolute_events (preferred), events (fallback)
 make_absolute_rate_tables <- function(raw,
                                       out_dir,
                                       min_total_n = 1,
@@ -31,7 +31,7 @@ make_absolute_rate_tables <- function(raw,
       absolute_events = if ("absolute_events" %in% names(.)) suppressWarnings(as.numeric(absolute_events)) else NA_real_,
       n = suppressWarnings(as.numeric(n)),
       events_for_absolute = dplyr::coalesce(absolute_events, events),
-      events_source = dplyr::case_when(
+      events_source_row = dplyr::case_when(
         !is.na(absolute_events) ~ "absolute_events",
         !is.na(events) ~ "events",
         TRUE ~ "missing"
@@ -47,11 +47,10 @@ make_absolute_rate_tables <- function(raw,
       n > 0
     )
   
-  # ---------------------------------------------------------------------------
-  # 1) AE-level absolute rates (base analytique)
-  #    On agrège d'abord à l'échelle étude × molécule × fenêtre × AE
-  #    pour éviter les duplications de lignes.
-  # ---------------------------------------------------------------------------
+  # -------------------------------------------------------------------------
+  # Base table at study granularity: study × molecule × window × AE
+  # This avoids accidental over/under aggregation from duplicated row structures.
+  # -------------------------------------------------------------------------
   by_ae_study <- dat %>%
     group_by(time_window, molecule, study_id, ae_term) %>%
     summarise(
@@ -62,6 +61,9 @@ make_absolute_rate_tables <- function(raw,
       .groups = "drop"
     )
   
+  # -------------------------------------------------------------------------
+  # AE-level pooled table: molecule × window × AE
+  # -------------------------------------------------------------------------
   by_ae <- by_ae_study %>%
     group_by(time_window, molecule, ae_term) %>%
     summarise(
@@ -76,26 +78,20 @@ make_absolute_rate_tables <- function(raw,
     mutate(events_source = "row-wise preference: absolute_events else events") %>%
     arrange(time_window, molecule, desc(rate_pct), ae_term)
   
-  # ---------------------------------------------------------------------------
-  # 2) Global "any AE" par molécule × fenêtre
-  #    Priorité: utiliser explicitement ae_term == "any adverse event"
-  #    pour éviter de sommer des n à travers tous les AE (double-comptage).
-  # ---------------------------------------------------------------------------
+  # -------------------------------------------------------------------------
+  # Global "any AE" table: molecule × window
+  # Priority: explicit any-AE rows if available
+  # Fallback: sum across AE rows (flagged as caution)
+  # -------------------------------------------------------------------------
   any_ae_labels <- c(
     "any adverse event", "any ae", "overall adverse events", "all adverse events"
   )
   
-  dat_any <- dat %>%
+  dat_any <- by_ae_study %>%
     filter(tolower(trimws(ae_term)) %in% any_ae_labels)
   
   if (nrow(dat_any) > 0) {
     global <- dat_any %>%
-      group_by(time_window, molecule, study_id) %>%
-      summarise(
-        events_total = sum(events_for_absolute, na.rm = TRUE),
-        n_total = sum(n, na.rm = TRUE),
-        .groups = "drop"
-      ) %>%
       group_by(time_window, molecule) %>%
       summarise(
         n_studies = n_distinct(study_id),
@@ -112,7 +108,6 @@ make_absolute_rate_tables <- function(raw,
       ) %>%
       arrange(time_window, molecule)
   } else {
-    # fallback explicite si "any adverse event" absent
     global <- by_ae %>%
       group_by(time_window, molecule) %>%
       summarise(
@@ -131,9 +126,9 @@ make_absolute_rate_tables <- function(raw,
       arrange(time_window, molecule)
   }
   
-  # ---------------------------------------------------------------------------
-  # 3) Top AE par molécule × fenêtre
-  # ---------------------------------------------------------------------------
+  # -------------------------------------------------------------------------
+  # Top-N AE per molecule × window
+  # -------------------------------------------------------------------------
   top_ae <- by_ae %>%
     group_by(time_window, molecule) %>%
     slice_max(order_by = rate_pct, n = top_n_ae_per_group, with_ties = FALSE) %>%
@@ -151,9 +146,9 @@ make_absolute_rate_tables <- function(raw,
     note <- c(
       "Absolute-rate supplementary tables",
       "- events_total uses absolute_events when available, otherwise events",
-      "- AE-level tables aggregate at study × molecule × window × AE before pooling",
-      "- Global table uses ae_term='any adverse event' when available",
-      "- If absent, fallback sums AE rows (possible denominator duplication; interpret cautiously)"
+      "- AE-level table aggregates study × molecule × window × AE first, then pools",
+      "- global table uses 'any adverse event' rows when available",
+      "- fallback global aggregation across all AEs may duplicate denominators and should be interpreted with caution"
     )
     writeLines(note, con = file.path(out_dir, "README_absolute_rates.txt"))
   }
