@@ -2,6 +2,7 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(readr)
   library(stringr)
+  library(tidyr)
 })
 
 # Build supplementary absolute-rate tables to contextualize OR-based analyses.
@@ -25,7 +26,7 @@ make_absolute_rate_tables <- function(raw,
   dat <- raw %>%
     mutate(
       molecule = toupper(as.character(molecule)),
-      ae_term = as.character(ae_term),
+      ae_term = str_squish(str_to_lower(as.character(ae_term))),
       time_window = as.character(time_window),
       study_id = as.character(study_id),
       arm_id = if ("arm_id" %in% names(.)) as.character(arm_id) else NA_character_,
@@ -157,6 +158,76 @@ make_absolute_rate_tables <- function(raw,
     slice_max(order_by = rate_pct, n = top_n_ae_per_group, with_ties = FALSE) %>%
     ungroup() %>%
     arrange(time_window, molecule, desc(rate_pct), ae_term)
+
+  fmt_rate_cell <- function(events, denominator, pct) {
+    dplyr::case_when(
+      is.na(events) | is.na(denominator) | is.na(pct) ~ "",
+      TRUE ~ sprintf(
+        "%s/%s (%.1f%%)",
+        format(round(events, 1), trim = TRUE, scientific = FALSE),
+        format(round(denominator, 0), trim = TRUE, scientific = FALSE),
+        pct
+      )
+    )
+  }
+
+  # -------------------------------------------------------------------------
+  # Clinician-facing supplementary table.
+  # Keeps the molecule-level participant denominator visible, while each AE
+  # percentage uses the AE-specific denominator to avoid underestimating events
+  # that were not reported by every study.
+  # -------------------------------------------------------------------------
+  clinical_long <- by_ae %>%
+    left_join(
+      arm_denominators %>%
+        select(
+          time_window,
+          molecule,
+          n_studies_molecule = n_studies,
+          n_total_molecule = n_total
+        ),
+      by = c("time_window", "molecule")
+    ) %>%
+    transmute(
+      time_window,
+      molecule,
+      n_studies_molecule,
+      n_total_molecule,
+      ae_term,
+      n_studies_ae = n_studies,
+      n_total_ae = n_total,
+      events_total,
+      event_pct = rate_pct,
+      events_per_1000 = 1000 * rate,
+      display = fmt_rate_cell(events_total, n_total, rate_pct)
+    ) %>%
+    arrange(time_window, molecule, desc(event_pct), ae_term)
+
+  clinical_wide <- clinical_long %>%
+    mutate(
+      ae_column = str_replace_all(str_to_lower(ae_term), "[^a-z0-9]+", "_"),
+      ae_column = str_replace_all(ae_column, "^_|_$", ""),
+      ae_column = paste0("ae_", ae_column)
+    ) %>%
+    select(
+      time_window,
+      molecule,
+      n_studies_molecule,
+      n_total_molecule,
+      ae_column,
+      display
+    ) %>%
+    group_by(time_window, molecule, n_studies_molecule, n_total_molecule, ae_column) %>%
+    summarise(
+      display = paste(unique(display[display != ""]), collapse = "; "),
+      .groups = "drop"
+    ) %>%
+    tidyr::pivot_wider(
+      names_from = ae_column,
+      values_from = display,
+      values_fill = list(display = "")
+    ) %>%
+    arrange(time_window, molecule)
   
   if (isTRUE(write_outputs)) {
     dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
@@ -164,6 +235,8 @@ make_absolute_rate_tables <- function(raw,
     readr::write_csv(global, file.path(out_dir, "Sx_absolute_rates_global.csv"))
     readr::write_csv(by_ae, file.path(out_dir, "Sx_absolute_rates_by_ae.csv"))
     readr::write_csv(top_ae, file.path(out_dir, "Sx_absolute_rates_topAE.csv"))
+    readr::write_csv(clinical_long, file.path(out_dir, "Sx_absolute_rates_clinician_summary.csv"))
+    readr::write_csv(clinical_wide, file.path(out_dir, "Sx_absolute_rates_clinician_wide.csv"))
     readr::write_csv(by_ae_study, file.path(out_dir, "Sx_absolute_rates_by_ae_study.csv"))
     readr::write_csv(by_ae_arm, file.path(out_dir, "Sx_absolute_rates_by_ae_arm.csv"))
     readr::write_csv(arm_denominators, file.path(out_dir, "Sx_absolute_rates_denominators.csv"))
@@ -173,6 +246,8 @@ make_absolute_rate_tables <- function(raw,
       paste0("- included arm_type values: ", ifelse(is.null(arm_types_keep), "all", paste(arm_types_keep, collapse = ", "))),
       "- events_total uses absolute_events when available, otherwise events",
       "- AE-level table aggregates study × arm × molecule × window × AE first, deduplicating N per arm, then pools",
+      "- clinician_summary keeps molecule-level total participants visible and uses AE-specific denominators for each AE percentage",
+      "- clinician_wide reports each AE as events/N (%) for quick clinical reading",
       "- global table uses 'any adverse event' rows when available",
       "- if no any-AE rows are available, the global table reports denominator only; summing AE rows would double-count participants"
     )
@@ -183,6 +258,8 @@ make_absolute_rate_tables <- function(raw,
     global = global,
     by_ae = by_ae,
     top_ae = top_ae,
+    clinical_summary = clinical_long,
+    clinical_wide = clinical_wide,
     by_ae_study = by_ae_study,
     by_ae_arm = by_ae_arm,
     denominators = arm_denominators

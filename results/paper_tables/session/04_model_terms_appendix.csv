@@ -6,41 +6,42 @@ LSD,Tremor,linear,dose_diff,0.011,,,NA,0.083,,4,,,NA,NA,NA
 LSD,Vomiting,linear,dose_diff,0.010,,,NA,0.163,,4,,,NA,NA,NA
 PSILOCYBIN,abdominal pain,linear,dose_diff,0.047,,,NA,0.333,,6,,,NA,NA,NA
 LSD,altered state of consciousness,linear,dose_diff,0.002,,,NA,0.866,,4,,,NA,NA,NA
-LSD,anxiety,linear,dose_diff,0.004,,,NA,0.535,,5,,,NA,NA,NA
-MDMA,anxiety,linear,dose_diff,0.012,,,NA,0.383,,14,,,NA,NA,NA
+LSD,anxiety,linear,dose_diff,0.004,,,NA,0.440,,6,,,NA,NA,NA
+MDMA,anxiety,linear,dose_diff,0.008,,,NA,0.521,,15,,,NA,NA,NA
 PSILOCYBIN,anxiety,linear,dose_diff,0.055,,,NA,0.414,,9,,,NA,NA,NA
-LSD,attention disturbance,linear,dose_diff,-0.010,,,NA,0.363,,5,,,NA,NA,NA
+LSD,attention disturbance,linear,dose_diff,-0.009,,,NA,0.348,,5,,,NA,NA,NA
 MDMA,autonomic,linear,dose_diff,0.031,,,NA,0.436,,5,,,NA,NA,NA
 PSILOCYBIN,back pain,linear,dose_diff,-0.016,,,NA,0.879,,3,,,NA,NA,NA
-MDMA,decreased concentration,linear,dose_diff,-0.045,,,NA,0.375,,4,,,NA,NA,NA
+MDMA,decreased concentration,linear,dose_diff,-0.038,,,NA,0.177,,5,,,NA,NA,NA
 LSD,depressed mood,linear,dose_diff,0.008,,,NA,0.295,,4,,,NA,NA,NA
 MDMA,depression,linear,dose_diff,-0.053,,,NA,0.389,,7,,,NA,NA,NA
 PSILOCYBIN,depression,linear,dose_diff,0.069,,,NA,0.071,,3,,,NA,NA,NA
 PSILOCYBIN,diarrhea,linear,dose_diff,-0.058,,,NA,0.689,,3,,,NA,NA,NA
 MDMA,dissociation,linear,dose_diff,-0.471,,,NA,0.174,,3,,,NA,NA,NA
-LSD,dizziness,linear,dose_diff,0.003,,,NA,0.529,,6,,,NA,NA,NA
-MDMA,dizziness,linear,dose_diff,0.059,,,NA,0.092,,6,,,NA,NA,NA
-PSILOCYBIN,dizziness,linear,dose_diff,0.034,,,NA,0.270,,6,,,NA,NA,NA
-LSD,emotional distress,linear,dose_diff,-0.000,,,NA,0.951,,5,,,NA,NA,NA
+LSD,dizziness,linear,dose_diff,0.004,,,NA,0.480,,6,,,NA,NA,NA
+MDMA,dizziness,linear,dose_diff,0.055,,,NA,0.025,*,7,,,NA,NA,NA
+PSILOCYBIN,dizziness,linear,dose_diff,0.035,,,NA,0.248,,7,,,NA,NA,NA
+LSD,emotional distress,linear,dose_diff,0.008,,,NA,0.239,,5,,,NA,NA,NA
 LSD,euphoric mood,linear,dose_diff,0.004,,,NA,0.505,,4,,,NA,NA,NA
-MDMA,fatigue,linear,dose_diff,0.017,,,NA,0.196,,11,,,NA,NA,NA
-PSILOCYBIN,fatigue,linear,dose_diff,0.017,,,NA,0.760,,7,,,NA,NA,NA
-LSD,feeling abnormal,linear,dose_diff,-0.015,,,NA,0.118,,5,,,NA,NA,NA
+LSD,fatigue,linear,dose_diff,0.021,,,NA,0.252,,3,,,NA,NA,NA
+MDMA,fatigue,linear,dose_diff,0.013,,,NA,0.264,,12,,,NA,NA,NA
+PSILOCYBIN,fatigue,linear,dose_diff,0.020,,,NA,0.692,,8,,,NA,NA,NA
+LSD,feeling abnormal,linear,dose_diff,0.006,,,NA,0.580,,5,,,NA,NA,NA
 LSD,hallucination visual,linear,dose_diff,-0.001,,,NA,0.830,,4,,,NA,NA,NA
-LSD,headache,linear,dose_diff,0.010,,,NA,0.024,*,7,,,NA,NA,NA
-MDMA,headache,linear,dose_diff,0.019,,,NA,0.232,,11,,,NA,NA,NA
+LSD,headache,linear,dose_diff,0.004,,,NA,0.521,,8,,,NA,NA,NA
+MDMA,headache,linear,dose_diff,0.017,,,NA,0.246,,12,,,NA,NA,NA
 PSILOCYBIN,headache,linear,dose_diff,0.059,,,NA,0.014,*,11,,,NA,NA,NA
 LSD,hypertension,linear,dose_diff,0.000,,,NA,0.958,,4,,,NA,NA,NA
 PSILOCYBIN,hypertension,linear,dose_diff,-0.024,,,NA,0.716,,6,,,NA,NA,NA
 LSD,illusion,linear,dose_diff,0.010,,,NA,0.049,*,4,,,NA,NA,NA
 PSILOCYBIN,illusion,linear,dose_diff,0.025,,,NA,0.478,,4,,,NA,NA,NA
-LSD,impaired gait,linear,dose_diff,15.912,,,NA,0.336,,3,,,NA,NA,NA
-MDMA,irritability,linear,dose_diff,-0.012,,,NA,0.857,,5,,,NA,NA,NA
-MDMA,jaw tension,linear,dose_diff,0.027,,,NA,0.032,*,12,,,NA,NA,NA
-LSD,lack of appetite,linear,dose_diff,0.004,,,NA,0.558,,4,,,NA,NA,NA
-MDMA,lack of appetite,linear,dose_diff,0.033,,,NA,0.216,,8,,,NA,NA,NA
+LSD,impaired gait,linear,dose_diff,0.003,,,NA,0.277,,4,,,NA,NA,NA
+MDMA,irritability,linear,dose_diff,0.006,,,NA,0.852,,6,,,NA,NA,NA
+MDMA,jaw tension,linear,dose_diff,0.029,,,NA,0.015,*,13,,,NA,NA,NA
+LSD,lack of appetite,linear,dose_diff,0.002,,,NA,0.769,,5,,,NA,NA,NA
+MDMA,lack of appetite,linear,dose_diff,0.026,,,NA,0.209,,9,,,NA,NA,NA
 PSILOCYBIN,migraine,linear,dose_diff,-0.094,,,NA,0.437,,3,,,NA,NA,NA
-MDMA,muscle tension,linear,dose_diff,0.022,,,NA,0.233,,8,,,NA,NA,NA
+MDMA,muscle tension,linear,dose_diff,0.020,,,NA,0.229,,9,,,NA,NA,NA
 PSILOCYBIN,myalgia,linear,dose_diff,-0.062,,,NA,0.381,,3,,,NA,NA,NA
 LSD,nausea,linear,dose_diff,0.013,,,NA,0.015,*,4,,,NA,NA,NA
 MDMA,nausea,linear,dose_diff,0.022,,,NA,0.130,,9,,,NA,NA,NA
@@ -51,45 +52,49 @@ PSILOCYBIN,palpitations,linear,dose_diff,0.040,,,NA,0.320,,4,,,NA,NA,NA
 PSILOCYBIN,panic reaction,linear,dose_diff,0.083,,,NA,0.627,,4,,,NA,NA,NA
 LSD,paresthesia,linear,dose_diff,0.010,,,NA,0.108,,4,,,NA,NA,NA
 PSILOCYBIN,paresthesia,linear,dose_diff,0.014,,,NA,0.859,,4,,,NA,NA,NA
-LSD,perspiration,linear,dose_diff,0.004,,,NA,0.559,,5,,,NA,NA,NA
-MDMA,perspiration,linear,dose_diff,0.034,,,NA,0.203,,6,,,NA,NA,NA
+LSD,perspiration,linear,dose_diff,0.005,,,NA,0.457,,5,,,NA,NA,NA
+MDMA,perspiration,linear,dose_diff,0.032,,,NA,0.131,,7,,,NA,NA,NA
 PSILOCYBIN,physical pain,linear,dose_diff,0.008,,,NA,0.825,,5,,,NA,NA,NA
 LSD,pseudohallucination,linear,dose_diff,0.006,,,NA,0.416,,4,,,NA,NA,NA
-MDMA,restlessness,linear,dose_diff,0.016,,,NA,0.299,,9,,,NA,NA,NA
+MDMA,restlessness,linear,dose_diff,0.015,,,NA,0.303,,10,,,NA,NA,NA
 PSILOCYBIN,restlessness,linear,dose_diff,0.018,,,NA,0.609,,4,,,NA,NA,NA
-MDMA,rumination,linear,dose_diff,-0.043,,,NA,0.404,,6,,,NA,NA,NA
-MDMA,sleep disorder,linear,dose_diff,0.019,,,NA,0.215,,14,,,NA,NA,NA
-PSILOCYBIN,sleep disorder,linear,dose_diff,-0.072,,,NA,0.515,,4,,,NA,NA,NA
+MDMA,rumination,linear,dose_diff,0.002,,,NA,0.943,,7,,,NA,NA,NA
+LSD,sleep disorder,linear,dose_diff,0.011,,,NA,0.251,,3,,,NA,NA,NA
+MDMA,sleep disorder,linear,dose_diff,0.023,,,NA,0.114,,15,,,NA,NA,NA
+PSILOCYBIN,sleep disorder,linear,dose_diff,-0.070,,,NA,0.465,,5,,,NA,NA,NA
 PSILOCYBIN,suicidal ideation,linear,dose_diff,0.013,,,NA,0.853,,8,,,NA,NA,NA
 PSILOCYBIN,tachycardia,linear,dose_diff,0.142,,,NA,0.074,,3,,,NA,NA,NA
-LSD,temperature perception disturbances,linear,dose_diff,-0.011,,,NA,0.290,,5,,,NA,NA,NA
+LSD,temperature perception disturbances,linear,dose_diff,0.009,,,NA,0.479,,5,,,NA,NA,NA
 PSILOCYBIN,temperature perception disturbances,linear,dose_diff,-0.008,,,NA,0.810,,3,,,NA,NA,NA
-LSD,thinking abnormal,linear,dose_diff,0.006,,,NA,0.299,,5,,,NA,NA,NA
-MDMA,weakness,linear,dose_diff,0.049,,,NA,0.481,,3,,,NA,NA,NA
+LSD,thinking abnormal,linear,dose_diff,0.007,,,NA,0.244,,5,,,NA,NA,NA
+MDMA,weakness,linear,dose_diff,0.020,,,NA,0.481,,4,,,NA,NA,NA
 MDMA,xerostomia,linear,dose_diff,0.027,,,NA,0.636,,4,,,NA,NA,NA
 PSILOCYBIN,abdominal pain,spline_df3,dose_diff,,,,NA,0.232,,6,,,NA,NA,NA
-LSD,anxiety,spline_df3,dose_diff,,,,NA,0.790,,5,,,NA,NA,NA
-MDMA,anxiety,spline_df3,dose_diff,,,,NA,0.340,,14,,,NA,NA,NA
+LSD,anxiety,spline_df3,dose_diff,,,,NA,0.725,,6,,,NA,NA,NA
+MDMA,anxiety,spline_df3,dose_diff,,,,NA,0.307,,15,,,NA,NA,NA
 PSILOCYBIN,anxiety,spline_df3,dose_diff,,,,NA,0.035,*,9,,,NA,NA,NA
-LSD,attention disturbance,spline_df3,dose_diff,,,,NA,0.525,,5,,,NA,NA,NA
+LSD,attention disturbance,spline_df3,dose_diff,,,,NA,0.257,,5,,,NA,NA,NA
 MDMA,autonomic,spline_df3,dose_diff,,,,NA,0.448,,5,,,NA,NA,NA
+MDMA,decreased concentration,spline_df3,dose_diff,,,,NA,0.396,,5,,,NA,NA,NA
 MDMA,depression,spline_df3,dose_diff,,,,NA,0.027,*,7,,,NA,NA,NA
-LSD,dizziness,spline_df3,dose_diff,,,,NA,0.890,,6,,,NA,NA,NA
-MDMA,dizziness,spline_df3,dose_diff,,,,NA,0.229,,6,,,NA,NA,NA
-PSILOCYBIN,dizziness,spline_df3,dose_diff,,,,NA,0.664,,6,,,NA,NA,NA
-LSD,emotional distress,spline_df3,dose_diff,,,,NA,0.256,,5,,,NA,NA,NA
-MDMA,fatigue,spline_df3,dose_diff,,,,NA,0.616,,11,,,NA,NA,NA
-PSILOCYBIN,fatigue,spline_df3,dose_diff,,,,NA,0.146,,7,,,NA,NA,NA
-LSD,feeling abnormal,spline_df3,dose_diff,,,,NA,0.372,,5,,,NA,NA,NA
-LSD,headache,spline_df3,dose_diff,,,,NA,0.024,*,7,,,NA,NA,NA
-MDMA,headache,spline_df3,dose_diff,,,,NA,0.683,,11,,,NA,NA,NA
+LSD,dizziness,spline_df3,dose_diff,,,,NA,0.862,,6,,,NA,NA,NA
+MDMA,dizziness,spline_df3,dose_diff,,,,NA,0.138,,7,,,NA,NA,NA
+PSILOCYBIN,dizziness,spline_df3,dose_diff,,,,NA,0.566,,7,,,NA,NA,NA
+LSD,emotional distress,spline_df3,dose_diff,,,,NA,0.503,,5,,,NA,NA,NA
+MDMA,fatigue,spline_df3,dose_diff,,,,NA,0.641,,12,,,NA,NA,NA
+PSILOCYBIN,fatigue,spline_df3,dose_diff,,,,NA,0.040,*,8,,,NA,NA,NA
+LSD,feeling abnormal,spline_df3,dose_diff,,,,NA,0.948,,5,,,NA,NA,NA
+LSD,headache,spline_df3,dose_diff,,,,NA,0.549,,8,,,NA,NA,NA
+MDMA,headache,spline_df3,dose_diff,,,,NA,0.666,,12,,,NA,NA,NA
 PSILOCYBIN,headache,spline_df3,dose_diff,,,,NA,0.017,*,11,,,NA,NA,NA
 PSILOCYBIN,hypertension,spline_df3,dose_diff,,,,NA,0.100,,6,,,NA,NA,NA
 PSILOCYBIN,illusion,spline_df3,dose_diff,,,,NA,0.339,,4,,,NA,NA,NA
-MDMA,irritability,spline_df3,dose_diff,,,,NA,0.155,,5,,,NA,NA,NA
-MDMA,jaw tension,spline_df3,dose_diff,,,,NA,0.150,,12,,,NA,NA,NA
-MDMA,lack of appetite,spline_df3,dose_diff,,,,NA,0.744,,8,,,NA,NA,NA
-MDMA,muscle tension,spline_df3,dose_diff,,,,NA,0.012,*,8,,,NA,NA,NA
+LSD,impaired gait,spline_df3,dose_diff,,,,NA,0.413,,4,,,NA,NA,NA
+MDMA,irritability,spline_df3,dose_diff,,,,NA,0.278,,6,,,NA,NA,NA
+MDMA,jaw tension,spline_df3,dose_diff,,,,NA,0.090,,13,,,NA,NA,NA
+LSD,lack of appetite,spline_df3,dose_diff,,,,NA,0.929,,5,,,NA,NA,NA
+MDMA,lack of appetite,spline_df3,dose_diff,,,,NA,0.645,,9,,,NA,NA,NA
+MDMA,muscle tension,spline_df3,dose_diff,,,,NA,0.363,,9,,,NA,NA,NA
 MDMA,nausea,spline_df3,dose_diff,,,,NA,0.594,,9,,,NA,NA,NA
 PSILOCYBIN,nausea,spline_df3,dose_diff,,,,NA,0.113,,10,,,NA,NA,NA
 MDMA,ophthalmological,spline_df3,dose_diff,,,,NA,0.093,,4,,,NA,NA,NA
@@ -97,14 +102,15 @@ MDMA,pain,spline_df3,dose_diff,,,,NA,0.079,,7,,,NA,NA,NA
 PSILOCYBIN,palpitations,spline_df3,dose_diff,,,,NA,0.569,,4,,,NA,NA,NA
 PSILOCYBIN,panic reaction,spline_df3,dose_diff,,,,NA,0.611,,4,,,NA,NA,NA
 PSILOCYBIN,paresthesia,spline_df3,dose_diff,,,,NA,0.465,,4,,,NA,NA,NA
-LSD,perspiration,spline_df3,dose_diff,,,,NA,0.511,,5,,,NA,NA,NA
-MDMA,perspiration,spline_df3,dose_diff,,,,NA,0.054,,6,,,NA,NA,NA
-MDMA,restlessness,spline_df3,dose_diff,,,,NA,0.649,,9,,,NA,NA,NA
+LSD,perspiration,spline_df3,dose_diff,,,,NA,0.367,,5,,,NA,NA,NA
+MDMA,perspiration,spline_df3,dose_diff,,,,NA,0.043,*,7,,,NA,NA,NA
+MDMA,restlessness,spline_df3,dose_diff,,,,NA,0.624,,10,,,NA,NA,NA
 PSILOCYBIN,restlessness,spline_df3,dose_diff,,,,NA,0.736,,4,,,NA,NA,NA
-MDMA,rumination,spline_df3,dose_diff,,,,NA,0.498,,6,,,NA,NA,NA
-MDMA,sleep disorder,spline_df3,dose_diff,,,,NA,0.350,,14,,,NA,NA,NA
-PSILOCYBIN,sleep disorder,spline_df3,dose_diff,,,,NA,0.770,,4,,,NA,NA,NA
+MDMA,rumination,spline_df3,dose_diff,,,,NA,0.597,,7,,,NA,NA,NA
+MDMA,sleep disorder,spline_df3,dose_diff,,,,NA,0.396,,15,,,NA,NA,NA
+PSILOCYBIN,sleep disorder,spline_df3,dose_diff,,,,NA,0.568,,5,,,NA,NA,NA
 PSILOCYBIN,suicidal ideation,spline_df3,dose_diff,,,,NA,0.365,,8,,,NA,NA,NA
-LSD,temperature perception disturbances,spline_df3,dose_diff,,,,NA,0.774,,5,,,NA,NA,NA
-LSD,thinking abnormal,spline_df3,dose_diff,,,,NA,0.662,,5,,,NA,NA,NA
+LSD,temperature perception disturbances,spline_df3,dose_diff,,,,NA,0.795,,5,,,NA,NA,NA
+LSD,thinking abnormal,spline_df3,dose_diff,,,,NA,0.612,,5,,,NA,NA,NA
+MDMA,weakness,spline_df3,dose_diff,,,,NA,0.702,,4,,,NA,NA,NA
 MDMA,xerostomia,spline_df3,dose_diff,,,,NA,0.464,,4,,,NA,NA,NA

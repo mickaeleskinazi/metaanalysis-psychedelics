@@ -1,236 +1,336 @@
 time_window,molecule,ae_term,n_studies,events_total,n_total,rate,rate_pct,events_source
-follow_up,LSD,fatigue,1,0.689655172413794,29,0.023781212841854967,2.3781212841854966,row-wise preference: absolute_events else events
-follow_up,LSD,headache,2,1.088068965517242,188,0.005787600880410862,0.5787600880410861,row-wise preference: absolute_events else events
-follow_up,LSD,attention disturbance,2,1.08448275862069,188,0.005768525311812181,0.5768525311812182,row-wise preference: absolute_events else events
-follow_up,LSD,impaired gait,1,0.137931034482759,29,0.004756242568371,0.4756242568371,row-wise preference: absolute_events else events
-follow_up,LSD,anxiety,2,0.430333333333333,234,0.0018390313390313376,0.18390313390313376,row-wise preference: absolute_events else events
-follow_up,LSD,accident with fracture,1,0.0344827586206896,29,0.0011890606420927449,0.11890606420927449,row-wise preference: absolute_events else events
-follow_up,LSD,depression,1,0.0344827586206896,29,0.0011890606420927449,0.11890606420927449,row-wise preference: absolute_events else events
-follow_up,LSD,depressed mood,1,0.175,159,0.00110062893081761,0.11006289308176101,row-wise preference: absolute_events else events
-follow_up,LSD,nausea,2,0.1439655172413793,188,7.657740278796771e-4,0.07657740278796771,row-wise preference: absolute_events else events
-follow_up,LSD,panic_attack,1,0.025,39,6.41025641025641e-4,0.0641025641025641,row-wise preference: absolute_events else events
-follow_up,LSD,Fatigue,1,0.1,159,6.28930817610063e-4,0.0628930817610063,row-wise preference: absolute_events else events
-follow_up,LSD,dizziness,2,0.103448275862069,188,5.502567865003671e-4,0.055025678650036706,row-wise preference: absolute_events else events
-follow_up,LSD,illusion,1,0.07600000000000001,159,4.779874213836479e-4,0.04779874213836479,row-wise preference: absolute_events else events
-follow_up,LSD,lack of appetite,1,0.07500000000000001,159,4.7169811320754723e-4,0.04716981132075472,row-wise preference: absolute_events else events
-follow_up,LSD,hallucination visual,1,0.026,159,1.6352201257861635e-4,0.016352201257861635,row-wise preference: absolute_events else events
-follow_up,LSD,Tremor,1,0.025,159,1.5723270440251574e-4,0.015723270440251576,row-wise preference: absolute_events else events
-follow_up,LSD,emotional distress,1,0.025,159,1.5723270440251574e-4,0.015723270440251576,row-wise preference: absolute_events else events
-follow_up,LSD,temperature perception disturbances,1,0.025,159,1.5723270440251574e-4,0.015723270440251576,row-wise preference: absolute_events else events
-follow_up,LSD,thinking abnormal,1,0.025,159,1.5723270440251574e-4,0.015723270440251576,row-wise preference: absolute_events else events
-follow_up,LSD,Balance_disorder,1,0,159,0,0,row-wise preference: absolute_events else events
-follow_up,LSD,Mydriasis,1,0,159,0,0,row-wise preference: absolute_events else events
-follow_up,LSD,Vomiting,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,headache,3,40.989000000000004,230,0.1782130434782609,17.82130434782609,row-wise preference: absolute_events else events
+follow_up,LSD,attention disturbance,2,32,188,0.1702127659574468,17.02127659574468,row-wise preference: absolute_events else events
+follow_up,LSD,fatigue,3,33,230,0.14347826086956522,14.347826086956522,row-wise preference: absolute_events else events
+follow_up,LSD,impaired gait,1,4,29,0.13793103448275862,13.793103448275861,row-wise preference: absolute_events else events
+follow_up,LSD,decreased concentration,1,4,42,0.09523809523809523,9.523809523809524,row-wise preference: absolute_events else events
+follow_up,LSD,anxiety,3,26.003,276,0.09421376811594202,9.421376811594202,row-wise preference: absolute_events else events
+follow_up,LSD,depressed mood,1,7,159,0.0440251572327044,4.40251572327044,row-wise preference: absolute_events else events
+follow_up,LSD,nausea,3,9,230,0.0391304347826087,3.91304347826087,row-wise preference: absolute_events else events
+follow_up,LSD,accident with fracture,1,1,29,0.034482758620689655,3.4482758620689653,row-wise preference: absolute_events else events
+follow_up,LSD,dizziness,3,6,230,0.02608695652173913,2.608695652173913,row-wise preference: absolute_events else events
+follow_up,LSD,panic_attack,1,0.975,39,0.024999999999999998,2.5,row-wise preference: absolute_events else events
+follow_up,LSD,abdominal pain,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+follow_up,LSD,diarrhea,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+follow_up,LSD,eczema,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+follow_up,LSD,hemoglobin decrease,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+follow_up,LSD,illusion,1,3.0140000000000002,159,0.018955974842767297,1.8955974842767298,row-wise preference: absolute_events else events
+follow_up,LSD,lack of appetite,2,3,201,0.014925373134328358,1.4925373134328357,row-wise preference: absolute_events else events
+follow_up,LSD,temperature perception disturbances,2,3,201,0.014925373134328358,1.4925373134328357,row-wise preference: absolute_events else events
+follow_up,LSD,depression,2,1,71,0.014084507042253521,1.4084507042253522,row-wise preference: absolute_events else events
+follow_up,LSD,hallucination visual,1,1.014,159,0.006377358490566038,0.6377358490566037,row-wise preference: absolute_events else events
+follow_up,LSD,emotional distress,1,1,159,0.006289308176100629,0.628930817610063,row-wise preference: absolute_events else events
+follow_up,LSD,thinking abnormal,1,1,159,0.006289308176100629,0.628930817610063,row-wise preference: absolute_events else events
+follow_up,LSD,tremor,1,1,159,0.006289308176100629,0.628930817610063,row-wise preference: absolute_events else events
+follow_up,LSD,abdominal cramps,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,abnormal dreams,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,alopecia,1,0,42,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,altered state of consciousness,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,asthma bronchiale,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,balance_disorder,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,bronchitis,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,confusion,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,cough,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,dizziness after deduction of escitalopram,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,dog bite,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,edema,1,0,42,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,euphoric mood,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,fall,1,0,42,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,feeling abnormal,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,groin and testicle pain,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,gynecomastia,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,hand-foot syndrome,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,hypercholesterinemia,1,0,42,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,hypertension,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,insect bite,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,ischialgia,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,lumbalgia,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,mastitis,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,mydriasis,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,norovirus,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,pain,1,0,42,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,paresthesia,1,0,159,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,perspiration,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,polyneuropathy,1,0,42,0,0,row-wise preference: absolute_events else events
 follow_up,LSD,pseudohallucination,1,0,159,0,0,row-wise preference: absolute_events else events
-follow_up,MDMA,sleep disorder,3,4.07,74,0.05500000000000001,5.500000000000001,row-wise preference: absolute_events else events
-follow_up,MDMA,fatigue,3,3.14,74,0.042432432432432436,4.243243243243244,row-wise preference: absolute_events else events
-follow_up,MDMA,irritability,2,1.12,31,0.03612903225806452,3.612903225806452,row-wise preference: absolute_events else events
-follow_up,MDMA,muscle tension,2,1.09,31,0.03516129032258065,3.516129032258065,row-wise preference: absolute_events else events
-follow_up,MDMA,anxiety,3,2.38,74,0.03216216216216216,3.216216216216216,row-wise preference: absolute_events else events
-follow_up,MDMA,headache,3,1.49,74,0.020135135135135134,2.0135135135135136,row-wise preference: absolute_events else events
-follow_up,MDMA,depression,3,1.14,67,0.017014925373134326,1.7014925373134326,row-wise preference: absolute_events else events
-follow_up,MDMA,lack of appetite,3,1.18,74,0.015945945945945946,1.5945945945945945,row-wise preference: absolute_events else events
-follow_up,MDMA,decreased concentration,3,0.8999999999999999,67,0.01343283582089552,1.3432835820895521,row-wise preference: absolute_events else events
-follow_up,MDMA,jaw tension,2,0.41000000000000003,55,0.007454545454545455,0.7454545454545455,row-wise preference: absolute_events else events
-follow_up,MDMA,nausea,2,0.41,55,0.007454545454545454,0.7454545454545454,row-wise preference: absolute_events else events
-follow_up,MDMA,weakness,2,0.41,55,0.007454545454545454,0.7454545454545454,row-wise preference: absolute_events else events
-follow_up,MDMA,dizziness,2,0.38,55,0.006909090909090909,0.6909090909090909,row-wise preference: absolute_events else events
-follow_up,MDMA,infectious,1,0.08,12,0.006666666666666667,0.6666666666666667,row-wise preference: absolute_events else events
-follow_up,MDMA,rumination,2,0.33999999999999997,55,0.0061818181818181816,0.6181818181818182,row-wise preference: absolute_events else events
-follow_up,MDMA,autonomic,2,0.2,55,0.0036363636363636364,0.36363636363636365,row-wise preference: absolute_events else events
-follow_up,MDMA,dissociation,1,0.04,12,0.0033333333333333335,0.33333333333333337,row-wise preference: absolute_events else events
-follow_up,MDMA,pain,1,0.04,12,0.0033333333333333335,0.33333333333333337,row-wise preference: absolute_events else events
-follow_up,MDMA,restlessness,2,0.18000000000000002,55,0.003272727272727273,0.3272727272727273,row-wise preference: absolute_events else events
-follow_up,MDMA,xerostomia,2,0.16,55,0.0029090909090909093,0.29090909090909095,row-wise preference: absolute_events else events
-follow_up,MDMA,ophthalmological,2,0.1,55,0.0018181818181818182,0.18181818181818182,row-wise preference: absolute_events else events
-follow_up,MDMA,perspiration,1,0.02,43,4.6511627906976747e-4,0.046511627906976744,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,headache,1,0.375,160,0.00234375,0.234375,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,fatigue,1,0.08125,160,5.078125e-4,0.05078125,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,anxiety,1,0.06875,160,4.2968750000000006e-4,0.04296875000000001,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,abnormal dreams,1,0.0625,160,3.90625e-4,0.0390625,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,panic reaction,1,0.05625,160,3.515625e-4,0.03515625,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,depression,1,0.05,160,3.125e-4,0.03125,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,abdominal pain,1,0.04375,160,2.7343749999999997e-4,0.027343749999999997,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,nasopharyngitis,1,0.04375,160,2.7343749999999997e-4,0.027343749999999997,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,physical pain,1,0.04375,160,2.7343749999999997e-4,0.027343749999999997,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,nausea,1,0.0375,160,2.34375e-4,0.0234375,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,diarrhea,1,0.03125,160,1.953125e-4,0.01953125,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,insomnia,1,0.025,160,1.5625e-4,0.015625,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,dyspepsia,1,0.0125,160,7.8125e-5,0.0078125,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,hallucinogen persisting perception disorder,1,0.01,160,6.25e-5,0.00625,row-wise preference: absolute_events else events
-follow_up,PSILOCYBIN,suicidal ideation,1,0.01,160,6.25e-5,0.00625,row-wise preference: absolute_events else events
-overall,LSD,anxiety_worsening,1,0.025,39,6.41025641025641e-4,0.0641025641025641,row-wise preference: absolute_events else events
-overall,LSD,depression,1,0.025,39,6.41025641025641e-4,0.0641025641025641,row-wise preference: absolute_events else events
-overall,LSD,depression_worsening,1,0.025,39,6.41025641025641e-4,0.0641025641025641,row-wise preference: absolute_events else events
-overall,LSD,feeling_intoxicated,1,0.05,79,6.329113924050633e-4,0.06329113924050633,row-wise preference: absolute_events else events
-overall,LSD,ADHD_exacerbation,1,0.025,40,6.25e-4,0.0625,row-wise preference: absolute_events else events
-session,AYAHUASCA,nausea,2,1.158730158730158,23,0.05037957211870252,5.037957211870252,row-wise preference: absolute_events else events
-session,AYAHUASCA,hypertension,1,0.444444444444444,9,0.049382716049382665,4.938271604938267,row-wise preference: absolute_events else events
-session,AYAHUASCA,vomiting,2,0.904761904761904,23,0.03933747412008278,3.933747412008278,row-wise preference: absolute_events else events
-session,AYAHUASCA,restlessness,1,0.5,14,0.03571428571428571,3.571428571428571,row-wise preference: absolute_events else events
-session,AYAHUASCA,headache,2,0.65079365079365,23,0.028295376121463045,2.8295376121463045,row-wise preference: absolute_events else events
-session,AYAHUASCA,anxiety,2,0.6111111111111109,23,0.026570048309178737,2.6570048309178738,row-wise preference: absolute_events else events
-session,AYAHUASCA,confusion,1,0.222222222222222,9,0.024691358024691332,2.4691358024691334,row-wise preference: absolute_events else events
-session,AYAHUASCA,drowsiness,1,0.222222222222222,9,0.024691358024691332,2.4691358024691334,row-wise preference: absolute_events else events
-session,AYAHUASCA,tachycardia,1,0.222222222222222,9,0.024691358024691332,2.4691358024691334,row-wise preference: absolute_events else events
-session,AYAHUASCA,diarrhea,1,0.111111111111111,9,0.012345679012345666,1.2345679012345667,row-wise preference: absolute_events else events
-session,AYAHUASCA,dissociation,1,0.111111111111111,9,0.012345679012345666,1.2345679012345667,row-wise preference: absolute_events else events
-session,AYAHUASCA,distress,1,0.111111111111111,9,0.012345679012345666,1.2345679012345667,row-wise preference: absolute_events else events
-session,LSD,illusions,1,0.727272727272727,11,0.06611570247933882,6.611570247933882,row-wise preference: absolute_events else events
-session,LSD,time perception altered,1,0.545454545454545,11,0.049586776859504085,4.958677685950408,row-wise preference: absolute_events else events
-session,LSD,mydriasis,1,0.272727272727273,11,0.02479338842975209,2.479338842975209,row-wise preference: absolute_events else events
-session,LSD,affect liability,1,0.181818181818182,11,0.016528925619834725,1.6528925619834725,row-wise preference: absolute_events else events
-session,LSD,derealization,1,0.181818181818182,11,0.016528925619834725,1.6528925619834725,row-wise preference: absolute_events else events
-session,LSD,impaired gait,3,1.1763111073455912,77,0.015276767627864821,1.527676762786482,row-wise preference: absolute_events else events
-session,LSD,illusion,1,2.108,159,0.013257861635220126,1.3257861635220125,row-wise preference: absolute_events else events
-session,LSD,sleep disorder,1,0.310344827586207,29,0.010701545778834724,1.0701545778834725,row-wise preference: absolute_events else events
-session,LSD,anemia,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,anger,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,bradyphrenia,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,depersonalization,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,femur fracture,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,hallucination,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,menorrhagia,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,neoplasm progression,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,palmar-plantar erythrodysaesthesia syndrome,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,perseveration,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,pneumonia,1,0.0909090909090909,11,0.008264462809917354,0.8264462809917353,row-wise preference: absolute_events else events
-session,LSD,nausea,2,1.447238095238095,201,0.007200189528547736,0.7200189528547736,row-wise preference: absolute_events else events
-session,LSD,chills,1,0.172413793103448,29,0.0059453032104637244,0.5945303210463725,row-wise preference: absolute_events else events
-session,LSD,headache,4,1.4254772354082705,241,0.005914843300449255,0.5914843300449255,row-wise preference: absolute_events else events
-session,LSD,dizziness,2,1.016655172413794,188,0.005407740278796777,0.5407740278796777,row-wise preference: absolute_events else events
-session,LSD,hallucination visual,1,0.754,159,0.004742138364779875,0.4742138364779875,row-wise preference: absolute_events else events
-session,LSD,temperature perception disturbances,2,0.761363636363636,170,0.004478609625668447,0.4478609625668447,row-wise preference: absolute_events else events
-session,LSD,fatigue,2,0.172413793103448,40,0.0043103448275862,0.43103448275862,row-wise preference: absolute_events else events
-session,LSD,perspiration,2,0.657818181818182,170,0.003869518716577541,0.3869518716577541,row-wise preference: absolute_events else events
-session,LSD,euphoric mood,1,0.601,159,0.003779874213836478,0.37798742138364777,row-wise preference: absolute_events else events
-session,LSD,feeling abnormal,2,0.6214545454545449,170,0.003655614973262029,0.3655614973262029,row-wise preference: absolute_events else events
-session,LSD,emotional distress,2,0.6055454545454539,170,0.003562032085561494,0.3562032085561494,row-wise preference: absolute_events else events
-session,LSD,anxiety,3,0.6939653679653681,212,0.0032734215470064535,0.32734215470064537,row-wise preference: absolute_events else events
-session,LSD,Mydriasis,1,0.501,159,0.003150943396226415,0.3150943396226415,row-wise preference: absolute_events else events
-session,LSD,hypertension,1,0.402,159,0.002528301886792453,0.2528301886792453,row-wise preference: absolute_events else events
-session,LSD,thinking abnormal,2,0.39190909090909093,170,0.002305347593582888,0.2305347593582888,row-wise preference: absolute_events else events
-session,LSD,Fatigue,1,0.351,159,0.0022075471698113206,0.22075471698113205,row-wise preference: absolute_events else events
-session,LSD,paresthesia,1,0.351,159,0.0022075471698113206,0.22075471698113205,row-wise preference: absolute_events else events
-session,LSD,Tremor,1,0.325,159,0.0020440251572327044,0.20440251572327045,row-wise preference: absolute_events else events
-session,LSD,pseudohallucination,1,0.25,159,0.0015723270440251573,0.15723270440251574,row-wise preference: absolute_events else events
-session,LSD,restlessness,1,0.0540540540540541,37,0.0014609203798392999,0.14609203798393,row-wise preference: absolute_events else events
-session,LSD,Balance_disorder,1,0.225,159,0.0014150943396226416,0.14150943396226418,row-wise preference: absolute_events else events
-session,LSD,Vomiting,1,0.22499999999999998,159,0.0014150943396226414,0.14150943396226415,row-wise preference: absolute_events else events
-session,LSD,altered state of consciousness,1,0.176,159,0.0011069182389937106,0.11069182389937106,row-wise preference: absolute_events else events
-session,LSD,depressed mood,1,0.175,159,0.00110062893081761,0.11006289308176101,row-wise preference: absolute_events else events
-session,LSD,attention disturbance,2,0.151,170,8.88235294117647e-4,0.0888235294117647,row-wise preference: absolute_events else events
-session,LSD,confusion,1,0.027027027027027,37,7.304601899196486e-4,0.07304601899196486,row-wise preference: absolute_events else events
-session,LSD,generalized tonic–clonic seizure,1,0.027027027027027,37,7.304601899196486e-4,0.07304601899196486,row-wise preference: absolute_events else events
-session,LSD,lack of appetite,1,0.101,159,6.352201257861635e-4,0.06352201257861635,row-wise preference: absolute_events else events
+follow_up,LSD,psychosomatic complaints,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,rejection reaction,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,restlessness,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,rumination,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,shingles,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,sigmoiditis,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,sleep disorder,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,sore throat,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,suicidal ideation,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,toothache,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,torticollis,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,tumorprogression,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,tumorrelapse,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,urinary infection,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,vaginalmycosis,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,viral eye infection,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,vitamin b12 deficiency,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,vomiting,1,0,159,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,weight gain,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,LSD,whiteness tooth dissection,1,0,42,0,0,row-wise preference: absolute_events else events
+follow_up,MDMA,sleep disorder,4,65.3,82,0.7963414634146341,79.6341463414634,row-wise preference: absolute_events else events
+follow_up,MDMA,fatigue,4,55.04,82,0.671219512195122,67.1219512195122,row-wise preference: absolute_events else events
+follow_up,MDMA,depressed mood,1,4,8,0.5,50,row-wise preference: absolute_events else events
+follow_up,MDMA,depression,3,28.25,67,0.4216417910447761,42.16417910447761,row-wise preference: absolute_events else events
+follow_up,MDMA,anxiety,4,34.07,82,0.41548780487804876,41.548780487804876,row-wise preference: absolute_events else events
+follow_up,MDMA,muscle tension,2,10.93,31,0.35258064516129034,35.25806451612903,row-wise preference: absolute_events else events
+follow_up,MDMA,headache,4,27.86,82,0.3397560975609756,33.975609756097555,row-wise preference: absolute_events else events
+follow_up,MDMA,irritability,3,12.989999999999998,39,0.33307692307692305,33.30769230769231,row-wise preference: absolute_events else events
+follow_up,MDMA,decreased concentration,4,21.93,75,0.2924,29.24,row-wise preference: absolute_events else events
+follow_up,MDMA,lack of appetite,4,21.419999999999998,82,0.2612195121951219,26.12195121951219,row-wise preference: absolute_events else events
+follow_up,MDMA,dizziness,3,12.31,63,0.1953968253968254,19.53968253968254,row-wise preference: absolute_events else events
+follow_up,MDMA,rumination,3,10.59,63,0.1680952380952381,16.80952380952381,row-wise preference: absolute_events else events
+follow_up,MDMA,nausea,2,8.64,55,0.15709090909090911,15.70909090909091,row-wise preference: absolute_events else events
+follow_up,MDMA,jaw tension,3,9.879999999999999,63,0.1568253968253968,15.682539682539682,row-wise preference: absolute_events else events
+follow_up,MDMA,weakness,3,9.64,63,0.15301587301587302,15.301587301587302,row-wise preference: absolute_events else events
+follow_up,MDMA,autonomic,2,7.359999999999999,55,0.1338181818181818,13.381818181818181,row-wise preference: absolute_events else events
+follow_up,MDMA,drowsiness,1,1,8,0.125,12.5,row-wise preference: absolute_events else events
+follow_up,MDMA,paresthesia,1,1,8,0.125,12.5,row-wise preference: absolute_events else events
+follow_up,MDMA,thirst,1,1,8,0.125,12.5,row-wise preference: absolute_events else events
+follow_up,MDMA,restlessness,2,6.5,55,0.11818181818181818,11.818181818181818,row-wise preference: absolute_events else events
+follow_up,MDMA,xerostomia,2,5.640000000000001,55,0.10254545454545455,10.254545454545456,row-wise preference: absolute_events else events
+follow_up,MDMA,infectious,1,0.96,12,0.08,8,row-wise preference: absolute_events else events
+follow_up,MDMA,dissociation,1,0.48,12,0.04,4,row-wise preference: absolute_events else events
+follow_up,MDMA,pain,1,0.48,12,0.04,4,row-wise preference: absolute_events else events
+follow_up,MDMA,ophthalmological,2,1.8199999999999998,55,0.03309090909090909,3.3090909090909086,row-wise preference: absolute_events else events
+follow_up,MDMA,perspiration,1,0.86,43,0.02,2,row-wise preference: absolute_events else events
+follow_up,MDMA,feeling cold,1,0,8,0,0,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,headache,1,60,160,0.375,37.5,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,fatigue,1,13,160,0.08125,8.125,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,anxiety,1,11,160,0.06875,6.875000000000001,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,abnormal dreams,1,10,160,0.0625,6.25,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,panic reaction,1,9,160,0.05625,5.625,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,depression,1,8,160,0.05,5,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,abdominal pain,1,7,160,0.04375,4.375,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,nasopharyngitis,1,7,160,0.04375,4.375,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,physical pain,1,7,160,0.04375,4.375,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,nausea,1,6,160,0.0375,3.75,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,diarrhea,1,5,160,0.03125,3.125,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,insomnia,1,4,160,0.025,2.5,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,dyspepsia,1,2,160,0.0125,1.25,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,hallucinogen persisting perception disorder,1,1.6,160,0.01,1,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,suicidal ideation,1,1.6,160,0.01,1,row-wise preference: absolute_events else events
+overall,LSD,adhd_exacerbation,1,1,40,0.025,2.5,row-wise preference: absolute_events else events
+overall,LSD,anxiety_worsening,1,0.975,39,0.024999999999999998,2.5,row-wise preference: absolute_events else events
+overall,LSD,depression,1,0.975,39,0.024999999999999998,2.5,row-wise preference: absolute_events else events
+overall,LSD,depression_worsening,1,0.975,39,0.024999999999999998,2.5,row-wise preference: absolute_events else events
+overall,LSD,feeling_intoxicated,1,1.975,79,0.025,2.5,row-wise preference: absolute_events else events
+session,AYAHUASCA,nausea,2,14,23,0.6086956521739131,60.86956521739131,row-wise preference: absolute_events else events
+session,AYAHUASCA,restlessness,1,7,14,0.5,50,row-wise preference: absolute_events else events
+session,AYAHUASCA,vomiting,2,11,23,0.4782608695652174,47.82608695652174,row-wise preference: absolute_events else events
+session,AYAHUASCA,hypertension,1,4,9,0.4444444444444444,44.44444444444444,row-wise preference: absolute_events else events
+session,AYAHUASCA,anxiety,2,8,23,0.34782608695652173,34.78260869565217,row-wise preference: absolute_events else events
+session,AYAHUASCA,headache,2,8,23,0.34782608695652173,34.78260869565217,row-wise preference: absolute_events else events
+session,AYAHUASCA,confusion,1,2,9,0.2222222222222222,22.22222222222222,row-wise preference: absolute_events else events
+session,AYAHUASCA,drowsiness,1,2,9,0.2222222222222222,22.22222222222222,row-wise preference: absolute_events else events
+session,AYAHUASCA,tachycardia,1,2,9,0.2222222222222222,22.22222222222222,row-wise preference: absolute_events else events
+session,AYAHUASCA,diarrhea,1,1,9,0.1111111111111111,11.11111111111111,row-wise preference: absolute_events else events
+session,AYAHUASCA,dissociation,1,1,9,0.1111111111111111,11.11111111111111,row-wise preference: absolute_events else events
+session,AYAHUASCA,distress,1,1,9,0.1111111111111111,11.11111111111111,row-wise preference: absolute_events else events
+session,LSD,illusions,1,8,11,0.7272727272727273,72.72727272727273,row-wise preference: absolute_events else events
+session,LSD,time perception altered,1,6,11,0.5454545454545454,54.54545454545454,row-wise preference: absolute_events else events
+session,LSD,illusion,1,84.012,159,0.528377358490566,52.8377358490566,row-wise preference: absolute_events else events
+session,LSD,impaired gait,3,28,77,0.36363636363636365,36.36363636363637,row-wise preference: absolute_events else events
+session,LSD,nausea,2,58.003,201,0.2885721393034826,28.85721393034826,row-wise preference: absolute_events else events
+session,LSD,headache,4,56.016999999999996,241,0.23243568464730288,23.243568464730288,row-wise preference: absolute_events else events
+session,LSD,hallucination visual,1,30.006,159,0.18871698113207547,18.871698113207547,row-wise preference: absolute_events else events
+session,LSD,affect liability,1,2,11,0.18181818181818182,18.181818181818183,row-wise preference: absolute_events else events
+session,LSD,derealization,1,2,11,0.18181818181818182,18.181818181818183,row-wise preference: absolute_events else events
+session,LSD,chills,1,5,29,0.1724137931034483,17.24137931034483,row-wise preference: absolute_events else events
+session,LSD,dizziness,3,39.003,230,0.1695782608695652,16.95782608695652,row-wise preference: absolute_events else events
+session,LSD,sleep disorder,2,12,71,0.16901408450704225,16.901408450704224,row-wise preference: absolute_events else events
+session,LSD,decreased concentration,1,7,42,0.16666666666666666,16.666666666666664,row-wise preference: absolute_events else events
+session,LSD,euphoric mood,1,23.989,159,0.150874213836478,15.0874213836478,row-wise preference: absolute_events else events
+session,LSD,common cold,1,6,42,0.14285714285714285,14.285714285714285,row-wise preference: absolute_events else events
+session,LSD,fatigue,4,32.989000000000004,241,0.13688381742738592,13.688381742738592,row-wise preference: absolute_events else events
+session,LSD,mydriasis,2,23.014,170,0.1353764705882353,13.537647058823529,row-wise preference: absolute_events else events
+session,LSD,perspiration,2,21.014,170,0.12361176470588235,12.361176470588235,row-wise preference: absolute_events else events
+session,LSD,hypertension,1,16.003,159,0.10064779874213836,10.064779874213837,row-wise preference: absolute_events else events
+session,LSD,anemia,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,anger,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,bradyphrenia,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,depersonalization,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,femur fracture,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,hallucination,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,menorrhagia,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,neoplasm progression,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,palmar-plantar erythrodysaesthesia syndrome,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,perseveration,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,pneumonia,1,1,11,0.09090909090909091,9.090909090909092,row-wise preference: absolute_events else events
+session,LSD,paresthesia,1,13.989,159,0.0879811320754717,8.79811320754717,row-wise preference: absolute_events else events
+session,LSD,anxiety,3,18.014,212,0.08497169811320754,8.497169811320754,row-wise preference: absolute_events else events
+session,LSD,tremor,1,13,159,0.08176100628930817,8.176100628930817,row-wise preference: absolute_events else events
+session,LSD,thinking abnormal,2,13.014,170,0.07655294117647059,7.655294117647059,row-wise preference: absolute_events else events
+session,LSD,cough,1,3,42,0.07142857142857142,7.142857142857142,row-wise preference: absolute_events else events
+session,LSD,temperature perception disturbances,2,12,170,0.07058823529411765,7.0588235294117645,row-wise preference: absolute_events else events
+session,LSD,emotional distress,2,10.989,170,0.06464117647058824,6.464117647058824,row-wise preference: absolute_events else events
+session,LSD,pseudohallucination,1,10,159,0.06289308176100629,6.289308176100629,row-wise preference: absolute_events else events
+session,LSD,balance_disorder,1,9,159,0.05660377358490566,5.660377358490567,row-wise preference: absolute_events else events
+session,LSD,vomiting,1,9,159,0.05660377358490566,5.660377358490567,row-wise preference: absolute_events else events
+session,LSD,feeling abnormal,2,9.014,170,0.053023529411764705,5.302352941176471,row-wise preference: absolute_events else events
+session,LSD,abdominal cramps,1,2,42,0.047619047619047616,4.761904761904762,row-wise preference: absolute_events else events
+session,LSD,depression,1,2,42,0.047619047619047616,4.761904761904762,row-wise preference: absolute_events else events
+session,LSD,mastitis,1,2,42,0.047619047619047616,4.761904761904762,row-wise preference: absolute_events else events
+session,LSD,altered state of consciousness,1,7.014,159,0.04411320754716981,4.411320754716981,row-wise preference: absolute_events else events
+session,LSD,depressed mood,1,7,159,0.0440251572327044,4.40251572327044,row-wise preference: absolute_events else events
+session,LSD,restlessness,2,3,79,0.0379746835443038,3.79746835443038,row-wise preference: absolute_events else events
+session,LSD,attention disturbance,2,6.014,170,0.035376470588235294,3.5376470588235294,row-wise preference: absolute_events else events
+session,LSD,generalized tonic–clonic seizure,1,1,37,0.02702702702702703,2.7027027027027026,row-wise preference: absolute_events else events
+session,LSD,transient bizarre behavior/loss of reality,1,2,75,0.02666666666666667,2.666666666666667,row-wise preference: absolute_events else events
+session,LSD,abnormal dreams,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,diarrhea,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,dizziness after deduction of escitalopram,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,dog bite,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,fall,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,groin and testicle pain,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,gynecomastia,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,hand-foot syndrome,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,rumination,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,sigmoiditis,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,sore throat,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,suicidal ideation,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,vitamin b12 deficiency,1,1,42,0.023809523809523808,2.380952380952381,row-wise preference: absolute_events else events
+session,LSD,lack of appetite,2,4.014,201,0.019970149253731345,1.9970149253731344,row-wise preference: absolute_events else events
+session,LSD,confusion,2,1,79,0.012658227848101266,1.2658227848101267,row-wise preference: absolute_events else events
+session,LSD,abdominal pain,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,alopecia,1,0,42,0,0,row-wise preference: absolute_events else events
 session,LSD,altered perception of music,1,0,11,0,0,row-wise preference: absolute_events else events
+session,LSD,asthma bronchiale,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,bronchitis,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,eczema,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,edema,1,0,42,0,0,row-wise preference: absolute_events else events
 session,LSD,feeling of relaxation,1,0,11,0,0,row-wise preference: absolute_events else events
+session,LSD,hemoglobin decrease,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,hypercholesterinemia,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,insect bite,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,ischialgia,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,lumbalgia,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,norovirus,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,pain,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,polyneuropathy,1,0,42,0,0,row-wise preference: absolute_events else events
 session,LSD,pruritus,1,0,11,0,0,row-wise preference: absolute_events else events
+session,LSD,psychosomatic complaints,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,rejection reaction,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,shingles,1,0,42,0,0,row-wise preference: absolute_events else events
 session,LSD,skin lesion,1,0,11,0,0,row-wise preference: absolute_events else events
 session,LSD,tachyphrenia,1,0,11,0,0,row-wise preference: absolute_events else events
-session,MDMA,muscle tension,5,3.1906999999999996,105,0.030387619047619045,3.0387619047619046,row-wise preference: absolute_events else events
-session,MDMA,sleep disorder,7,5.415299999999999,195,0.027770769230769227,2.7770769230769226,row-wise preference: absolute_events else events
-session,MDMA,headache,7,4.3504,165,0.026366060606060605,2.6366060606060606,row-wise preference: absolute_events else events
-session,MDMA,lack of appetite,5,3.5577000000000005,142,0.02505422535211268,2.505422535211268,row-wise preference: absolute_events else events
-session,MDMA,anxiety,9,5.4909,231,0.02377012987012987,2.377012987012987,row-wise preference: absolute_events else events
-session,MDMA,jaw tension,8,4.9103,214,0.02294532710280374,2.294532710280374,row-wise preference: absolute_events else events
-session,MDMA,fatigue,7,3.6570999999999994,161,0.022714906832298133,2.271490683229813,row-wise preference: absolute_events else events
-session,MDMA,autonomic,4,2.5461,114,0.02233421052631579,2.233421052631579,row-wise preference: absolute_events else events
-session,MDMA,dizziness,4,2.6257,123,0.021347154471544717,2.1347154471544716,row-wise preference: absolute_events else events
-session,MDMA,nausea,6,2.5692000000000004,142,0.018092957746478875,1.8092957746478875,row-wise preference: absolute_events else events
-session,MDMA,decreased concentration,3,1,71,0.014084507042253521,1.4084507042253522,row-wise preference: absolute_events else events
-session,MDMA,restlessness,6,2.4631999999999996,179,0.013760893854748601,1.3760893854748601,row-wise preference: absolute_events else events
-session,MDMA,perspiration,4,1.5874,120,0.013228333333333333,1.3228333333333333,row-wise preference: absolute_events else events
-session,MDMA,suicidality,2,0.8155,99,0.008237373737373738,0.8237373737373738,row-wise preference: absolute_events else events
-session,MDMA,xerostomia,3,0.7987,101,0.007907920792079208,0.7907920792079208,row-wise preference: absolute_events else events
-session,MDMA,depression,6,1.3701,183,0.00748688524590164,0.748688524590164,row-wise preference: absolute_events else events
-session,MDMA,rumination,5,1.214,170,0.007141176470588235,0.7141176470588235,row-wise preference: absolute_events else events
-session,MDMA,weakness,2,0.39,55,0.007090909090909091,0.7090909090909091,row-wise preference: absolute_events else events
-session,MDMA,pain,5,0.8309,120,0.006924166666666666,0.6924166666666666,row-wise preference: absolute_events else events
-session,MDMA,ophthalmological,3,0.5374,101,0.005320792079207921,0.5320792079207921,row-wise preference: absolute_events else events
-session,MDMA,irritability,4,0.4795,133,0.003605263157894737,0.3605263157894737,row-wise preference: absolute_events else events
-session,MDMA,infectious,1,0.04,12,0.0033333333333333335,0.33333333333333337,row-wise preference: absolute_events else events
-session,MDMA,genitourinary,1,0.1522,46,0.003308695652173913,0.3308695652173913,row-wise preference: absolute_events else events
-session,MDMA,dissociation,3,0.2181,112,0.0019473214285714285,0.19473214285714285,row-wise preference: absolute_events else events
-session,PSILOCYBIN,hypertension,4,1.9127873563218385,252,0.007590426017150153,0.7590426017150153,row-wise preference: absolute_events else events
-session,PSILOCYBIN,headache,9,4.015365747424892,530,0.007576161787594135,0.7576161787594136,row-wise preference: absolute_events else events
-session,PSILOCYBIN,nausea,8,2.1116318080411274,504,0.004189745650875253,0.4189745650875253,row-wise preference: absolute_events else events
-session,PSILOCYBIN,mood altered/lability,1,0.61875,160,0.0038671875,0.38671875,row-wise preference: absolute_events else events
-session,PSILOCYBIN,illusion,3,0.9483333333333333,258,0.003675710594315245,0.3675710594315245,row-wise preference: absolute_events else events
-session,PSILOCYBIN,vivid imagination,1,0.55625,160,0.0034765625,0.34765625,row-wise preference: absolute_events else events
-session,PSILOCYBIN,hyperglycemia,1,0.0555555555555556,18,0.003086419753086422,0.30864197530864224,row-wise preference: absolute_events else events
-session,PSILOCYBIN,memory impairment,1,0.0555555555555556,18,0.003086419753086422,0.30864197530864224,row-wise preference: absolute_events else events
-session,PSILOCYBIN,anxiety,5,0.8267545104030256,421,0.0019637874356366403,0.19637874356366403,row-wise preference: absolute_events else events
-session,PSILOCYBIN,migraine,3,0.1555555555555556,96,0.001620370370370371,0.1620370370370371,row-wise preference: absolute_events else events
-session,PSILOCYBIN,sleep disorder,3,0.34376582278481027,232,0.0014817492361414236,0.14817492361414236,row-wise preference: absolute_events else events
-session,PSILOCYBIN,cystitis,1,0.0384615384615385,26,0.0014792899408284039,0.14792899408284038,row-wise preference: absolute_events else events
-session,PSILOCYBIN,vomiting,2,0.10833333333333339,78,0.0013888888888888896,0.13888888888888895,row-wise preference: absolute_events else events
-session,PSILOCYBIN,dissociation,1,0.21875,160,0.0013671875,0.13671875,row-wise preference: absolute_events else events
-session,PSILOCYBIN,pseudohallucination,1,0.20625,160,0.0012890624999999998,0.12890624999999997,row-wise preference: absolute_events else events
-session,PSILOCYBIN,fatigue,4,0.501898734177215,392,0.001280353913717385,0.1280353913717385,row-wise preference: absolute_events else events
-session,PSILOCYBIN,temperature perception disturbances,2,0.2269230769230769,186,0.0012200165425971876,0.12200165425971876,row-wise preference: absolute_events else events
-session,PSILOCYBIN,tachycardia,2,0.21125,175,0.0012071428571428571,0.12071428571428572,row-wise preference: absolute_events else events
-session,PSILOCYBIN,feeling abnormal,2,0.0689655172413793,59,0.0011689070718877846,0.11689070718877846,row-wise preference: absolute_events else events
-session,PSILOCYBIN,dizziness,4,0.3745391106783511,388,9.6530698628441e-4,0.096530698628441,row-wise preference: absolute_events else events
-session,PSILOCYBIN,mood altered,1,0.14126582278481,154,9.173105375637013e-4,0.09173105375637013,row-wise preference: absolute_events else events
-session,PSILOCYBIN,corona virus infection,1,0.0416666666666667,48,8.680555555555563e-4,0.08680555555555562,row-wise preference: absolute_events else events
-session,PSILOCYBIN,synaesthesia,1,0.125,160,7.8125e-4,0.078125,row-wise preference: absolute_events else events
-session,PSILOCYBIN,euphoric mood,1,0.11729957805907179,154,7.616855718121545e-4,0.07616855718121544,row-wise preference: absolute_events else events
-session,PSILOCYBIN,paresthesia,2,0.23505801687763708,314,7.485924104383347e-4,0.07485924104383347,row-wise preference: absolute_events else events
-session,PSILOCYBIN,perspiration,1,0.11875,160,7.421875e-4,0.07421875,row-wise preference: absolute_events else events
-session,PSILOCYBIN,suicidal ideation,3,0.2619409282700421,362,7.235937245028788e-4,0.07235937245028788,row-wise preference: absolute_events else events
-session,PSILOCYBIN,diarrhea,3,0.07179487179487179,104,6.903353057199211e-4,0.06903353057199212,row-wise preference: absolute_events else events
-session,PSILOCYBIN,abdominal pain,3,0.2460495780590718,362,6.796949670140105e-4,0.06796949670140105,row-wise preference: absolute_events else events
-session,PSILOCYBIN,depressed mood,1,0.10464135021097049,154,6.794892870842239e-4,0.0679489287084224,row-wise preference: absolute_events else events
-session,PSILOCYBIN,restlessness,3,0.1604166666666667,238,6.740196078431375e-4,0.06740196078431375,row-wise preference: absolute_events else events
-session,PSILOCYBIN,depression,2,0.125,208,6.009615384615385e-4,0.06009615384615385,row-wise preference: absolute_events else events
-session,PSILOCYBIN,myalgia,2,0.1107911392405063,202,5.484709863391401e-4,0.054847098633914015,row-wise preference: absolute_events else events
-session,PSILOCYBIN,irritability,1,0.0772995780590718,154,5.019453120718948e-4,0.050194531207189474,row-wise preference: absolute_events else events
-session,PSILOCYBIN,back pain,2,0.0967827004219409,202,4.791222793165391e-4,0.04791222793165391,row-wise preference: absolute_events else events
-session,PSILOCYBIN,confusion,1,0.075,160,4.6875e-4,0.046875,row-wise preference: absolute_events else events
-session,PSILOCYBIN,palpitations,3,0.1041666666666666,238,4.3767507002801095e-4,0.0437675070028011,row-wise preference: absolute_events else events
-session,PSILOCYBIN,biopsy,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,cataract,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,diverticulitis,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,dyspepsia,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,dysphoria,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,dyspnea,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,food allergy,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,food poisoning,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,gingivitis,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,hyperventilation,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,limb injury,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,muscle strain,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,musculoskeletal pain,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,nasal congestion,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,oropharyngeal pain,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,pain,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,photopsia,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,psychomotor hyperactivity,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,testicular pain,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,toothache,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,urinary incontinence,1,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771,row-wise preference: absolute_events else events
-session,PSILOCYBIN,insomnia,1,0.06875,160,4.2968750000000006e-4,0.04296875000000001,row-wise preference: absolute_events else events
-session,PSILOCYBIN,thinking abnornal,1,0.06875,160,4.2968750000000006e-4,0.04296875000000001,row-wise preference: absolute_events else events
-session,PSILOCYBIN,tremor,1,0.06875,160,4.2968750000000006e-4,0.04296875000000001,row-wise preference: absolute_events else events
-session,PSILOCYBIN,physical pain,2,0.075,178,4.213483146067416e-4,0.042134831460674156,row-wise preference: absolute_events else events
-session,PSILOCYBIN,polyuria,1,0.0625,160,3.90625e-4,0.0390625,row-wise preference: absolute_events else events
-session,PSILOCYBIN,thinking abnormal,1,0.0533333333333333,154,3.463203463203461e-4,0.03463203463203461,row-wise preference: absolute_events else events
-session,PSILOCYBIN,intentional self‑injury,1,0.0519831223628692,154,3.3755274261603374e-4,0.03375527426160337,row-wise preference: absolute_events else events
-session,PSILOCYBIN,somnolence,1,0.05,160,3.125e-4,0.03125,row-wise preference: absolute_events else events
-session,PSILOCYBIN,tension,1,0.05,160,3.125e-4,0.03125,row-wise preference: absolute_events else events
-session,PSILOCYBIN,withdrawal syndrome,2,0.0334915611814346,127,2.6371308016877635e-4,0.026371308016877634,row-wise preference: absolute_events else events
-session,PSILOCYBIN,panic reaction,2,0.0827162447257384,314,2.6342753097368917e-4,0.026342753097368915,row-wise preference: absolute_events else events
-session,PSILOCYBIN,suicidal behavior,1,0.0379746835443038,154,2.465888541837909e-4,0.024658885418379094,row-wise preference: absolute_events else events
-session,PSILOCYBIN,hospitalisation,1,0.0133333333333333,154,8.658008658008636e-5,0.008658008658008635,row-wise preference: absolute_events else events
-session,PSILOCYBIN,hypertensive crisis,1,0.01,160,6.25e-5,0.00625,row-wise preference: absolute_events else events
-session,PSILOCYBIN,syncope,1,0.01,160,6.25e-5,0.00625,row-wise preference: absolute_events else events
+session,LSD,toothache,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,torticollis,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,tumorprogression,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,tumorrelapse,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,urinary infection,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,vaginalmycosis,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,viral eye infection,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,weight gain,1,0,42,0,0,row-wise preference: absolute_events else events
+session,LSD,whiteness tooth dissection,1,0,42,0,0,row-wise preference: absolute_events else events
+session,MDMA,muscle tension,6,57.0402,113,0.5047805309734513,50.47805309734513,row-wise preference: absolute_events else events
+session,MDMA,feeling cold,1,4,8,0.5,50,row-wise preference: absolute_events else events
+session,MDMA,sleep disorder,8,99.4813,203,0.49005566502463055,49.005566502463054,row-wise preference: absolute_events else events
+session,MDMA,autonomic,4,55.0406,114,0.48281228070175436,48.28122807017544,row-wise preference: absolute_events else events
+session,MDMA,headache,8,80.05539999999999,173,0.4627479768786127,46.274797687861266,row-wise preference: absolute_events else events
+session,MDMA,lack of appetite,6,69.1322,150,0.4608813333333333,46.08813333333333,row-wise preference: absolute_events else events
+session,MDMA,suicidality,2,40.025999999999996,99,0.4043030303030303,40.43030303030303,row-wise preference: absolute_events else events
+session,MDMA,anxiety,10,93.979,239,0.3932175732217573,39.321757322175735,row-wise preference: absolute_events else events
+session,MDMA,dizziness,5,49.5342,131,0.3781236641221374,37.81236641221374,row-wise preference: absolute_events else events
+session,MDMA,fatigue,8,60.37819999999999,169,0.35726745562130174,35.726745562130176,row-wise preference: absolute_events else events
+session,MDMA,jaw tension,9,69.48310000000001,222,0.31298693693693697,31.298693693693696,row-wise preference: absolute_events else events
+session,MDMA,nausea,6,40.88949999999999,142,0.2879542253521126,28.795422535211262,row-wise preference: absolute_events else events
+session,MDMA,depressed mood,1,2,8,0.25,25,row-wise preference: absolute_events else events
+session,MDMA,thirst,1,2,8,0.25,25,row-wise preference: absolute_events else events
+session,MDMA,restlessness,7,46.6442,187,0.24943422459893047,24.943422459893046,row-wise preference: absolute_events else events
+session,MDMA,decreased concentration,4,19.486,79,0.24665822784810126,24.665822784810125,row-wise preference: absolute_events else events
+session,MDMA,perspiration,5,28.010400000000004,128,0.21883125000000003,21.883125000000003,row-wise preference: absolute_events else events
+session,MDMA,depression,6,29.1199,183,0.15912513661202188,15.912513661202187,row-wise preference: absolute_events else events
+session,MDMA,xerostomia,3,16.0502,101,0.15891287128712872,15.891287128712872,row-wise preference: absolute_events else events
+session,MDMA,genitourinary,1,7.0012,46,0.1522,15.22,row-wise preference: absolute_events else events
+session,MDMA,ophthalmological,3,14.8804,101,0.14733069306930693,14.733069306930693,row-wise preference: absolute_events else events
+session,MDMA,drowsiness,1,1,8,0.125,12.5,row-wise preference: absolute_events else events
+session,MDMA,impaired gait/balance,1,1,8,0.125,12.5,row-wise preference: absolute_events else events
+session,MDMA,pain,5,14.2537,120,0.11878083333333334,11.878083333333333,row-wise preference: absolute_events else events
+session,MDMA,weakness,3,7.470000000000001,63,0.11857142857142858,11.857142857142858,row-wise preference: absolute_events else events
+session,MDMA,rumination,6,19.348999999999997,178,0.10870224719101122,10.870224719101122,row-wise preference: absolute_events else events
+session,MDMA,dissociation,3,8.0269,112,0.07166874999999999,7.166874999999999,row-wise preference: absolute_events else events
+session,MDMA,irritability,5,9.981,141,0.07078723404255319,7.078723404255319,row-wise preference: absolute_events else events
+session,MDMA,infectious,1,0.48,12,0.04,4,row-wise preference: absolute_events else events
+session,PSILOCYBIN,mood altered/lability,1,99,160,0.61875,61.875,row-wise preference: absolute_events else events
+session,PSILOCYBIN,vivid imagination,1,89,160,0.55625,55.625,row-wise preference: absolute_events else events
+session,PSILOCYBIN,hypertension,4,115,252,0.45634920634920634,45.63492063492063,row-wise preference: absolute_events else events
+session,PSILOCYBIN,headache,9,239.05,530,0.4510377358490566,45.10377358490566,row-wise preference: absolute_events else events
+session,PSILOCYBIN,illusion,3,101,258,0.39147286821705424,39.14728682170542,row-wise preference: absolute_events else events
+session,PSILOCYBIN,nausea,8,130.05,504,0.2580357142857143,25.80357142857143,row-wise preference: absolute_events else events
+session,PSILOCYBIN,dissociation,1,35,160,0.21875,21.875,row-wise preference: absolute_events else events
+session,PSILOCYBIN,pseudohallucination,1,33,160,0.20625,20.625,row-wise preference: absolute_events else events
+session,PSILOCYBIN,anxiety,5,66,421,0.15676959619952494,15.676959619952493,row-wise preference: absolute_events else events
+session,PSILOCYBIN,temperature perception disturbances,2,26,186,0.13978494623655913,13.978494623655912,row-wise preference: absolute_events else events
+session,PSILOCYBIN,synaesthesia,1,20,160,0.125,12.5,row-wise preference: absolute_events else events
+session,PSILOCYBIN,fatigue,5,50,412,0.12135922330097088,12.135922330097088,row-wise preference: absolute_events else events
+session,PSILOCYBIN,perspiration,1,19,160,0.11875,11.875,row-wise preference: absolute_events else events
+session,PSILOCYBIN,dizziness,5,42,408,0.10294117647058823,10.294117647058822,row-wise preference: absolute_events else events
+session,PSILOCYBIN,paresthesia,2,30,314,0.09554140127388536,9.554140127388536,row-wise preference: absolute_events else events
+session,PSILOCYBIN,sleep disorder,4,24,252,0.09523809523809523,9.523809523809524,row-wise preference: absolute_events else events
+session,PSILOCYBIN,tachycardia,2,14.95,175,0.08542857142857142,8.542857142857143,row-wise preference: absolute_events else events
+session,PSILOCYBIN,confusion,1,12,160,0.075,7.5,row-wise preference: absolute_events else events
+session,PSILOCYBIN,abdominal pain,3,26,362,0.0718232044198895,7.18232044198895,row-wise preference: absolute_events else events
+session,PSILOCYBIN,mood altered,1,11,154,0.07142857142857142,7.142857142857142,row-wise preference: absolute_events else events
+session,PSILOCYBIN,restlessness,3,17,238,0.07142857142857142,7.142857142857142,row-wise preference: absolute_events else events
+session,PSILOCYBIN,insomnia,1,11,160,0.06875,6.875000000000001,row-wise preference: absolute_events else events
+session,PSILOCYBIN,thinking abnornal,1,11,160,0.06875,6.875000000000001,row-wise preference: absolute_events else events
+session,PSILOCYBIN,tremor,1,11,160,0.06875,6.875000000000001,row-wise preference: absolute_events else events
+session,PSILOCYBIN,physical pain,2,12,178,0.06741573033707865,6.741573033707865,row-wise preference: absolute_events else events
+session,PSILOCYBIN,depression,2,13,208,0.0625,6.25,row-wise preference: absolute_events else events
+session,PSILOCYBIN,polyuria,1,10,160,0.0625,6.25,row-wise preference: absolute_events else events
+session,PSILOCYBIN,euphoric mood,1,9,154,0.05844155844155844,5.844155844155844,row-wise preference: absolute_events else events
+session,PSILOCYBIN,hyperglycemia,1,1,18,0.05555555555555555,5.555555555555555,row-wise preference: absolute_events else events
+session,PSILOCYBIN,memory impairment,1,1,18,0.05555555555555555,5.555555555555555,row-wise preference: absolute_events else events
+session,PSILOCYBIN,depressed mood,1,8,154,0.05194805194805195,5.194805194805195,row-wise preference: absolute_events else events
+session,PSILOCYBIN,suicidal ideation,3,18.6,362,0.051381215469613266,5.138121546961327,row-wise preference: absolute_events else events
+session,PSILOCYBIN,vomiting,2,4,78,0.05128205128205128,5.128205128205128,row-wise preference: absolute_events else events
+session,PSILOCYBIN,hypoglycemia,1,1,20,0.05,5,row-wise preference: absolute_events else events
+session,PSILOCYBIN,somnolence,1,8,160,0.05,5,row-wise preference: absolute_events else events
+session,PSILOCYBIN,tension,1,8,160,0.05,5,row-wise preference: absolute_events else events
+session,PSILOCYBIN,palpitations,3,10,238,0.04201680672268908,4.201680672268908,row-wise preference: absolute_events else events
+session,PSILOCYBIN,corona virus infection,1,2,48,0.041666666666666664,4.166666666666666,row-wise preference: absolute_events else events
+session,PSILOCYBIN,migraine,3,4,96,0.041666666666666664,4.166666666666666,row-wise preference: absolute_events else events
+session,PSILOCYBIN,myalgia,2,8,202,0.039603960396039604,3.9603960396039604,row-wise preference: absolute_events else events
+session,PSILOCYBIN,irritability,1,6,154,0.03896103896103896,3.896103896103896,row-wise preference: absolute_events else events
+session,PSILOCYBIN,cystitis,1,1,26,0.038461538461538464,3.8461538461538463,row-wise preference: absolute_events else events
+session,PSILOCYBIN,back pain,2,7,202,0.034653465346534656,3.4653465346534658,row-wise preference: absolute_events else events
+session,PSILOCYBIN,feeling abnormal,2,2,59,0.03389830508474576,3.389830508474576,row-wise preference: absolute_events else events
+session,PSILOCYBIN,intentional self‑injury,1,4,154,0.025974025974025976,2.5974025974025974,row-wise preference: absolute_events else events
+session,PSILOCYBIN,thinking abnormal,1,4,154,0.025974025974025976,2.5974025974025974,row-wise preference: absolute_events else events
+session,PSILOCYBIN,panic reaction,2,8,314,0.025477707006369428,2.547770700636943,row-wise preference: absolute_events else events
+session,PSILOCYBIN,biopsy,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,cataract,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,diverticulitis,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,dyspepsia,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,dysphoria,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,dyspnea,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,food allergy,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,food poisoning,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,gingivitis,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,hyperventilation,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,limb injury,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,muscle strain,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,musculoskeletal pain,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,nasal congestion,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,oropharyngeal pain,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,pain,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,photopsia,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,psychomotor hyperactivity,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,testicular pain,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,toothache,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,urinary incontinence,1,1,48,0.020833333333333332,2.083333333333333,row-wise preference: absolute_events else events
+session,PSILOCYBIN,suicidal behavior,1,3,154,0.01948051948051948,1.948051948051948,row-wise preference: absolute_events else events
+session,PSILOCYBIN,diarrhea,3,2,104,0.019230769230769232,1.9230769230769231,row-wise preference: absolute_events else events
+session,PSILOCYBIN,withdrawal syndrome,2,2,127,0.015748031496062992,1.574803149606299,row-wise preference: absolute_events else events
+session,PSILOCYBIN,hypertensive crisis,1,1.6,160,0.01,1,row-wise preference: absolute_events else events
+session,PSILOCYBIN,syncope,1,1.6,160,0.01,1,row-wise preference: absolute_events else events
+session,PSILOCYBIN,hospitalisation,1,1,154,0.006493506493506494,0.6493506493506493,row-wise preference: absolute_events else events
 session,PSILOCYBIN,anemia,1,0,48,0,0,row-wise preference: absolute_events else events
 session,PSILOCYBIN,anger,1,0,48,0,0,row-wise preference: absolute_events else events
 session,PSILOCYBIN,arthralgia,1,0,48,0,0,row-wise preference: absolute_events else events

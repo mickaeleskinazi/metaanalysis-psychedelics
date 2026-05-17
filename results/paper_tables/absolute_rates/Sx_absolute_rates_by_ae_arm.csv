@@ -1,470 +1,611 @@
 time_window,molecule,study_id,arm_id,group,arm_type,dose_mg,ae_term,events_total,n_total,rate,rate_pct
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,accident with fracture,0.0344827586206896,29,0.0011890606420927449,0.11890606420927449
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,attention disturbance,1.03448275862069,29,0.035671819262782414,3.5671819262782414
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,depression,0.0344827586206896,29,0.0011890606420927449,0.11890606420927449
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,dizziness,0.103448275862069,29,0.0035671819262782416,0.35671819262782417
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,fatigue,0.689655172413794,29,0.023781212841854967,2.3781212841854966
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,headache,0.862068965517242,29,0.02972651605231869,2.972651605231869
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,impaired gait,0.137931034482759,29,0.004756242568371,0.4756242568371
-follow_up,LSD,Mueller2025,high_dose,high_dose,active,0.1,nausea,0.0689655172413793,29,0.002378121284185493,0.2378121284185493
-follow_up,LSD,Robison2025,100ug,100ug,active,100,Balance_disorder,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,Fatigue,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,100ug,100ug,active,100,Mydriasis,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,Tremor,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,100ug,100ug,active,100,Vomiting,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,altered state of consciousness,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,anxiety,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,attention disturbance,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,100ug,100ug,active,100,dizziness,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,emotional distress,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,feeling abnormal,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,hypertension,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,lack of appetite,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,100ug,100ug,active,100,paresthesia,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,perspiration,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,pseudohallucination,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,temperature perception disturbances,0,40,0,0
-follow_up,LSD,Robison2025,100ug,100ug,active,100,thinking abnormal,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,200ug,200ug,active,200,Balance_disorder,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,Fatigue,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,200ug,200ug,active,200,Mydriasis,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,Tremor,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,Vomiting,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,altered state of consciousness,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,anxiety,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,200ug,200ug,active,200,attention disturbance,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,dizziness,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,emotional distress,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,200ug,200ug,active,200,feeling abnormal,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,hypertension,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,lack of appetite,0.05,40,0.00125,0.125
-follow_up,LSD,Robison2025,200ug,200ug,active,200,paresthesia,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,perspiration,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,pseudohallucination,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,temperature perception disturbances,0,40,0,0
-follow_up,LSD,Robison2025,200ug,200ug,active,200,thinking abnormal,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,Balance_disorder,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,Fatigue,0.05,40,0.00125,0.125
-follow_up,LSD,Robison2025,50ug,50ug,active,50,Mydriasis,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,Tremor,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,Vomiting,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,altered state of consciousness,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,anxiety,0.075,40,0.001875,0.1875
-follow_up,LSD,Robison2025,50ug,50ug,active,50,attention disturbance,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,50ug,50ug,active,50,dizziness,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,emotional distress,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,feeling abnormal,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,hypertension,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,lack of appetite,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,paresthesia,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,perspiration,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,pseudohallucination,0,40,0,0
-follow_up,LSD,Robison2025,50ug,50ug,active,50,temperature perception disturbances,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,50ug,50ug,active,50,thinking abnormal,0,40,0,0
-follow_up,LSD,Robison2025,high_dose,high_dose,active,200,depressed mood,0.075,40,0.001875,0.1875
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,abdominal cramps,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,abdominal pain,1,42,0.023809523809523808,2.380952380952381
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,abnormal dreams,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,alopecia,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,anxiety,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,asthma bronchiale,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,bronchitis,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,confusion,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,cough,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,decreased concentration,4,42,0.09523809523809523,9.523809523809524
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,depression,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,diarrhea,1,42,0.023809523809523808,2.380952380952381
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,dizziness,3,42,0.07142857142857142,7.142857142857142
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,dizziness after deduction of escitalopram,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,dog bite,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,eczema,1,42,0.023809523809523808,2.380952380952381
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,edema,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,fall,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,fatigue,9,42,0.21428571428571427,21.428571428571427
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,groin and testicle pain,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,gynecomastia,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,hand-foot syndrome,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,headache,7,42,0.16666666666666666,16.666666666666664
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,hemoglobin decrease,1,42,0.023809523809523808,2.380952380952381
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,hypercholesterinemia,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,insect bite,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,ischialgia,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,lack of appetite,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,lumbalgia,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,mastitis,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,nausea,4,42,0.09523809523809523,9.523809523809524
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,norovirus,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,pain,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,polyneuropathy,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,psychosomatic complaints,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,rejection reaction,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,restlessness,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,rumination,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,shingles,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,sigmoiditis,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,sleep disorder,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,sore throat,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,suicidal ideation,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,temperature perception disturbances,2,42,0.047619047619047616,4.761904761904762
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,toothache,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,torticollis,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,tumorprogression,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,tumorrelapse,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,urinary infection,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,vaginalmycosis,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,viral eye infection,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,vitamin b12 deficiency,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,weight gain,0,42,0,0
+follow_up,LSD,Holze2023,high_dose,high_dose,active,200,whiteness tooth dissection,0,42,0,0
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,accident with fracture,1,29,0.034482758620689655,3.4482758620689653
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,attention disturbance,30,29,1.0344827586206897,103.44827586206897
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,depression,1,29,0.034482758620689655,3.4482758620689653
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,dizziness,3,29,0.10344827586206896,10.344827586206897
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,fatigue,20,29,0.6896551724137931,68.96551724137932
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,headache,25,29,0.8620689655172413,86.20689655172413
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,impaired gait,4,29,0.13793103448275862,13.793103448275861
+follow_up,LSD,Mueller2025,high_dose,high_dose,active,100,nausea,2,29,0.06896551724137931,6.896551724137931
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,altered state of consciousness,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,anxiety,1,40,0.025,2.5
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,attention disturbance,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,balance_disorder,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,depressed mood,3,40,0.075,7.5
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,dizziness,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,emotional distress,1,40,0.025,2.5
 follow_up,LSD,Robison2025,high_dose,high_dose,active,200,euphoric mood,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,fatigue,1,40,0.025,2.5
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,feeling abnormal,0,40,0,0
 follow_up,LSD,Robison2025,high_dose,high_dose,active,200,hallucination visual,0,40,0,0
-follow_up,LSD,Robison2025,high_dose,high_dose,active,200,headache,0.025,40,6.25e-4,0.0625
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,headache,1,40,0.025,2.5
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,hypertension,0,40,0,0
 follow_up,LSD,Robison2025,high_dose,high_dose,active,200,illusion,0,40,0,0
-follow_up,LSD,Robison2025,high_dose,high_dose,active,200,nausea,0.05,40,0.00125,0.125
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,Balance_disorder,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,Fatigue,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,Mydriasis,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,Tremor,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,Vomiting,0,39,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,lack of appetite,2,40,0.05,5
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,mydriasis,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,nausea,2,40,0.05,5
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,paresthesia,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,perspiration,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,pseudohallucination,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,temperature perception disturbances,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,thinking abnormal,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,tremor,0,40,0,0
+follow_up,LSD,Robison2025,high_dose,high_dose,active,200,vomiting,0,40,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,altered state of consciousness,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,anxiety,0.077,39,0.0019743589743589744,0.19743589743589746
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,anxiety,3.003,39,0.077,7.7
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,attention disturbance,0,39,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,balance_disorder,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,depressed mood,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,dizziness,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,emotional distress,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,euphoric mood,0,39,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,fatigue,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,feeling abnormal,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,hallucination visual,0.026,39,6.666666666666666e-4,0.06666666666666667
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,headache,0.051,39,0.0013076923076923077,0.13076923076923078
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,hallucination visual,1.014,39,0.026,2.6
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,headache,1.989,39,0.051000000000000004,5.1000000000000005
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,hypertension,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,illusion,0.026,39,6.666666666666666e-4,0.06666666666666667
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,illusion,1.014,39,0.026,2.6
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,lack of appetite,0,39,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,mydriasis,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,nausea,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,25,panic_attack,0.025,39,6.41025641025641e-4,0.0641025641025641
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,panic_attack,0.975,39,0.024999999999999998,2.5
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,paresthesia,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,perspiration,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,pseudohallucination,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,temperature perception disturbances,0,39,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,25,thinking abnormal,0,39,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,50,depressed mood,0.075,40,0.001875,0.1875
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,tremor,0,39,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,25,vomiting,0,39,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,altered state of consciousness,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,anxiety,3,40,0.075,7.5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,attention disturbance,1,40,0.025,2.5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,balance_disorder,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,depressed mood,3,40,0.075,7.5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,dizziness,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,emotional distress,0,40,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,50,euphoric mood,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,fatigue,2,40,0.05,5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,feeling abnormal,0,40,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,50,hallucination visual,0,40,0,0
-follow_up,LSD,Robison2025,low_dose,low_dose,active,50,headache,0.05,40,0.00125,0.125
-follow_up,LSD,Robison2025,low_dose,low_dose,active,50,illusion,0.025,40,6.25e-4,0.0625
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,headache,2,40,0.05,5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,hypertension,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,illusion,1,40,0.025,2.5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,lack of appetite,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,mydriasis,0,40,0,0
 follow_up,LSD,Robison2025,low_dose,low_dose,active,50,nausea,0,40,0,0
-follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,depressed mood,0.025,40,6.25e-4,0.0625
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,paresthesia,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,perspiration,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,pseudohallucination,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,temperature perception disturbances,1,40,0.025,2.5
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,thinking abnormal,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,tremor,0,40,0,0
+follow_up,LSD,Robison2025,low_dose,low_dose,active,50,vomiting,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,altered state of consciousness,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,anxiety,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,attention disturbance,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,balance_disorder,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,depressed mood,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,dizziness,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,emotional distress,0,40,0,0
 follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,euphoric mood,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,fatigue,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,feeling abnormal,0,40,0,0
 follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,hallucination visual,0,40,0,0
-follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,headache,0.1,40,0.0025,0.25
-follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,illusion,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,nausea,0.025,40,6.25e-4,0.0625
-follow_up,LSD,Tomsovic1970,high_dose,high_dose,active,0.5,anxiety,0.253333333333333,75,0.003377777777777774,0.3377777777777774
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,anxiety,0.58,12,0.04833333333333333,4.833333333333333
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,autonomic,0.04,12,0.0033333333333333335,0.33333333333333337
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,decreased concentration,0.25,12,0.020833333333333332,2.083333333333333
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,depression,0.42,12,0.034999999999999996,3.4999999999999996
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,dissociation,0.04,12,0.0033333333333333335,0.33333333333333337
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,dizziness,0.13,12,0.010833333333333334,1.0833333333333335
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,fatigue,0.75,12,0.0625,6.25
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,headache,0.25,12,0.020833333333333332,2.083333333333333
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,infectious,0.08,12,0.006666666666666667,0.6666666666666667
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,irritability,0.33,12,0.0275,2.75
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,jaw tension,0.25,12,0.020833333333333332,2.083333333333333
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,lack of appetite,0.38,12,0.03166666666666667,3.166666666666667
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,muscle tension,0.08,12,0.006666666666666667,0.6666666666666667
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,nausea,0.29,12,0.024166666666666666,2.4166666666666665
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,ophthalmological,0.08,12,0.006666666666666667,0.6666666666666667
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,pain,0.04,12,0.0033333333333333335,0.33333333333333337
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,restlessness,0.04,12,0.0033333333333333335,0.33333333333333337
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,rumination,0.13,12,0.010833333333333334,1.0833333333333335
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,sleep disorder,0.59,12,0.049166666666666664,4.916666666666666
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,weakness,0.29,12,0.024166666666666666,2.4166666666666665
-follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,xerostomia,0.04,12,0.0033333333333333335,0.33333333333333337
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,anxiety,0.83,12,0.06916666666666667,6.916666666666667
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,decreased concentration,0.42,12,0.034999999999999996,3.4999999999999996
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,depression,0.25,12,0.020833333333333332,2.083333333333333
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,fatigue,0.83,12,0.06916666666666667,6.916666666666667
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,headache,0.58,12,0.04833333333333333,4.833333333333333
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,irritability,0.5,12,0.041666666666666664,4.166666666666666
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,lack of appetite,0.5,12,0.041666666666666664,4.166666666666666
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,muscle tension,0.58,12,0.04833333333333333,4.833333333333333
-follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,sleep disorder,1.58,12,0.13166666666666668,13.166666666666668
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,anxiety,0.71,7,0.10142857142857142,10.142857142857142
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,fatigue,1,7,0.14285714285714285,14.285714285714285
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,headache,0.43,7,0.06142857142857143,6.142857142857143
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,irritability,0.29,7,0.041428571428571426,4.142857142857142
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,lack of appetite,0.14,7,0.02,2
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,muscle tension,0.43,7,0.06142857142857143,6.142857142857143
-follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,sleep disorder,1.29,7,0.1842857142857143,18.42857142857143
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,anxiety,0.26,43,0.006046511627906977,0.6046511627906977
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,autonomic,0.16,43,0.0037209302325581397,0.37209302325581395
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,decreased concentration,0.23,43,0.005348837209302326,0.5348837209302326
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,depression,0.47,43,0.010930232558139534,1.0930232558139534
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,dizziness,0.25,43,0.005813953488372093,0.5813953488372093
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,fatigue,0.56,43,0.013023255813953489,1.302325581395349
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,headache,0.23,43,0.005348837209302326,0.5348837209302326
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,jaw tension,0.16,43,0.0037209302325581397,0.37209302325581395
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,lack of appetite,0.16,43,0.0037209302325581397,0.37209302325581395
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,nausea,0.12,43,0.0027906976744186047,0.27906976744186046
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,ophthalmological,0.02,43,4.6511627906976747e-4,0.046511627906976744
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,perspiration,0.02,43,4.6511627906976747e-4,0.046511627906976744
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,restlessness,0.14,43,0.0032558139534883722,0.32558139534883723
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,rumination,0.21,43,0.004883720930232558,0.4883720930232558
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,sleep disorder,0.61,43,0.014186046511627907,1.4186046511627908
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,weakness,0.12,43,0.0027906976744186047,0.27906976744186046
-follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,xerostomia,0.12,43,0.0027906976744186047,0.27906976744186046
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,abdominal pain,0.04375,160,2.7343749999999997e-4,0.027343749999999997
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,abnormal dreams,0.0625,160,3.90625e-4,0.0390625
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,anxiety,0.06875,160,4.2968750000000006e-4,0.04296875000000001
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,depression,0.05,160,3.125e-4,0.03125
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,diarrhea,0.03125,160,1.953125e-4,0.01953125
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,dyspepsia,0.0125,160,7.8125e-5,0.0078125
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,fatigue,0.08125,160,5.078125e-4,0.05078125
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,hallucinogen persisting perception disorder,0.01,160,6.25e-5,0.00625
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,headache,0.375,160,0.00234375,0.234375
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,insomnia,0.025,160,1.5625e-4,0.015625
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,nasopharyngitis,0.04375,160,2.7343749999999997e-4,0.027343749999999997
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,nausea,0.0375,160,2.34375e-4,0.0234375
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,panic reaction,0.05625,160,3.515625e-4,0.03515625
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,physical pain,0.04375,160,2.7343749999999997e-4,0.027343749999999997
-follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,suicidal ideation,0.01,160,6.25e-5,0.00625
-overall,LSD,Robison2025,50ug,50ug,active,50,ADHD_exacerbation,0.025,40,6.25e-4,0.0625
-overall,LSD,Robison2025,50ug,50ug,active,50,feeling_intoxicated,0.025,40,6.25e-4,0.0625
-overall,LSD,Robison2025,low_dose,low_dose,active,25,anxiety_worsening,0.025,39,6.41025641025641e-4,0.0641025641025641
-overall,LSD,Robison2025,low_dose,low_dose,active,25,depression,0.025,39,6.41025641025641e-4,0.0641025641025641
-overall,LSD,Robison2025,low_dose,low_dose,active,25,depression_worsening,0.025,39,6.41025641025641e-4,0.0641025641025641
-overall,LSD,Robison2025,low_dose,low_dose,active,25,feeling_intoxicated,0.025,39,6.41025641025641e-4,0.0641025641025641
-session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,anxiety,0.5,14,0.03571428571428571,3.571428571428571
-session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,headache,0.428571428571428,14,0.03061224489795914,3.061224489795914
-session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,nausea,0.714285714285714,14,0.051020408163265286,5.102040816326529
-session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,restlessness,0.5,14,0.03571428571428571,3.571428571428571
-session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,vomiting,0.571428571428571,14,0.040816326530612214,4.081632653061221
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,anxiety,0.111111111111111,9,0.012345679012345666,1.2345679012345667
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,confusion,0.222222222222222,9,0.024691358024691332,2.4691358024691334
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,diarrhea,0.111111111111111,9,0.012345679012345666,1.2345679012345667
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,dissociation,0.111111111111111,9,0.012345679012345666,1.2345679012345667
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,distress,0.111111111111111,9,0.012345679012345666,1.2345679012345667
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,drowsiness,0.222222222222222,9,0.024691358024691332,2.4691358024691334
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,headache,0.222222222222222,9,0.024691358024691332,2.4691358024691334
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,hypertension,0.444444444444444,9,0.049382716049382665,4.938271604938267
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,nausea,0.444444444444444,9,0.049382716049382665,4.938271604938267
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,tachycardia,0.222222222222222,9,0.024691358024691332,2.4691358024691334
-session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,vomiting,0.333333333333333,9,0.037037037037037,3.7037037037037
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,affect liability,0.181818181818182,11,0.016528925619834725,1.6528925619834725
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,altered perception of music,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,anemia,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,anger,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,anxiety,0.272727272727273,11,0.02479338842975209,2.479338842975209
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,attention disturbance,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,bradyphrenia,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,depersonalization,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,derealization,0.181818181818182,11,0.016528925619834725,1.6528925619834725
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,emotional distress,0.454545454545454,11,0.04132231404958672,4.132231404958672
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,fatigue,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,feeling abnormal,0.545454545454545,11,0.049586776859504085,4.958677685950408
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,feeling of relaxation,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,femur fracture,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,hallucination,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,headache,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,illusions,0.727272727272727,11,0.06611570247933882,6.611570247933882
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,impaired gait,0.363636363636364,11,0.03305785123966945,3.305785123966945
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,menorrhagia,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,mydriasis,0.272727272727273,11,0.02479338842975209,2.479338842975209
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,neoplasm progression,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,palmar-plantar erythrodysaesthesia syndrome,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,perseveration,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,perspiration,0.181818181818182,11,0.016528925619834725,1.6528925619834725
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,pneumonia,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,pruritus,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,skin lesion,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,tachyphrenia,0,11,0,0
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,temperature perception disturbances,0.636363636363636,11,0.057851239669421455,5.7851239669421455
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,thinking abnormal,0.0909090909090909,11,0.008264462809917354,0.8264462809917353
-session,LSD,Gasser2014,high_dose,high_dose,active,0.2,time perception altered,0.545454545454545,11,0.049586776859504085,4.958677685950408
-session,LSD,Hollister1969,high_dose,high_dose,active,0.6,confusion,0.027027027027027,37,7.304601899196486e-4,0.07304601899196486
-session,LSD,Hollister1969,high_dose,high_dose,active,0.6,generalized tonic–clonic seizure,0.027027027027027,37,7.304601899196486e-4,0.07304601899196486
-session,LSD,Hollister1969,high_dose,high_dose,active,0.6,impaired gait,0.0540540540540541,37,0.0014609203798392999,0.14609203798393
-session,LSD,Hollister1969,high_dose,high_dose,active,0.6,restlessness,0.0540540540540541,37,0.0014609203798392999,0.14609203798393
-session,LSD,Holze2023,high_dose,high_dose,active,0.2,anxiety,0.0952380952380952,42,0.002267573696145124,0.2267573696145124
-session,LSD,Holze2023,high_dose,high_dose,active,0.2,headache,0.0238095238095238,42,5.66893424036281e-4,0.0566893424036281
-session,LSD,Holze2023,high_dose,high_dose,active,0.2,nausea,0.0952380952380952,42,0.002267573696145124,0.2267573696145124
-session,LSD,Mueller2025,high_dose,high_dose,active,0.1,chills,0.172413793103448,29,0.0059453032104637244,0.5945303210463725
-session,LSD,Mueller2025,high_dose,high_dose,active,0.1,dizziness,0.689655172413794,29,0.023781212841854967,2.3781212841854966
-session,LSD,Mueller2025,high_dose,high_dose,active,0.1,fatigue,0.172413793103448,29,0.0059453032104637244,0.5945303210463725
-session,LSD,Mueller2025,high_dose,high_dose,active,0.1,headache,0.482758620689656,29,0.016646848989298482,1.6646848989298482
-session,LSD,Mueller2025,high_dose,high_dose,active,0.1,impaired gait,0.758620689655173,29,0.02615933412604045,2.6159334126040448
-session,LSD,Mueller2025,high_dose,high_dose,active,0.1,sleep disorder,0.310344827586207,29,0.010701545778834724,1.0701545778834725
-session,LSD,Robison2025,100ug,100ug,active,100,Balance_disorder,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,100ug,100ug,active,100,Fatigue,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,100ug,100ug,active,100,Mydriasis,0.2,40,0.005,0.5
-session,LSD,Robison2025,100ug,100ug,active,100,Tremor,0.05,40,0.00125,0.125
-session,LSD,Robison2025,100ug,100ug,active,100,Vomiting,0.05,40,0.00125,0.125
-session,LSD,Robison2025,100ug,100ug,active,100,altered state of consciousness,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,100ug,100ug,active,100,anxiety,0.1,40,0.0025,0.25
-session,LSD,Robison2025,100ug,100ug,active,100,attention disturbance,0,40,0,0
-session,LSD,Robison2025,100ug,100ug,active,100,dizziness,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,100ug,100ug,active,100,emotional distress,0.025,40,6.25e-4,0.0625
-session,LSD,Robison2025,100ug,100ug,active,100,feeling abnormal,0,40,0,0
-session,LSD,Robison2025,100ug,100ug,active,100,hypertension,0.1,40,0.0025,0.25
-session,LSD,Robison2025,100ug,100ug,active,100,lack of appetite,0,40,0,0
-session,LSD,Robison2025,100ug,100ug,active,100,paresthesia,0.05,40,0.00125,0.125
-session,LSD,Robison2025,100ug,100ug,active,100,perspiration,0.225,40,0.005625,0.5625
-session,LSD,Robison2025,100ug,100ug,active,100,pseudohallucination,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,100ug,100ug,active,100,temperature perception disturbances,0,40,0,0
-session,LSD,Robison2025,100ug,100ug,active,100,thinking abnormal,0.1,40,0.0025,0.25
-session,LSD,Robison2025,200ug,200ug,active,200,Balance_disorder,0.05,40,0.00125,0.125
-session,LSD,Robison2025,200ug,200ug,active,200,Fatigue,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,200ug,200ug,active,200,Mydriasis,0.1,40,0.0025,0.25
-session,LSD,Robison2025,200ug,200ug,active,200,Tremor,0.2,40,0.005,0.5
-session,LSD,Robison2025,200ug,200ug,active,200,Vomiting,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,200ug,200ug,active,200,altered state of consciousness,0.025,40,6.25e-4,0.0625
-session,LSD,Robison2025,200ug,200ug,active,200,anxiety,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,200ug,200ug,active,200,attention disturbance,0,40,0,0
-session,LSD,Robison2025,200ug,200ug,active,200,dizziness,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,200ug,200ug,active,200,emotional distress,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,200ug,200ug,active,200,feeling abnormal,0,40,0,0
-session,LSD,Robison2025,200ug,200ug,active,200,hypertension,0.1,40,0.0025,0.25
-session,LSD,Robison2025,200ug,200ug,active,200,lack of appetite,0.05,40,0.00125,0.125
-session,LSD,Robison2025,200ug,200ug,active,200,paresthesia,0.2,40,0.005,0.5
-session,LSD,Robison2025,200ug,200ug,active,200,perspiration,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,200ug,200ug,active,200,pseudohallucination,0.1,40,0.0025,0.25
-session,LSD,Robison2025,200ug,200ug,active,200,temperature perception disturbances,0.025,40,6.25e-4,0.0625
-session,LSD,Robison2025,200ug,200ug,active,200,thinking abnormal,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,50ug,50ug,active,50,Balance_disorder,0.1,40,0.0025,0.25
-session,LSD,Robison2025,50ug,50ug,active,50,Fatigue,0.15,40,0.00375,0.375
-session,LSD,Robison2025,50ug,50ug,active,50,Mydriasis,0.175,40,0.0043749999999999995,0.43749999999999994
-session,LSD,Robison2025,50ug,50ug,active,50,Tremor,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,50ug,50ug,active,50,Vomiting,0.05,40,0.00125,0.125
-session,LSD,Robison2025,50ug,50ug,active,50,altered state of consciousness,0,40,0,0
-session,LSD,Robison2025,50ug,50ug,active,50,anxiety,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,50ug,50ug,active,50,attention disturbance,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,50ug,50ug,active,50,dizziness,0.05,40,0.00125,0.125
-session,LSD,Robison2025,50ug,50ug,active,50,emotional distress,0,40,0,0
-session,LSD,Robison2025,50ug,50ug,active,50,feeling abnormal,0.05,40,0.00125,0.125
-session,LSD,Robison2025,50ug,50ug,active,50,hypertension,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,50ug,50ug,active,50,lack of appetite,0.025,40,6.25e-4,0.0625
-session,LSD,Robison2025,50ug,50ug,active,50,paresthesia,0.05,40,0.00125,0.125
-session,LSD,Robison2025,50ug,50ug,active,50,perspiration,0.1,40,0.0025,0.25
-session,LSD,Robison2025,50ug,50ug,active,50,pseudohallucination,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,50ug,50ug,active,50,temperature perception disturbances,0.1,40,0.0025,0.25
-session,LSD,Robison2025,50ug,50ug,active,50,thinking abnormal,0.05,40,0.00125,0.125
-session,LSD,Robison2025,high_dose,high_dose,active,200,depressed mood,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,high_dose,high_dose,active,200,euphoric mood,0.15,40,0.00375,0.375
-session,LSD,Robison2025,high_dose,high_dose,active,200,hallucination visual,0.15,40,0.00375,0.375
-session,LSD,Robison2025,high_dose,high_dose,active,200,headache,0.25,40,0.00625,0.625
-session,LSD,Robison2025,high_dose,high_dose,active,200,illusion,0.75,40,0.01875,1.875
-session,LSD,Robison2025,high_dose,high_dose,active,200,nausea,0.6,40,0.015,1.5
-session,LSD,Robison2025,low_dose,low_dose,active,25,Balance_disorder,0,39,0,0
-session,LSD,Robison2025,low_dose,low_dose,active,25,Fatigue,0.051,39,0.0013076923076923077,0.13076923076923078
-session,LSD,Robison2025,low_dose,low_dose,active,25,Mydriasis,0.026,39,6.666666666666666e-4,0.06666666666666667
-session,LSD,Robison2025,low_dose,low_dose,active,25,Tremor,0,39,0,0
-session,LSD,Robison2025,low_dose,low_dose,active,25,Vomiting,0,39,0,0
-session,LSD,Robison2025,low_dose,low_dose,active,25,altered state of consciousness,0.026,39,6.666666666666666e-4,0.06666666666666667
-session,LSD,Robison2025,low_dose,low_dose,active,25,anxiety,0.026,39,6.666666666666666e-4,0.06666666666666667
-session,LSD,Robison2025,low_dose,low_dose,active,25,attention disturbance,0.026,39,6.666666666666666e-4,0.06666666666666667
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,headache,4,40,0.1,10
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,hypertension,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,illusion,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,lack of appetite,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,mydriasis,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,nausea,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,paresthesia,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,perspiration,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,pseudohallucination,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,temperature perception disturbances,0,40,0,0
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,thinking abnormal,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,tremor,1,40,0.025,2.5
+follow_up,LSD,Robison2025,mild_dose,mild_dose,active,100,vomiting,0,40,0,0
+follow_up,LSD,Tomsovic1970,high_dose,high_dose,active,500,anxiety,19,75,0.25333333333333335,25.333333333333336
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,anxiety,1,8,0.125,12.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,decreased concentration,4,8,0.5,50
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,depressed mood,4,8,0.5,50
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,dizziness,0,8,0,0
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,drowsiness,1,8,0.125,12.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,fatigue,5,8,0.625,62.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,feeling cold,0,8,0,0
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,headache,5,8,0.625,62.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,irritability,1,8,0.125,12.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,jaw tension,0,8,0,0
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,lack of appetite,3,8,0.375,37.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,paresthesia,1,8,0.125,12.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,rumination,0,8,0,0
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,sleep disorder,4,8,0.5,50
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,thirst,1,8,0.125,12.5
+follow_up,MDMA,Danforth2018,mild_dose,mild_dose,active,75,weakness,1,8,0.125,12.5
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,anxiety,6.96,12,0.58,57.99999999999999
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,autonomic,0.48,12,0.04,4
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,decreased concentration,3,12,0.25,25
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,depression,5.04,12,0.42,42
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,dissociation,0.48,12,0.04,4
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,dizziness,1.56,12,0.13,13
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,fatigue,9,12,0.75,75
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,headache,3,12,0.25,25
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,infectious,0.96,12,0.08,8
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,irritability,3.96,12,0.33,33
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,jaw tension,3,12,0.25,25
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,lack of appetite,4.56,12,0.37999999999999995,37.99999999999999
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,muscle tension,0.96,12,0.08,8
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,nausea,3.48,12,0.29,28.999999999999996
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,ophthalmological,0.96,12,0.08,8
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,pain,0.48,12,0.04,4
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,restlessness,0.48,12,0.04,4
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,rumination,1.56,12,0.13,13
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,sleep disorder,7.08,12,0.59,59
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,weakness,3.48,12,0.29,28.999999999999996
+follow_up,MDMA,Mithoefer2011,high_dose,high_dose,active,125,xerostomia,0.48,12,0.04,4
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,anxiety,9.96,12,0.8300000000000001,83
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,decreased concentration,5.04,12,0.42,42
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,depression,3,12,0.25,25
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,fatigue,9.96,12,0.8300000000000001,83
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,headache,6.96,12,0.58,57.99999999999999
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,irritability,6,12,0.5,50
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,lack of appetite,6,12,0.5,50
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,muscle tension,6.96,12,0.58,57.99999999999999
+follow_up,MDMA,Mithoefer2018,high_dose,high_dose,active,125,sleep disorder,18.96,12,1.58,158
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,anxiety,4.97,7,0.71,71
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,fatigue,7,7,1,100
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,headache,3.01,7,0.43,43
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,irritability,2.03,7,0.29,28.999999999999996
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,lack of appetite,0.98,7,0.13999999999999999,13.999999999999998
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,muscle tension,3.01,7,0.43,43
+follow_up,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,sleep disorder,9.03,7,1.2899999999999998,128.99999999999997
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,anxiety,11.18,43,0.26,26
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,autonomic,6.88,43,0.16,16
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,decreased concentration,9.89,43,0.23,23
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,depression,20.21,43,0.47000000000000003,47
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,dizziness,10.75,43,0.25,25
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,fatigue,24.08,43,0.5599999999999999,55.99999999999999
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,headache,9.89,43,0.23,23
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,jaw tension,6.88,43,0.16,16
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,lack of appetite,6.88,43,0.16,16
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,nausea,5.16,43,0.12000000000000001,12.000000000000002
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,ophthalmological,0.86,43,0.02,2
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,perspiration,0.86,43,0.02,2
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,restlessness,6.02,43,0.13999999999999999,13.999999999999998
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,rumination,9.03,43,0.21,21
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,sleep disorder,26.23,43,0.61,61
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,weakness,5.16,43,0.12000000000000001,12.000000000000002
+follow_up,MDMA,Oehen2013,high_dose,high_dose,active,125,xerostomia,5.16,43,0.12000000000000001,12.000000000000002
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,abdominal pain,7,160,0.04375,4.375
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,abnormal dreams,10,160,0.0625,6.25
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,anxiety,11,160,0.06875,6.875000000000001
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,depression,8,160,0.05,5
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,diarrhea,5,160,0.03125,3.125
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,dyspepsia,2,160,0.0125,1.25
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,fatigue,13,160,0.08125,8.125
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,hallucinogen persisting perception disorder,1.6,160,0.01,1
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,headache,60,160,0.375,37.5
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,insomnia,4,160,0.025,2.5
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,nasopharyngitis,7,160,0.04375,4.375
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,nausea,6,160,0.0375,3.75
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,panic reaction,9,160,0.05625,5.625
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,physical pain,7,160,0.04375,4.375
+follow_up,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,suicidal ideation,1.6,160,0.01,1
+overall,LSD,Robison2025,low_dose,low_dose,active,25,anxiety_worsening,0.975,39,0.024999999999999998,2.5
+overall,LSD,Robison2025,low_dose,low_dose,active,25,depression,0.975,39,0.024999999999999998,2.5
+overall,LSD,Robison2025,low_dose,low_dose,active,25,depression_worsening,0.975,39,0.024999999999999998,2.5
+overall,LSD,Robison2025,low_dose,low_dose,active,25,feeling_intoxicated,0.975,39,0.024999999999999998,2.5
+overall,LSD,Robison2025,low_dose,low_dose,active,50,adhd_exacerbation,1,40,0.025,2.5
+overall,LSD,Robison2025,low_dose,low_dose,active,50,feeling_intoxicated,1,40,0.025,2.5
+session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,anxiety,7,14,0.5,50
+session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,headache,6,14,0.42857142857142855,42.857142857142854
+session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,nausea,10,14,0.7142857142857143,71.42857142857143
+session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,restlessness,7,14,0.5,50
+session,AYAHUASCA,Palhano-Fontes2019,mild_dose,mild_dose,active,0.36,vomiting,8,14,0.5714285714285714,57.14285714285714
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,anxiety,1,9,0.1111111111111111,11.11111111111111
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,confusion,2,9,0.2222222222222222,22.22222222222222
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,diarrhea,1,9,0.1111111111111111,11.11111111111111
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,dissociation,1,9,0.1111111111111111,11.11111111111111
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,distress,1,9,0.1111111111111111,11.11111111111111
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,drowsiness,2,9,0.2222222222222222,22.22222222222222
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,headache,2,9,0.2222222222222222,22.22222222222222
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,hypertension,4,9,0.4444444444444444,44.44444444444444
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,nausea,4,9,0.4444444444444444,44.44444444444444
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,tachycardia,2,9,0.2222222222222222,22.22222222222222
+session,AYAHUASCA,dosSantos2021,mild_dose,mild_dose,active,0.36,vomiting,3,9,0.3333333333333333,33.33333333333333
+session,LSD,Gasser2014,high_dose,high_dose,active,200,affect liability,2,11,0.18181818181818182,18.181818181818183
+session,LSD,Gasser2014,high_dose,high_dose,active,200,altered perception of music,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,anemia,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,anger,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,anxiety,3,11,0.2727272727272727,27.27272727272727
+session,LSD,Gasser2014,high_dose,high_dose,active,200,attention disturbance,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,bradyphrenia,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,depersonalization,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,derealization,2,11,0.18181818181818182,18.181818181818183
+session,LSD,Gasser2014,high_dose,high_dose,active,200,emotional distress,5,11,0.45454545454545453,45.45454545454545
+session,LSD,Gasser2014,high_dose,high_dose,active,200,fatigue,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,feeling abnormal,6,11,0.5454545454545454,54.54545454545454
+session,LSD,Gasser2014,high_dose,high_dose,active,200,feeling of relaxation,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,femur fracture,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,hallucination,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,headache,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,illusions,8,11,0.7272727272727273,72.72727272727273
+session,LSD,Gasser2014,high_dose,high_dose,active,200,impaired gait,4,11,0.36363636363636365,36.36363636363637
+session,LSD,Gasser2014,high_dose,high_dose,active,200,menorrhagia,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,mydriasis,3,11,0.2727272727272727,27.27272727272727
+session,LSD,Gasser2014,high_dose,high_dose,active,200,neoplasm progression,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,palmar-plantar erythrodysaesthesia syndrome,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,perseveration,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,perspiration,2,11,0.18181818181818182,18.181818181818183
+session,LSD,Gasser2014,high_dose,high_dose,active,200,pneumonia,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,pruritus,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,skin lesion,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,tachyphrenia,0,11,0,0
+session,LSD,Gasser2014,high_dose,high_dose,active,200,temperature perception disturbances,7,11,0.6363636363636364,63.63636363636363
+session,LSD,Gasser2014,high_dose,high_dose,active,200,thinking abnormal,1,11,0.09090909090909091,9.090909090909092
+session,LSD,Gasser2014,high_dose,high_dose,active,200,time perception altered,6,11,0.5454545454545454,54.54545454545454
+session,LSD,Hollister1969,high_dose,high_dose,active,600,confusion,1,37,0.02702702702702703,2.7027027027027026
+session,LSD,Hollister1969,high_dose,high_dose,active,600,generalized tonic–clonic seizure,1,37,0.02702702702702703,2.7027027027027026
+session,LSD,Hollister1969,high_dose,high_dose,active,600,impaired gait,2,37,0.05405405405405406,5.405405405405405
+session,LSD,Hollister1969,high_dose,high_dose,active,600,restlessness,2,37,0.05405405405405406,5.405405405405405
+session,LSD,Holze2023,high_dose,high_dose,active,200,abdominal cramps,2,42,0.047619047619047616,4.761904761904762
+session,LSD,Holze2023,high_dose,high_dose,active,200,abdominal pain,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,abnormal dreams,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,alopecia,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,anxiety,2,42,0.047619047619047616,4.761904761904762
+session,LSD,Holze2023,high_dose,high_dose,active,200,asthma bronchiale,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,bronchitis,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,common cold,6,42,0.14285714285714285,14.285714285714285
+session,LSD,Holze2023,high_dose,high_dose,active,200,confusion,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,cough,3,42,0.07142857142857142,7.142857142857142
+session,LSD,Holze2023,high_dose,high_dose,active,200,decreased concentration,7,42,0.16666666666666666,16.666666666666664
+session,LSD,Holze2023,high_dose,high_dose,active,200,depression,2,42,0.047619047619047616,4.761904761904762
+session,LSD,Holze2023,high_dose,high_dose,active,200,diarrhea,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,dizziness,6,42,0.14285714285714285,14.285714285714285
+session,LSD,Holze2023,high_dose,high_dose,active,200,dizziness after deduction of escitalopram,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,dog bite,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,eczema,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,edema,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,fall,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,fatigue,14,42,0.3333333333333333,33.33333333333333
+session,LSD,Holze2023,high_dose,high_dose,active,200,groin and testicle pain,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,gynecomastia,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,hand-foot syndrome,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,headache,8,42,0.19047619047619047,19.047619047619047
+session,LSD,Holze2023,high_dose,high_dose,active,200,hemoglobin decrease,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,hypercholesterinemia,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,insect bite,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,ischialgia,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,lack of appetite,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,lumbalgia,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,mastitis,2,42,0.047619047619047616,4.761904761904762
+session,LSD,Holze2023,high_dose,high_dose,active,200,nausea,4,42,0.09523809523809523,9.523809523809524
+session,LSD,Holze2023,high_dose,high_dose,active,200,norovirus,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,pain,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,polyneuropathy,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,psychosomatic complaints,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,rejection reaction,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,restlessness,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,rumination,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,shingles,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,sigmoiditis,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,sleep disorder,3,42,0.07142857142857142,7.142857142857142
+session,LSD,Holze2023,high_dose,high_dose,active,200,sore throat,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,suicidal ideation,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,toothache,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,torticollis,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,tumorprogression,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,tumorrelapse,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,urinary infection,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,vaginalmycosis,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,viral eye infection,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,vitamin b12 deficiency,1,42,0.023809523809523808,2.380952380952381
+session,LSD,Holze2023,high_dose,high_dose,active,200,weight gain,0,42,0,0
+session,LSD,Holze2023,high_dose,high_dose,active,200,whiteness tooth dissection,0,42,0,0
+session,LSD,Mueller2025,high_dose,high_dose,active,100,chills,5,29,0.1724137931034483,17.24137931034483
+session,LSD,Mueller2025,high_dose,high_dose,active,100,dizziness,20,29,0.6896551724137931,68.96551724137932
+session,LSD,Mueller2025,high_dose,high_dose,active,100,fatigue,5,29,0.1724137931034483,17.24137931034483
+session,LSD,Mueller2025,high_dose,high_dose,active,100,headache,14,29,0.4827586206896552,48.275862068965516
+session,LSD,Mueller2025,high_dose,high_dose,active,100,impaired gait,22,29,0.7586206896551724,75.86206896551724
+session,LSD,Mueller2025,high_dose,high_dose,active,100,sleep disorder,9,29,0.3103448275862069,31.03448275862069
+session,LSD,Robison2025,high_dose,high_dose,active,200,altered state of consciousness,1,40,0.025,2.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,anxiety,5,40,0.125,12.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,attention disturbance,0,40,0,0
+session,LSD,Robison2025,high_dose,high_dose,active,200,balance_disorder,2,40,0.05,5
+session,LSD,Robison2025,high_dose,high_dose,active,200,depressed mood,3,40,0.075,7.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,dizziness,5,40,0.125,12.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,emotional distress,3,40,0.075,7.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,euphoric mood,6,40,0.15,15
+session,LSD,Robison2025,high_dose,high_dose,active,200,fatigue,3,40,0.075,7.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,feeling abnormal,0,40,0,0
+session,LSD,Robison2025,high_dose,high_dose,active,200,hallucination visual,6,40,0.15,15
+session,LSD,Robison2025,high_dose,high_dose,active,200,headache,10,40,0.25,25
+session,LSD,Robison2025,high_dose,high_dose,active,200,hypertension,4,40,0.1,10
+session,LSD,Robison2025,high_dose,high_dose,active,200,illusion,30,40,0.75,75
+session,LSD,Robison2025,high_dose,high_dose,active,200,lack of appetite,2,40,0.05,5
+session,LSD,Robison2025,high_dose,high_dose,active,200,mydriasis,4,40,0.1,10
+session,LSD,Robison2025,high_dose,high_dose,active,200,nausea,24,40,0.6,60
+session,LSD,Robison2025,high_dose,high_dose,active,200,paresthesia,8,40,0.2,20
+session,LSD,Robison2025,high_dose,high_dose,active,200,perspiration,5,40,0.125,12.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,pseudohallucination,4,40,0.1,10
+session,LSD,Robison2025,high_dose,high_dose,active,200,temperature perception disturbances,1,40,0.025,2.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,thinking abnormal,5,40,0.125,12.5
+session,LSD,Robison2025,high_dose,high_dose,active,200,tremor,8,40,0.2,20
+session,LSD,Robison2025,high_dose,high_dose,active,200,vomiting,5,40,0.125,12.5
+session,LSD,Robison2025,low_dose,low_dose,active,25,altered state of consciousness,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,anxiety,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,attention disturbance,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,balance_disorder,0,39,0,0
 session,LSD,Robison2025,low_dose,low_dose,active,25,depressed mood,0,39,0,0
-session,LSD,Robison2025,low_dose,low_dose,active,25,dizziness,0.077,39,0.0019743589743589744,0.19743589743589746
-session,LSD,Robison2025,low_dose,low_dose,active,25,emotional distress,0.051,39,0.0013076923076923077,0.13076923076923078
-session,LSD,Robison2025,low_dose,low_dose,active,25,euphoric mood,0.051,39,0.0013076923076923077,0.13076923076923078
-session,LSD,Robison2025,low_dose,low_dose,active,25,feeling abnormal,0.026,39,6.666666666666666e-4,0.06666666666666667
-session,LSD,Robison2025,low_dose,low_dose,active,25,hallucination visual,0.154,39,0.003948717948717949,0.3948717948717949
-session,LSD,Robison2025,low_dose,low_dose,active,25,headache,0.103,39,0.002641025641025641,0.2641025641025641
-session,LSD,Robison2025,low_dose,low_dose,active,25,hypertension,0.077,39,0.0019743589743589744,0.19743589743589746
-session,LSD,Robison2025,low_dose,low_dose,active,25,illusion,0.308,39,0.007897435897435898,0.7897435897435898
-session,LSD,Robison2025,low_dose,low_dose,active,25,lack of appetite,0.026,39,6.666666666666666e-4,0.06666666666666667
-session,LSD,Robison2025,low_dose,low_dose,active,25,nausea,0.077,39,0.0019743589743589744,0.19743589743589746
-session,LSD,Robison2025,low_dose,low_dose,active,25,paresthesia,0.051,39,0.0013076923076923077,0.13076923076923078
-session,LSD,Robison2025,low_dose,low_dose,active,25,perspiration,0.026,39,6.666666666666666e-4,0.06666666666666667
+session,LSD,Robison2025,low_dose,low_dose,active,25,dizziness,3.003,39,0.077,7.7
+session,LSD,Robison2025,low_dose,low_dose,active,25,emotional distress,1.989,39,0.051000000000000004,5.1000000000000005
+session,LSD,Robison2025,low_dose,low_dose,active,25,euphoric mood,1.989,39,0.051000000000000004,5.1000000000000005
+session,LSD,Robison2025,low_dose,low_dose,active,25,fatigue,1.989,39,0.051000000000000004,5.1000000000000005
+session,LSD,Robison2025,low_dose,low_dose,active,25,feeling abnormal,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,hallucination visual,6.006,39,0.154,15.4
+session,LSD,Robison2025,low_dose,low_dose,active,25,headache,4.017,39,0.10300000000000001,10.3
+session,LSD,Robison2025,low_dose,low_dose,active,25,hypertension,3.003,39,0.077,7.7
+session,LSD,Robison2025,low_dose,low_dose,active,25,illusion,12.012,39,0.308,30.8
+session,LSD,Robison2025,low_dose,low_dose,active,25,lack of appetite,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,mydriasis,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,nausea,3.003,39,0.077,7.7
+session,LSD,Robison2025,low_dose,low_dose,active,25,paresthesia,1.989,39,0.051000000000000004,5.1000000000000005
+session,LSD,Robison2025,low_dose,low_dose,active,25,perspiration,1.014,39,0.026,2.6
 session,LSD,Robison2025,low_dose,low_dose,active,25,pseudohallucination,0,39,0,0
 session,LSD,Robison2025,low_dose,low_dose,active,25,temperature perception disturbances,0,39,0,0
-session,LSD,Robison2025,low_dose,low_dose,active,25,thinking abnormal,0.026,39,6.666666666666666e-4,0.06666666666666667
-session,LSD,Robison2025,low_dose,low_dose,active,50,depressed mood,0.025,40,6.25e-4,0.0625
-session,LSD,Robison2025,low_dose,low_dose,active,50,euphoric mood,0.125,40,0.003125,0.3125
-session,LSD,Robison2025,low_dose,low_dose,active,50,hallucination visual,0.225,40,0.005625,0.5625
-session,LSD,Robison2025,low_dose,low_dose,active,50,headache,0.225,40,0.005625,0.5625
-session,LSD,Robison2025,low_dose,low_dose,active,50,illusion,0.45,40,0.01125,1.125
-session,LSD,Robison2025,low_dose,low_dose,active,50,nausea,0.275,40,0.006875000000000001,0.6875000000000001
-session,LSD,Robison2025,mild_dose,mild_dose,active,100,depressed mood,0.075,40,0.001875,0.1875
-session,LSD,Robison2025,mild_dose,mild_dose,active,100,euphoric mood,0.275,40,0.006875000000000001,0.6875000000000001
-session,LSD,Robison2025,mild_dose,mild_dose,active,100,hallucination visual,0.225,40,0.005625,0.5625
-session,LSD,Robison2025,mild_dose,mild_dose,active,100,headache,0.25,40,0.00625,0.625
-session,LSD,Robison2025,mild_dose,mild_dose,active,100,illusion,0.6,40,0.015,1.5
-session,LSD,Robison2025,mild_dose,mild_dose,active,100,nausea,0.4,40,0.01,1
-session,MDMA,Maples2022,high_dose,high_dose,active,100,anxiety,0.176,17,0.010352941176470587,1.0352941176470587
-session,MDMA,Maples2022,high_dose,high_dose,active,100,headache,0.118,17,0.006941176470588235,0.6941176470588235
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,anxiety,0.3261,46,0.007089130434782609,0.7089130434782609
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,autonomic,0.3261,46,0.007089130434782609,0.7089130434782609
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,depression,0.1522,46,0.003308695652173913,0.3308695652173913
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,dissociation,0.0652,46,0.0014173913043478259,0.1417391304347826
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,dizziness,0.1957,46,0.004254347826086957,0.4254347826086957
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,fatigue,0.3043,46,0.006615217391304348,0.6615217391304348
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,genitourinary,0.1522,46,0.003308695652173913,0.3308695652173913
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,headache,0.7174,46,0.015595652173913043,1.5595652173913044
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,irritability,0.0435,46,9.456521739130434e-4,0.09456521739130434
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,jaw tension,0.1304,46,0.0028347826086956517,0.2834782608695652
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,lack of appetite,0.5217,46,0.011341304347826087,1.1341304347826087
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,muscle tension,0.6087,46,0.013232608695652175,1.3232608695652175
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,nausea,0.3043,46,0.006615217391304348,0.6615217391304348
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,ophthalmological,0.2174,46,0.004726086956521739,0.47260869565217395
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,pain,0.174,46,0.0037826086956521737,0.3782608695652174
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,perspiration,0.2174,46,0.004726086956521739,0.47260869565217395
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,restlessness,0.1522,46,0.003308695652173913,0.3308695652173913
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,rumination,0.087,46,0.0018913043478260868,0.1891304347826087
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,sleep disorder,0.4348,46,0.009452173913043479,0.9452173913043479
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,suicidality,0.4565,46,0.00992391304347826,0.9923913043478261
-session,MDMA,Mitchell2021,high_dose,high_dose,active,120,xerostomia,0.1087,46,0.0023630434782608697,0.23630434782608697
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,anxiety,0.34,53,0.006415094339622642,0.6415094339622642
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,depression,0.151,53,0.002849056603773585,0.2849056603773585
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,dissociation,0.076,53,0.0014339622641509433,0.14339622641509434
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,irritability,0.057,53,0.0010754716981132076,0.10754716981132076
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,jaw tension,0.132,53,0.002490566037735849,0.24905660377358493
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,restlessness,0.151,53,0.002849056603773585,0.2849056603773585
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,rumination,0.019,53,3.584905660377358e-4,0.035849056603773584
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,sleep disorder,0.358,53,0.006754716981132075,0.6754716981132075
-session,MDMA,Mitchell2023,high_dose,high_dose,active,120,suicidality,0.359,53,0.0067735849056603775,0.6773584905660377
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,anxiety,0.58,12,0.04833333333333333,4.833333333333333
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,autonomic,0.5,12,0.041666666666666664,4.166666666666666
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,decreased concentration,0.13,12,0.010833333333333334,1.0833333333333335
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,depression,0.17,12,0.014166666666666668,1.4166666666666667
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,dizziness,0.63,12,0.0525,5.25
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,fatigue,0.46,12,0.03833333333333334,3.833333333333334
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,headache,0.58,12,0.04833333333333333,4.833333333333333
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,infectious,0.04,12,0.0033333333333333335,0.33333333333333337
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,irritability,0.08,12,0.006666666666666667,0.6666666666666667
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,jaw tension,0.79,12,0.06583333333333334,6.583333333333334
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,lack of appetite,0.33,12,0.0275,2.75
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,muscle tension,0.17,12,0.014166666666666668,1.4166666666666667
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,nausea,0.5,12,0.041666666666666664,4.166666666666666
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,ophthalmological,0.08,12,0.006666666666666667,0.6666666666666667
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,pain,0.12,12,0.01,1
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,perspiration,0.17,12,0.014166666666666668,1.4166666666666667
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,restlessness,0.21,12,0.017499999999999998,1.7499999999999998
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,rumination,0.04,12,0.0033333333333333335,0.33333333333333337
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,sleep disorder,0.54,12,0.045000000000000005,4.500000000000001
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,weakness,0.12,12,0.01,1
-session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,xerostomia,0.17,12,0.014166666666666668,1.4166666666666667
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,anxiety,0.92,12,0.07666666666666667,7.666666666666668
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,autonomic,0.5,12,0.041666666666666664,4.166666666666666
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,fatigue,0.58,12,0.04833333333333333,4.833333333333333
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,headache,0.67,12,0.05583333333333334,5.583333333333334
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,jaw tension,0.75,12,0.0625,6.25
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,lack of appetite,0.67,12,0.05583333333333334,5.583333333333334
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,muscle tension,0.75,12,0.0625,6.25
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,perspiration,0.42,12,0.034999999999999996,3.4999999999999996
-session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,restlessness,0.25,12,0.020833333333333332,2.083333333333333
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,anxiety,0.86,7,0.12285714285714286,12.285714285714286
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,autonomic,0.57,7,0.08142857142857142,8.142857142857142
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,fatigue,0.57,7,0.08142857142857142,8.142857142857142
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,headache,0.71,7,0.10142857142857142,10.142857142857142
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,jaw tension,0.57,7,0.08142857142857142,8.142857142857142
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,lack of appetite,0.57,7,0.08142857142857142,8.142857142857142
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,muscle tension,0.43,7,0.06142857142857143,6.142857142857143
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,perspiration,0.29,7,0.041428571428571426,4.142857142857142
-session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,restlessness,0.71,7,0.10142857142857142,10.142857142857142
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,anxiety,0.27,37,0.007297297297297297,0.7297297297297297
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,autonomic,0.65,37,0.01756756756756757,1.7567567567567568
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,decreased concentration,0.16,37,0.004324324324324324,0.43243243243243246
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,depression,0.11,37,0.002972972972972973,0.2972972972972973
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,dizziness,0.54,37,0.014594594594594595,1.4594594594594594
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,fatigue,0.35,37,0.009459459459459458,0.9459459459459458
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,headache,0.3,37,0.008108108108108109,0.8108108108108109
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,jaw tension,0.38,37,0.010270270270270271,1.0270270270270272
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,lack of appetite,0.41,37,0.01108108108108108,1.1081081081081081
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,nausea,0.16,37,0.004324324324324324,0.43243243243243246
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,ophthalmological,0.08,37,0.002162162162162162,0.21621621621621623
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,pain,0.05,37,0.0013513513513513514,0.13513513513513514
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,perspiration,0.16,37,0.004324324324324324,0.43243243243243246
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,restlessness,0.41,37,0.01108108108108108,1.1081081081081081
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,rumination,0.05,37,0.0013513513513513514,0.13513513513513514
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,sleep disorder,0.45999999999999996,37,0.012432432432432432,1.2432432432432432
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,weakness,0.11,37,0.002972972972972973,0.2972972972972973
-session,MDMA,Oehen2013,high_dose,high_dose,active,125,xerostomia,0.19,37,0.005135135135135136,0.5135135135135136
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,anxiety,0.16,6,0.02666666666666667,2.666666666666667
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,dizziness,0.5,6,0.08333333333333333,8.333333333333332
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,fatigue,0.16,6,0.02666666666666667,2.666666666666667
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,headache,0.33,6,0.055,5.5
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,jaw tension,0.66,6,0.11,11
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,lack of appetite,0.33,6,0.055,5.5
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,nausea,0.33,6,0.055,5.5
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,ophthalmological,0.16,6,0.02666666666666667,2.666666666666667
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,pain,0.16,6,0.02666666666666667,2.666666666666667
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,perspiration,0.33,6,0.055,5.5
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,restlessness,0.33,6,0.055,5.5
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,sleep disorder,0.5,6,0.08333333333333333,8.333333333333332
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,weakness,0.16,6,0.02666666666666667,2.666666666666667
-session,MDMA,Oehen2013,high_dose,high_dose,active,150,xerostomia,0.33,6,0.055,5.5
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,anxiety,0.667,9,0.07411111111111111,7.411111111111111
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,decreased concentration,0.556,9,0.061777777777777786,6.177777777777779
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,depression,0.556,9,0.061777777777777786,6.177777777777779
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,dizziness,0.222,9,0.024666666666666667,2.466666666666667
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,fatigue,0.444,9,0.04933333333333333,4.933333333333334
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,headache,0.444,9,0.04933333333333333,4.933333333333334
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,irritability,0.222,9,0.024666666666666667,2.466666666666667
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,jaw tension,0.556,9,0.061777777777777786,6.177777777777779
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,lack of appetite,0.111,9,0.012333333333333333,1.2333333333333334
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,muscle tension,0.444,9,0.04933333333333333,4.933333333333334
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,nausea,0.333,9,0.037000000000000005,3.7000000000000006
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,rumination,0.556,9,0.061777777777777786,6.177777777777779
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,sleep disorder,1.334,9,0.14822222222222223,14.822222222222223
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,anxiety,0.538,13,0.04138461538461539,4.138461538461539
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,decreased concentration,0.154,13,0.011846153846153847,1.1846153846153846
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,depression,0.154,13,0.011846153846153847,1.1846153846153846
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,dizziness,0.538,13,0.04138461538461539,4.138461538461539
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,fatigue,0.308,13,0.023692307692307693,2.3692307692307693
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,headache,0.231,13,0.01776923076923077,1.776923076923077
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,irritability,0.077,13,0.005923076923076923,0.5923076923076923
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,jaw tension,0.615,13,0.04730769230769231,4.730769230769231
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,lack of appetite,0.615,13,0.04730769230769231,4.730769230769231
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,muscle tension,0.538,13,0.04138461538461539,4.138461538461539
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,nausea,0.615,13,0.04730769230769231,4.730769230769231
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,rumination,0.462,13,0.03553846153846154,3.553846153846154
-session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,sleep disorder,1.077,13,0.08284615384615385,8.284615384615385
+session,LSD,Robison2025,low_dose,low_dose,active,25,thinking abnormal,1.014,39,0.026,2.6
+session,LSD,Robison2025,low_dose,low_dose,active,25,tremor,0,39,0,0
+session,LSD,Robison2025,low_dose,low_dose,active,25,vomiting,0,39,0,0
+session,LSD,Robison2025,low_dose,low_dose,active,50,altered state of consciousness,0,40,0,0
+session,LSD,Robison2025,low_dose,low_dose,active,50,anxiety,3,40,0.075,7.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,attention disturbance,5,40,0.125,12.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,balance_disorder,4,40,0.1,10
+session,LSD,Robison2025,low_dose,low_dose,active,50,depressed mood,1,40,0.025,2.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,dizziness,2,40,0.05,5
+session,LSD,Robison2025,low_dose,low_dose,active,50,emotional distress,0,40,0,0
+session,LSD,Robison2025,low_dose,low_dose,active,50,euphoric mood,5,40,0.125,12.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,fatigue,6,40,0.15,15
+session,LSD,Robison2025,low_dose,low_dose,active,50,feeling abnormal,2,40,0.05,5
+session,LSD,Robison2025,low_dose,low_dose,active,50,hallucination visual,9,40,0.225,22.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,headache,9,40,0.225,22.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,hypertension,5,40,0.125,12.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,illusion,18,40,0.45,45
+session,LSD,Robison2025,low_dose,low_dose,active,50,lack of appetite,1,40,0.025,2.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,mydriasis,7,40,0.175,17.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,nausea,11,40,0.275,27.500000000000004
+session,LSD,Robison2025,low_dose,low_dose,active,50,paresthesia,2,40,0.05,5
+session,LSD,Robison2025,low_dose,low_dose,active,50,perspiration,4,40,0.1,10
+session,LSD,Robison2025,low_dose,low_dose,active,50,pseudohallucination,3,40,0.075,7.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,temperature perception disturbances,4,40,0.1,10
+session,LSD,Robison2025,low_dose,low_dose,active,50,thinking abnormal,2,40,0.05,5
+session,LSD,Robison2025,low_dose,low_dose,active,50,tremor,3,40,0.075,7.5
+session,LSD,Robison2025,low_dose,low_dose,active,50,vomiting,2,40,0.05,5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,altered state of consciousness,5,40,0.125,12.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,anxiety,4,40,0.1,10
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,attention disturbance,0,40,0,0
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,balance_disorder,3,40,0.075,7.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,depressed mood,3,40,0.075,7.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,dizziness,3,40,0.075,7.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,emotional distress,1,40,0.025,2.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,euphoric mood,11,40,0.275,27.500000000000004
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,fatigue,3,40,0.075,7.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,feeling abnormal,0,40,0,0
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,hallucination visual,9,40,0.225,22.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,headache,10,40,0.25,25
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,hypertension,4,40,0.1,10
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,illusion,24,40,0.6,60
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,lack of appetite,0,40,0,0
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,mydriasis,8,40,0.2,20
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,nausea,16,40,0.4,40
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,paresthesia,2,40,0.05,5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,perspiration,9,40,0.225,22.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,pseudohallucination,3,40,0.075,7.5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,temperature perception disturbances,0,40,0,0
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,thinking abnormal,4,40,0.1,10
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,tremor,2,40,0.05,5
+session,LSD,Robison2025,mild_dose,mild_dose,active,100,vomiting,2,40,0.05,5
+session,LSD,Tomsovic1970,high_dose,high_dose,active,500,transient bizarre behavior/loss of reality,2,75,0.02666666666666667,2.666666666666667
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,anxiety,6,8,0.75,75
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,decreased concentration,5,8,0.625,62.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,depressed mood,2,8,0.25,25
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,dizziness,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,drowsiness,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,fatigue,4,8,0.5,50
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,feeling cold,4,8,0.5,50
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,headache,4,8,0.5,50
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,impaired gait/balance,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,irritability,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,jaw tension,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,lack of appetite,3,8,0.375,37.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,muscle tension,3,8,0.375,37.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,perspiration,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,restlessness,3,8,0.375,37.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,rumination,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,sleep disorder,1,8,0.125,12.5
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,thirst,2,8,0.25,25
+session,MDMA,Danforth2018,mild_dose,mild_dose,active,75,weakness,1,8,0.125,12.5
+session,MDMA,Maples2022,high_dose,high_dose,active,100,anxiety,2.992,17,0.176,17.599999999999998
+session,MDMA,Maples2022,high_dose,high_dose,active,100,headache,2.006,17,0.118,11.799999999999999
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,anxiety,15.0006,46,0.3261,32.61
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,autonomic,15.0006,46,0.3261,32.61
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,depression,7.0012,46,0.1522,15.22
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,dissociation,2.9992,46,0.06520000000000001,6.5200000000000005
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,dizziness,9.0022,46,0.1957,19.57
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,fatigue,13.9978,46,0.3043,30.43
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,genitourinary,7.0012,46,0.1522,15.22
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,headache,33.0004,46,0.7173999999999999,71.74
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,irritability,2.001,46,0.0435,4.35
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,jaw tension,5.9984,46,0.13040000000000002,13.040000000000001
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,lack of appetite,23.9982,46,0.5217,52.17
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,muscle tension,28.0002,46,0.6087,60.870000000000005
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,nausea,13.9978,46,0.3043,30.43
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,ophthalmological,10.0004,46,0.2174,21.740000000000002
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,pain,8.004,46,0.174,17.4
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,perspiration,10.0004,46,0.2174,21.740000000000002
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,restlessness,7.0012,46,0.1522,15.22
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,rumination,4.002,46,0.087,8.7
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,sleep disorder,20.0008,46,0.4348,43.480000000000004
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,suicidality,20.999,46,0.45649999999999996,45.65
+session,MDMA,Mitchell2021,high_dose,high_dose,active,120,xerostomia,5.0002,46,0.1087,10.870000000000001
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,anxiety,18.02,53,0.33999999999999997,34
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,depression,8.003,53,0.151,15.1
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,dissociation,4.028,53,0.076,7.6
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,irritability,3.021,53,0.056999999999999995,5.699999999999999
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,jaw tension,6.996,53,0.132,13.200000000000001
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,restlessness,8.003,53,0.151,15.1
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,rumination,1.007,53,0.019,1.9
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,sleep disorder,18.974,53,0.358,35.8
+session,MDMA,Mitchell2023,high_dose,high_dose,active,120,suicidality,19.027,53,0.35900000000000004,35.900000000000006
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,anxiety,6.96,12,0.58,57.99999999999999
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,autonomic,6,12,0.5,50
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,decreased concentration,1.56,12,0.13,13
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,depression,2.04,12,0.17,17
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,dizziness,7.56,12,0.63,63
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,fatigue,5.52,12,0.45999999999999996,46
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,headache,6.96,12,0.58,57.99999999999999
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,infectious,0.48,12,0.04,4
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,irritability,0.96,12,0.08,8
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,jaw tension,9.48,12,0.79,79
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,lack of appetite,3.96,12,0.33,33
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,muscle tension,2.04,12,0.17,17
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,nausea,6,12,0.5,50
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,ophthalmological,0.96,12,0.08,8
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,pain,1.44,12,0.12,12
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,perspiration,2.04,12,0.17,17
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,restlessness,2.52,12,0.21,21
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,rumination,0.48,12,0.04,4
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,sleep disorder,6.48,12,0.54,54
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,weakness,1.44,12,0.12,12
+session,MDMA,Mithoefer2011,high_dose,high_dose,active,125,xerostomia,2.04,12,0.17,17
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,anxiety,11.04,12,0.9199999999999999,92
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,autonomic,6,12,0.5,50
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,fatigue,6.96,12,0.58,57.99999999999999
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,headache,8.04,12,0.6699999999999999,67
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,jaw tension,9,12,0.75,75
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,lack of appetite,8.04,12,0.6699999999999999,67
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,muscle tension,9,12,0.75,75
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,perspiration,5.04,12,0.42,42
+session,MDMA,Mithoefer2018,high_dose,high_dose,active,125,restlessness,3,12,0.25,25
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,anxiety,6.02,7,0.86,86
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,autonomic,3.99,7,0.5700000000000001,57.00000000000001
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,fatigue,3.99,7,0.5700000000000001,57.00000000000001
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,headache,4.97,7,0.71,71
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,jaw tension,3.99,7,0.5700000000000001,57.00000000000001
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,lack of appetite,3.99,7,0.5700000000000001,57.00000000000001
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,muscle tension,3.01,7,0.43,43
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,perspiration,2.03,7,0.29,28.999999999999996
+session,MDMA,Mithoefer2018,mild_dose,mild_dose,active,75,restlessness,4.97,7,0.71,71
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,anxiety,9.99,37,0.27,27
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,autonomic,24.05,37,0.65,65
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,decreased concentration,5.92,37,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,depression,4.07,37,0.11000000000000001,11.000000000000002
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,dizziness,19.98,37,0.54,54
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,fatigue,12.95,37,0.35,35
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,headache,11.1,37,0.3,30
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,jaw tension,14.06,37,0.38,38
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,lack of appetite,15.17,37,0.41,41
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,nausea,5.92,37,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,ophthalmological,2.96,37,0.08,8
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,pain,1.85,37,0.05,5
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,perspiration,5.92,37,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,restlessness,15.17,37,0.41,41
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,rumination,1.85,37,0.05,5
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,sleep disorder,17.02,37,0.45999999999999996,46
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,weakness,4.07,37,0.11000000000000001,11.000000000000002
+session,MDMA,Oehen2013,high_dose,high_dose,active,125,xerostomia,7.03,37,0.19,19
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,anxiety,0.96,6,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,dizziness,3,6,0.5,50
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,fatigue,0.96,6,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,headache,1.98,6,0.33,33
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,jaw tension,3.96,6,0.66,66
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,lack of appetite,1.98,6,0.33,33
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,nausea,1.98,6,0.33,33
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,ophthalmological,0.96,6,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,pain,0.96,6,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,perspiration,1.98,6,0.33,33
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,restlessness,1.98,6,0.33,33
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,sleep disorder,3,6,0.5,50
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,weakness,0.96,6,0.16,16
+session,MDMA,Oehen2013,high_dose,high_dose,active,150,xerostomia,1.98,6,0.33,33
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,anxiety,6.003,9,0.667,66.7
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,decreased concentration,5.004,9,0.5559999999999999,55.599999999999994
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,depression,5.004,9,0.5559999999999999,55.599999999999994
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,dizziness,1.998,9,0.222,22.2
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,fatigue,3.996,9,0.444,44.4
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,headache,3.996,9,0.444,44.4
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,irritability,1.998,9,0.222,22.2
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,jaw tension,5.004,9,0.5559999999999999,55.599999999999994
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,lack of appetite,0.999,9,0.111,11.1
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,muscle tension,3.996,9,0.444,44.4
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,nausea,2.997,9,0.33299999999999996,33.3
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,rumination,5.004,9,0.5559999999999999,55.599999999999994
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,100,sleep disorder,12.006,9,1.334,133.4
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,anxiety,6.994,13,0.538,53.800000000000004
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,decreased concentration,2.002,13,0.15399999999999997,15.399999999999997
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,depression,2.002,13,0.15399999999999997,15.399999999999997
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,dizziness,6.994,13,0.538,53.800000000000004
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,fatigue,4.004,13,0.30799999999999994,30.799999999999994
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,headache,3.003,13,0.231,23.1
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,irritability,1.001,13,0.07699999999999999,7.699999999999998
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,jaw tension,7.995,13,0.615,61.5
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,lack of appetite,7.995,13,0.615,61.5
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,muscle tension,6.994,13,0.538,53.800000000000004
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,nausea,7.995,13,0.615,61.5
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,rumination,6.006,13,0.462,46.2
+session,MDMA,Ot'alora2018,high_dose,high_dose,active,125,sleep disorder,14.001000000000001,13,1.0770000000000002,107.70000000000002
 session,MDMA,Pacey2016,high_dose,high_dose,active,0,anxiety,0,2,0,0
 session,MDMA,Pacey2016,high_dose,high_dose,active,0,fatigue,0,2,0,0
 session,MDMA,Pacey2016,high_dose,high_dose,active,0,headache,0,2,0,0
@@ -474,196 +615,200 @@ session,MDMA,Pacey2016,high_dose,high_dose,active,0,nausea,0,2,0,0
 session,MDMA,Pacey2016,high_dose,high_dose,active,0,pain,0,2,0,0
 session,MDMA,Pacey2016,high_dose,high_dose,active,0,restlessness,0,2,0,0
 session,MDMA,Pacey2016,high_dose,high_dose,active,0,sleep disorder,0,2,0,0
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,anxiety,0.5,4,0.125,12.5
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,fatigue,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,headache,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,jaw tension,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,muscle tension,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,nausea,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,pain,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,restlessness,0.25,4,0.0625,6.25
-session,MDMA,Pacey2016,high_dose,high_dose,active,125,sleep disorder,0.25,4,0.0625,6.25
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,anxiety,0.1538,13,0.01183076923076923,1.183076923076923
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,depression,0.0769,13,0.005915384615384615,0.5915384615384615
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,dissociation,0.0769,13,0.005915384615384615,0.5915384615384615
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,fatigue,0.2308,13,0.017753846153846155,1.7753846153846156
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,jaw tension,0.0769,13,0.005915384615384615,0.5915384615384615
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,nausea,0.0769,13,0.005915384615384615,0.5915384615384615
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,pain,0.0769,13,0.005915384615384615,0.5915384615384615
-session,MDMA,Wolfson2020,high_dose,high_dose,active,125,sleep disorder,0.46149999999999997,13,0.0355,3.55
-session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,headache,0.27,15,0.018000000000000002,1.8000000000000003
-session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,hypertension,0.6,15,0.04,4
-session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,nausea,0.27,15,0.018000000000000002,1.8000000000000003
-session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,tachycardia,0.13,15,0.008666666666666666,0.8666666666666666
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,abdominal pain,0.0625,48,0.0013020833333333333,0.13020833333333331
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,anxiety,2,4,0.5,50
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,fatigue,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,headache,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,jaw tension,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,muscle tension,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,nausea,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,pain,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,restlessness,1,4,0.25,25
+session,MDMA,Pacey2016,high_dose,high_dose,active,125,sleep disorder,1,4,0.25,25
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,anxiety,1.9994,13,0.1538,15.379999999999999
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,depression,0.9997,13,0.0769,7.6899999999999995
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,dissociation,0.9997,13,0.0769,7.6899999999999995
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,fatigue,3.0004,13,0.2308,23.080000000000002
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,jaw tension,0.9997,13,0.0769,7.6899999999999995
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,nausea,0.9997,13,0.0769,7.6899999999999995
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,pain,0.9997,13,0.0769,7.6899999999999995
+session,MDMA,Wolfson2020,high_dose,high_dose,active,125,sleep disorder,5.999499999999999,13,0.46149999999999997,46.15
+session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,headache,4.05,15,0.26999999999999996,26.999999999999996
+session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,hypertension,9,15,0.6,60
+session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,nausea,4.05,15,0.26999999999999996,26.999999999999996
+session,PSILOCYBIN,Back2024,mild_dose,mild_dose,active,25,tachycardia,1.95,15,0.13,13
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,abdominal pain,3,48,0.0625,6.25
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,anemia,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,anger,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,anxiety,0.145833333333333,48,0.0030381944444444376,0.30381944444444375
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,anxiety,7,48,0.14583333333333334,14.583333333333334
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,arthralgia,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,back pain,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,biopsy,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,back pain,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,biopsy,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,bronchitis,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,bronchitis bacterial,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,cataract,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,cataract,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,constipation,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,contact dermatitis,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,corona virus infection,0.0416666666666667,48,8.680555555555563e-4,0.08680555555555562
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,corona virus infection,2,48,0.041666666666666664,4.166666666666666
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,cough,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,depression,0.0625,48,0.0013020833333333333,0.13020833333333331
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,depression,3,48,0.0625,6.25
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,diarrhea,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,diverticulitis,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dizziness,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dyspepsia,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dysphoria,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dyspnea,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,diverticulitis,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dizziness,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dyspepsia,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dysphoria,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,dyspnea,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,edema,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,eye infection,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,fatigue,0.0416666666666666,48,8.680555555555542e-4,0.08680555555555541
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,food allergy,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,food poisoning,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,fatigue,2,48,0.041666666666666664,4.166666666666666
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,food allergy,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,food poisoning,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,fungal infection,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,gingivitis,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,headache,0.4375,48,0.009114583333333334,0.9114583333333334
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,hypertension,0.0416666666666666,48,8.680555555555542e-4,0.08680555555555541
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,hyperventilation,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,gingivitis,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,headache,21,48,0.4375,43.75
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,hypertension,2,48,0.041666666666666664,4.166666666666666
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,hyperventilation,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,hypoesthesia,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,hyponatremia,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,illusion,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,illusion,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,influenza like illness,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,limb injury,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,limb injury,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,lower resp. tract congestion,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,malignant melanoma,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,mallory-weiss syndrom,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,migraine,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,muscle strain,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,musculoskeletal pain,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,myalgia,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,nasal congestion,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,nausea,0.208333333333333,48,0.004340277777777771,0.4340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,oropharyngeal pain,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,pain,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,muscle strain,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,musculoskeletal pain,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,myalgia,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,nasal congestion,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,nausea,10,48,0.20833333333333334,20.833333333333336
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,oropharyngeal pain,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,pain,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,pain in extremity,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,palpitations,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,palpitations,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,peripheral swelling,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,photopsia,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,psychomotor hyperactivity,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,photopsia,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,psychomotor hyperactivity,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,pyrexia,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,restlessness,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,rhinorrhea,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,sedation,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,sinus congestion,0,48,0,0
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,sinus headache,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,sleep disorder,0.0625,48,0.0013020833333333333,0.13020833333333331
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,suicidal ideation,0.0833333333333333,48,0.0017361111111111104,0.17361111111111105
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,testicular pain,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,sleep disorder,3,48,0.0625,6.25
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,suicidal ideation,4,48,0.08333333333333333,8.333333333333332
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,testicular pain,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,thrombocytosis,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,toothache,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,toothache,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,traumatic lung injury,0,48,0,0
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,urinary incontinence,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,vomiting,0.0416666666666667,48,8.680555555555563e-4,0.08680555555555562
-session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,withdrawal syndrome,0.0208333333333333,48,4.340277777777771e-4,0.04340277777777771
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,urinary incontinence,1,48,0.020833333333333332,2.083333333333333
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,vomiting,2,48,0.041666666666666664,4.166666666666666
+session,PSILOCYBIN,Bogenschutz2022,high_dose,high_dose,active,40,withdrawal syndrome,1,48,0.020833333333333332,2.083333333333333
 session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,anxiety,0,30,0,0
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,diarrhea,0.0333333333333333,30,0.00111111111111111,0.11111111111111101
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,fatigue,0.0666666666666667,30,0.002222222222222223,0.22222222222222232
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,diarrhea,1,30,0.03333333333333333,3.3333333333333335
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,fatigue,2,30,0.06666666666666667,6.666666666666667
 session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,feeling abnormal,0,30,0,0
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,headache,0.666666666666667,30,0.022222222222222233,2.222222222222223
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,migraine,0.1,30,0.0033333333333333335,0.33333333333333337
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,nausea,0.266666666666667,30,0.0088888888888889,0.88888888888889
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,palpitations,0.0333333333333333,30,0.00111111111111111,0.11111111111111101
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,restlessness,0.0666666666666667,30,0.002222222222222223,0.22222222222222232
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,sleep disorder,0.0333333333333333,30,0.00111111111111111,0.11111111111111101
-session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,vomiting,0.0666666666666667,30,0.002222222222222223,0.22222222222222232
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,headache,20,30,0.6666666666666666,66.66666666666666
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,migraine,3,30,0.1,10
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,nausea,8,30,0.26666666666666666,26.666666666666668
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,palpitations,1,30,0.03333333333333333,3.3333333333333335
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,restlessness,2,30,0.06666666666666667,6.666666666666667
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,sleep disorder,1,30,0.03333333333333333,3.3333333333333335
+session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,vomiting,2,30,0.06666666666666667,6.666666666666667
 session,PSILOCYBIN,CarhartHarris2021,mild_dose,mild_dose,active,25,xerostomia,0,30,0,0
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,abdominal pain,0.0506329113924051,79,6.40922929017786e-4,0.0640922929017786
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,anxiety,0.1139240506329115,79,0.001442076590290019,0.1442076590290019
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,back pain,0.0759493670886076,79,9.613843935266785e-4,0.09613843935266785
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,depressed mood,0.0379746835443038,79,4.8069219676333925e-4,0.04806921967633392
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,dizziness,0.0759493670886076,79,9.613843935266785e-4,0.09613843935266785
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,euphoric mood,0.0506329113924051,79,6.40922929017786e-4,0.0640922929017786
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,fatigue,0.151898734177215,79,0.0019227687870533544,0.19227687870533544
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,headache,0.430379746835443,79,0.005447844896651177,0.5447844896651177
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,abdominal pain,4,79,0.05063291139240506,5.063291139240507
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,anxiety,9,79,0.11392405063291139,11.39240506329114
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,back pain,6,79,0.0759493670886076,7.59493670886076
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,depressed mood,3,79,0.0379746835443038,3.79746835443038
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,dizziness,6,79,0.0759493670886076,7.59493670886076
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,euphoric mood,4,79,0.05063291139240506,5.063291139240507
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,fatigue,12,79,0.1518987341772152,15.18987341772152
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,headache,34,79,0.43037974683544306,43.037974683544306
 session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,hospitalisation,0,79,0,0
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,intentional self‑injury,0.0253164556962025,79,3.204614645088924e-4,0.03204614645088924
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,irritability,0.0506329113924051,79,6.40922929017786e-4,0.0640922929017786
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,mood altered,0.10126582278481,79,0.0012818458580355697,0.12818458580355696
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,myalgia,0.0632911392405063,79,8.011536612722317e-4,0.08011536612722317
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,nausea,0.240506329113924,79,0.003044383912834481,0.30443839128344813
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,panic reaction,0.0506329113924051,79,6.40922929017786e-4,0.0640922929017786
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,paresthesia,0.0379746835443038,79,4.8069219676333925e-4,0.04806921967633392
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,sleep disorder,0.10126582278481,79,0.0012818458580355697,0.12818458580355696
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,suicidal behavior,0.0379746835443038,79,4.8069219676333925e-4,0.04806921967633392
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,suicidal ideation,0.0886075949367088,79,0.001121615125781124,0.11216151257811241
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,intentional self‑injury,2,79,0.02531645569620253,2.5316455696202533
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,irritability,4,79,0.05063291139240506,5.063291139240507
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,mood altered,8,79,0.10126582278481013,10.126582278481013
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,myalgia,5,79,0.06329113924050633,6.329113924050633
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,nausea,19,79,0.24050632911392406,24.050632911392405
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,panic reaction,4,79,0.05063291139240506,5.063291139240507
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,paresthesia,3,79,0.0379746835443038,3.79746835443038
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,sleep disorder,8,79,0.10126582278481013,10.126582278481013
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,suicidal behavior,3,79,0.0379746835443038,3.79746835443038
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,suicidal ideation,7,79,0.08860759493670886,8.860759493670885
 session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,thinking abnormal,0,79,0,0
-session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,withdrawal syndrome,0.0126582278481013,79,1.6023073225444683e-4,0.016023073225444683
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,abdominal pain,0.0266666666666667,75,3.55555555555556e-4,0.035555555555555604
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,anxiety,0.213333333333333,75,0.00284444444444444,0.284444444444444
+session,PSILOCYBIN,Goodwin2022,high_dose,high_dose,active,25,withdrawal syndrome,1,79,0.012658227848101266,1.2658227848101267
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,abdominal pain,2,75,0.02666666666666667,2.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,anxiety,16,75,0.21333333333333335,21.333333333333336
 session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,back pain,0,75,0,0
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,depressed mood,0.0666666666666667,75,8.888888888888893e-4,0.08888888888888892
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,dizziness,0.0133333333333333,75,1.7777777777777733e-4,0.017777777777777733
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,euphoric mood,0.0666666666666667,75,8.888888888888893e-4,0.08888888888888892
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,fatigue,0.0666666666666667,75,8.888888888888893e-4,0.08888888888888892
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,headache,0.293333333333333,75,0.0039111111111111065,0.39111111111111063
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,hospitalisation,0.0133333333333333,75,1.7777777777777733e-4,0.017777777777777733
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,intentional self‑injury,0.0266666666666667,75,3.55555555555556e-4,0.035555555555555604
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,irritability,0.0266666666666667,75,3.55555555555556e-4,0.035555555555555604
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,mood altered,0.04,75,5.333333333333334e-4,0.05333333333333334
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,myalgia,0.0266666666666667,75,3.55555555555556e-4,0.035555555555555604
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,nausea,0.0533333333333333,75,7.111111111111107e-4,0.07111111111111107
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,panic reaction,0.0133333333333333,75,1.7777777777777733e-4,0.017777777777777733
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,paresthesia,0.0533333333333333,75,7.111111111111107e-4,0.07111111111111107
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,sleep disorder,0.146666666666667,75,0.00195555555555556,0.195555555555556
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,depressed mood,5,75,0.06666666666666667,6.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,dizziness,1,75,0.013333333333333334,1.3333333333333335
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,euphoric mood,5,75,0.06666666666666667,6.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,fatigue,5,75,0.06666666666666667,6.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,headache,22,75,0.29333333333333333,29.333333333333332
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,hospitalisation,1,75,0.013333333333333334,1.3333333333333335
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,intentional self‑injury,2,75,0.02666666666666667,2.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,irritability,2,75,0.02666666666666667,2.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,mood altered,3,75,0.04,4
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,myalgia,2,75,0.02666666666666667,2.666666666666667
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,nausea,4,75,0.05333333333333334,5.333333333333334
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,panic reaction,1,75,0.013333333333333334,1.3333333333333335
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,paresthesia,4,75,0.05333333333333334,5.333333333333334
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,sleep disorder,11,75,0.14666666666666667,14.666666666666666
 session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,suicidal behavior,0,75,0,0
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,suicidal ideation,0.08,75,0.0010666666666666667,0.10666666666666667
-session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,thinking abnormal,0.0533333333333333,75,7.111111111111107e-4,0.07111111111111107
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,abdominal pain,0.10625,160,6.640624999999999e-4,0.06640625
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,anxiety,0.18125,160,0.0011328125,0.11328124999999999
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,confusion,0.075,160,4.6875e-4,0.046875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,depression,0.0625,160,3.90625e-4,0.0390625
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,dissociation,0.21875,160,0.0013671875,0.13671875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,dizziness,0.1875,160,0.001171875,0.1171875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,fatigue,0.175,160,0.0010937499999999999,0.10937499999999999
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,headache,0.55,160,0.0034375000000000005,0.34375000000000006
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,hypertension,0.5125,160,0.003203125,0.3203125
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,hypertensive crisis,0.01,160,6.25e-5,0.00625
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,illusion,0.4875,160,0.003046875,0.3046875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,insomnia,0.06875,160,4.2968750000000006e-4,0.04296875000000001
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,mood altered/lability,0.61875,160,0.0038671875,0.38671875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,nausea,0.34375,160,0.0021484375,0.21484375000000003
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,palpitations,0.05,160,3.125e-4,0.03125
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,panic reaction,0.01875,160,1.171875e-4,0.01171875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,paresthesia,0.14375,160,8.984374999999999e-4,0.08984375
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,perspiration,0.11875,160,7.421875e-4,0.07421875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,physical pain,0.075,160,4.6875e-4,0.046875
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,polyuria,0.0625,160,3.90625e-4,0.0390625
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,pseudohallucination,0.20625,160,0.0012890624999999998,0.12890624999999997
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,restlessness,0.09375,160,5.859375e-4,0.05859375
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,somnolence,0.05,160,3.125e-4,0.03125
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,suicidal ideation,0.01,160,6.25e-5,0.00625
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,synaesthesia,0.125,160,7.8125e-4,0.078125
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,syncope,0.01,160,6.25e-5,0.00625
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,tachycardia,0.08125,160,5.078125e-4,0.05078125
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,temperature perception disturbances,0.15,160,9.375e-4,0.09375
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,tension,0.05,160,3.125e-4,0.03125
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,thinking abnornal,0.06875,160,4.2968750000000006e-4,0.04296875000000001
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,tremor,0.06875,160,4.2968750000000006e-4,0.04296875000000001
-session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,vivid imagination,0.55625,160,0.0034765625,0.34765625
-session,PSILOCYBIN,Raison2023,high_dose,high_dose,active,25,headache,0.66,50,0.0132,1.32
-session,PSILOCYBIN,Raison2023,high_dose,high_dose,active,25,illusion,0.44,50,0.0088,0.88
-session,PSILOCYBIN,Raison2023,high_dose,high_dose,active,25,nausea,0.48,50,0.0096,0.96
-session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,headache,0.277777777777778,18,0.015432098765432112,1.5432098765432112
-session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,hyperglycemia,0.0555555555555556,18,0.003086419753086422,0.30864197530864224
-session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,memory impairment,0.0555555555555556,18,0.003086419753086422,0.30864197530864224
-session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,migraine,0.0555555555555556,18,0.003086419753086422,0.30864197530864224
-session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,nausea,0.111111111111111,18,0.006172839506172833,0.6172839506172834
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,suicidal ideation,6,75,0.08,8
+session,PSILOCYBIN,Goodwin2022,mild_dose,mild_dose,active,10,thinking abnormal,4,75,0.05333333333333334,5.333333333333334
+session,PSILOCYBIN,Luquiens2025,high_dose,high_dose,active,25,dizziness,2,20,0.1,10
+session,PSILOCYBIN,Luquiens2025,high_dose,high_dose,active,25,fatigue,1,20,0.05,5
+session,PSILOCYBIN,Luquiens2025,high_dose,high_dose,active,25,hypoglycemia,1,20,0.05,5
+session,PSILOCYBIN,Luquiens2025,high_dose,high_dose,active,25,sleep disorder,1,20,0.05,5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,abdominal pain,17,160,0.10625,10.625
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,anxiety,29,160,0.18125,18.125
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,confusion,12,160,0.075,7.5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,depression,10,160,0.0625,6.25
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,dissociation,35,160,0.21875,21.875
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,dizziness,30,160,0.1875,18.75
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,fatigue,28,160,0.175,17.5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,headache,88,160,0.55,55.00000000000001
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,hypertension,82,160,0.5125,51.24999999999999
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,hypertensive crisis,1.6,160,0.01,1
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,illusion,78,160,0.4875,48.75
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,insomnia,11,160,0.06875,6.875000000000001
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,mood altered/lability,99,160,0.61875,61.875
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,nausea,55,160,0.34375,34.375
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,palpitations,8,160,0.05,5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,panic reaction,3,160,0.01875,1.875
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,paresthesia,23,160,0.14375,14.374999999999998
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,perspiration,19,160,0.11875,11.875
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,physical pain,12,160,0.075,7.5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,polyuria,10,160,0.0625,6.25
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,pseudohallucination,33,160,0.20625,20.625
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,restlessness,15,160,0.09375,9.375
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,somnolence,8,160,0.05,5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,suicidal ideation,1.6,160,0.01,1
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,synaesthesia,20,160,0.125,12.5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,syncope,1.6,160,0.01,1
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,tachycardia,13,160,0.08125,8.125
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,temperature perception disturbances,24,160,0.15,15
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,tension,8,160,0.05,5
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,thinking abnornal,11,160,0.06875,6.875000000000001
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,tremor,11,160,0.06875,6.875000000000001
+session,PSILOCYBIN,Mertens2026,high_dose,high_dose,active,25,vivid imagination,89,160,0.55625,55.625
+session,PSILOCYBIN,Raison2023,high_dose,high_dose,active,25,headache,33,50,0.66,66
+session,PSILOCYBIN,Raison2023,high_dose,high_dose,active,25,illusion,22,50,0.44,44
+session,PSILOCYBIN,Raison2023,high_dose,high_dose,active,25,nausea,24,50,0.48,48
+session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,headache,5,18,0.2777777777777778,27.77777777777778
+session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,hyperglycemia,1,18,0.05555555555555555,5.555555555555555
+session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,memory impairment,1,18,0.05555555555555555,5.555555555555555
+session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,migraine,1,18,0.05555555555555555,5.555555555555555
+session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,nausea,2,18,0.1111111111111111,11.11111111111111
 session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,physical pain,0,18,0,0
 session,PSILOCYBIN,Rieser2025,high_dose,high_dose,active,25,stress,0,18,0,0
-session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,anxiety,0.172413793103448,29,0.0059453032104637244,0.5945303210463725
-session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,feeling abnormal,0.0689655172413793,29,0.002378121284185493,0.2378121284185493
-session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,headache,0.275862068965517,29,0.009512485136741966,0.9512485136741966
-session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,hypertension,0.758620689655172,29,0.026159334126040414,2.615933412604041
-session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,nausea,0.137931034482759,29,0.004756242568371,0.4756242568371
-session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,cystitis,0.0384615384615385,26,0.0014792899408284039,0.14792899408284038
-session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,diarrhea,0.0384615384615385,26,0.0014792899408284039,0.14792899408284038
-session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,dizziness,0.0769230769230769,26,0.002958579881656804,0.2958579881656804
-session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,headache,0.153846153846154,26,0.005917159763313615,0.5917159763313615
-session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,temperature perception disturbances,0.0769230769230769,26,0.002958579881656804,0.2958579881656804
+session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,anxiety,5,29,0.1724137931034483,17.24137931034483
+session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,feeling abnormal,2,29,0.06896551724137931,6.896551724137931
+session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,headache,8,29,0.27586206896551724,27.586206896551722
+session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,hypertension,22,29,0.7586206896551724,75.86206896551724
+session,PSILOCYBIN,Ross2016,high_dose,high_dose,active,25,nausea,4,29,0.13793103448275862,13.793103448275861
+session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,cystitis,1,26,0.038461538461538464,3.8461538461538463
+session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,diarrhea,1,26,0.038461538461538464,3.8461538461538463
+session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,dizziness,2,26,0.07692307692307693,7.6923076923076925
+session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,headache,4,26,0.15384615384615385,15.384615384615385
+session,PSILOCYBIN,VonRotz2023,high_dose,high_dose,active,25,temperature perception disturbances,2,26,0.07692307692307693,7.6923076923076925

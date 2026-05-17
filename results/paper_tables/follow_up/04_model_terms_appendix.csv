@@ -5,32 +5,41 @@ LSD,Mydriasis,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
 LSD,Tremor,linear,dose_diff,0.000,,,NA,0.978,,4,,,NA,NA,NA
 LSD,Vomiting,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
 LSD,altered state of consciousness,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
-LSD,anxiety,linear,dose_diff,-0.006,,,NA,0.604,,4,,,NA,NA,NA
-MDMA,anxiety,linear,dose_diff,-0.005,,,NA,0.876,,4,,,NA,NA,NA
-LSD,attention disturbance,linear,dose_diff,-0.018,,,NA,0.067,,6,,,NA,NA,NA
+LSD,anxiety,linear,dose_diff,0.005,,,NA,0.282,,6,,,NA,NA,NA
+MDMA,anxiety,linear,dose_diff,0.017,,,NA,0.515,,5,,,NA,NA,NA
+LSD,attention disturbance,linear,dose_diff,0.000,,,NA,0.977,,6,,,NA,NA,NA
+MDMA,decreased concentration,linear,dose_diff,-0.010,,,NA,0.737,,4,,,NA,NA,NA
 LSD,depressed mood,linear,dose_diff,0.006,,,NA,0.638,,4,,,NA,NA,NA
-LSD,dizziness,linear,dose_diff,-0.006,,,NA,0.615,,5,,,NA,NA,NA
+LSD,dizziness,linear,dose_diff,0.001,,,NA,0.969,,5,,,NA,NA,NA
+MDMA,dizziness,linear,dose_diff,0.051,,,NA,0.180,,3,,,NA,NA,NA
 LSD,emotional distress,linear,dose_diff,0.007,,,NA,0.607,,4,,,NA,NA,NA
 LSD,euphoric mood,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
-MDMA,fatigue,linear,dose_diff,-0.023,,,NA,0.509,,4,,,NA,NA,NA
+LSD,fatigue,linear,dose_diff,-0.002,,,NA,0.857,,3,,,NA,NA,NA
+MDMA,fatigue,linear,dose_diff,-0.001,,,NA,0.975,,5,,,NA,NA,NA
 LSD,feeling abnormal,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
 LSD,hallucination visual,linear,dose_diff,-0.005,,,NA,0.713,,4,,,NA,NA,NA
-LSD,headache,linear,dose_diff,-0.009,,,NA,0.307,,6,,,NA,NA,NA
-MDMA,headache,linear,dose_diff,0.004,,,NA,0.880,,4,,,NA,NA,NA
+LSD,headache,linear,dose_diff,-0.002,,,NA,0.810,,7,,,NA,NA,NA
+MDMA,headache,linear,dose_diff,-0.004,,,NA,0.843,,5,,,NA,NA,NA
 LSD,hypertension,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
 LSD,illusion,linear,dose_diff,-0.006,,,NA,0.648,,4,,,NA,NA,NA
-MDMA,irritability,linear,dose_diff,0.021,,,NA,0.458,,3,,,NA,NA,NA
-LSD,lack of appetite,linear,dose_diff,0.010,,,NA,0.449,,4,,,NA,NA,NA
-MDMA,lack of appetite,linear,dose_diff,0.031,,,NA,0.290,,4,,,NA,NA,NA
+MDMA,irritability,linear,dose_diff,0.027,,,NA,0.269,,4,,,NA,NA,NA
+MDMA,jaw tension,linear,dose_diff,0.046,,,NA,0.223,,3,,,NA,NA,NA
+LSD,lack of appetite,linear,dose_diff,0.001,,,NA,0.939,,5,,,NA,NA,NA
+MDMA,lack of appetite,linear,dose_diff,0.017,,,NA,0.456,,5,,,NA,NA,NA
 MDMA,muscle tension,linear,dose_diff,0.002,,,NA,0.954,,3,,,NA,NA,NA
-LSD,nausea,linear,dose_diff,0.006,,,NA,0.532,,5,,,NA,NA,NA
+LSD,nausea,linear,dose_diff,0.010,,,NA,0.446,,5,,,NA,NA,NA
 LSD,paresthesia,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
 LSD,perspiration,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
 LSD,pseudohallucination,linear,dose_diff,-0.000,,,NA,0.995,,4,,,NA,NA,NA
-MDMA,sleep disorder,linear,dose_diff,-0.003,,,NA,0.869,,8,,,NA,NA,NA
-LSD,temperature perception disturbances,linear,dose_diff,-0.004,,,NA,0.809,,4,,,NA,NA,NA
+MDMA,rumination,linear,dose_diff,0.047,,,NA,0.215,,3,,,NA,NA,NA
+MDMA,sleep disorder,linear,dose_diff,0.009,,,NA,0.555,,10,,,NA,NA,NA
+LSD,temperature perception disturbances,linear,dose_diff,-0.000,,,NA,1.000,,5,,,NA,NA,NA
 LSD,thinking abnormal,linear,dose_diff,0.000,,,NA,0.978,,4,,,NA,NA,NA
-LSD,attention disturbance,spline_df3,dose_diff,,,,NA,0.150,,6,,,NA,NA,NA
-LSD,dizziness,spline_df3,dose_diff,,,,NA,0.912,,5,,,NA,NA,NA
-LSD,headache,spline_df3,dose_diff,,,,NA,0.629,,6,,,NA,NA,NA
-LSD,nausea,spline_df3,dose_diff,,,,NA,0.885,,5,,,NA,NA,NA
+MDMA,weakness,linear,dose_diff,0.018,,,NA,0.596,,3,,,NA,NA,NA
+LSD,anxiety,spline_df3,dose_diff,,,,NA,0.157,,6,,,NA,NA,NA
+LSD,attention disturbance,spline_df3,dose_diff,,,,NA,0.255,,6,,,NA,NA,NA
+LSD,dizziness,spline_df3,dose_diff,,,,NA,0.959,,5,,,NA,NA,NA
+LSD,headache,spline_df3,dose_diff,,,,NA,0.721,,7,,,NA,NA,NA
+LSD,lack of appetite,spline_df3,dose_diff,,,,NA,0.979,,5,,,NA,NA,NA
+LSD,nausea,spline_df3,dose_diff,,,,NA,0.894,,5,,,NA,NA,NA
+LSD,temperature perception disturbances,spline_df3,dose_diff,,,,NA,0.967,,5,,,NA,NA,NA
