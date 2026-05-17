@@ -57,10 +57,10 @@ paper_theme_publication <- function(base_size = 12){
 
 mol_colors <- function(){
   c(
-    "MDMA"       = "#C0392B",
-    "LSD"        = "#2E86C1",
-    "PSILOCYBIN" = "#239B56",
-    "AYAHUASCA"  = "#8E44AD"
+    "LSD"        = "#6F4AB6",
+    "MDMA"       = "#C94A4A",
+    "PSILOCYBIN" = "#2F8F5B",
+    "AYAHUASCA"  = "#C58A2B"
   )
 }
 
@@ -139,7 +139,7 @@ plot_fig1_global_dr_session_followup <- function(
     preds_session,
     preds_followup,
     outfile,
-    molecules = c("PSILOCYBIN","MDMA","LSD"),
+    molecules = c("LSD","MDMA","PSILOCYBIN"),
     xlab = "Dose",
     ylab = "Log odds ratio (adverse events)"
 ){
@@ -341,6 +341,129 @@ plot_fig2_forest_main_aes_by_molecule_both_windows <- function(
   height <- max(6.5, 0.22 * n_ae + 2.6)
   
   save_pub(outfile, p, width = 13.0, height = height)
+  invisible(p)
+}
+
+plot_fig2_dr_top_aes_spline_facets <- function(
+    preds_ae,
+    models_ae,
+    outfile,
+    molecules = c("LSD", "MDMA", "PSILOCYBIN", "AYAHUASCA"),
+    min_k = 3,
+    top_n_ae = Inf,
+    significant_only = TRUE,
+    model = "spline",
+    xlab = "Dose",
+    ylab = "Log odds ratio (adverse event)"
+){
+  if (is.null(preds_ae) || !nrow(preds_ae)) return(invisible(NULL))
+  if (is.null(models_ae) || !nrow(models_ae)) return(invisible(NULL))
+
+  preds <- preds_ae %>%
+    mutate(
+      molecule = toupper(as.character(molecule)),
+      model = as.character(model)
+    ) %>%
+    filter(
+      .data$model == !!model,
+      molecule %in% molecules,
+      is.finite(dose_mg),
+      is.finite(fit)
+    )
+
+  models <- models_ae %>%
+    mutate(
+      molecule = toupper(as.character(molecule)),
+      model = as.character(model),
+      ae_term = as.character(ae_term),
+      pval = suppressWarnings(as.numeric(pval)),
+      k = suppressWarnings(as.numeric(k))
+    ) %>%
+    filter(
+      .data$model == !!model,
+      molecule %in% molecules,
+      is.finite(k),
+      k >= min_k
+    )
+
+  if (!nrow(preds) || !nrow(models)) return(invisible(NULL))
+
+  ae_keep <- models %>%
+    group_by(ae_term) %>%
+    summarise(
+      n_molecules = n_distinct(molecule),
+      k_total = sum(k, na.rm = TRUE),
+      any_significant = any(!is.na(pval) & pval < 0.05),
+      .groups = "drop"
+    )
+
+  if (isTRUE(significant_only)) {
+    ae_keep <- ae_keep %>% filter(any_significant)
+  }
+
+  ae_keep <- ae_keep %>%
+    arrange(desc(any_significant), desc(n_molecules), desc(k_total), ae_term)
+
+  if (is.finite(top_n_ae)) {
+    ae_keep <- ae_keep %>% slice_head(n = top_n_ae)
+  }
+
+  ae_keep <- ae_keep %>% pull(ae_term)
+
+  if (!length(ae_keep)) return(invisible(NULL))
+
+  df <- preds %>%
+    inner_join(
+      models %>%
+        transmute(
+          molecule,
+          ae_term,
+          sig_label = if_else(!is.na(pval) & pval < 0.05, "Significant", "Not significant")
+        ),
+      by = c("molecule", "ae_term")
+    ) %>%
+    filter(ae_term %in% ae_keep) %>%
+    make_plot_dose("dose_mg") %>%
+    mutate(
+      molecule = factor(molecule, levels = molecules),
+      ae_term = factor(ae_term, levels = ae_keep),
+      sig_label = factor(sig_label, levels = c("Significant", "Not significant"))
+    )
+
+  if (!nrow(df)) return(invisible(NULL))
+
+  p <- ggplot(
+    df,
+    aes(
+      x = dose_plot,
+      y = fit,
+      color = molecule,
+      fill = molecule,
+      linetype = sig_label,
+      group = molecule
+    )
+  ) +
+    geom_hline(yintercept = 0, color = "grey78", linewidth = 0.35) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.10, linewidth = 0, show.legend = FALSE) +
+    geom_line(linewidth = 1.05) +
+    facet_wrap(~ ae_term, ncol = 3, scales = "free") +
+    scale_color_manual(values = mol_colors(), drop = FALSE) +
+    scale_fill_manual(values = mol_colors(), drop = FALSE) +
+    scale_linetype_manual(values = c("Significant" = "solid", "Not significant" = "22")) +
+    labs(x = xlab, y = ylab) +
+    paper_theme_publication(base_size = 11) +
+    theme(
+      panel.spacing = unit(1.1, "lines"),
+      legend.box = "vertical"
+    ) +
+    guides(
+      color = guide_legend(title = "Molecule", nrow = 1, override.aes = list(linetype = "solid", linewidth = 2)),
+      linetype = guide_legend(title = "Dose-slope", nrow = 1, override.aes = list(color = "black", linewidth = 2))
+    )
+
+  n_facets <- length(unique(df$ae_term))
+  height <- max(7.2, ceiling(n_facets / 3) * 2.45 + 1.8)
+  save_pub(outfile, p, width = 12.2, height = height)
   invisible(p)
 }
 

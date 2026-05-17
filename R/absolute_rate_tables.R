@@ -11,6 +11,7 @@ make_absolute_rate_tables <- function(raw,
                                       out_dir,
                                       min_total_n = 1,
                                       top_n_ae_per_group = 10,
+                                      arm_types_keep = "active",
                                       write_outputs = TRUE) {
   needed <- c("molecule", "ae_term", "time_window", "study_id", "n")
   missing_cols <- setdiff(needed, names(raw))
@@ -27,6 +28,10 @@ make_absolute_rate_tables <- function(raw,
       ae_term = as.character(ae_term),
       time_window = as.character(time_window),
       study_id = as.character(study_id),
+      arm_id = if ("arm_id" %in% names(.)) as.character(arm_id) else NA_character_,
+      group = if ("group" %in% names(.)) as.character(group) else NA_character_,
+      arm_type = if ("arm_type" %in% names(.)) as.character(arm_type) else NA_character_,
+      dose_mg = if ("dose_mg" %in% names(.)) suppressWarnings(as.numeric(dose_mg)) else NA_real_,
       events = if ("events" %in% names(.)) suppressWarnings(as.numeric(events)) else NA_real_,
       absolute_events = if ("absolute_events" %in% names(.)) suppressWarnings(as.numeric(absolute_events)) else NA_real_,
       n = suppressWarnings(as.numeric(n)),
@@ -37,6 +42,7 @@ make_absolute_rate_tables <- function(raw,
         TRUE ~ "missing"
       )
     ) %>%
+    filter(is.null(arm_types_keep) | is.na(arm_type) | arm_type %in% arm_types_keep) %>%
     filter(
       !is.na(molecule),
       !is.na(ae_term),
@@ -46,16 +52,39 @@ make_absolute_rate_tables <- function(raw,
       is.finite(n),
       n > 0
     )
+
+  arm_cols <- c("time_window", "molecule", "study_id", "arm_id", "group", "arm_type", "dose_mg")
+  arm_denominators <- dat %>%
+    distinct(across(all_of(arm_cols)), n) %>%
+    group_by(time_window, molecule) %>%
+    summarise(
+      n_studies = n_distinct(study_id),
+      n_arms = n(),
+      n_total = sum(n, na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    filter(n_total >= min_total_n)
   
   # -------------------------------------------------------------------------
-  # Base table at study granularity: study × molecule × window × AE
-  # This avoids accidental over/under aggregation from duplicated row structures.
+  # Base table at arm granularity: study × arm × molecule × window × AE.
+  # `n` is deduplicated per arm instead of summed over repeated AE rows.
   # -------------------------------------------------------------------------
-  by_ae_study <- dat %>%
-    group_by(time_window, molecule, study_id, ae_term) %>%
+  by_ae_arm <- dat %>%
+    group_by(time_window, molecule, study_id, arm_id, group, arm_type, dose_mg, ae_term) %>%
     summarise(
       events_total = sum(events_for_absolute, na.rm = TRUE),
-      n_total = sum(n, na.rm = TRUE),
+      n_total = max(n, na.rm = TRUE),
+      rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
+      rate_pct = 100 * rate,
+      .groups = "drop"
+    )
+
+  by_ae_study <- by_ae_arm %>%
+    group_by(time_window, molecule, study_id, ae_term) %>%
+    summarise(
+      n_arms = n(),
+      events_total = sum(events_total, na.rm = TRUE),
+      n_total = sum(n_total, na.rm = TRUE),
       rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
       rate_pct = 100 * rate,
       .groups = "drop"
@@ -108,21 +137,15 @@ make_absolute_rate_tables <- function(raw,
       ) %>%
       arrange(time_window, molecule)
   } else {
-    global <- by_ae %>%
-      group_by(time_window, molecule) %>%
-      summarise(
-        n_studies = max(n_studies, na.rm = TRUE),
-        events_total = sum(events_total, na.rm = TRUE),
-        n_total = sum(n_total, na.rm = TRUE),
-        rate = ifelse(n_total > 0, events_total / n_total, NA_real_),
-        rate_pct = 100 * rate,
-        .groups = "drop"
-      ) %>%
-      filter(n_total >= min_total_n) %>%
+    global <- arm_denominators %>%
       mutate(
-        global_definition = "fallback: sum across AE rows (interpret with caution)",
+        events_total = NA_real_,
+        rate = NA_real_,
+        rate_pct = NA_real_,
+        global_definition = "denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants",
         events_source = "row-wise preference: absolute_events else events"
       ) %>%
+      select(time_window, molecule, n_studies, events_total, n_total, rate, rate_pct, global_definition, events_source) %>%
       arrange(time_window, molecule)
   }
   
@@ -142,13 +165,16 @@ make_absolute_rate_tables <- function(raw,
     readr::write_csv(by_ae, file.path(out_dir, "Sx_absolute_rates_by_ae.csv"))
     readr::write_csv(top_ae, file.path(out_dir, "Sx_absolute_rates_topAE.csv"))
     readr::write_csv(by_ae_study, file.path(out_dir, "Sx_absolute_rates_by_ae_study.csv"))
+    readr::write_csv(by_ae_arm, file.path(out_dir, "Sx_absolute_rates_by_ae_arm.csv"))
+    readr::write_csv(arm_denominators, file.path(out_dir, "Sx_absolute_rates_denominators.csv"))
     
     note <- c(
       "Absolute-rate supplementary tables",
+      paste0("- included arm_type values: ", ifelse(is.null(arm_types_keep), "all", paste(arm_types_keep, collapse = ", "))),
       "- events_total uses absolute_events when available, otherwise events",
-      "- AE-level table aggregates study × molecule × window × AE first, then pools",
+      "- AE-level table aggregates study × arm × molecule × window × AE first, deduplicating N per arm, then pools",
       "- global table uses 'any adverse event' rows when available",
-      "- fallback global aggregation across all AEs may duplicate denominators and should be interpreted with caution"
+      "- if no any-AE rows are available, the global table reports denominator only; summing AE rows would double-count participants"
     )
     writeLines(note, con = file.path(out_dir, "README_absolute_rates.txt"))
   }
@@ -157,6 +183,8 @@ make_absolute_rate_tables <- function(raw,
     global = global,
     by_ae = by_ae,
     top_ae = top_ae,
-    by_ae_study = by_ae_study
+    by_ae_study = by_ae_study,
+    by_ae_arm = by_ae_arm,
+    denominators = arm_denominators
   )
 }

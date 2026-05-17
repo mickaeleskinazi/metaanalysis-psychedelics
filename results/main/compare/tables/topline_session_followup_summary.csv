@@ -1,4 +1,0 @@
-molecule,p_session,stars_session,k_session,p_follow,stars_follow,k_follow,n_session_only,n_follow_only,n_both,n_not_sig,p_session_fmt,p_follow_fmt
-LSD,7.493014199869901e-4,***,149,0.002345837771146657,**,108,3,0,0,22,<0.001,0.002
-MDMA,1.9049719016569994e-5,***,213,0.533601072356435,,75,3,0,0,18,<0.001,0.534
-PSILOCYBIN,9.24534135961548e-11,***,166,NA,NA,NA,3,0,0,10,<0.001,

@@ -1,0 +1,9 @@
+time_window,molecule,n_studies,events_total,n_total,rate,rate_pct,global_definition,events_source
+follow_up,LSD,3,NA,383,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+follow_up,MDMA,3,NA,74,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+follow_up,PSILOCYBIN,1,NA,160,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+overall,LSD,1,NA,79,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+session,AYAHUASCA,2,NA,23,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+session,LSD,5,NA,398,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+session,MDMA,9,NA,231,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events
+session,PSILOCYBIN,9,NA,530,NA,NA,denominator only: no explicit any-AE rows; AE rows cannot be summed without double-counting participants,row-wise preference: absolute_events else events

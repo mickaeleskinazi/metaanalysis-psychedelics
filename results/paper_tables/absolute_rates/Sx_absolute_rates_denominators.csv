@@ -1,0 +1,9 @@
+time_window,molecule,n_studies,n_arms,n_total
+follow_up,LSD,3,9,383
+follow_up,MDMA,3,4,74
+follow_up,PSILOCYBIN,1,1,160
+overall,LSD,1,2,79
+session,AYAHUASCA,2,2,23
+session,LSD,5,11,398
+session,MDMA,9,13,231
+session,PSILOCYBIN,9,10,530
